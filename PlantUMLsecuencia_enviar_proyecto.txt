@@ -1,0 +1,60 @@
+@startuml
+actor Ciudadano as c
+participant GUI
+participant "__:Aplicacion__" as app
+participant "__p:Proyecto__" as pr
+participant "__s:Ciudadano__" as s
+participant "__n:Notificacion__" as n
+actor "Sistema externo" as SEF
+
+activate c
+activate GUI
+activate app
+
+c -> GUI : seleccionar proyecto
+GUI -> app : proyecto_id
+app -> app ++ : findProyecto(proyecto_id) /'++ activa el target'/
+return p
+
+app -> pr ++ : getEstado()
+return estado
+
+alt estado != ListoEnviar
+	app -> GUI : proyecto no válido
+    GUI -> c : inhabilitar botón "Enviar"
+
+else else
+	app -> GUI : proyecto válido
+    GUI -> c : habilitar botón "Enviar"
+    c -> GUI : click a "Enviar"
+    GUI -> app :enviar
+    app -> pr ++ : enviarFinanciacion()
+    pr -> SEF : propuesta
+    
+    group neg
+    	SEF -> pr : error en el envío
+        pr -> app : error
+        app -> GUI : error
+        GUI -> c : mensaje de error
+    end
+
+    pr -> pr ++ : notificarCambio()
+    loop for each s in suscriptores
+    	pr -> s ++ : actualizarProyecto(p)
+        s -> n ** : create(p) /'** crea una instancia del target'/
+        s -> s ++ : addPendiente(n)
+        deactivate s
+        deactivate s
+    end
+    deactivate pr
+    
+    pr --> app -- : enviado con éxito
+    app -> GUI
+    GUI -> c : mensaje de éxito
+
+end
+
+deactivate app
+deactivate GUI
+deactivate c
+@enduml
