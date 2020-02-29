@@ -1,0 +1,20 @@
+@startuml
+[*]-right->Propuesto: new Proyecto()
+Propuesto-down->[*]: rechazar()
+
+state "En Votación" as votacion {
+    state "No Listo" as nolisto
+    [*]->nolisto
+    nolisto->Listo
+    Listo->Enviado
+    --
+    state "No Caducado" as nocaducado
+    [*]->nocaducado
+    nocaducado-right->Caducado
+    Caducado-left->nocaducado
+}
+Propuesto->votacion
+votacion-right->Aceptado
+votacion-right->Rechazado
+
+@enduml

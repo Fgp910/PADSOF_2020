@@ -1,0 +1,11 @@
+@startuml
+[*]-right->Pendiente: new Ciudadano()
+
+
+Pendiente-down->[*]: rechazar()
+state Admitido {
+  Activo-right->Bloqueado: bloquear()
+  Bloqueado-left->Activo: desbloquear()
+}
+Pendiente-right->Activo: admitir()
+@enduml
