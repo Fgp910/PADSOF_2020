@@ -19,7 +19,7 @@ loop for each p in proyectos
     return caducado
     app -> p ++ : getEstado()
     return estado
-    opt caducado == False & estado != Financiado & estado != Denegado
+    opt caducado == False & estado not in (Inical, Financiado, Denegado)
         app -> p ++ : getDescripcion()
         return descripción
         app -> GUI : descripción
@@ -37,6 +37,7 @@ else
 end
 app -> c ++ : apoyar(p)
 c -> p ++ : recibirApoyo(c)
+p -> p : ultimoApoyo := fechaActual
 p -> p ++ : addPromotores(c)
 p -> prom ++ : add(c)
 return esNuevo

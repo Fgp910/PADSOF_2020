@@ -5,16 +5,16 @@ Propuesto-down->[*]: rechazar()
 state "En Votación" as votacion {
     state "No Listo" as nolisto
     [*]->nolisto
-    nolisto->Listo: [napoyos >= minapoyos]
+    nolisto->Listo: [nApoyos >= minApoyos]
     Listo->Enviado: enviarFinanciacion()
     Enviado->[*]: respuestaSistemaExterno
     --
     state "No Caducado" as nocaducado
     [*]->nocaducado
     nocaducado-->Caducado: [fechaActual - ultimoApoyo >= 30 dias]
-    nocaducado-->nocaducado: recibirApoyo()
+    nocaducado-->nocaducado: recibirApoyo() / nApoyos++, ultimoApoyo:=fechaActual
 }
-Propuesto->votacion: aceptar()
-votacion-right->Aceptado: financiar()
+Propuesto->votacion: aceptar(minApoyos)
+votacion-->Aceptado: financiar()
 votacion-->Rechazado: denegarFinanciacion()
 @enduml
