@@ -1,0 +1,20 @@
+@startuml
+[*]-right->Propuesto: new Proyecto()
+Propuesto-down->[*]: rechazar()
+
+state "En Votación" as votacion {
+    state "No Listo" as nolisto
+    [*]->nolisto
+    nolisto->Listo: [napoyos >= minapoyos]
+    Listo->Enviado: enviarFinanciacion()
+    --
+    state "No Caducado" as nocaducado
+    [*]->nocaducado
+    nocaducado-right->Caducado: [fechaActual - ultimoApoyo >= 30 dias]
+    nocaducado-->nocaducado: recibirApoyo()
+}
+Propuesto->votacion: aceptar()
+votacion-right->Aceptado: financiar()
+votacion-right->Rechazado: denegarFinanciacion()
+
+@enduml
