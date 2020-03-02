@@ -1,0 +1,89 @@
+@startuml
+actor Ciudadano as user
+participant GUI
+participant "__:Aplicacion__" as app
+participant "__c:Ciudadano__" as c
+participant "__p:Proyecto__" as p
+participant "__prom:Set__" as prom
+participant "__s:Ciudadano__" as s
+participant "__n:Notificacion__" as n
+
+activate user
+activate GUI
+activate app
+
+user -> GUI : Nombre y contraseña
+GUI -> app : Nombre, contraseña
+app -> app ++ : findUsuario(Nombre)
+return c
+app -> c ++: getPassword()
+return password
+
+alt contraseña != password
+	app -> GUI : error de autenticación
+    GUI -> user : mensaje de error
+
+else else
+	app -> GUI : credenciales correctas
+    GUI -> user : menú principal
+    user -> GUI : click a "Apoyar proyectos"
+    GUI -> app : "Apoyar proyectos"
+    loop for each p in proyectos
+    	app -> p ++ : getCaducado()
+        return caducado
+        app -> p ++ : getEstado()
+        return estado
+        opt caducado == False & estado != Financiado & estado != Denegado
+        	app -> p ++ : getDescripcion()
+            return descripción
+            app -> GUI : descripción
+    	end
+    end
+	GUI -> user : lista de proyectos
+    par
+    	user -> GUI : seleccionar proyecto
+        GUI -> app : proyecto_id
+        app -> app ++ : findProyecto(proyecto_id)
+        return p
+   	else
+    	user -> GUI : marcar "Soy ciudadano"
+        GUI -> user : habilitar botón "Apoyar"
+    end
+    app -> c ++ : apoyar(p)
+    c -> p ++ : recibirApoyo(c)
+    p -> p ++ : addPromotores(c)
+    p -> prom ++ : add(c)
+    return esNuevo
+    opt esNuevo == True
+    	p -> p : nApoyos++
+        opt nApoyos >= minApoyos & estado == Aceptado
+        	p -> p ++ : setEstado(ListoEnviar)
+        	p -> p ++ : notificarCambio()
+                loop for each s in suscriptores
+                    p -> s ++ : actualizarProyecto(p)
+                    s -> n ** : create(p)
+                    s -> s ++ : addPendiente(n)
+                    deactivate s
+                    deactivate s
+                end
+                deactivate p
+            deactivate p
+        end
+    end
+    return esNuevo
+    return esNuevo
+    return esNuevo
+    alt esNuevo == True
+    	app -> GUI : nuevo apoyo
+        GUI -> user : mensaje de éxito
+    else else
+    	app -> GUI : duplicado
+        GUI -> user : mensaje de duplicidad
+    end
+end
+
+
+deactivate user
+deactivate GUI
+deactivate app
+@enduml

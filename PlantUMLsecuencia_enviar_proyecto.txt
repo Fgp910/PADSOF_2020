@@ -10,6 +10,7 @@ actor "Sistema externo" as SEF
 activate c
 activate GUI
 activate app
+activate SEF
 
 c -> GUI : seleccionar proyecto
 GUI -> app : proyecto_id
@@ -33,11 +34,12 @@ else else
     
     group neg
     	SEF -> pr : error en el envío
-        pr -> app : error
+        pr -> app -- : error
         app -> GUI : error
         GUI -> c : mensaje de error
     end
 
+	app -[hidden]> pr ++
     pr -> pr ++ : notificarCambio()
     loop for each s in suscriptores
     	pr -> s ++ : actualizarProyecto(p)
@@ -48,12 +50,13 @@ else else
     end
     deactivate pr
     
-    pr --> app -- : enviado con éxito
-    app -> GUI
+    pr -> app -- : enviado con éxito
+    app -> GUI : enviado con éxito
     GUI -> c : mensaje de éxito
 
 end
 
+deactivate SEF
 deactivate app
 deactivate GUI
 deactivate c
