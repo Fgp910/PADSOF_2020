@@ -2,13 +2,29 @@ import java.util.*;
 
 public class Colectivo implements ElementoColectivo {
     private String nombre;
-    private HashSet elementos;
+    private HashSet<ElementoColectivo> elementos;
 
     public Colectivo(String nombre) {
         this.nombre = nombre;
     }
 
-    public boolean addElemento(ElementoColectivo elemento) {
+    public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public HashSet<ElementoColectivo> getElementos() {
+		return elementos;
+	}
+
+	public void setElementos(HashSet<ElementoColectivo> elementos) {
+		this.elementos = elementos;
+	}
+
+	public boolean addElemento(ElementoColectivo elemento) {
         return elementos.add(elemento);
     }
 

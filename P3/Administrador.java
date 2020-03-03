@@ -1,16 +1,14 @@
-public class Aministrador extends Usuario {
+public class Administrador extends Usuario {
     
     public Administrador(String username, String password) {
-        super(username, password, pendientes);
+        super(username, password);
     }
 
     public void actualizarRegistro(Ciudadano c) {
-        Notificacion n = new Notificacion(c);
-        pendientes.add(n);
+        pendientes.add(new Notificacion(c));
     }
 
     public void actualizarProyectos(Proyecto p) {
-        Notificacion n = new Notificacion(p);
-        pendientes.add(n);
+        pendientes.add(new Notificacion(p));
     }
 }

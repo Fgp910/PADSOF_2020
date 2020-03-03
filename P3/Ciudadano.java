@@ -51,11 +51,11 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.finalize();
     }
 
-    public void apoyar(Proyecto proyecto) {
+    public void apoyar(Proyecto p) {
 
     }
 
-    public void actualizarProyecto() {
+    public void actualizarProyecto(Proyecto p) {
 
     }
 }

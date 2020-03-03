@@ -6,8 +6,8 @@ public abstract class Usuario {
     ArrayList<Notificacion> pendientes;
 
     public Usuario(String username, String password) {
-        username = username;
-        password = password;
+        this.username = username;
+        this.password = password;
         pendientes = new ArrayList<Notificacion>();
     }
     
