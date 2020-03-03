@@ -2,8 +2,7 @@ public abstract class Notificacion {
     private Object sujeto;
 
     public Notificacion(Object sujeto) {
-        username = username;
-        password = password;
+        sujeto = sujeto; 
     }
 
     public Object getSujeto() {
