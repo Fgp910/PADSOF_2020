@@ -47,15 +47,7 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.setAdmitido(true);
     }
 
-    public void rechazar() {
-        this.finalize();
-    }
-
     public void apoyar(Proyecto p) {
-
-    }
-
-    public void actualizarProyecto(Proyecto p) {
-
+    	p.recibirApoyo();
     }
 }
