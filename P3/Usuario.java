@@ -14,24 +14,28 @@ public abstract class Usuario {
     public String getUsername() {
         return username;
     }
+    
+    public void setUsername(String usr) {
+        username = usr;
+    }
 
     public String getPassword() {
         return password;
+    }
+    
+    public void setPassword(String psswd) {
+        password = psswd;
     }
 
     public ArrayList<Notificacion> getPendientes() {
         return pendientes;
     }
 
-    public void setUsername(String usr) {
-        username = usr;
-    }
-
-    public void setPassword(String psswd) {
-        password = psswd;
-    }
-
     public void setPendientes(ArrayList<Notificacion> p) {
         pendientes = p;
+    }
+    
+    public void agregarNotificacion(Object o) {
+        pendientes.add(new Notificacion(o));
     }
 }

@@ -43,7 +43,7 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.setBloqueado(false);
     }
 
-    public void aceptar() {
+    public void admitir() {
         this.setAdmitido(true);
     }
 
@@ -52,10 +52,6 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     public void apoyar(Proyecto p) {
-
-    }
-
-    public void actualizarProyecto(Proyecto p) {
 
     }
 }
