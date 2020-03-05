@@ -47,11 +47,11 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.setAdmitido(true);
     }
 
-    public void rechazar() {
-        this.finalize();
-    }
-
     public void apoyar(Proyecto p) {
+<<<<<<< HEAD
 
+=======
+    	p.recibirApoyo();
+>>>>>>> branch 'master' of https://github.com/Fgp910/PADSOF_2020.git
     }
 }
