@@ -100,6 +100,7 @@ public abstract class Proyecto {
 
 	public void setEstado(EstadoProyecto estado) {
 		this.estado = estado;
+		this.notificarCambio();
 	}
 
 	public boolean isCaducado() {
@@ -142,6 +143,30 @@ public abstract class Proyecto {
 		Proyecto.nextId = nextId;
 	}
 
+	public enviarFinanciacion() {
+		this.setEstado(EstadoProyecto.Enviado);
+	}
+	
+	public caducar() {
+		
+	}
+	
+	public aceptar() {
+		
+	}
+	
+	public rechazar() {
+		
+	}
+	
+	public financiar (double importe) {
+		
+	}
+	
+	public denegarFinanciacion() {
+		
+	}
+	
 	public void notificarCambio() {
         for (Ciudadano s: suscriptores) {
             s.actualizarProyecto(this);
