@@ -143,33 +143,42 @@ public abstract class Proyecto {
 		Proyecto.nextId = nextId;
 	}
 
-	public enviarFinanciacion() {
-		this.setEstado(EstadoProyecto.Enviado);
+	public void enviarFinanciacion() {
+		this.setEstado(EstadoProyecto.ENVIADO);
 	}
 	
-	public caducar() {
+	public void caducar() {
 		
 	}
 	
-	public aceptar() {
+	public void aceptar() {
 		
 	}
 	
-	public rechazar() {
+	public void rechazar() {
 		
 	}
 	
-	public financiar (double importe) {
+	public void financiar (double importe) {
 		
 	}
 	
-	public denegarFinanciacion() {
+	public void denegarFinanciacion() {
 		
 	}
 	
+	public void recibirApoyo(Ciudadano c) {
+		if (promotores.add(c)) {	//es un ciudadano que no era promotor
+			if (++nApoyos >= minApoyos && estado == EstadoProyecto.ACEPTADO) {
+				this.setEstado(EstadoProyecto.LISTOENVAR);
+			}
+
+		}
+	}
+
 	public void notificarCambio() {
         for (Ciudadano s: suscriptores) {
-            s.actualizarProyecto(this);
+            s.agregarNotificacion(this);
         }
     }
 
