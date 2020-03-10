@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class Ciudadano extends Usuario implements ElementoColectivo {
     private String nif;
@@ -48,10 +47,6 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     public void apoyar(Proyecto p) {
-<<<<<<< HEAD
-
-=======
-    	p.recibirApoyo();
->>>>>>> branch 'master' of https://github.com/Fgp910/PADSOF_2020.git
+    	p.recibirApoyo(this);
     }
 }
