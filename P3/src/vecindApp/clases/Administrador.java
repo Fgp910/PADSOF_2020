@@ -1,4 +1,4 @@
-package src.vecindApp.clases;
+package vecindApp.clases;
 
 /**
  * Define la clase Administrador, que especializa la clase Usuario

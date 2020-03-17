@@ -1,4 +1,4 @@
-package src.vecindApp.clases;
+package vecindApp.clases;
 
 public interface ElementoColectivo {
     public abstract void apoyar(Proyecto proyecto);
