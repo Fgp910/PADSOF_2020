@@ -1,10 +1,10 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Aplicacion {
     private Administrador admin;
     private ArrayList<ElementoColectivo> elemCol;
     private ArrayList<Proyecto> proyectos;
-
 
     public Aplicacion(Administrador admin) {
         this.admin = admin;
@@ -38,8 +38,8 @@ public class Aplicacion {
 
     public Colectivo findColectivo(String nombre) {
         for (ElementoColectivo c:elemCol) {
-            if (c instanceof(Colectivo)) {
-                if (nombre.equals((Colectivo)c.nombre)) {
+            if (c instanceof Colectivo) {
+                if (nombre.equals(((Colectivo) c).getNombre())) {
                     return (Colectivo)c;
                 }
             }
@@ -50,7 +50,7 @@ public class Aplicacion {
     public Ciudadano findCiudadano(String username) {
         for (ElementoColectivo c:elemCol) {
             if (c instanceof Ciudadano) {
-                if (username.equals((Ciudadano)c.username)) {
+                if (username.equals(((Ciudadano)c).getUsername())) {
                     return (Ciudadano)c;
                 }
             }
@@ -76,9 +76,21 @@ public class Aplicacion {
     }
 
     public double generarInformeAfinidad(Colectivo c1, Colectivo c2) {
-        int a1 = 0;
-        int a2 = 0;
-        
-        return 
+        ArrayList<Proyecto> p1 = c1.getProyectos();
+        ArrayList<Proyecto> p2 = c2.getProyectos();
+        int a1 = 0, a2 = 0, n1 = p1.size(), n2 = p2.size();
+
+        for (Proyecto p:p1) {
+            if (p.esApoyado(c2)) {
+                a1++;
+            }
+        }
+        for (Proyecto p:p2) {
+            if (p.esApoyado(c1)) {
+                a2++;
+            }
+        }
+
+        return (a1+a2)/((double)(n1+n2));
     }
 }
