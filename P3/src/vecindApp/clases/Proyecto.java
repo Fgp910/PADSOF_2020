@@ -1,3 +1,5 @@
+package vecindApp.clases;
+
 import java.util.*;
 
 public abstract class Proyecto {

@@ -1,3 +1,5 @@
+package vecindApp.clases;
+
 import java.util.ArrayList;
 
 /**
@@ -6,7 +8,6 @@ import java.util.ArrayList;
  * 
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-
 public class Ciudadano extends Usuario implements ElementoColectivo {
     private String nif;
     private boolean admitido;

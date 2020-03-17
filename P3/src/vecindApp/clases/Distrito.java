@@ -1,3 +1,4 @@
+package vecindApp.clases;
 
 enum Distrito {
     Arganzuela,

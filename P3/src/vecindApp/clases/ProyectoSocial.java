@@ -1,3 +1,4 @@
+package vecindApp.clases;
 
 public class ProyectoSocial extends Proyecto {
     private String grupoSocial;

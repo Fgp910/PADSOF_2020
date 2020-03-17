@@ -1,3 +1,4 @@
+package vecindApp.clases;
 
 public class ProyectoInfraestructura extends Proyecto {
     private String imagen;

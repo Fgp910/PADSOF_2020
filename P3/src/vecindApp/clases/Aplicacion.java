@@ -1,5 +1,6 @@
-import java.lang.reflect.Array;
-import java.util.*;
+package vecindApp.clases;
+
+import java.util.ArrayList;
 
 public class Aplicacion {
     private Administrador admin;

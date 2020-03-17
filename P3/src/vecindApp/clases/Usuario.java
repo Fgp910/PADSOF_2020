@@ -1,3 +1,5 @@
+package vecindApp.clases;
+
 import java.util.ArrayList;
 
 public abstract class Usuario {
@@ -8,7 +10,7 @@ public abstract class Usuario {
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
-        pendientes = new ArrayList<Notificacion>();
+        pendientes = new ArrayList<>();
     }
     
     public String getUsername() {
