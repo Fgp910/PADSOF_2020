@@ -1,4 +1,4 @@
-package vecindApp.clases;
+package src.vecindApp.clases;
 
 public class Notificacion {
   private Object sujeto;

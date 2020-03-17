@@ -1,4 +1,4 @@
-package vecindApp.clases;
+package src.vecindApp.clases;
 
 public class ProyectoSocial extends Proyecto {
     private String grupoSocial;

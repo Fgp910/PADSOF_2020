@@ -1,4 +1,4 @@
-package vecindApp.clases;
+package src.vecindApp.clases;
 
 import java.util.*;
 
