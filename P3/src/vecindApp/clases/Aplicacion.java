@@ -80,8 +80,6 @@ public class Aplicacion {
     public double generarInformeAfinidad(Colectivo c1, Colectivo c2) {
         int a1 = 0;
         int a2 = 0;
-
-        for ()
         
         return 
     }
