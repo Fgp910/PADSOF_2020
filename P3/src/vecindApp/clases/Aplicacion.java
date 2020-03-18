@@ -10,8 +10,8 @@ public class Aplicacion {
 
     public Aplicacion(Administrador admin) {
         this.admin = admin;
-        elemCol = new ArrayList<ElementoColectivo>();
-        proyectos = new ArrayList<Proyecto>();
+        elemCol = new ArrayList<>();
+        proyectos = new ArrayList<>();
     }
 
     public Administrador getAdmin() {
@@ -81,6 +81,6 @@ public class Aplicacion {
         int a1 = 0;
         int a2 = 0;
         
-        return 
+        return 0;
     }
 }
