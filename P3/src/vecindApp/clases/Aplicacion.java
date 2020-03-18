@@ -40,8 +40,8 @@ public class Aplicacion {
 
     public Colectivo findColectivo(String nombre) {
         for (ElementoColectivo c:elemCol) {
-            if (c instanceof(Colectivo)) {
-                if (nombre.equals((Colectivo)c.nombre)) {
+            if (c instanceof Colectivo) {
+                if (nombre.equals(((Colectivo) c).getNombre())) {
                     return (Colectivo)c;
                 }
             }
@@ -52,7 +52,7 @@ public class Aplicacion {
     public Ciudadano findCiudadano(String username) {
         for (ElementoColectivo c:elemCol) {
             if (c instanceof Ciudadano) {
-                if (username.equals((Ciudadano)c.username)) {
+                if (username.equals(((Ciudadano) c).getUsername())) {
                     return (Ciudadano)c;
                 }
             }
@@ -70,11 +70,11 @@ public class Aplicacion {
     }
 
     public void notificarRegistro(Ciudadano c) {
-        admin.agregarNotificacion(c);
+        admin.agregarNotificacion(new NotificacionReg(c));
     }
 
     public void notificarNuevoProyecto(Proyecto p) {
-        admin.agregarNotificacion(p);
+        admin.agregarNotificacion(new NotificacionProy(p));
     }
 
     public double generarInformeAfinidad(Colectivo c1, Colectivo c2) {

@@ -37,7 +37,7 @@ public abstract class Usuario {
         pendientes = p;
     }
     
-    public void agregarNotificacion(Object o) {
-        pendientes.add(new Notificacion(o));
+    public void agregarNotificacion(Notificacion n) {
+        pendientes.add(n);
     }
 }

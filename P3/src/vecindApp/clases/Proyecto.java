@@ -180,7 +180,7 @@ public abstract class Proyecto {
 
 	public void notificarCambio() {
         for (Ciudadano s: suscriptores) {
-            s.agregarNotificacion(this);
+            s.agregarNotificacion(new NotificacionProy(this));
         }
     }
 
