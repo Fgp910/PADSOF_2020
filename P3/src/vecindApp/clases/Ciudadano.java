@@ -1,5 +1,7 @@
 package vecindApp.clases;
 
+import java.util.ArrayList;
+
 /**
  * Define la clase Ciudadano, que agrega a la clase Usuario los atributos
  * y metodos propios de un ciudadano.
@@ -10,39 +12,54 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     private String nif;
     private boolean admitido;
     private boolean bloqueado;
+    private ArrayList<Proyecto> proyectos;
+    private ArrayList<Colectivo> colectivosRepresentados;
 
     public Ciudadano(String username, String password, String nif) {
         super(username, password);
         this.nif = nif;
         this.admitido = false;
+        this.bloqueado = false;
     }
 
     public String getNif() {
         return nif;
     }
 
-    public boolean getAdmitido() {
-        return admitido;
-    }
-
-    public boolean getBloqueado() {
-        return bloqueado;
-    }
-
     public void setNif(String nif) {
         this.nif = nif;
+    }
+
+    public boolean isAdmitido() {
+        return admitido;
     }
 
     public void setAdmitido(boolean admitido) {
         this.admitido = admitido;
     }
 
+    public boolean isBloqueado() {
+        return bloqueado;
+    }
+
     public void setBloqueado(boolean bloqueado) {
         this.bloqueado = bloqueado;
     }
 
-    public void bloquear() {
-        this.setBloqueado(true);
+    public ArrayList<Proyecto> getProyectos() {
+        return proyectos;
+    }
+
+    public void setProyectos(ArrayList<Proyecto> proyectos) {
+        this.proyectos = proyectos;
+    }
+
+    public ArrayList<Colectivo> getColectivosRepresentados() {
+        return colectivosRepresentados;
+    }
+
+    public void setColectivosRepresentados(ArrayList<Colectivo> colectivosRepresentados) {
+        this.colectivosRepresentados = colectivosRepresentados;
     }
 
     public void desbloquear() {

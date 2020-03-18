@@ -1,5 +1,7 @@
 package vecindApp.clases;
 
+import java.util.ArrayList;
+
 public class ProyectoInfraestructura extends Proyecto {
     private String imagen;
     private ArrayList<Distrito> afectados;

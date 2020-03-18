@@ -16,6 +16,7 @@ public abstract class Proyecto {
     private Ciudadano propulsor;
     private Set<Ciudadano> promotores;
     private Set<Ciudadano> suscriptores;
+    private Set<Colectivo> colectivosPromotores;
 
     private static int nextId = 1;
 
@@ -137,6 +138,14 @@ public abstract class Proyecto {
 		this.suscriptores = suscriptores;
 	}
 
+	public Set<Colectivo> getColectivosPromotores() {
+		return colectivosPromotores;
+	}
+
+	public void setColectivosPromotores(Set<Colectivo> colectivosPromotores) {
+		this.colectivosPromotores = colectivosPromotores;
+	}
+
 	public static int getNextId() {
 		return nextId;
 	}
@@ -174,8 +183,21 @@ public abstract class Proyecto {
 			if (++nApoyos >= minApoyos && estado == EstadoProyecto.ACEPTADO) {
 				this.setEstado(EstadoProyecto.LISTOENVAR);
 			}
-
 		}
+	}
+
+	public void recibirApoyo(Colectivo c) {
+    	if (colectivosPromotores.add(c)) { //El colectivo no apoyaba previamente el proyecto
+    		for (ElementoColectivo ciudadano:c.getElementos()) {
+    			if (ciudadano instanceof  Ciudadano) {
+    				recibirApoyo((Ciudadano)ciudadano);
+				}
+			}
+		}
+	}
+
+	public boolean esApoyado(Colectivo elem) {
+    	return colectivosPromotores.contains(elem);
 	}
 
 	public void notificarCambio() {
