@@ -5,8 +5,8 @@ import java.util.*;
 public class Colectivo implements ElementoColectivo {
     private String nombre;
     private Ciudadano representante;
-    private HashSet<ElementoColectivo> elementos;
-    private ArrayList<Proyecto> proyectos;
+    private Set<ElementoColectivo> elementos;
+    private List<Proyecto> proyectos;
 
     public Colectivo(String nombre, Ciudadano representante) {
         this.nombre = nombre;
@@ -21,7 +21,7 @@ public class Colectivo implements ElementoColectivo {
 		this.nombre = nombre;
 	}
 
-	public HashSet<ElementoColectivo> getElementos() {
+	public Set<ElementoColectivo> getElementos() {
 		return elementos;
 	}
 
@@ -37,11 +37,11 @@ public class Colectivo implements ElementoColectivo {
         this.representante = representante;
     }
 
-    public ArrayList<Proyecto> getProyectos() {
+    public List<Proyecto> getProyectos() {
         return proyectos;
     }
 
-    public void setProyectos(ArrayList<Proyecto> proyectos) {
+    public void setProyectos(List<Proyecto> proyectos) {
         this.proyectos = proyectos;
     }
 
@@ -59,9 +59,5 @@ public class Colectivo implements ElementoColectivo {
 
     public boolean removeProyecto(Proyecto proyecto) {
         return proyectos.remove(proyecto);
-    }
-
-    public void apoyar(Proyecto proyecto) {
-
     }
 }

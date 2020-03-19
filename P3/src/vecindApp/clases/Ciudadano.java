@@ -1,6 +1,6 @@
 package vecindApp.clases;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Define la clase Ciudadano, que agrega a la clase Usuario los atributos
@@ -12,8 +12,8 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     private String nif;
     private boolean admitido;
     private boolean bloqueado;
-    private ArrayList<Proyecto> proyectos;
-    private ArrayList<Colectivo> colectivosRepresentados;
+    private List<Proyecto> proyectos;
+    private List<Colectivo> colectivosRepresentados;
 
     public Ciudadano(String username, String password, String nif) {
         super(username, password);
@@ -46,19 +46,19 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.bloqueado = bloqueado;
     }
 
-    public ArrayList<Proyecto> getProyectos() {
+    public List<Proyecto> getProyectos() {
         return proyectos;
     }
 
-    public void setProyectos(ArrayList<Proyecto> proyectos) {
+    public void setProyectos(List<Proyecto> proyectos) {
         this.proyectos = proyectos;
     }
 
-    public ArrayList<Colectivo> getColectivosRepresentados() {
+    public List<Colectivo> getColectivosRepresentados() {
         return colectivosRepresentados;
     }
 
-    public void setColectivosRepresentados(ArrayList<Colectivo> colectivosRepresentados) {
+    public void setColectivosRepresentados(List<Colectivo> colectivosRepresentados) {
         this.colectivosRepresentados = colectivosRepresentados;
     }
 
@@ -68,15 +68,5 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
 
     public void admitir() {
         this.setAdmitido(true);
-    }
-
-    /**
-     * Implementa el metodo apoyar de la interfaz ElemetoColectivo
-     * para la clase Ciudadano.
-     * 
-     * @param p El proyecto a apoyar.
-     */
-    public void apoyar(Proyecto p) {
-    	p.recibirApoyo(this);
     }
 }

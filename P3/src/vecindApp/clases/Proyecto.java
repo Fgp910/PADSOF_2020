@@ -1,24 +1,24 @@
 package vecindApp.clases;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Proyecto {
-    private int id;
+	private static int nextId = 1;
+
+	private int id;
     private String descripcion;
     private double importeSolicitado;
     private double importeConcedido = 0;
     private Date fechaCreacion;
     private Date ultimoApoyo;
-    private int minApoyos = -1;
     private int nApoyos = 1;
     private EstadoProyecto estado = EstadoProyecto.INICIAL;
     private boolean caducado = false;
-    private Ciudadano propulsor;
-    private Set<Ciudadano> promotores;
+    private ElementoColectivo propulsor;
+    private Set<ElementoColectivo> promotores;
     private Set<Ciudadano> suscriptores;
-    private Set<Colectivo> colectivosPromotores;
-
-    private static int nextId = 1;
 
     public Proyecto(String descripcion, double importeSolicitado, Ciudadano propulsor) {
         id = nextId++;
@@ -81,19 +81,11 @@ public abstract class Proyecto {
 		this.ultimoApoyo = ultimoApoyo;
 	}
 
-	public int getMinApoyos() {
-		return minApoyos;
-	}
-
-	public void setMinApoyos(int minApoyos) {
-		this.minApoyos = minApoyos;
-	}
-
-	public int getnApoyos() {
+	public int getNApoyos() {
 		return nApoyos;
 	}
 
-	public void setnApoyos(int nApoyos) {
+	public void setNApoyos(int nApoyos) {
 		this.nApoyos = nApoyos;
 	}
 
@@ -114,19 +106,19 @@ public abstract class Proyecto {
 		this.caducado = caducado;
 	}
 
-	public Ciudadano getPropulsor() {
+	public ElementoColectivo getPropulsor() {
 		return propulsor;
 	}
 
-	public void setPropulsor(Ciudadano propulsor) {
+	public void setPropulsor(ElementoColectivo propulsor) {
 		this.propulsor = propulsor;
 	}
 
-	public Set<Ciudadano> getPromotores() {
+	public Set<ElementoColectivo> getPromotores() {
 		return promotores;
 	}
 
-	public void setPromotores(Set<Ciudadano> promotores) {
+	public void setPromotores(Set<ElementoColectivo> promotores) {
 		this.promotores = promotores;
 	}
 
@@ -138,14 +130,6 @@ public abstract class Proyecto {
 		this.suscriptores = suscriptores;
 	}
 
-	public Set<Colectivo> getColectivosPromotores() {
-		return colectivosPromotores;
-	}
-
-	public void setColectivosPromotores(Set<Colectivo> colectivosPromotores) {
-		this.colectivosPromotores = colectivosPromotores;
-	}
-
 	public static int getNextId() {
 		return nextId;
 	}
@@ -155,49 +139,52 @@ public abstract class Proyecto {
 	}
 
 	public void enviarFinanciacion() {
-		this.setEstado(EstadoProyecto.ENVIADO);
+		setEstado(EstadoProyecto.ENVIADO);
 	}
 	
 	public void caducar() {
-		
+		setCaducado(true);
 	}
 	
 	public void aceptar() {
-		
+		setEstado(EstadoProyecto.ACEPTADO);
 	}
 	
 	public void rechazar() {
-		
+		setEstado(EstadoProyecto.RECHAZADO);
 	}
 	
 	public void financiar (double importe) {
-		
+		setEstado(EstadoProyecto.FINANCIADO);
+		setImporteConcedido(importe);
 	}
 	
 	public void denegarFinanciacion() {
-		
+		setEstado(EstadoProyecto.DENEGADO);
 	}
 	
+	public void recibirApoyo(ElementoColectivo ec) {
+    	if (ec instanceof Ciudadano) {
+    		recibirApoyo((Ciudadano) ec);
+		} else if (ec instanceof  Colectivo) {
+    		recibirApoyo((Colectivo) ec);
+		}
+	}
+
 	public void recibirApoyo(Ciudadano c) {
 		if (promotores.add(c)) {	//es un ciudadano que no era promotor
-			if (++nApoyos >= minApoyos && estado == EstadoProyecto.ACEPTADO) {
-				this.setEstado(EstadoProyecto.LISTOENVAR);
+			if (++nApoyos >= Aplicacion.minApoyos && estado == EstadoProyecto.ACEPTADO) {
+				setEstado(EstadoProyecto.LISTOENVAR);
 			}
 		}
 	}
 
 	public void recibirApoyo(Colectivo c) {
-    	if (colectivosPromotores.add(c)) { //El colectivo no apoyaba previamente el proyecto
-    		for (ElementoColectivo ciudadano:c.getElementos()) {
-    			if (ciudadano instanceof  Ciudadano) {
-    				recibirApoyo((Ciudadano)ciudadano);
-				}
+    	if (promotores.add(c)) { //El colectivo no apoyaba previamente el proyecto
+    		for (ElementoColectivo ec: c.getElementos()) {
+    			recibirApoyo(ec);
 			}
 		}
-	}
-
-	public boolean esApoyado(Colectivo elem) {
-    	return colectivosPromotores.contains(elem);
 	}
 
 	public void notificarCambio() {
@@ -209,13 +196,4 @@ public abstract class Proyecto {
     public int generarInformePopularidad() {
         return nApoyos;
     }
-
-	@Override
-	public String toString() {
-		return "Proyecto [id=" + id + ", descripcion=" + descripcion + ", importeSolicitado=" + importeSolicitado
-				+ ", importeConcedido=" + importeConcedido + ", fechaCreacion=" + fechaCreacion + ", ultimoApoyo="
-				+ ultimoApoyo + ", minApoyos=" + minApoyos + ", nApoyos=" + nApoyos + ", estado=" + estado
-				+ ", caducado=" + caducado + ", propulsor=" + propulsor + ", promotores=" + promotores
-				+ ", suscriptores=" + suscriptores + "]";
-	}
 }

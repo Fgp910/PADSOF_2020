@@ -1,5 +1,7 @@
 package vecindApp.clases;
 
+import java.util.List;
+
 public interface ElementoColectivo {
-    public abstract void apoyar(Proyecto proyecto);
+    public abstract List<Proyecto> getProyectos();
 }

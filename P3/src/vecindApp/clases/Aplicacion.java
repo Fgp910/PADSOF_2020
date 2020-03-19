@@ -3,10 +3,13 @@ package vecindApp.clases;
 import java.util.*;
 
 public class Aplicacion {
-    private Administrador admin;
-    private ArrayList<ElementoColectivo> elemCol;
-    private ArrayList<Proyecto> proyectos;
+    public static int minApoyos;
 
+    private Administrador admin;
+    private List<ElementoColectivo> elemCol;
+    private List<Proyecto> proyectos;
+    private Usuario usuarioAcutal;
+    private Persistencia varStatic;
 
     public Aplicacion(Administrador admin) {
         this.admin = admin;
@@ -22,20 +25,28 @@ public class Aplicacion {
         this.admin = admin;
     }
 
-    public ArrayList<ElementoColectivo> getElemCol() {
+    public List<ElementoColectivo> getElemCol() {
         return this.elemCol;
     }
 
-    public void setElemCol(ArrayList<ElementoColectivo> elemCol) {
+    public void setElemCol(List<ElementoColectivo> elemCol) {
         this.elemCol = elemCol;
     }
 
-    public ArrayList<Proyecto> getProyectos() {
+    public List<Proyecto> getProyectos() {
         return this.proyectos;
     }
 
-    public void setProyectos(ArrayList<Proyecto> proyectos) {
+    public void setProyectos(List<Proyecto> proyectos) {
         this.proyectos = proyectos;
+    }
+
+    public Usuario getUsuarioAcutal() {
+        return usuarioAcutal;
+    }
+
+    public void setUsuarioAcutal(Usuario usuarioAcutal) {
+        this.usuarioAcutal = usuarioAcutal;
     }
 
     public Colectivo findColectivo(String nombre) {
@@ -82,5 +93,9 @@ public class Aplicacion {
         int a2 = 0;
         
         return 0;
+    }
+
+    public void guardar() {
+
     }
 }
