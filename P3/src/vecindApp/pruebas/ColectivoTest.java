@@ -1,11 +1,14 @@
 package vecindApp.pruebas;
 
+import org.junit.Assert;
+import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
-import vecindApp.clases.Ciudadano;
-import vecindApp.clases.Colectivo;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 public class ColectivoTest {
     Colectivo c;
@@ -22,10 +25,14 @@ public class ColectivoTest {
 
     @Test
     public void setNombre() {
+        c.setNombre("nuevoColectivo");
+        assertEquals("nuevoColectivo", c.getNombre());
     }
 
     @Test
     public void getElementos() {
+        Set<ElementoColectivo> s = new Set<ElementoColectivo>;
+        assertEquals(s, c.getElementos());
     }
 
     @Test
@@ -34,10 +41,15 @@ public class ColectivoTest {
 
     @Test
     public void getRepresentante() {
+        Ciudadano ciu = new Ciudadano("usr", "psswd", "12345678X");
+        assertEquals(ciu, c.getRepresentante());
     }
 
     @Test
     public void setRepresentante() {
+        Ciudadano repre = new Ciudadano("representante", "psswd", "12345678X");
+        c.setRepresentante(repre);
+        assertEquals(repre, c.getRepresentante());
     }
 
     @Test

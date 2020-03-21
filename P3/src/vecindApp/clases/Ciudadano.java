@@ -20,6 +20,8 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.nif = nif;
         this.admitido = false;
         this.bloqueado = false;
+        proyectos = new List<Proyecto>();
+        colectivosRepresentados = new List<Proyecto>();
     }
 
     public String getNif() {

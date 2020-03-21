@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/P3/P3.iml" filepath="$PROJECT_DIR$/P3/P3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/P3/Código de ejemplos en diapostivas JUnit-20190307/PADSOF-JUnit (1)/PADSOF-JUnit/PADSOF-JUnit.iml" filepath="$PROJECT_DIR$/P3/Código de ejemplos en diapostivas JUnit-20190307/PADSOF-JUnit (1)/PADSOF-JUnit/PADSOF-JUnit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/P3/src/vecindApp/vecindApp.iml" filepath="$PROJECT_DIR$/P3/src/vecindApp/vecindApp.iml" />
+    </modules>
+  </component>
+</project>
