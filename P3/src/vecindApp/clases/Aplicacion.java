@@ -49,6 +49,22 @@ public class Aplicacion {
         this.usuarioAcutal = usuarioAcutal;
     }
 
+    public boolean addElemCol(ElementoColectivo elemCol) {
+        return this.elemCol.add(elemCol);
+    }
+
+    public boolean removeElemCol(ElementoColectivo elemCol) {
+        return this.elemCol.remove(elemCol);
+    }
+
+    public boolean addProyecto(Proyecto p){
+        return proyectos.add(p);
+    }
+
+    public boolean removeProyecto(Proyecto p) {
+        return proyectos.remove(p);
+    }
+
     public Colectivo findColectivo(String nombre) {
         for (ElementoColectivo c:elemCol) {
             if (c instanceof Colectivo) {
