@@ -1,15 +1,23 @@
 package vecindApp.clases;
 
+import es.uam.eps.sadp.grants.GrantRequest;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class ProyectoInfraestructura extends Proyecto {
     private String imagen;
-    private ArrayList<Distrito> afectados;
+    private List<Distrito> afectados;
 
-    public ProyectoInfraestructura(String descripcion, double importeSolicitado, Ciudadano propulsor, String img) {
-        super(descripcion, importeSolicitado, propulsor);
+    public ProyectoInfraestructura(String titulo,
+                                   String descripcion,
+                                   double importeSolicitado,
+                                   Ciudadano propulsor,
+                                   String img,
+                                   Collection<Distrito> afectados) {
+        super(titulo, descripcion, importeSolicitado, propulsor);
         imagen = img;
-        afectados = new ArrayList<Distrito>();
+        this.afectados = new ArrayList<>(afectados);
     }
 
     public String getImagen() {
@@ -20,11 +28,24 @@ public class ProyectoInfraestructura extends Proyecto {
         imagen = img;
     }
 
-    public ArrayList<Distrito> getAfectados() {
+    public List<Distrito> getAfectados() {
         return afectados;
     }
     
     public void setAfectados(ArrayList<Distrito> af) {
         afectados = af;
+    }
+
+    public boolean addAfectados(Distrito d) {
+        return afectados.add(d);
+    }
+
+    public boolean removeAfectados(Distrito d) {
+        return afectados.remove(d);
+    }
+
+    @Override
+    protected GrantRequest crearSolicitud() {
+        return new SolicitudInfraestructura(this);
     }
 }

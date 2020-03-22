@@ -1,5 +1,8 @@
 package vecindApp.clases;
 
+import es.uam.eps.sadp.grants.CCGG;
+import es.uam.eps.sadp.grants.GrantRequest;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +11,8 @@ public abstract class Proyecto {
 	private static int nextId = 1;
 
 	private int id;
+	private String idEnvio;
+	private String titulo;
     private String descripcion;
     private double importeSolicitado;
     private double importeConcedido = 0;
@@ -20,8 +25,9 @@ public abstract class Proyecto {
     private Set<ElementoColectivo> promotores;
     private Set<Ciudadano> suscriptores;
 
-    public Proyecto(String descripcion, double importeSolicitado, Ciudadano propulsor) {
-        id = nextId++;
+    public Proyecto(String titulo, String descripcion, double importeSolicitado, Ciudadano propulsor) {
+		id = nextId++;
+		this.titulo = titulo;
         this.descripcion = descripcion;
         this.importeSolicitado = importeSolicitado;
         fechaCreacion = new Date();
@@ -39,6 +45,22 @@ public abstract class Proyecto {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getIdEnvio() {
+		return idEnvio;
+	}
+
+	public void setIdEnvio(String idEnvio) {
+		this.idEnvio = idEnvio;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getDescripcion() {
@@ -137,10 +159,6 @@ public abstract class Proyecto {
 	public static void setNextId(int nextId) {
 		Proyecto.nextId = nextId;
 	}
-
-	public void enviarFinanciacion() {
-		setEstado(EstadoProyecto.ENVIADO);
-	}
 	
 	public void caducar() {
 		setCaducado(true);
@@ -153,10 +171,19 @@ public abstract class Proyecto {
 	public void rechazar() {
 		setEstado(EstadoProyecto.RECHAZADO);
 	}
-	
-	public void financiar (double importe) {
-		setEstado(EstadoProyecto.FINANCIADO);
-		setImporteConcedido(importe);
+
+	protected abstract GrantRequest crearSolicitud();
+
+	public void enviarFinanciacion() throws Exception {
+		GrantRequest req = crearSolicitud();
+		CCGG proxy = CCGG.getGateway();
+		this.idEnvio = proxy.submitRequest(req);
+		setEstado(EstadoProyecto.ENVIADO);
+	}
+
+	public void consultarFinanciacion() throws Exception {
+		CCGG proxy = CCGG.getGateway();
+		importeConcedido = proxy.getAmountGranted(this.idEnvio); //Si no esta resuelto, getAmountGranted devuelve null
 	}
 	
 	public void denegarFinanciacion() {
@@ -172,7 +199,7 @@ public abstract class Proyecto {
 	}
 
 	public void recibirApoyo(Ciudadano c) {
-		if (promotores.add(c)) {	//es un ciudadano que no era promotor
+		if (promotores.add(c)) {	//Es un ciudadano que no era promotor
 			if (++nApoyos >= Aplicacion.minApoyos && estado == EstadoProyecto.ACEPTADO) {
 				setEstado(EstadoProyecto.LISTOENVAR);
 			}

@@ -7,6 +7,7 @@ import org.junit.Test;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -55,7 +56,7 @@ public class CiudadanoTest {
 
     @Test
     public void getProyectos() {
-        ArrayList<Proyecto> proyectos = new ArrayList<Proyecto>;
+        List<Proyecto> proyectos = new ArrayList<>();
         proyectos.add(new ProyectoInfraestructura("P1", 100, c, null));
         proyectos.add(new ProyectoInfraestructura("P1", 211, c,"Img.jpg"));
         proyectos.add(new ProyectoInfraestructura("P3", 300, c, "proy.png"));

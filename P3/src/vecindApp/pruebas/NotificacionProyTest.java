@@ -1,6 +1,5 @@
 package vecindApp.pruebas;
 
-import org.junit.Assert;
 import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +12,7 @@ class NotificacionProyTest {
     @Before
     void setUp() {
         Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
-        Proyecto p1 = new Proyecto("proyecto1", 200, c);
+        Proyecto p1 = new Proyecto(titulo, "proyecto1", 200, c);
         np = new NotificacionProy(p);
     }
 
@@ -25,7 +24,7 @@ class NotificacionProyTest {
     @Test
     void setSujeto() {
         Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
-        Proyecto p2 = new Proyecto("proyecto2", 500, c);
+        Proyecto p2 = new Proyecto(titulo, "proyecto2", 500, c);
         np.setSujeto(p);
         assertEquals(p, np.getSujeto());
     }
