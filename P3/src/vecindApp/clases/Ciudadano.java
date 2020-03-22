@@ -1,5 +1,6 @@
 package vecindApp.clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,8 +21,8 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.nif = nif;
         this.admitido = false;
         this.bloqueado = false;
-        proyectos = new List<Proyecto>();
-        colectivosRepresentados = new List<Proyecto>();
+        proyectos = new ArrayList<>();
+        colectivosRepresentados = new ArrayList<>();
     }
 
     public String getNif() {
