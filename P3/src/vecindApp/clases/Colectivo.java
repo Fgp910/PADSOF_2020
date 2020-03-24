@@ -7,10 +7,20 @@ public class Colectivo implements ElementoColectivo {
     private Ciudadano representante;
     private Set<ElementoColectivo> elementos;
     private List<Proyecto> proyectos;
+    private Set<Proyecto> proyectosApoyados;
+    private Colectivo padre;
 
     public Colectivo(String nombre, Ciudadano representante) {
         this.nombre = nombre;
         this.representante = representante;
+        padre = null;
+    }
+
+    public Colectivo(String nombre, Ciudadano representante, Colectivo padre) {
+        this.nombre = nombre;
+        this.representante = representante;
+        this.padre = padre;
+        this.padre.addElemento(this);
     }
 
     public String getNombre() {
@@ -45,7 +55,23 @@ public class Colectivo implements ElementoColectivo {
         this.proyectos = proyectos;
     }
 
-	public boolean addElemento(ElementoColectivo elemento) {
+    public Set<Proyecto> getProyectosApoyados() {
+        return proyectosApoyados;
+    }
+
+    public void setProyectosApoyados(Set<Proyecto> proyectosApoyados) {
+        this.proyectosApoyados = proyectosApoyados;
+    }
+
+    public Colectivo getPadre() {
+        return padre;
+    }
+
+    public void setPadre(Colectivo padre) {
+        this.padre = padre;
+    }
+
+    public boolean addElemento(ElementoColectivo elemento) {
         return elementos.add(elemento);
     }
 
@@ -59,5 +85,13 @@ public class Colectivo implements ElementoColectivo {
 
     public boolean removeProyecto(Proyecto proyecto) {
         return proyectos.remove(proyecto);
+    }
+
+    public boolean addProyectoApoyado(Proyecto proyecto) {
+        return  proyectosApoyados.add(proyecto);
+    }
+
+    public boolean removeProyectoApoyado(Proyecto proyecto) {
+        return proyectosApoyados.remove(proyecto);
     }
 }
