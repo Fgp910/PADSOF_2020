@@ -105,10 +105,26 @@ public class Aplicacion {
     }
 
     public double generarInformeAfinidad(Colectivo c1, Colectivo c2) {
-        int a1 = 0;
-        int a2 = 0;
-        
-        return 0;
+        int n1, n2, a1 = 0, a2 = 0;
+        Set<Proyecto> apoyados;
+
+        n1 = c1.getProyectos().size();
+        n2 = c2.getProyectos().size();
+
+        apoyados = c2.getProyectosApoyados();
+        for (Proyecto p:c1.getProyectos()) {
+            if (apoyados.contains(p)) {
+                a1++;
+            }
+        }
+        apoyados = c1.getProyectosApoyados();
+        for (Proyecto p:c2.getProyectos()) {
+            if (apoyados.contains(p)) {
+                a2++;
+            }
+        }
+
+        return ((double)(a1 + a2)) / (n1 + n2);
     }
 
     public void guardar() {
