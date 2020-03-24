@@ -1,6 +1,8 @@
 package vecindApp.clases;
 
-enum Distrito {
+import java.io.Serializable;
+
+enum Distrito implements Serializable {
     Arganzuela,
     Barajas,
     Carabanchel,

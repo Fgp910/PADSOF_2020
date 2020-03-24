@@ -4,11 +4,11 @@ import es.uam.eps.sadp.grants.CCGG;
 
 public class Simulacion {
     public static void main(String[] args) {
-        /*Inicializacion de la aplicacion*/
+        //Inicializacion de la aplicacion
         Administrador admin = new Administrador("admin", "password");
         Aplicacion vecindApp = new Aplicacion(admin);
 
-        /*Insercion de ciudadanos*/
+        //Insercion de ciudadanos
         Ciudadano[] ciudadanos = new Ciudadano[3];
         ciudadanos[0] = new Ciudadano("pepe", "c1", "12345678A");
         ciudadanos[1] = new Ciudadano("juan", "c2", "12345678B");

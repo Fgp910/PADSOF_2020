@@ -1,3 +1,5 @@
 package vecindApp.clases;
 
-public abstract class Notificacion {}
+import java.io.Serializable;
+
+public abstract class Notificacion implements Serializable {}

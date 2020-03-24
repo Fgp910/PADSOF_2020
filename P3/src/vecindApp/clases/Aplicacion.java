@@ -1,8 +1,9 @@
 package vecindApp.clases;
 
+import java.io.*;
 import java.util.*;
 
-public class Aplicacion {
+public class Aplicacion implements Serializable {
     public static int minApoyos;
 
     private Administrador admin;
@@ -111,7 +112,18 @@ public class Aplicacion {
         return 0;
     }
 
-    public void guardar() {
+    public void guardar(String path) {
+        varStatic = new Persistencia(); //Guarda el valor actual de las variables estaticas del sistema
+        try {
+            ObjectOutputStream sal = new ObjectOutputStream(new FileOutputStream(path));
+            sal.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public Aplicacion cargar(String path) throws IOException, ClassNotFoundException {
+        ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
+        return (Aplicacion) ent.readObject();
     }
 }

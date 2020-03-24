@@ -1,8 +1,9 @@
 package vecindApp.clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Usuario {
+public abstract class Usuario implements Serializable {
     private String username;
     private String password;
     ArrayList<Notificacion> pendientes;

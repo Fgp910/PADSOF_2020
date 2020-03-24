@@ -2,7 +2,9 @@ package vecindApp.clases;
 
 import es.uam.eps.sadp.grants.GrantRequest;
 
-public abstract class SolicitudFinanciacion implements GrantRequest {
+import java.io.Serializable;
+
+public abstract class SolicitudFinanciacion implements GrantRequest, Serializable {
     private final Proyecto p;
 
     public SolicitudFinanciacion(Proyecto p) {

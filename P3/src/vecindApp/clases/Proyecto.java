@@ -3,11 +3,12 @@ package vecindApp.clases;
 import es.uam.eps.sadp.grants.CCGG;
 import es.uam.eps.sadp.grants.GrantRequest;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Proyecto {
+public abstract class Proyecto implements Serializable {
 	private static int nextId = 1;
 
 	private int id;

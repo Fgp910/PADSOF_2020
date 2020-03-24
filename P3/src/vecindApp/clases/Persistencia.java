@@ -1,9 +1,11 @@
 package vecindApp.clases;
 
+import java.io.Serializable;
+
 /**
  * Almacena las variables de clase para poder reestablecerlas al arrancar la aplicacion
  */
-public class Persistencia {
+public class Persistencia implements Serializable {
     private int proyectoNextId;
     private int aplicacionMinApoyos;
 
