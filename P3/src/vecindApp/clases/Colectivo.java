@@ -8,10 +8,19 @@ public class Colectivo implements ElementoColectivo {
     private Set<ElementoColectivo> elementos;
     private List<Proyecto> proyectos;
     private Set<Proyecto> proyectosApoyados;
+    private Colectivo padre;
 
     public Colectivo(String nombre, Ciudadano representante) {
         this.nombre = nombre;
         this.representante = representante;
+        padre = null;
+    }
+
+    public Colectivo(String nombre, Ciudadano representante, Colectivo padre) {
+        this.nombre = nombre;
+        this.representante = representante;
+        this.padre = padre;
+        this.padre.addElemento(this);
     }
 
     public String getNombre() {
@@ -52,6 +61,14 @@ public class Colectivo implements ElementoColectivo {
 
     public void setProyectosApoyados(Set<Proyecto> proyectosApoyados) {
         this.proyectosApoyados = proyectosApoyados;
+    }
+
+    public Colectivo getPadre() {
+        return padre;
+    }
+
+    public void setPadre(Colectivo padre) {
+        this.padre = padre;
     }
 
     public boolean addElemento(ElementoColectivo elemento) {
