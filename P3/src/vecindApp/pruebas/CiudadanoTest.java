@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class CiudadanoTest {
     Ciudadano c;
@@ -20,68 +20,55 @@ public class CiudadanoTest {
     }
 
     @Test
-    public void getNif() {
-        assertEquals("12345678A", c.getNif());
+    public void addProyecto() {
+        Proyecto p = new ProyectoSocial("prueba", "descripcion prueba", 100, c, "a", false);
+        c.addProyecto(p);
+        assertTrue(c.getProyectos().contains(p));
     }
 
     @Test
-    public void setNif() {
-        String nif = new String("987654321B");
-        c.setNif(nif);
-
-        assertEquals(nif, c.getNif());
+    public void removeProyecto() {
+        Proyecto p = new ProyectoSocial("prueba", "descripcion prueba", 100, c, "a", false);
+        ArrayList<Proyecto> proys = new ArrayList<Proyecto>();
+        proys.add(p);
+        c.setProyectos(proys);
+        c.remveProyecto(p);
+        assertFalse(c.getProyectos().contains(p));
     }
 
     @Test
-    public void isAdmitido() {
-        assertEquals(false, c.isAdmitido());
+    public void addColectivoRepresentado() {
+        Colectivo col = new Colectivo("prueba", c);
+        c.addColectivoRepresentado(col);
+        assertTrue(c.getColectivosRepresentados().contains(col));
     }
 
     @Test
-    public void setAdmitido() {
-        c.setAdmitido(true);
-        assertEquals(true, c.isAdmitido());
+    public void removeColectivoRepresentado() {
+        Colectivo col = new Colectivo("prueba", c);
+        ArrayList<Colectivo> cols = new ArrayList<Colectivo>();
+        cols.add(col);
+        c.setColectivosRepresentados(cols);
+        c.removeColectivoRepresentado(col);
+        assertFalse(c.getColectivosRepresentados().contains(col));
     }
 
     @Test
-    public void isBloqueado() {
-        assertEquals(false, c.isBloqueado());
-    }
-
-    @Test
-    public void setBloqueado() {
-        c.setBloqueado(true);
+    public void bloquear() {
+        c.bloquear();
         assertEquals(true, c.isBloqueado());
     }
 
     @Test
-    public void getProyectos() {
-        List<Proyecto> proyectos = new ArrayList<>();
-        proyectos.add(new ProyectoInfraestructura("P1", 100, c, null));
-        proyectos.add(new ProyectoInfraestructura("P1", 211, c,"Img.jpg"));
-        proyectos.add(new ProyectoInfraestructura("P3", 300, c, "proy.png"));
-
-        c.setProyectos(proyectos);
-        Assert.assertArrayEquals(proyectos, c.getProyectos());
+    public void desbloquear() {
+        c.setBloqueado(true);
+        c.desbloquear();
+        assertEquals(false, c.isBloqueado());
     }
 
     @Test
-    public void setProyectos() {
-            }
-
-    @Test
-    public void getColectivosRepresentados() {
-            }
-
-    @Test
-    public void setColectivosRepresentados() {
-            }
-
-    @Test
-    public void desbloquear() {
-            }
-
-    @Test
     public void admitir() {
-            }
+        c.admitir();
+        assertEquals(true, c.isAdmitido());
+    }
 }

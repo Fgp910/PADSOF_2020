@@ -65,11 +65,31 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.colectivosRepresentados = colectivosRepresentados;
     }
 
+    public boolean addProyecto(Proyecto p) {
+        return proyectos.add(p);
+    }
+
+    public boolean remveProyecto(Proyecto p) {
+        return proyectos.remove(p);
+    }
+
+    public boolean addColectivoRepresentado(Colectivo c) {
+        return colectivosRepresentados.add(c);
+    }
+
+    public boolean removeColectivoRepresentado(Colectivo c) {
+        return colectivosRepresentados.remove(c);
+    }
+
+    public void bloquear() {
+        setBloqueado(true);
+    }
+
     public void desbloquear() {
-        this.setBloqueado(false);
+        setBloqueado(false);
     }
 
     public void admitir() {
-        this.setAdmitido(true);
+        setAdmitido(true);
     }
 }
