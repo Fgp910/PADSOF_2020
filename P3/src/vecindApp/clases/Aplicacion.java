@@ -51,6 +51,9 @@ public class Aplicacion implements Serializable {
     }
 
     public boolean addElemCol(ElementoColectivo elemCol) {
+        if (elemCol instanceof Ciudadano) {
+            admin.agregarNotificacion(new NotificacionReg((Ciudadano) elemCol));
+        }
         return this.elemCol.add(elemCol);
     }
 
@@ -140,6 +143,8 @@ public class Aplicacion implements Serializable {
 
     public Aplicacion cargar(String path) throws IOException, ClassNotFoundException {
         ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
-        return (Aplicacion) ent.readObject();
+        Aplicacion app = (Aplicacion) ent.readObject();
+        app.varStatic.setValues();
+        return app;
     }
 }
