@@ -7,7 +7,7 @@ class ProyectoSocialTest {
 
     @Before
     void setUp() {
-        Ciudadano c = new Ciudadano("pepe", "a1", )
+        Ciudadano c = new Ciudadano("pepe", "a1", "123456Y")
         ps = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
     }
 
