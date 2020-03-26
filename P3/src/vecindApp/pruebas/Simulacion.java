@@ -32,6 +32,7 @@ public class Simulacion {
 
         //Creacion de e inscripcion a colectivos
         Colectivo colectivo = new Colectivo("Estudiantes", ciudadanos[0]);
+        Colectivo subcolectivo = new Colectivo("Universitarios", colectivo);
         colectivo.addElemento(ciudadanos[1]);
 
         //Creacion de y apoyo a proyectos
