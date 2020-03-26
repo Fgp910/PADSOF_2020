@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * Define la clase Ciudadano, que agrega a la clase Usuario los atributos
- * y metodos propios de un ciudadano.
+ * y metodos propios de un ciudadano, ademas de implementar la interfaz
+ * ElementoColectivo
  * 
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */

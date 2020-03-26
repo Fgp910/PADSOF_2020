@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Define la clase ProyectoInfraestructura, que extiende la definicion
+ * de la clase Proyecto para agregar la informacion asociada a este
+ * tipo de proyecto.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ProyectoInfraestructura extends Proyecto {
     private String imagen;
     private List<Distrito> afectados;

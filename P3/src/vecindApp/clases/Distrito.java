@@ -2,6 +2,12 @@ package vecindApp.clases;
 
 import java.io.Serializable;
 
+/**
+ * Define la enumeracion Distrito que codifica los distintos
+ * distritos de Madrid.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 enum Distrito implements Serializable {
     Arganzuela,
     Barajas,
@@ -23,5 +29,5 @@ enum Distrito implements Serializable {
     Usera,
     Vicalvaro,
     VillaDeVallecas,
-    Villaverde;
+    Villaverde
 }

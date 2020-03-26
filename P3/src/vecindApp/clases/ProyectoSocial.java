@@ -2,6 +2,13 @@ package vecindApp.clases;
 
 import es.uam.eps.sadp.grants.GrantRequest;
 
+/**
+ * Define la clase ProyectoSocial, que extiende la definicion de
+ * la clase Proyecto para agregar la informacion asociada a este
+ * tipo de proyecto.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ProyectoSocial extends Proyecto {
     private String grupoSocial;
     private boolean nacional;

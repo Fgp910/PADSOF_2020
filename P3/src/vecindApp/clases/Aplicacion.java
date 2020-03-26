@@ -3,6 +3,12 @@ package vecindApp.clases;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Define la clase Aplicacion que contiene y gestiona los distintos
+ * objetos del sistema.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Aplicacion implements Serializable {
     public static int minApoyos;
 

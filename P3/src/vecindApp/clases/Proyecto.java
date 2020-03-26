@@ -8,6 +8,12 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Define la clase Proyecto, que lleva registro de los datos, apoyos
+ * y estado en general de un Proyecto.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public abstract class Proyecto implements Serializable {
 	private static int nextId = 1;
 

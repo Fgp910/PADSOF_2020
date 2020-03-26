@@ -4,6 +4,13 @@ import es.uam.eps.sadp.grants.GrantRequest;
 
 import java.io.Serializable;
 
+/**
+ * Define la clase SolicitudFinanciacion que implementa la interfaz GrantRequest
+ * y, entonces, aporta la informacion que el sistema externo de financiacion
+ * requiere para procesar la solicitud de financiacion de un Proyecto.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public abstract class SolicitudFinanciacion implements GrantRequest, Serializable {
     private final Proyecto p;
 

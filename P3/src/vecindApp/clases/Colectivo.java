@@ -2,6 +2,12 @@ package vecindApp.clases;
 
 import java.util.*;
 
+/**
+ * Define la clase Colectivo, que implementa la interfaz ElementoColectivo y
+ * gestiona sus Ciudadanos miembros y subcolectivos (todos ElementoColectivo).
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Colectivo implements ElementoColectivo {
     private String nombre;
     private Ciudadano representante;
