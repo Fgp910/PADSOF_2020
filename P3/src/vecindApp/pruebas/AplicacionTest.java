@@ -24,52 +24,50 @@ public class AplicacionTest {
     @Test
     void setAdmin() {
         Administrador ad2 = new Administrador("admin2", "psswd");
-        assertEquals(ad2, sf.getAdmin());
+        assertEquals(ad2, app.getAdmin());
     }
 
     @Test
     void getElemCol() {
         List<ElementoColectivo> liste = new ArrayList<>();
-        assertEquals(liste, sf.getelemCol());
+        assertEquals(liste, app.getelemCol());
     }
 
     @Test
     void setElemCol() {
         List<ElementoColectivo> newliste = new ArrayList<>();
         sf.setElemCol(newliste);
-        assertEquals(newliste, sf.getelemCol());
+        assertEquals(newliste, app.getelemCol());
     }
 
     @Test
     void getProyectos() {
         List<Proyecto> listp = new ArrayList<>();
-        assertEquals(listp, sf.getProyectos());
+        assertEquals(listp, app.getProyectos());
     }
 
     @Test
     void setProyectos() {
         List<Proyecto> newlistp = new ArrayList<>();
         sf.setProyectos(newlistp);
-        assertEquals(newlistp, sf.getProyectos());
+        assertEquals(newlistp, app.getProyectos());
     }
 
     @Test
     void getUsuarioAcutal() {
         Usuario usr;
-        assertEquals(usr, sf.getUsuarioActual());
+        assertEquals(usr, app.getUsuarioActual());
     }
 
     @Test
     void setUsuarioAcutal() {
         Usuario usr = new Usuario("pepe", "a1");
         sf.setUsuarioActual(usr);
-        assertEquals(usr, sf.getUsuarioActual());
+        assertEquals(usr, app.getUsuarioActual());
     }
 
     @Test
     void addElemCol() {
-        ElementoColectivo c = new Ciudadano("pepe", "c1", "12345678A");
-        assertEquals(sf.getElemCol.add(c), sf.addElemCol(c));
     }
 
     @Test
@@ -86,14 +84,24 @@ public class AplicacionTest {
 
     @Test
     void findColectivo() {
+        Colectivo c = new Colectivo("miColectivo", new Ciudadano("usr", "psswd", "12345678X"));
+        app.addElemCol(c);
+        assertEquals(c, app.findColectivo("miColectivo"));
     }
 
     @Test
     void findCiudadano() {
+        Ciudadano c = new Ciudadano("usr", "psswd", "12345678X");
+        app.addElemCol(c);
+        assertEquals(c, app.findCiudadano("usr"));
     }
 
     @Test
     void findProyecto() {
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("usr", "psswd", "12345678X"));
+        p.setId(1);
+        app.addProyecto(p);
+        assertEquals(p, app.findProyecto(1));
     }
 
     @Test

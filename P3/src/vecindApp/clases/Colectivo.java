@@ -85,8 +85,35 @@ public class Colectivo implements ElementoColectivo {
         this.padre = padre;
     }
 
-    public boolean addElemento(ElementoColectivo elemento) {
-        return elementos.add(elemento);
+    public boolean addElemento(Ciudadano ciudadano) {
+        Colectivo c = this;
+
+        if (comprobarHijos(ciudadano) == false) {
+            return false;
+        }
+
+        boolean ret =  elementos.add((ElementoColectivo)ciudadano);
+        if (!ret) {
+            return ret;
+        }
+
+        for (Proyecto p:proyectos) {
+            p.recibirApoyo(ciudadano);
+        }
+
+        while (c.padre != null) {
+            c = c.padre;
+            c.elementos.remove((ElementoColectivo)ciudadano);
+            for (Proyecto p:c.proyectos) {
+                p.recibirApoyo(ciudadano);
+            }
+        }
+
+        return ret;
+    }
+
+    public boolean addElemento(Colectivo colectivo) {
+        return elementos.add((ElementoColectivo) colectivo);
     }
 
     public boolean removeElemento(ElementoColectivo elemento) {
@@ -107,5 +134,22 @@ public class Colectivo implements ElementoColectivo {
 
     public boolean removeProyectoApoyado(Proyecto proyecto) {
         return proyectosApoyados.remove(proyecto);
+    }
+
+    /*Métodos privados*/
+    private boolean comprobarHijos(Ciudadano ciudadano) {
+        if (elementos.contains((ElementoColectivo)ciudadano)) {
+            return false;
+        }
+
+        for (ElementoColectivo ec:elementos) {
+            if (ec instanceof Colectivo) {
+                if (((Colectivo)ec).comprobarHijos(ciudadano) == false) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }

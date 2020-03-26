@@ -18,6 +18,7 @@ public class NotificacionRegTest {
 
     @Test
     void getSujeto() {
+        Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
         assertEquals(c, nr.getSujeto()
     }
 

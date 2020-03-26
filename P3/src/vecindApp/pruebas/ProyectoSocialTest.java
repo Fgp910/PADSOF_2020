@@ -4,19 +4,16 @@ import org.junit.Assert;
 import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
-import vecindApp.clases.Distrito;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ProyectoSocialTest {
+class ProyectoSocialTest {
     ProyectoSocial ps;
 
     @Before
     void setUp() {
-        Ciudadano c = new Ciudadano("pepe", "a1", "123456Y")
+        Ciudadano c = new Ciudadano("pepe", "a1", "123456Y");
         ps = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
     }
 
@@ -45,6 +42,6 @@ public class ProyectoSocialTest {
     @Test
     void crearSolicitud() {
         SolicitudSocial s = new SolicitudSocial(ps);
-        assertEquals(crearSolicitud(), s);
+        assertEquals(ps.crearSolicitud(), s);
     }
 }

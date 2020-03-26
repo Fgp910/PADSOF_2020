@@ -13,12 +13,13 @@ public class SolicitudFinanciacionTest {
     @Before
     void setUp() {
         Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
-        p = new Proyecto("titulo", "miProyecto", 500, c);
-        sf = new SolicitudFinanciacion(sf);
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
+        sf = new SolicitudSocial(p);
     }
 
     @Test
     void getProject() {
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("pepe", "c1", "12345678A"), "grupo", true);
         assertEquals(p, sf.getProject());
     }
 
@@ -29,11 +30,11 @@ public class SolicitudFinanciacionTest {
 
     @Test
     void getProjectDescription() {
-        assertEquals("miProyecto", sf.getProjectDescription());
+        assertEquals("descripcion", sf.getProjectDescription());
     }
 
     @Test
     void getRequestedAmount() {
-        assertEquals(500, sf.getRequestedAmount());
+        assertEquals(500.0, sf.getRequestedAmount());
     }
 }

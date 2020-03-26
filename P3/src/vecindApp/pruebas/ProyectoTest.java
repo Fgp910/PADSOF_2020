@@ -13,7 +13,7 @@ public class ProyectoTest {
     @Before
     void setUp() {
         Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
-        p = new Proyecto("miProyecto", 500, c);
+        p = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
     }
 
     @Test

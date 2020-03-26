@@ -9,14 +9,14 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-public class SolicitudSocialTest {
+class SolicitudSocialTest {
     SolicitudSocial ss;
 
     @Before
     void setUp() {
         Ciudadano c = new Ciudadano("pepe", "a1", "123456Y")
-        ProyectoSocial ps = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
-        SolicitudSocial ss = new SolicitudSocial(ps);
+        Proyecto ps = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
+        ss = new SolicitudSocial(ps);
     }
 
     @Test
