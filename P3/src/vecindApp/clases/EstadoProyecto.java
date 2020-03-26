@@ -10,5 +10,19 @@ import java.io.Serializable;
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
 enum EstadoProyecto implements Serializable {
-    INICIAL, ACEPTADO, RECHAZADO, LISTOENVAR, ENVIADO, FINANCIADO, DENEGADO
+    INICIAL, ACEPTADO, RECHAZADO, LISTOENVAR, ENVIADO, FINANCIADO, DENEGADO;
+
+    @Override
+    public final String toString() {
+        switch (this) {
+            case INICIAL: return "Creado con exito.";
+            case ACEPTADO: return "Admitido por la administracion.";
+            case RECHAZADO: return "Rechazado por la administracion.";
+            case LISTOENVAR: return "Ha alcanzado los apoyos minimos.";
+            case ENVIADO: return "Enviado a financiacion.";
+            case FINANCIADO: return "Aprobada su financiacion.";
+            case DENEGADO: return "Denegada su financiacion.";
+            default: return null;
+        }
+    }
 }

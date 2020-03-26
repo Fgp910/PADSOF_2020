@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-class UsuarioTest {
+public class UsuarioTest {
     Usuario usr;
 
     @Before

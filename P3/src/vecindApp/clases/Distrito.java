@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-enum Distrito implements Serializable {
+public enum Distrito implements Serializable {
     Arganzuela,
     Barajas,
     Carabanchel,

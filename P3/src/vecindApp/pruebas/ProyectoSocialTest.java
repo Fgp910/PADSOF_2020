@@ -1,8 +1,17 @@
 package vecindApp.puebas;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Assert;
+import vecindApp.clases.*;
+import org.junit.Before;
+import org.junit.Test;
+import vecindApp.clases.Distrito;
 
-class ProyectoSocialTest {
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
+
+public class ProyectoSocialTest {
     ProyectoSocial ps;
 
     @Before

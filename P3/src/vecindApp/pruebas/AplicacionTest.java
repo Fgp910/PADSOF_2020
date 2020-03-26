@@ -1,22 +1,19 @@
 package vecindApp.pruebas;
 
-import org.junit.Assert;
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
+import vecindApp.clases.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-class AplicacionTest {
-    Aplicacion app;
-
+public class AplicacionTest {
     @Before
     void setUp() {
         Administrador ad = new Administrador("admin", "psswd");
-        app = new Aplicacion(ad);
+        Aplicacion app = new Aplicacion(ad);
     }
 
     @Test

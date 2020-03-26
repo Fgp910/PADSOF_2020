@@ -11,7 +11,7 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-class ProyectoInfraestructuraTest {
+public class ProyectoInfraestructuraTest {
     ProyectoInfraestructura pi;
 
     @Before

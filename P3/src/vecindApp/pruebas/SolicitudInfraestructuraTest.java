@@ -9,7 +9,7 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-class SolicitudInfraestructuraTest {
+public class SolicitudInfraestructuraTest {
     SolicitudInfraestructura si;
 
     @Before

@@ -20,4 +20,9 @@ public class NotificacionProy extends Notificacion {
     public void setSujeto(Proyecto s) {
         sujeto = s;
     }
+
+    @Override
+    public String descripcion() {
+        return "Nuevo proyecto. "+ sujeto.getTitulo() + ": " + sujeto.getEstado();
+    }
 }

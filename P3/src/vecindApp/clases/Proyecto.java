@@ -209,6 +209,7 @@ public abstract class Proyecto implements Serializable {
 		if (promotores.add(c)) {	//Es un ciudadano que no era promotor
 			if (++nApoyos >= Aplicacion.minApoyos && estado == EstadoProyecto.ACEPTADO) {
 				setEstado(EstadoProyecto.LISTOENVAR);
+				setUltimoApoyo(new Date());
 			}
 		}
 	}

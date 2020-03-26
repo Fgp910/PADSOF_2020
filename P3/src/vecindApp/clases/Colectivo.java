@@ -19,12 +19,20 @@ public class Colectivo implements ElementoColectivo {
     public Colectivo(String nombre, Ciudadano representante) {
         this.nombre = nombre;
         this.representante = representante;
+        elementos = new HashSet<>();
+        elementos.add(representante);
+        proyectos = new ArrayList<>();
+        proyectosApoyados = new HashSet<>();
         padre = null;
     }
 
-    public Colectivo(String nombre, Ciudadano representante, Colectivo padre) {
+    public Colectivo(String nombre, Colectivo padre) {
         this.nombre = nombre;
-        this.representante = representante;
+        this.representante = padre.representante;
+        elementos = new HashSet<>();
+        elementos.add(representante);
+        proyectos = new ArrayList<>();
+        proyectosApoyados = new HashSet<>();
         this.padre = padre;
         this.padre.addElemento(this);
     }

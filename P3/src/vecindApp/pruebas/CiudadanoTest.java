@@ -29,7 +29,7 @@ public class CiudadanoTest {
     @Test
     public void removeProyecto() {
         Proyecto p = new ProyectoSocial("prueba", "descripcion prueba", 100, c, "a", false);
-        ArrayList<Proyecto> proys = new ArrayList<Proyecto>();
+        ArrayList<Proyecto> proys = new ArrayList<>();
         proys.add(p);
         c.setProyectos(proys);
         c.remveProyecto(p);
@@ -46,7 +46,7 @@ public class CiudadanoTest {
     @Test
     public void removeColectivoRepresentado() {
         Colectivo col = new Colectivo("prueba", c);
-        ArrayList<Colectivo> cols = new ArrayList<Colectivo>();
+        ArrayList<Colectivo> cols = new ArrayList<>();
         cols.add(col);
         c.setColectivosRepresentados(cols);
         c.removeColectivoRepresentado(col);

@@ -21,4 +21,9 @@ public class NotificacionReg extends Notificacion {
     public void setSujeto(Ciudadano s) {
         sujeto = s;
     }
+
+    @Override
+    public String descripcion() {
+        return "Nuevo registro. " + sujeto.getUsername() + " (NIF: " + sujeto.getNif() + ").";
+    }
 }

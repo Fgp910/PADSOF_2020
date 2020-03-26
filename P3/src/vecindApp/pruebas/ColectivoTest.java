@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -31,7 +32,7 @@ public class ColectivoTest {
 
     @Test
     public void getElementos() {
-        Set<ElementoColectivo> s = new Set<ElementoColectivo>;
+        Set<ElementoColectivo> s = new HashSet<>();
         assertEquals(s, c.getElementos());
     }
 

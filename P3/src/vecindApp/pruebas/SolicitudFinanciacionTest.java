@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-class SolicitudFinanciacionTest {
+public class SolicitudFinanciacionTest {
     SolicitudFinanciacion sf;
 
     @Before

@@ -8,4 +8,6 @@ import java.io.Serializable;
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-public abstract class Notificacion implements Serializable {}
+public abstract class Notificacion implements Serializable {
+    public abstract String descripcion();
+}

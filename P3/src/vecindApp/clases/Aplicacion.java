@@ -150,7 +150,14 @@ public class Aplicacion implements Serializable {
     public Aplicacion cargar(String path) throws IOException, ClassNotFoundException {
         ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
         Aplicacion app = (Aplicacion) ent.readObject();
+        Date curr = new Date();
         app.varStatic.setValues();
+        //Comprobando caducidad de proyectos
+        for (Proyecto p : app.proyectos) {
+            if (curr.getTime() - p.getUltimoApoyo().getTime() > 30*24*60*60*1000) { //30 dias en milisegundos
+                p.setCaducado(true);
+            }
+        }
         return app;
     }
 }

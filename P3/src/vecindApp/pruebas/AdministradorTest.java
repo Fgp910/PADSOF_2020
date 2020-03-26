@@ -1,5 +1,6 @@
 package vecindApp.pruebas;
 
+import org.junit.After;
 import org.junit.Assert;
 import vecindApp.clases.*;
 import org.junit.Before;
@@ -10,12 +11,12 @@ import static org.junit.Assert.assertEquals;
 public class AdministradorTest {
     Administrador a;
 
-    @org.junit.jupiter.api.BeforeEach
+    @Before
     void setUp() {
         a = new Administrador("jose", "a1");
     }
 
-    @org.junit.jupiter.api.AfterEach
+    @After
     void tearDown() {
     }
 }
