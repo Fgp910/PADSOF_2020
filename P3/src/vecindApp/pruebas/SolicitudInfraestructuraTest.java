@@ -15,8 +15,8 @@ class SolicitudInfraestructuraTest {
     @Before
     void setUp() {
         Ciudadano c = new Ciudadano("pepe", "a1", "123456U");
-        Collection<Distrito> col = new Collection<Distrito>;
-        pi = new ProyectoInfraestructura("titulo", "descripcion", 500.0, c, "imagen", col);
+        Collection<Distrito> col = new Collection<Distrito>();
+        Proyecto pi = new ProyectoInfraestructura("titulo", "descripcion", 500.0, c, "imagen", col);
         si = new SolicitudInfraestructura(pi);
     }
 

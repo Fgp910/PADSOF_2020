@@ -48,15 +48,22 @@ class ProyectoInfraestructuraTest {
 
     @Test
     void addAfectados() {
+        Distrito d = Distrito.Arganzuela;
+        pi.addAfectados(d);
+        assertTrue(pi.getAfectados().contains(d));
     }
 
     @Test
     void removeAfectados() {
+        Distrito d = Distrito.Arganzuela;
+        pi.addAfectados(d);
+        pi.removeAfectados(d);
+        assertFalse(pi.getAfectados().contains(d));
     }
 
     @Test
     void crearSolicitud() {
         SolicitudInfraestructura s = new SolicitudInfraestructura(pi);
-        assertEquals(crearSolicitud(), s);
+        assertEquals(pi.crearSolicitud(), s);
     }
 }

@@ -1,5 +1,11 @@
 package vecindApp.puebas;
 
+import org.junit.Assert;
+import vecindApp.clases.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProyectoSocialTest {
@@ -7,7 +13,7 @@ class ProyectoSocialTest {
 
     @Before
     void setUp() {
-        Ciudadano c = new Ciudadano("pepe", "a1", "123456Y")
+        Ciudadano c = new Ciudadano("pepe", "a1", "123456Y");
         ps = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
     }
 
@@ -36,6 +42,6 @@ class ProyectoSocialTest {
     @Test
     void crearSolicitud() {
         SolicitudSocial s = new SolicitudSocial(ps);
-        assertEquals(crearSolicitud(), s);
+        assertEquals(ps.crearSolicitud(), s);
     }
 }

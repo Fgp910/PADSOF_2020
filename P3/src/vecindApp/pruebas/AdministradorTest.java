@@ -10,12 +10,8 @@ import static org.junit.Assert.assertEquals;
 public class AdministradorTest {
     Administrador a;
 
-    @org.junit.jupiter.api.BeforeEach
+    @Before
     void setUp() {
         a = new Administrador("jose", "a1");
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    void tearDown() {
     }
 }

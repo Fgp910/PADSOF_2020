@@ -11,21 +11,20 @@ class NotificacionProyTest {
 
     @Before
     void setUp() {
-        Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
-        Proyecto p1 = new Proyecto(titulo, "proyecto1", 200, c);
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
         np = new NotificacionProy(p);
     }
 
     @Test
     void getSujeto() {
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
         assertEquals(p, np.getSujeto());
     }
 
     @Test
     void setSujeto() {
-        Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
-        Proyecto p2 = new Proyecto(titulo, "proyecto2", 500, c);
-        np.setSujeto(p);
-        assertEquals(p, np.getSujeto());
+        Proyecto p2 = new ProyectoSocial("titulo2", "proyecto2", 200.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
+        np.setSujeto(p2);
+        assertEquals(p2, np.getSujeto());
     }
 }
