@@ -106,14 +106,25 @@ public class AplicacionTest {
 
     @Test
     void notificarRegistro() {
+        Ciudadano c = new Ciudadano("usr", "psswd", "12345678X");
+        Notificacion n = new NotificacionReg(c);
+        app.notificarRegistro(c);
+        assertTrue(app.getAdmin().getPendientes().contains(n));
     }
 
     @Test
     void notificarNuevoProyecto() {
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("usr", "psswd", "12345678X"));
+        Notificacion n = new NotificacionProy(p);
+        app.notificarNuevoProyecto(p);
+        assertTrue(app.getAdmin().getPendientes().contains(n));
     }
 
     @Test
     void generarInformeAfinidad() {
+        Colectivo c1 = new Colectivo("Colectivo1", new Ciudadano("usr1", "psswd", "12345678X"));
+        Colectivo c2 = new Colectivo("Colectivo2", new Ciudadano("usr2", "psswd", "12345678Y"));
+        assertEquals(0, app.generarInformeAfinidad(c1, c2));
     }
 
     @Test
@@ -122,5 +133,7 @@ public class AplicacionTest {
 
     @Test
     void cargar() {
+        app.guardar("data.txt");
+        assertEquals(app, app.cargar("data.txt"));
     }
 }
