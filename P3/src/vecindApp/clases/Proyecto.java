@@ -26,6 +26,7 @@ public abstract class Proyecto implements Serializable {
     private Date fechaCreacion;
     private Date ultimoApoyo;
     private int nApoyos = 1;
+    public int nBloqueados = 0;
     private EstadoProyecto estado = EstadoProyecto.INICIAL;
     private boolean caducado = false;
     private ElementoColectivo propulsor;
@@ -116,6 +117,14 @@ public abstract class Proyecto implements Serializable {
 
 	public void setNApoyos(int nApoyos) {
 		this.nApoyos = nApoyos;
+	}
+
+	public int getnBloqueados() {
+		return nBloqueados;
+	}
+
+	public void setnBloqueados(int nBloqueados) {
+		this.nBloqueados = nBloqueados;
 	}
 
 	public EstadoProyecto getEstado() {
@@ -229,6 +238,6 @@ public abstract class Proyecto implements Serializable {
     }
 
     public int generarInformePopularidad() {
-        return nApoyos;
+        return nApoyos - nBloqueados;
     }
 }
