@@ -28,6 +28,8 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.admitido = false;
         this.bloqueado = false;
         proyectos = new ArrayList<>();
+        proyectosApoyados = new HashSet<>();
+        colectivos = new HashSet<>();
         colectivosRepresentados = new ArrayList<>();
     }
 

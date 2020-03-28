@@ -15,6 +15,7 @@ public class Aplicacion implements Serializable {
     private Administrador admin;
     private List<ElementoColectivo> elemCol;
     private List<Proyecto> proyectos;
+    private List<Ciudadano> bloqueados;
     private Usuario usuarioAcutal;
     private Persistencia varStatic;
 
@@ -22,6 +23,7 @@ public class Aplicacion implements Serializable {
         this.admin = admin;
         elemCol = new ArrayList<>();
         proyectos = new ArrayList<>();
+        bloqueados = new ArrayList<>();
     }
 
     public Administrador getAdmin() {
@@ -46,6 +48,14 @@ public class Aplicacion implements Serializable {
 
     public void setProyectos(List<Proyecto> proyectos) {
         this.proyectos = proyectos;
+    }
+
+    public List<Ciudadano> getBloqueados() {
+        return bloqueados;
+    }
+
+    public void setBloqueados(List<Ciudadano> bloqueados) {
+        this.bloqueados = bloqueados;
     }
 
     public Usuario getUsuarioAcutal() {
@@ -73,6 +83,14 @@ public class Aplicacion implements Serializable {
 
     public boolean removeProyecto(Proyecto p) {
         return proyectos.remove(p);
+    }
+
+    public boolean addBloqueado(Ciudadano ciudadano) {
+        return bloqueados.add(ciudadano);
+    }
+
+    public boolean removeBloqueado(Ciudadano ciudadano) {
+        return bloqueados.remove(ciudadano);
     }
 
     public Colectivo findColectivo(String nombre) {

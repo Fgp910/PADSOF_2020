@@ -216,9 +216,12 @@ public abstract class Proyecto implements Serializable {
 
 	public void recibirApoyo(Ciudadano c) {
 		if (promotores.add(c)) {	//Es un ciudadano que no era promotor
-			if (++nApoyos >= Aplicacion.minApoyos && estado == EstadoProyecto.ACEPTADO) {
+			if (++nApoyos >= Aplicacion.minApoyos && estado == EstadoProyecto.ACEPTADO && !c.isBloqueado()) {
 				setEstado(EstadoProyecto.LISTOENVAR);
 				setUltimoApoyo(new Date());
+			}
+			else {
+				nBloqueados++;
 			}
 		}
 	}
