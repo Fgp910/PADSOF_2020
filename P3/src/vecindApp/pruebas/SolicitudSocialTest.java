@@ -12,7 +12,7 @@ class SolicitudSocialTest {
 
     @Before
     void setUp() {
-        Ciudadano c = new Ciudadano("pepe", "a1", "123456Y")
+        Ciudadano c = new Ciudadano("pepe", "a1", "123456Y");
         Proyecto ps = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
         ss = new SolicitudSocial(ps);
     }

@@ -30,7 +30,7 @@ public class ProyectoTest {
     void testRecibirApoyo() {
         Ciudadano votante = new Ciudadano("juan", "a2", "123456J");
         recibirApoyo(votante);
-        assert(p.getPromotores().contains(votante) && p.getNApoyos() == 2)
+        assert(p.getPromotores().contains(votante) && p.getNApoyos() == 2);
     }
 
     @Test
