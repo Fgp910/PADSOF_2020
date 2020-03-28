@@ -1,5 +1,6 @@
 package vecindApp.pruebas;
 
+import jdk.jfr.StackTrace;
 import org.junit.Before;
 import org.junit.Test;
 import vecindApp.clases.*;
@@ -10,15 +11,17 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class AplicacionTest {
+    Aplicacion app;
+
     @Before
     void setUp() {
         Administrador ad = new Administrador("admin", "psswd");
-        Aplicacion app = new Aplicacion(ad);
+        app = new Aplicacion(ad);
     }
 
     @Test
     void getAdmin() {
-        assertEquals(ad, sf.getAdmin());
+        assertEquals(ad, app.getAdmin());
     }
 
     @Test
@@ -54,6 +57,20 @@ public class AplicacionTest {
     }
 
     @Test
+    void getBloqueados() {
+        List<Ciudadano> lb = new ArrayList<>();
+        assertEquals(lb, app.getBloqueados());
+    }
+
+    @Test
+    void setBloqueados() {
+        List<Ciudadano> lb = new ArrayList<>();
+        lb.add(new Ciudadano("pepe", "psswd", "123456Y"));
+        app.setBloqueados(lb);
+        assertEquals(lb, app.getBloqueados());
+    }
+
+    @Test
     void getUsuarioAcutal() {
         Usuario usr;
         assertEquals(usr, app.getUsuarioActual());
@@ -62,24 +79,53 @@ public class AplicacionTest {
     @Test
     void setUsuarioAcutal() {
         Usuario usr = new Usuario("pepe", "a1");
-        sf.setUsuarioActual(usr);
+        app.setUsuarioActual(usr);
         assertEquals(usr, app.getUsuarioActual());
     }
 
     @Test
     void addElemCol() {
+        ElementoColectivo ec = new Colectivo("colectivo", new Ciudadano("pepe", "psswd", "123456Y"));
+        app.addElemCol(ec);
+        assertTrue(app.getElemCol().contains(ec));
     }
 
     @Test
     void removeElemCol() {
+        ElementoColectivo ec = new Colectivo("colectivo", new Ciudadano("pepe", "psswd", "123456Y"));
+        app.addElemCol(ec);
+        app.removeElemCol(ec);
+        assertFalse(app.getElemCol().contains(ec));
     }
 
     @Test
     void addProyecto() {
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("pepe", "psswd", "123456Y"), "grupo", true);
+        app.addProyecto(p);
+        assertTrue(app.getProyectos().contains(p));
     }
 
     @Test
     void removeProyecto() {
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("pepe", "psswd", "123456Y"), "grupo", true);
+        app.addProyecto(p);
+        app.removeProyecto(p);
+        assertFalse(app.getProyectos().contains(p));
+    }
+
+    @Test
+    void addBloqueado() {
+        Ciudadano c = new Ciudadano("pepe", "psswd", "123456Y");
+        app.addBloqueado(c);
+        assertTrue(app.getBloqueados().contains(c));
+    }
+
+    @Test
+    void removeBloqueado() {
+        Ciudadano c = new Ciudadano("pepe", "psswd", "123456Y");
+        app.addBloqueado(c);
+        app.removeBloqueado(c);
+        assertFalse(app.getBloqueados().contains(c));
     }
 
     @Test

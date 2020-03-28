@@ -28,4 +28,9 @@ public class NotificacionRegTest {
         nr.setSujeto(c2);
         assertEquals(c2, nr.getSujeto());
     }
+
+    @Test
+    void descripcion() {
+        assertEquals("Nuevo registro. pepe (NIF: 12345678A).", nr.descripcion());
+    }
 }

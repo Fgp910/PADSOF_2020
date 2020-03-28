@@ -17,135 +17,13 @@ public class ProyectoTest {
     }
 
     @Test
-    void getId() {
-    }
-
-    @Test
-    void setId() {
-    }
-
-    @Test
-    void getDescripcion() {
-    }
-
-    @Test
-    void setDescripcion() {
-    }
-
-    @Test
-    void getImporteSolicitado() {
-    }
-
-    @Test
-    void setImporteSolicitado() {
-    }
-
-    @Test
-    void getImporteConcedido() {
-    }
-
-    @Test
-    void setImporteConcedido() {
-    }
-
-    @Test
-    void getFechaCreacion() {
-    }
-
-    @Test
-    void setFechaCreacion() {
-    }
-
-    @Test
-    void getUltimoApoyo() {
-    }
-
-    @Test
-    void setUltimoApoyo() {
-    }
-
-    @Test
-    void getNApoyos() {
-    }
-
-    @Test
-    void setNApoyos() {
-    }
-
-    @Test
-    void getEstado() {
-    }
-
-    @Test
-    void setEstado() {
-    }
-
-    @Test
-    void isCaducado() {
-    }
-
-    @Test
-    void setCaducado() {
-    }
-
-    @Test
-    void getPropulsor() {
-    }
-
-    @Test
-    void setPropulsor() {
-    }
-
-    @Test
-    void getPromotores() {
-    }
-
-    @Test
-    void setPromotores() {
-    }
-
-    @Test
-    void getSuscriptores() {
-    }
-
-    @Test
-    void setSuscriptores() {
-    }
-
-    @Test
-    void getNextId() {
-    }
-
-    @Test
-    void setNextId() {
-    }
-
-    @Test
     void enviarFinanciacion() {
+        assertEquals(EstadoProyecto.ENVIADO, p.getEstado());
     }
 
     @Test
-    void caducar() {
-    }
-
-    @Test
-    void aceptar() {
-    }
-
-    @Test
-    void rechazar() {
-    }
-
-    @Test
-    void financiar() {
-    }
-
-    @Test
-    void denegarFinanciacion() {
-    }
-
-    @Test
-    void recibirApoyo() {
+    void consultarFinanciacion() {
+        assertEquals(p.getImporteConcedido(), proxy.getAmountGranted(p.getIdEnvio()));
     }
 
     @Test
@@ -175,5 +53,6 @@ public class ProyectoTest {
 
     @Test
     void generarInformePopularidad() {
+        assertEquals(1, p.generarInformePopularidad());
     }
 }

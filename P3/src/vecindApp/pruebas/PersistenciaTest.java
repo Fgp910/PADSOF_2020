@@ -21,4 +21,14 @@ public class PersistenciaTest {
         assertEquals(p.getProyectoNextId(), Proyecto.getNextId());
         assertEquals(p.getAplicacionMinApoyos(), Aplicacion.minApoyos);
     }
+
+    @Test
+    void getAplicacionMinApoyos() {
+        assertEquals(Aplicacion.minApoyos, p.getAplicacionMinApoyos());
+    }
+
+    @Test
+    void getProyectoNextId() {
+        assertEquals(Proyecto.getNextId(), p.getProyectoNextId());
+    }
 }
