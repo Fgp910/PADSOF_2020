@@ -9,5 +9,9 @@ import java.io.Serializable;
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
 public abstract class Notificacion implements Serializable {
+    /**
+     * Devuelve la descripcion de una notificacion
+     * @return descripcion
+     */
     public abstract String descripcion();
 }

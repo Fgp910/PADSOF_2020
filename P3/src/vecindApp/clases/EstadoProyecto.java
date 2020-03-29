@@ -12,6 +12,10 @@ import java.io.Serializable;
 public enum EstadoProyecto implements Serializable {
     INICIAL, ACEPTADO, RECHAZADO, LISTOENVAR, ENVIADO, FINANCIADO, DENEGADO;
 
+    /**
+     * Convierte un elemento de la enumeracion a cadena de caracteres
+     * @return cadena de caracteres resultante
+     */
     @Override
     public final String toString() {
         switch (this) {

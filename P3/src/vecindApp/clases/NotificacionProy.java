@@ -9,23 +9,44 @@ package vecindApp.clases;
 public class NotificacionProy extends Notificacion {
     private Proyecto sujeto;
 
+    /**
+     * Crea una nueva notificacion de proyecto
+     * @param sujeto proyecto de la notificacion
+     */
     public NotificacionProy(Proyecto sujeto) {
         this.sujeto = sujeto;
     }
 
+    /**
+     * Devuelve el sujeto de una notificacion
+     * @return proyecto sujeto
+     */
     public Proyecto getSujeto() {
         return sujeto;
     }
 
+    /**
+     * Establece el sujeto de una notificacion
+     * @param s nuevo sujeto de la notificacion
+     */
     public void setSujeto(Proyecto s) {
         sujeto = s;
     }
 
+    /**
+     * Devuelve la descripcion de una notificacion
+     * @return descripcion
+     */
     @Override
     public String descripcion() {
         return "Proyecto. " + sujeto.getTitulo() + ": " + sujeto.getEstado();
     }
 
+    /**
+     * Redefine la igualdad entre notificaciones
+     * @param o objeto con el que se compara
+     * @return true si son iguales, false en caso contrario
+     */
     /*
     * Si hay una notificacion pendiente asociada al cambio de estado de un proyecto
     * y el proyecto vuelve a cambiar de estado, se actualiza la notificacion, no se
