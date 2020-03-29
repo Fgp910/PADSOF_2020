@@ -11,9 +11,9 @@ import java.util.*;
 public class Colectivo implements ElementoColectivo {
     private String nombre;
     private Ciudadano representante;
-    private Set<ElementoColectivo> elementos;
-    private Set<Proyecto> proyectos;
-    private Set<Proyecto> proyectosApoyados;
+    private Set<ElementoColectivo> elementos = new HashSet<>();
+    private Set<Proyecto> proyectos = new HashSet<>();
+    private Set<Proyecto> proyectosApoyados = new HashSet<>();
     private Colectivo padre;
 
     /**
@@ -24,9 +24,6 @@ public class Colectivo implements ElementoColectivo {
     public Colectivo(String nombre, Ciudadano representante) {
         this.nombre = nombre;
         this.representante = representante;
-        elementos = new HashSet<>();
-        proyectos = new HashSet<>();
-        proyectosApoyados = new HashSet<>();
         padre = null;
         addElemento(representante);
         representante.addColectivo(this);
@@ -141,9 +138,9 @@ public class Colectivo implements ElementoColectivo {
     }
 
     /**
-     * Añade un ciudadano a los elementos del colectivo
+     * Agrega un ciudadano a los elementos del colectivo
      * @param ciudadano nuevo ciudadano
-     * @return true si se añade correctamente, false en caso contrario
+     * @return true si se agrega correctamente, false en caso contrario
      */
     public boolean addElemento(Ciudadano ciudadano) {
         Colectivo c = this;
@@ -168,9 +165,9 @@ public class Colectivo implements ElementoColectivo {
     }
 
     /**
-     * Añade un subcolectivo a los elementos de un colectivo
+     * Agrega un subcolectivo a los elementos de un colectivo
      * @param colectivo nuevo subcolectivo
-     * @return true si se añade correctamente, false en caso contrario
+     * @return true si se agrega correctamente, false en caso contrario
      */
     public boolean addElemento(Colectivo colectivo) {
         return elementos.add(colectivo);
@@ -186,9 +183,9 @@ public class Colectivo implements ElementoColectivo {
     }
 
     /**
-     * Añade un proyecto propuesto a un colectivo
-     * @param proyecto proyecto a añadir
-     * @return true si se añade correctamente, false en caso contrario
+     * Agrega un proyecto propuesto a un colectivo
+     * @param proyecto proyecto a agregar
+     * @return true si se agrega correctamente, false en caso contrario
      */
     public boolean addProyecto(Proyecto proyecto) {
         return proyectos.add(proyecto);
@@ -204,9 +201,9 @@ public class Colectivo implements ElementoColectivo {
     }
 
     /**
-     * Añade un proyecto al conjunto de apoyados del colectivo
+     * agrega un proyecto al conjunto de apoyados del colectivo
      * @param proyecto nuevo proyecto apoyado
-     * @return true si se añade correctamente, false en caso contrario
+     * @return true si se agrega correctamente, false en caso contrario
      */
     public boolean addProyectoApoyado(Proyecto proyecto) {
         return  proyectosApoyados.add(proyecto);

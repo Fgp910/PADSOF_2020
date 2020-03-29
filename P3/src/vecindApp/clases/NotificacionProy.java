@@ -42,16 +42,11 @@ public class NotificacionProy extends Notificacion {
         return "Proyecto. " + sujeto.getTitulo() + ": " + sujeto.getEstado();
     }
 
-    /**
-     * Redefine la igualdad entre notificaciones
-     * @param o objeto con el que se compara
-     * @return true si son iguales, false en caso contrario
-     */
     /*
-    * Si hay una notificacion pendiente asociada al cambio de estado de un proyecto
-    * y el proyecto vuelve a cambiar de estado, se actualiza la notificacion, no se
-    * crea una nueva (tendria el mismo contenido)
-    */
+     * Si hay una notificacion pendiente asociada al cambio de estado de un proyecto
+     * y el proyecto vuelve a cambiar de estado, se actualiza la notificacion, no se
+     * crea una nueva (tendria el mismo contenido)
+     */
     @Override
     public boolean equals(Object o) {
         if (o instanceof NotificacionProy && ((NotificacionProy) o).getSujeto() == sujeto) {

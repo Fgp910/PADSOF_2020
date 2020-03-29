@@ -193,7 +193,7 @@ public abstract class Proyecto implements Serializable {
 
 	/**
 	 * Establece la fecha del ultimo apoyo al proyecto
-	 * @param ultimoApoyo
+	 * @param ultimoApoyo la fecha a asignar
 	 */
 	public void setUltimoApoyo(Date ultimoApoyo) {
 		this.ultimoApoyo = ultimoApoyo;
@@ -242,7 +242,7 @@ public abstract class Proyecto implements Serializable {
 
 	/**
 	 * Establece si el proyecto esta caducado o no
-	 * @param caducado
+	 * @param caducado el valor a asignar
 	 */
 	public void setCaducado(boolean caducado) {
 		this.caducado = caducado;
@@ -258,7 +258,7 @@ public abstract class Proyecto implements Serializable {
 
 	/**
 	 * Establece el propulsor del proyecto (individual o colectivo)
-	 * @param propulsor
+	 * @param propulsor el ElementoColectivo a asignar
 	 */
 	public void setPropulsor(ElementoColectivo propulsor) {
 		this.propulsor = propulsor;
@@ -341,10 +341,10 @@ public abstract class Proyecto implements Serializable {
 	protected abstract GrantRequest crearSolicitud();
 
 	/**
-	 * envia el proyecto a financiacion
+	 * Envia el proyecto a financiacion
 	 *
-	 * @throws IOException
-	 * @throws InvalidRequestException
+	 * @throws IOException en caso de fallos en la comunicacion
+	 * @throws InvalidRequestException en caso de enviar una solicitud no valida
 	 */
 	public void enviarFinanciacion() throws IOException, InvalidRequestException {
 		GrantRequest req;
@@ -359,8 +359,8 @@ public abstract class Proyecto implements Serializable {
 
 	/**
 	 * consulta el estado de un proyecto enviado
-	 * @throws IOException
-	 * @throws InvalidIDException
+	 * @throws IOException en caso de fallos en la comunicacion
+	 * @throws InvalidIDException en caso de consultar un id no valido
 	 */
 	public void consultarFinanciacion() throws IOException, InvalidIDException {
 		CCGG proxy = CCGG.getGateway();
@@ -434,7 +434,7 @@ public abstract class Proyecto implements Serializable {
 	}
 
 	/**
-	 * Recibe el apoyo directo o indirecto de un ElementoCiudadano.
+	 * Recibe el apoyo directo o indirecto de un ElementoColectivo.
 	 * @param ec el ElementoColectivo que apoya al proyecto.
 	 * @param directo si el apoyo es directo (es indirecto en caso contrario).
 	 */

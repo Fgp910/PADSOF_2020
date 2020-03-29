@@ -11,7 +11,7 @@ public class AdministradorTest {
     Administrador a;
 
     @Before
-    void setUp() {
+    public void setUp() {
         a = new Administrador("jose", "a1");
     }
 }
