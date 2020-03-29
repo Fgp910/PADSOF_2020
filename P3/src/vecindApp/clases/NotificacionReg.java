@@ -10,18 +10,34 @@ package vecindApp.clases;
 public class NotificacionReg extends Notificacion {
     private Ciudadano sujeto;
 
+    /**
+     * Crea una nueva notificacion de ciudadano
+     * @param sujeto ciudadano de la notificacion
+     */
     public NotificacionReg(Ciudadano sujeto) {
         this.sujeto = sujeto;
     }
 
+    /**
+     * Devuelve el sujeto de una notificacion
+     * @return proyecto sujeto
+     */
     public Ciudadano getSujeto() {
         return sujeto;
     }
 
+    /**
+     * Establece el sujeto de una notificacion
+     * @param s nuevo sujeto de la notificacion
+     */
     public void setSujeto(Ciudadano s) {
         sujeto = s;
     }
 
+    /**
+     * Devuelve la descripcion de una notificacion
+     * @return descripcion
+     */
     @Override
     public String descripcion() {
         return "Nuevo registro. " + sujeto.getUsername() + " (NIF: " + sujeto.getNif() + ").";
