@@ -2,7 +2,10 @@ package vecindApp.clases;
 
 import es.uam.eps.sadp.grants.CCGG;
 import es.uam.eps.sadp.grants.GrantRequest;
+import es.uam.eps.sadp.grants.InvalidIDException;
+import es.uam.eps.sadp.grants.InvalidRequestException;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -190,7 +193,7 @@ public abstract class Proyecto implements Serializable {
 
 	protected abstract GrantRequest crearSolicitud();
 
-	public void enviarFinanciacion() throws Exception {
+	public void enviarFinanciacion() throws IOException, InvalidRequestException {
 		GrantRequest req;
 		if (estado != EstadoProyecto.LISTOENVAR) {
 			return;
@@ -201,9 +204,17 @@ public abstract class Proyecto implements Serializable {
 		setEstado(EstadoProyecto.ENVIADO);
 	}
 
-	public void consultarFinanciacion() throws Exception {
+	public void consultarFinanciacion() throws IOException, InvalidIDException {
 		CCGG proxy = CCGG.getGateway();
-		importeConcedido = proxy.getAmountGranted(this.idEnvio); //Si no esta resuelto, getAmountGranted devuelve null
+		Double aux = proxy.getAmountGranted(this.idEnvio); //Si no esta resuelto, getAmountGranted devuelve null
+		if (aux != null) {
+			importeConcedido = aux;
+			if (importeConcedido == 0) {
+				setEstado(EstadoProyecto.DENEGADO);
+			} else {
+				setEstado(EstadoProyecto.FINANCIADO);
+			}
+		}
 	}
 	
 	public void denegarFinanciacion() {
@@ -239,7 +250,6 @@ public abstract class Proyecto implements Serializable {
 			(estado == EstadoProyecto.DENEGADO)) {
 			return;
 		}
-
 		ec.addProyectoApoyado(this); //Por defecto una llamada fuera de Proyecto implica un apoyo directo de ec
 		if (ec instanceof Ciudadano) {
     		recibirApoyo((Ciudadano) ec);
@@ -272,7 +282,7 @@ public abstract class Proyecto implements Serializable {
 	}
 
 	private void recibirApoyo(Colectivo c) {
-    	if (promotores.add(c)) { //El colectivo no apoyaba previamente el proyecto
+		if (promotores.add(c)) { //El colectivo no apoyaba previamente el proyecto
     		for (ElementoColectivo ec: c.getElementos()) {
     			recibirApoyo(ec);
 			}

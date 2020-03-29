@@ -16,7 +16,7 @@ public class SolicitudInfraestructura extends SolicitudFinanciacion {
 
     @Override
     public ProjectKind getProjectKind() {
-        return GrantRequest.ProjectKind.valueOf("Infraestructure");
+        return GrantRequest.ProjectKind.valueOf("Infrastructure");
     }
 
     @Override

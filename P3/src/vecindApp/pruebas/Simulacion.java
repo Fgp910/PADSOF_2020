@@ -1,8 +1,11 @@
 package vecindApp.pruebas;
 
 import es.uam.eps.sadp.grants.CCGG;
+import es.uam.eps.sadp.grants.InvalidIDException;
+import es.uam.eps.sadp.grants.InvalidRequestException;
 import vecindApp.clases.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class Simulacion {
         /*Admision de ciudadanos*/
         List<Notificacion> pendientes = admin.getPendientes();
         for (int i = 0; i < 3; i++) {   //El usuario administrador admite a los tres primeros
-            System.out.println(pendientes.get(0));
+            System.out.println(pendientes.get(0).descripcion());
             ((NotificacionReg)pendientes.get(0)).getSujeto().admitir();
             pendientes.remove(pendientes.get(0));   //(Una vez se atiende una notificacion, se elimina)
         }
@@ -48,9 +51,9 @@ public class Simulacion {
         vecindApp.addProyecto(proyecto); //Proyecto individual
 
         pendientes = admin.getPendientes();
-        System.out.println(pendientes.get(0));
+        System.out.println(pendientes.get(0).descripcion());
         ((NotificacionProy)pendientes.get(0)).getSujeto().aceptar(); //Admite al proyecto
-        pendientes.remove(pendientes.get(0));
+        pendientes.remove(pendientes.get(0).descripcion());
 
         proyecto.recibirApoyo(ciudadanos[1]);   //recibe un apoyo individual
         System.out.println("Numero de apoyos:" + proyecto.getNApoyos()); //2
@@ -60,21 +63,43 @@ public class Simulacion {
         System.out.println("Numero de apoyos:" + proyecto.getNApoyos()); //3
 
         pendientes = ciudadanos[0].getPendientes();
-        System.out.println(pendientes.get(0));  //El proyecto esta listo para enviar
+        System.out.println(pendientes.get(0).descripcion());  //El proyecto esta listo para enviar
         pendientes.remove(pendientes.get(0));
+
+        /*Guardar y cargar aplicacion*/
+        vecindApp.guardar("prueba_simulador.txt");
+        try {
+            vecindApp = vecindApp.cargar("prueba_simulador.txt");
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println(ex);
+            return;
+        }
+        //Veamos que cargo bien
+        System.out.println("Luis tiene NIF " + vecindApp.findCiudadano("luis").getNif());
 
         /*Enviar a financiacion y esperar respuesta*/
         CCGG proxy = CCGG.getGateway();
         proxy.setDate(FechaSimulada.getHoy());
-        proyecto.enviarFinanciacion();
-        FechaSimulada.avanzar(30);  //pasa un mes
-        proxy.setDate(FechaSimulada.getHoy());
-        proyecto.consultarFinanciacion();
+        try {
+            proyecto.enviarFinanciacion();
 
-        pendientes = ciudadanos[0].getPendientes();
-        System.out.println(pendientes.get(0));  //El proyecto (con suerte) fue financiado
-        pendientes.remove(pendientes.get(0));
+            pendientes = ciudadanos[0].getPendientes();
+            System.out.println(pendientes.get(0).descripcion());  //El proyecto fue enviado a financiacion
+            pendientes.remove(pendientes.get(0));
 
-        System.out.println(proyecto.getTitulo() + ". Importe concedido: " + proyecto.getImporteConcedido());
+            FechaSimulada.avanzar(30);  //pasa un mes
+            proxy.setDate(FechaSimulada.getHoy());
+
+            proyecto.consultarFinanciacion();
+
+            pendientes = ciudadanos[0].getPendientes();
+            System.out.println(pendientes.get(0).descripcion());  //El proyecto fue resuelto (con suerte financiado)
+            pendientes.remove(pendientes.get(0));
+        } catch (IOException | InvalidIDException | InvalidRequestException ex) {
+            System.out.println(ex);
+            return; //En este simulador, la interaccion termina si hay excepciones. En general, se manejara la excepcion
+        }
+
+        System.out.printf("%s. Importe concedido: %.2f", proyecto.getTitulo(), proyecto.getImporteConcedido());
     }
 }

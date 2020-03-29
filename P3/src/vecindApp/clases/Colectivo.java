@@ -20,10 +20,10 @@ public class Colectivo implements ElementoColectivo {
         this.nombre = nombre;
         this.representante = representante;
         elementos = new HashSet<>();
-        addElemento(representante);
         proyectos = new HashSet<>();
         proyectosApoyados = new HashSet<>();
         padre = null;
+        addElemento(representante);
         representante.addColectivo(this);
         representante.addColectivoRepresentado(this);
     }
@@ -89,8 +89,8 @@ public class Colectivo implements ElementoColectivo {
             return false;
         }
 
-        for (Proyecto p: proyectos) {
-            p.recibirApoyo(ciudadano);
+        for (Proyecto p: proyectosApoyados) {
+            p.recibirApoyo(ciudadano, false);
         }
 
         while (c.padre != null) { //Un ciudadano no puede pertenecer al padre y al hijo simultaneamente
