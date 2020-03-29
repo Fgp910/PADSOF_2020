@@ -10,15 +10,28 @@ import es.uam.eps.sadp.grants.GrantRequest;
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
 public class SolicitudInfraestructura extends SolicitudFinanciacion {
+
+    /**
+     * Inicializa una nueva solicitud para un proyecto de infraestructura
+     * @param p proyecto
+     */
     public SolicitudInfraestructura(Proyecto p) {
         super(p);
     }
 
+    /**
+     * Devuelve el tipo de proyecto (social o infrestructura)
+     * @return tipo de proyecto
+     */
     @Override
     public ProjectKind getProjectKind() {
         return GrantRequest.ProjectKind.valueOf("Infrastructure");
     }
 
+    /**
+     * Devuelve la informacion extra relacionada con el proyecto
+     * @return imagen y distritos afectados
+     */
     @Override
     public String getExtraData() {
         ProyectoInfraestructura p = (ProyectoInfraestructura) getProject();
