@@ -1,6 +1,5 @@
 package vecindApp.clases;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +16,7 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     private String nif;
     private boolean admitido;
     private boolean bloqueado;
-    private List<Proyecto> proyectos;
+    private Set<Proyecto> proyectos;
     private Set<Proyecto> proyectosApoyados;
     private Set<Colectivo> colectivos;
     private List<Colectivo> colectivosRepresentados;
@@ -27,7 +26,7 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.nif = nif;
         this.admitido = false;
         this.bloqueado = false;
-        proyectos = new ArrayList<>();
+        proyectos = new HashSet<>();
         proyectosApoyados = new HashSet<>();
         colectivos = new HashSet<>();
         colectivosRepresentados = new ArrayList<>();
@@ -57,11 +56,11 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         this.bloqueado = bloqueado;
     }
 
-    public List<Proyecto> getProyectos() {
+    public Set<Proyecto> getProyectos() {
         return proyectos;
     }
 
-    public void setProyectos(List<Proyecto> proyectos) {
+    public void setProyectos(Set<Proyecto> proyectos) {
         this.proyectos = proyectos;
     }
 
@@ -93,8 +92,16 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         return proyectos.add(proyecto);
     }
 
-    public boolean remveProyecto(Proyecto proyecto) {
+    public boolean removeProyecto(Proyecto proyecto) {
         return proyectos.remove(proyecto);
+    }
+
+    public boolean addProyectoApoyado(Proyecto proyecto) {
+        return proyectosApoyados.add(proyecto);
+    }
+
+    public boolean removeProyectoApoyado(Proyecto proyecto) {
+        return proyectosApoyados.remove(proyecto);
     }
 
     public boolean addColectivo(Colectivo colectivo) {
@@ -113,79 +120,63 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         return colectivosRepresentados.remove(colectivo);
     }
 
-    public boolean addProyectoApoyado(Proyecto proyecto) {
-        return proyectosApoyados.add(proyecto);
-    }
-
-    public boolean removeProyectoApoyado(Proyecto proyecto) {
-        return proyectosApoyados.remove(proyecto);
+    public void admitir() {
+        setAdmitido(true);
     }
 
     public void bloquear() {
-        Set<Proyecto> buffer = new HashSet<Proyecto>();
+        Set<Proyecto> aux = new HashSet<>();
 
-        if (isBloqueado() == true) {
+        if (isBloqueado()) {
             return;
         }
 
         setBloqueado(true);
 
-        for (Proyecto p:proyectos) {
-            if (buffer.add(p)) {
-                p.setnBloqueados(p.getnBloqueados() + 1);
+        for (Proyecto p: proyectosApoyados) {
+            if (aux.add(p)) {
+                p.bloquearApoyo(this);
             }
         }
-        for (Proyecto p:proyectosApoyados) {
-            if (buffer.add(p)) {
-                p.setnBloqueados(p.getnBloqueados() + 1);
-            }
-        }
-        for (Colectivo c:colectivos) {
-            Colectivo actual = c;
 
-            do {
-                for (Proyecto p:actual.getProyectos()) {
-                    if (buffer.add(p)) {
-                        p.setnBloqueados(p.getnBloqueados() + 1);
+        for (Colectivo c: colectivos) {
+            Colectivo padre = c.getPadre();
+            while (padre != null) {
+                for (Proyecto p: padre.getProyectosApoyados()) {
+                    if (aux.add(p)) {
+                        p.bloquearApoyo(this);
                     }
                 }
-            } while ((actual = actual.getPadre()) != null);
+                padre = padre.getPadre();
+            }
         }
     }
 
     public void desbloquear() {
-        Set<Proyecto> buffer = new HashSet<Proyecto>();
+        Set<Proyecto> aux = new HashSet<>();
 
-        if (isBloqueado() == false) {
+        if (!isBloqueado()) {
             return;
         }
 
         setBloqueado(false);
 
-        for (Proyecto p:proyectos) {
-            if (buffer.add(p)) {
-                p.setnBloqueados(p.getnBloqueados() - 1);
+        for (Proyecto p: proyectosApoyados) {
+            if (aux.add(p)) {
+                p.recibirApoyo(this);
             }
         }
-        for (Proyecto p:proyectosApoyados) {
-            if (buffer.add(p)) {
-                p.setnBloqueados(p.getnBloqueados() - 1);
-            }
-        }
-        for (Colectivo c:colectivos) {
-            Colectivo actual = c;
 
-            do {
-                for (Proyecto p:actual.getProyectos()) {
-                    if (buffer.add(p)) {
-                        p.setnBloqueados(p.getnBloqueados() - 1);
+        for (Colectivo c: colectivos) {
+            Colectivo padre = c.getPadre();
+            while (padre != null) {
+                for (Proyecto p: padre.getProyectosApoyados()) {
+                    if (aux.add(p)) {
+                        p.recibirApoyo(this, false);    //apoyo indirecto
                     }
                 }
-            } while ((actual = actual.getPadre()) != null);
+                padre = padre.getPadre();
+            }
         }
-    }
-
-    public void admitir() {
-        setAdmitido(true);
     }
 }

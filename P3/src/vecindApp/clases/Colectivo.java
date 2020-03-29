@@ -12,7 +12,7 @@ public class Colectivo implements ElementoColectivo {
     private String nombre;
     private Ciudadano representante;
     private Set<ElementoColectivo> elementos;
-    private List<Proyecto> proyectos;
+    private Set<Proyecto> proyectos;
     private Set<Proyecto> proyectosApoyados;
     private Colectivo padre;
 
@@ -20,19 +20,16 @@ public class Colectivo implements ElementoColectivo {
         this.nombre = nombre;
         this.representante = representante;
         elementos = new HashSet<>();
-        elementos.add(representante);
-        proyectos = new ArrayList<>();
+        proyectos = new HashSet<>();
         proyectosApoyados = new HashSet<>();
         padre = null;
+        addElemento(representante);
+        representante.addColectivo(this);
+        representante.addColectivoRepresentado(this);
     }
 
     public Colectivo(String nombre, Colectivo padre) {
-        this.nombre = nombre;
-        this.representante = padre.representante;
-        elementos = new HashSet<>();
-        elementos.add(representante);
-        proyectos = new ArrayList<>();
-        proyectosApoyados = new HashSet<>();
+        this(nombre,padre.representante);
         this.padre = padre;
         this.padre.addElemento(this);
     }
@@ -61,11 +58,11 @@ public class Colectivo implements ElementoColectivo {
         this.representante = representante;
     }
 
-    public List<Proyecto> getProyectos() {
+    public Set<Proyecto> getProyectos() {
         return proyectos;
     }
 
-    public void setProyectos(List<Proyecto> proyectos) {
+    public void setProyectos(Set<Proyecto> proyectos) {
         this.proyectos = proyectos;
     }
 
@@ -88,32 +85,27 @@ public class Colectivo implements ElementoColectivo {
     public boolean addElemento(Ciudadano ciudadano) {
         Colectivo c = this;
 
-        if (comprobarHijos(ciudadano) == false) {
+        if (perteneceHijos(ciudadano) || !elementos.add(ciudadano)) {
             return false;
         }
 
-        boolean ret =  elementos.add((ElementoColectivo)ciudadano);
-        if (!ret) {
-            return ret;
+        for (Proyecto p: proyectosApoyados) {
+            p.recibirApoyo(ciudadano, false);
         }
 
-        for (Proyecto p:proyectos) {
-            p.recibirApoyo(ciudadano);
-        }
-
-        while (c.padre != null) {
+        while (c.padre != null) { //Un ciudadano no puede pertenecer al padre y al hijo simultaneamente
             c = c.padre;
-            c.elementos.remove((ElementoColectivo)ciudadano);
-            for (Proyecto p:c.proyectos) {
-                p.recibirApoyo(ciudadano);
+            c.removeElemento(ciudadano);
+            for (Proyecto p: c.proyectos) {
+                p.recibirApoyo(ciudadano);  //Actualiza los proyectos apoyados por supercolectivos
             }
         }
 
-        return ret;
+        return true;
     }
 
     public boolean addElemento(Colectivo colectivo) {
-        return elementos.add((ElementoColectivo) colectivo);
+        return elementos.add(colectivo);
     }
 
     public boolean removeElemento(ElementoColectivo elemento) {
@@ -136,20 +128,20 @@ public class Colectivo implements ElementoColectivo {
         return proyectosApoyados.remove(proyecto);
     }
 
-    /*Métodos privados*/
-    private boolean comprobarHijos(Ciudadano ciudadano) {
-        if (elementos.contains((ElementoColectivo)ciudadano)) {
-            return false;
+    /*Metodos privados*/
+    private boolean perteneceHijos(Ciudadano ciudadano) {
+        if (elementos.contains(ciudadano)) {
+            return true;
         }
 
         for (ElementoColectivo ec:elementos) {
             if (ec instanceof Colectivo) {
-                if (((Colectivo)ec).comprobarHijos(ciudadano) == false) {
-                    return false;
+                if (((Colectivo) ec).perteneceHijos(ciudadano)) {
+                    return true;
                 }
             }
         }
 
-        return true;
+        return false;
     }
 }

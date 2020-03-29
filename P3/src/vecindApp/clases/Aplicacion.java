@@ -1,5 +1,8 @@
 package vecindApp.clases;
 
+import es.uam.eps.sadp.grants.InvalidIDException;
+import es.uam.eps.sadp.grants.InvalidRequestException;
+
 import java.io.*;
 import java.util.*;
 
@@ -67,10 +70,12 @@ public class Aplicacion implements Serializable {
     }
 
     public boolean addElemCol(ElementoColectivo elemCol) {
-        if (elemCol instanceof Ciudadano) {
-            admin.agregarNotificacion(new NotificacionReg((Ciudadano) elemCol));
+        boolean ret = this.elemCol.add(elemCol);
+
+        if (ret && (elemCol instanceof Ciudadano)) {
+            notificarRegistro((Ciudadano) elemCol);
         }
-        return this.elemCol.add(elemCol);
+        return ret;
     }
 
     public boolean removeElemCol(ElementoColectivo elemCol) {
@@ -78,7 +83,13 @@ public class Aplicacion implements Serializable {
     }
 
     public boolean addProyecto(Proyecto p){
-        return proyectos.add(p);
+        boolean ret = proyectos.add(p);
+
+        if (ret) {
+            notificarNuevoProyecto(p);
+        }
+
+        return ret;
     }
 
     public boolean removeProyecto(Proyecto p) {
@@ -165,15 +176,18 @@ public class Aplicacion implements Serializable {
         }
     }
 
-    public Aplicacion cargar(String path) throws IOException, ClassNotFoundException {
+    public Aplicacion cargar(String path) throws IOException, ClassNotFoundException, InvalidIDException {
         ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
         Aplicacion app = (Aplicacion) ent.readObject();
         Date curr = new Date();
         app.varStatic.setValues();
-        //Comprobando caducidad de proyectos
+        //Comprobando caducidad y financiacion de proyectos
         for (Proyecto p : app.proyectos) {
             if (curr.getTime() - p.getUltimoApoyo().getTime() > 30*24*60*60*1000) { //30 dias en milisegundos
                 p.setCaducado(true);
+            }
+            if (p.getEstado() == EstadoProyecto.ENVIADO) {
+                p.consultarFinanciacion();
             }
         }
         return app;

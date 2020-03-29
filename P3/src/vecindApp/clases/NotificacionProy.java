@@ -23,6 +23,24 @@ public class NotificacionProy extends Notificacion {
 
     @Override
     public String descripcion() {
-        return "Nuevo proyecto. "+ sujeto.getTitulo() + ": " + sujeto.getEstado();
+        return "Proyecto. " + sujeto.getTitulo() + ": " + sujeto.getEstado();
+    }
+
+    /*
+    * Si hay una notificacion pendiente asociada al cambio de estado de un proyecto
+    * y el proyecto vuelve a cambiar de estado, se actualiza la notificacion, no se
+    * crea una nueva (tendria el mismo contenido)
+    */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof NotificacionProy && ((NotificacionProy) o).getSujeto() == sujeto) {
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return sujeto.hashCode();
     }
 }
