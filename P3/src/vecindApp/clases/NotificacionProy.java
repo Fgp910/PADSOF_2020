@@ -23,6 +23,6 @@ public class NotificacionProy extends Notificacion {
 
     @Override
     public String descripcion() {
-        return "Nuevo proyecto. "+ sujeto.getTitulo() + ": " + sujeto.getEstado();
+        return "Proyecto. " + sujeto.getTitulo() + ": " + sujeto.getEstado();
     }
 }

@@ -26,7 +26,6 @@ public abstract class Proyecto implements Serializable {
     private Date fechaCreacion;
     private Date ultimoApoyo;
     private int nApoyos = 1;
-    public int nBloqueados = 0;
     private EstadoProyecto estado = EstadoProyecto.INICIAL;
     private boolean caducado = false;
     private ElementoColectivo propulsor;
@@ -45,7 +44,15 @@ public abstract class Proyecto implements Serializable {
         this.propulsor = propulsor;
         promotores.add(propulsor);
         suscriptores.add(propulsor);
+        propulsor.addProyecto(this);
+        propulsor.addProyectoApoyado(this);
     }
+
+    public Proyecto(String titulo, String descripcion, double importeSolicitado, Colectivo propulsor) {
+		this(titulo, descripcion, importeSolicitado, propulsor.getRepresentante());
+    	propulsor.addProyecto(this);
+    	propulsor.addProyectoApoyado(this);
+	}
 
     public int getId() {
 		return id;
@@ -119,14 +126,6 @@ public abstract class Proyecto implements Serializable {
 		this.nApoyos = nApoyos;
 	}
 
-	public int getnBloqueados() {
-		return nBloqueados;
-	}
-
-	public void setnBloqueados(int nBloqueados) {
-		this.nBloqueados = nBloqueados;
-	}
-
 	public EstadoProyecto getEstado() {
 		return estado;
 	}
@@ -182,6 +181,7 @@ public abstract class Proyecto implements Serializable {
 	
 	public void aceptar() {
 		setEstado(EstadoProyecto.ACEPTADO);
+		recibirApoyo(propulsor); //En caso de ser colectivo, se agregan los apoyos de sus miembros
 	}
 	
 	public void rechazar() {
@@ -191,7 +191,11 @@ public abstract class Proyecto implements Serializable {
 	protected abstract GrantRequest crearSolicitud();
 
 	public void enviarFinanciacion() throws Exception {
-		GrantRequest req = crearSolicitud();
+		GrantRequest req;
+		if (estado != EstadoProyecto.LISTOENVAR) {
+			return;
+		}
+		req = crearSolicitud();
 		CCGG proxy = CCGG.getGateway();
 		this.idEnvio = proxy.submitRequest(req);
 		setEstado(EstadoProyecto.ENVIADO);
@@ -205,42 +209,73 @@ public abstract class Proyecto implements Serializable {
 	public void denegarFinanciacion() {
 		setEstado(EstadoProyecto.DENEGADO);
 	}
-	
+
+	public void notificarCambio() {
+		for (Ciudadano s: suscriptores) {
+			s.agregarNotificacion(new NotificacionProy(this));
+		}
+	}
+
+	public int generarInformePopularidad() {
+		return nApoyos;
+	}
+
+	public boolean bloquearApoyo(Ciudadano c) {
+		boolean ret = promotores.remove(c);
+		if (ret && (--nApoyos < Aplicacion.minApoyos) && (estado == EstadoProyecto.LISTOENVAR)) {
+			setEstado(EstadoProyecto.ACEPTADO);
+		}
+		return ret;
+	}
+
+	/**
+	 * Recibe el apoyo directo de un ElementoColectivo.
+	 * @param ec el ElementoColectivo que apoya al proyecto.
+	 */
 	public void recibirApoyo(ElementoColectivo ec) {
-    	if (ec instanceof Ciudadano) {
+		if (caducado ||
+			(estado == EstadoProyecto.INICIAL) ||
+			(estado == EstadoProyecto.FINANCIADO) ||
+			(estado == EstadoProyecto.DENEGADO)) {
+			return;
+		}
+
+		ec.addProyectoApoyado(this); //Por defecto una llamada fuera de Proyecto implica un apoyo directo de ec
+		if (ec instanceof Ciudadano) {
     		recibirApoyo((Ciudadano) ec);
 		} else if (ec instanceof  Colectivo) {
-    		recibirApoyo((Colectivo) ec);
+			suscriptores.add(((Colectivo) ec).getRepresentante());
+			recibirApoyo((Colectivo) ec);
+		}
+		setUltimoApoyo(new Date());
+	}
+
+	/**
+	 * Recibe el apoyo directo o indirecto de un ElementoCiudadano.
+	 * @param ec el ElementoColectivo que apoya al proyecto.
+	 * @param directo si el apoyo es directo (es indirecto en caso contrario).
+	 */
+	public void recibirApoyo(ElementoColectivo ec, boolean directo) {
+		recibirApoyo(ec);
+		if (!directo) {
+			ec.removeProyectoApoyado(this);	//Un ElementoColectivo guarda los proyectos que apoya directamente
 		}
 	}
 
-	public void recibirApoyo(Ciudadano c) {
-		if (promotores.add(c)) {	//Es un ciudadano que no era promotor
-			if (++nApoyos >= Aplicacion.minApoyos && estado == EstadoProyecto.ACEPTADO && !c.isBloqueado()) {
+	/*Metodos privados*/
+	private void recibirApoyo(Ciudadano c) {
+		if (!c.isBloqueado() && promotores.add(c)) {//Es un ciudadano que no esta bloqueado ni era promotor
+			if ((++nApoyos >= Aplicacion.minApoyos) && (estado == EstadoProyecto.ACEPTADO)) {
 				setEstado(EstadoProyecto.LISTOENVAR);
-				setUltimoApoyo(new Date());
-			}
-			else {
-				nBloqueados++;
 			}
 		}
 	}
 
-	public void recibirApoyo(Colectivo c) {
+	private void recibirApoyo(Colectivo c) {
     	if (promotores.add(c)) { //El colectivo no apoyaba previamente el proyecto
     		for (ElementoColectivo ec: c.getElementos()) {
     			recibirApoyo(ec);
 			}
 		}
 	}
-
-	public void notificarCambio() {
-        for (Ciudadano s: suscriptores) {
-            s.agregarNotificacion(new NotificacionProy(this));
-        }
-    }
-
-    public int generarInformePopularidad() {
-        return nApoyos - nBloqueados;
-    }
 }

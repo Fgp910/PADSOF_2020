@@ -9,7 +9,7 @@ import java.io.Serializable;
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-enum EstadoProyecto implements Serializable {
+public enum EstadoProyecto implements Serializable {
     INICIAL, ACEPTADO, RECHAZADO, LISTOENVAR, ENVIADO, FINANCIADO, DENEGADO;
 
     @Override

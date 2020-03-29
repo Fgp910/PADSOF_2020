@@ -11,18 +11,18 @@ import static org.junit.Assert.*;
 
 public class AplicacionTest {
     @Before
-    void setUp() {
+    public void setUp() {
         Administrador ad = new Administrador("admin", "psswd");
         Aplicacion app = new Aplicacion(ad);
     }
 
     @Test
-    void getAdmin() {
+    public void getAdmin() {
         assertEquals(ad, sf.getAdmin());
     }
 
     @Test
-    void setAdmin() {
+    public void setAdmin() {
         Administrador ad2 = new Administrador("admin2", "psswd");
         assertEquals(ad2, app.getAdmin());
     }
