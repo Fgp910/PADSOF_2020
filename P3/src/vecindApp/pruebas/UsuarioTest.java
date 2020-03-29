@@ -14,7 +14,7 @@ public class UsuarioTest {
 
     @Before
     void setUp() {
-        usr = new Usuario("pepe", "a1");
+        usr = new Ciudadano("pepe", "a1", "123456Y");
     }
 
     @Test
@@ -56,6 +56,6 @@ public class UsuarioTest {
     void agregarNotificacion() {
         Ciudadano c = new Ciudadano("pepe", "a1", "123456U");
         NotificacionReg nr = new NotificacionReg(c);
-        assertEquals(usr.getPendientes.add(nr), usr.agregarNotificacion(nr));
+        assertTrue(usr.getPendientes().contains(nr));
     }
 }

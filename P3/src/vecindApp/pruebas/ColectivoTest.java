@@ -1,5 +1,6 @@
 package vecindApp.pruebas;
 
+import jdk.jfr.StackTrace;
 import org.junit.Assert;
 import vecindApp.clases.*;
 import org.junit.Before;
@@ -73,6 +74,33 @@ public class ColectivoTest {
     }
 
     @Test
+    public void getProyectosApoyados() {
+        Set<Proyecto> pa = new HashSet<>();
+        assertEquals((pa, c.getProyectosApoyados));
+    }
+
+    @Test
+    public void setProyectosApoyados() {
+        Set<Proyecto> pa = new HashSet<>();
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
+        pa.add(p);
+        c.setProyectosApoyados(pa);
+        assertEquals((pa, c.getProyectosApoyados));
+    }
+
+    @Test
+    public void getPadre() {
+        assertEquals(null, c.getPadre());
+    }
+
+    @Test
+    public void setPadre() {
+        Colectivo p = new Colectivo("ColectivoPadre", new Ciudadano("usr", "psswd", "12345678X"));
+        c.setPadre(p);
+        assertEquals(p, c.getPadre());
+    }
+
+    @Test
     public void addElemento() {
         Ciudadano ciudadano = new Ciudadano("ciudadano", "psswd", "12345678X");
         c.addElemento(ciudadano);
@@ -100,5 +128,20 @@ public class ColectivoTest {
         c.addProyecto(p);
         c.removeProyecto(p);
         assertFalse(c.getProyectos().contains(p));
+    }
+
+    @Test
+    public void addProyectoApoyado() {
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
+        c.addProyectoApoyado(p);
+        assertTrue(c.getProyectosApoyados().contains(p));
+    }
+
+    @Test
+    public void removeProyectoApoyado() {
+        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
+        c.addProyectoApoyado(p);
+        c.removeProyectoApoyado(p);
+        assertFalse(c.getProyectosApoyados().contains(p));
     }
 }
