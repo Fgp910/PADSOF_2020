@@ -1,24 +1,28 @@
 package vecindApp.pruebas;
 
-import jdk.jfr.StackTrace;
 import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Clase de prueba de la clase NotificacionProy
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class NotificacionProyTest {
     NotificacionProy np;
+    Proyecto p;
 
     @Before
     public void setUp() {
-        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
+        p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
         np = new NotificacionProy(p);
     }
 
     @Test
     public void getSujeto() {
-        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
         assertEquals(p, np.getSujeto());
     }
 
@@ -31,6 +35,6 @@ public class NotificacionProyTest {
 
     @Test
     public void descripcion() {
-        assertEquals("Nuevo proyecto. titulo: Creado con exito.", np.descripcion());
+        assertEquals("Proyecto. titulo: Creado con exito.", np.descripcion());
     }
 }

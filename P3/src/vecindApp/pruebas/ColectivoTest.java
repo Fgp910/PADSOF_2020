@@ -1,24 +1,27 @@
 package vecindApp.pruebas;
 
-import jdk.jfr.StackTrace;
-import org.junit.Assert;
 import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+/**
+ * Clase de prueba de la clase Colectivo
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ColectivoTest {
     Colectivo c;
+    Ciudadano repre;
 
     @Before
     public void setUp() {
-        c = new Colectivo("miColectivo", new Ciudadano("usr", "psswd", "12345678X"));
+        repre = new Ciudadano("usr", "psswd", "12345678X");
+        c = new Colectivo("miColectivo", repre);
     }
 
     @Test
@@ -34,8 +37,7 @@ public class ColectivoTest {
 
     @Test
     public void getElementos() {
-        Set<ElementoColectivo> s = new HashSet<>();
-        assertEquals(s, c.getElementos());
+        assertTrue(c.getElementos().contains(repre));
     }
 
     @Test
@@ -48,8 +50,7 @@ public class ColectivoTest {
 
     @Test
     public void getRepresentante() {
-        Ciudadano ciu = new Ciudadano("usr", "psswd", "12345678X");
-        assertEquals(ciu, c.getRepresentante());
+        assertEquals(repre, c.getRepresentante());
     }
 
     @Test
@@ -61,13 +62,12 @@ public class ColectivoTest {
 
     @Test
     public void getProyectos() {
-        List<Proyecto> p = new ArrayList<>();
-        assertEquals(p, c.getProyectos());
+        assertTrue(c.getProyectos().isEmpty());
     }
 
     @Test
     public void setProyectos() {
-        List<Proyecto> p = new ArrayList<>();
+        Set<Proyecto> p = new HashSet<>();
         p.add(new ProyectoSocial("prueba", "descripcion prueba", 100, c, "a", false));
         c.setProyectos(p);
         assertEquals(p, c.getProyectos());
@@ -90,7 +90,7 @@ public class ColectivoTest {
 
     @Test
     public void getPadre() {
-        assertEquals(null, c.getPadre());
+        assertNull(c.getPadre());
     }
 
     @Test

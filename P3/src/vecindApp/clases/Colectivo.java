@@ -149,6 +149,8 @@ public class Colectivo implements ElementoColectivo {
             return false;
         }
 
+        ciudadano.addColectivo(this);
+
         for (Proyecto p: proyectosApoyados) {
             p.recibirApoyo(ciudadano, false);
         }
@@ -156,6 +158,7 @@ public class Colectivo implements ElementoColectivo {
         while (c.padre != null) { //Un ciudadano no puede pertenecer al padre y al hijo simultaneamente
             c = c.padre;
             c.removeElemento(ciudadano);
+            ciudadano.removeColectivo(c);
             for (Proyecto p: c.proyectos) {
                 p.recibirApoyo(ciudadano);  //Actualiza los proyectos apoyados por supercolectivos
             }

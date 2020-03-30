@@ -1,7 +1,6 @@
 package vecindApp.clases;
 
 import es.uam.eps.sadp.grants.InvalidIDException;
-import es.uam.eps.sadp.grants.InvalidRequestException;
 
 import java.io.*;
 import java.util.*;
@@ -19,7 +18,7 @@ public class Aplicacion implements Serializable {
     private List<ElementoColectivo> elemCol = new ArrayList<>();
     private List<Proyecto> proyectos = new ArrayList<>();
     private List<Ciudadano> bloqueados = new ArrayList<>();
-    private Usuario usuarioAcutal;
+    private Usuario usuarioActual;
     private Persistencia varStatic;
 
     /**
@@ -98,16 +97,16 @@ public class Aplicacion implements Serializable {
      * Devuelve el usuario de la sesion actual
      * @return el usuario actual
      */
-    public Usuario getUsuarioAcutal() {
-        return usuarioAcutal;
+    public Usuario getUsuarioActual() {
+        return usuarioActual;
     }
 
     /**
      * Establece el usuario de la sesion actual
-     * @param usuarioAcutal el usuario actual
+     * @param usuarioActual el usuario actual
      */
-    public void setUsuarioAcutal(Usuario usuarioAcutal) {
-        this.usuarioAcutal = usuarioAcutal;
+    public void setUsuarioActual(Usuario usuarioActual) {
+        this.usuarioActual = usuarioActual;
     }
 
     /**
@@ -253,6 +252,10 @@ public class Aplicacion implements Serializable {
 
         n1 = c1.getProyectos().size();
         n2 = c2.getProyectos().size();
+
+        if (n1 + n2 == 0) {
+            return 0; //Definimos que no son afines si no tienen proyectos
+        }
 
         apoyados = c2.getProyectosApoyados();
         for (Proyecto p:c1.getProyectos()) {
