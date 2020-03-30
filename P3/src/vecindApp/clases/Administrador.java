@@ -7,6 +7,11 @@ package vecindApp.clases;
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
 public class Administrador extends Usuario {
+    /**
+     * Inicializa un nuevo administrador
+     * @param username nombre de usuario del administrador
+     * @param password contraseña para el administrador
+     */
     public Administrador(String username, String password) {
         super(username, password);
     }
