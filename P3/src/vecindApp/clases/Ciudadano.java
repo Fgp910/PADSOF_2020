@@ -151,9 +151,9 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     /**
-     * Añade un nuevo proyecto propuesto a un ciudadano
-     * @param proyecto proyecto a añadir
-     * @return true si se añade correctamente, false en otro caso
+     * Agrega un nuevo proyecto propuesto a un ciudadano
+     * @param proyecto proyecto a Agregar
+     * @return true si se agrega correctamente, false en otro caso
      */
     public boolean addProyecto(Proyecto proyecto) {
         return proyectos.add(proyecto);
@@ -169,9 +169,9 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     /**
-     * Añade un nuevo proyecto apoyado a un ciudadano
-     * @param proyecto proyecto a añadir
-     * @return true si se añade correctamente, false en otro caso
+     * Agrega un nuevo proyecto apoyado a un ciudadano
+     * @param proyecto proyecto a Agregar
+     * @return true si se agrega correctamente, false en otro caso
      */
     public boolean addProyectoApoyado(Proyecto proyecto) {
         return proyectosApoyados.add(proyecto);
@@ -187,9 +187,9 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     /**
-     * Añade un colectivo al conjunto de un ciudadano
-     * @param colectivo colectivo a añadir
-     * @return true si se añade correctamente, false en otro caso
+     * Agrega un colectivo al conjunto de un ciudadano
+     * @param colectivo colectivo a Agregar
+     * @return true si se agrega correctamente, false en otro caso
      */
     public boolean addColectivo(Colectivo colectivo) {
         return colectivos.add(colectivo);
@@ -205,9 +205,9 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     /**
-     * Añade un colectivo representado a un ciudadano
-     * @param colectivo colectivo a añadir
-     * @return true si se añade correctamente, false en otro caso
+     * Agrega un colectivo representado a un ciudadano
+     * @param colectivo colectivo a Agregar
+     * @return true si se agrega correctamente, false en otro caso
      */
     public boolean addColectivoRepresentado(Colectivo colectivo) {
         return colectivosRepresentados.add(colectivo);
