@@ -1,6 +1,7 @@
-package vecindApp.clases;
+package vecindApp.clases.Aplicacion;
 
 import java.io.Serializable;
+import vecindApp.clases.Proyecto.*;
 
 /**
  * Almacena las variables de clase para poder reestablecerlas al arrancar la aplicacion.

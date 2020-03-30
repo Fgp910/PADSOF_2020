@@ -1,4 +1,4 @@
-package vecindApp.clases;
+package vecindApp.clases.Proyecto;
 
 import es.uam.eps.sadp.grants.GrantRequest;
 

@@ -1,4 +1,6 @@
-package vecindApp.clases;
+package vecindApp.clases.Usuario;
+
+import vecindApp.clases.Notificacion.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;

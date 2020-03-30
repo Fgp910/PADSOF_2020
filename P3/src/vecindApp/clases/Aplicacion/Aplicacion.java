@@ -1,6 +1,11 @@
-package vecindApp.clases;
+package vecindApp.clases.Aplicacion;
 
 import es.uam.eps.sadp.grants.InvalidIDException;
+import vecindApp.clases.Colectivo.*;
+import vecindApp.clases.Notificacion.*;
+import vecindApp.clases.Proyecto.*;
+import vecindApp.clases.Usuario.*;
+
 
 import java.io.*;
 import java.util.*;

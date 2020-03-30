@@ -1,4 +1,7 @@
-package vecindApp.clases;
+package vecindApp.clases.Colectivo;
+
+import vecindApp.clases.Proyecto.*;
+import vecindApp.clases.Usuario.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;

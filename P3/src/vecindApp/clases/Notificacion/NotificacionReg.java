@@ -1,4 +1,6 @@
-package vecindApp.clases;
+package vecindApp.clases.Notificacion;
+
+import vecindApp.clases.Colectivo.*;
 
 /**
  * Define la clase NotificacionReg que implementa la clase Notificacion

@@ -1,4 +1,6 @@
-package vecindApp.clases;
+package vecindApp.clases.Colectivo;
+
+import vecindApp.clases.Proyecto.*;
 
 import java.util.*;
 

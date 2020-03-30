@@ -1,9 +1,12 @@
-package vecindApp.clases;
+package vecindApp.clases.Proyecto;
 
 import es.uam.eps.sadp.grants.CCGG;
 import es.uam.eps.sadp.grants.GrantRequest;
 import es.uam.eps.sadp.grants.InvalidIDException;
 import es.uam.eps.sadp.grants.InvalidRequestException;
+import vecindApp.clases.Aplicacion.*;
+import vecindApp.clases.Colectivo.*;
+import vecindApp.clases.Notificacion.*;
 
 import java.io.IOException;
 import java.io.Serializable;

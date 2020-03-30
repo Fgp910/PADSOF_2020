@@ -1,6 +1,8 @@
-package vecindApp.clases;
+package vecindApp.clases.Proyecto;
 
 import es.uam.eps.sadp.grants.GrantRequest;
+import vecindApp.clases.Colectivo.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

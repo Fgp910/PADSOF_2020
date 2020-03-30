@@ -1,4 +1,6 @@
-package vecindApp.clases;
+package vecindApp.clases.Notificacion;
+
+import vecindApp.clases.Proyecto.*;
 
 /**
  * Define la clase NotificacionProy que implementa la clase Notificacion

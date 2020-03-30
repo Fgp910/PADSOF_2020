@@ -1,4 +1,4 @@
-package vecindApp.clases;
+package vecindApp.clases.Notificacion;
 
 import java.io.Serializable;
 
