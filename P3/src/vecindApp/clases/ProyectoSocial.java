@@ -34,6 +34,26 @@ public class ProyectoSocial extends Proyecto {
     }
 
     /**
+     * Inicializa un nuevo proyecto social
+     * @param titulo titulo del proyecto
+     * @param descripcion descripcion del proyecto
+     * @param importeSolicitado importe solicitado por el proyecto
+     * @param propulsor propulsor del proyecto
+     * @param grupo grupo al que afecta el proyecto
+     * @param nac internacionalidad del proyecto
+     */
+    public ProyectoSocial(String titulo,
+                          String descripcion,
+                          double importeSolicitado,
+                          Colectivo propulsor,
+                          String grupo,
+                          boolean nac) {
+        super(titulo, descripcion, importeSolicitado, propulsor);
+        grupoSocial = grupo;
+        nacional = nac;
+    }
+
+    /**
      * Devuelve el grupo social al que afecta el proyecto
      * @return grupo social afectado
      */

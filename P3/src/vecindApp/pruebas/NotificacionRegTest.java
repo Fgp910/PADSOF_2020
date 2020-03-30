@@ -1,24 +1,28 @@
 package vecindApp.pruebas;
 
-import org.junit.Assert;
 import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Clase de prueba de la clase NotificacionReg
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class NotificacionRegTest {
     NotificacionReg nr;
+    Ciudadano c;
 
     @Before
     public void setUp() {
-        Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
+        c = new Ciudadano("pepe", "c1", "12345678A");
         nr = new NotificacionReg(c);
     }
 
     @Test
     public void getSujeto() {
-        Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
         assertEquals(c, nr.getSujeto());
     }
 

@@ -37,6 +37,26 @@ public class ProyectoInfraestructura extends Proyecto {
     }
 
     /**
+     * Inicializa un nuevo Proyecto de infraestructura
+     * @param titulo titulo del proyecto
+     * @param descripcion descripcion del proyecto
+     * @param importeSolicitado importe solicitado por el proyecto
+     * @param propulsor propulsor del proyecto
+     * @param img imagen del proyecto
+     * @param afectados distritos afectados por el proyecto
+     */
+    public ProyectoInfraestructura(String titulo,
+                                   String descripcion,
+                                   double importeSolicitado,
+                                   Colectivo propulsor,
+                                   String img,
+                                   Collection<Distrito> afectados) {
+        super(titulo, descripcion, importeSolicitado, propulsor);
+        imagen = img;
+        this.afectados = new ArrayList<>(afectados);
+    }
+
+    /**
      * Devuelve la imagen del proyecto
      * @return imagen
      */
@@ -64,7 +84,7 @@ public class ProyectoInfraestructura extends Proyecto {
      * Establece un nuevo set de distritos afectados por el proyecto
      * @param af distritos afectados
      */
-    public void setAfectados(ArrayList<Distrito> af) {
+    public void setAfectados(List<Distrito> af) {
         afectados = af;
     }
 

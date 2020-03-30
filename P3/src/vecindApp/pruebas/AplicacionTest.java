@@ -1,9 +1,11 @@
 package vecindApp.pruebas;
 
+import es.uam.eps.sadp.grants.InvalidIDException;
 import org.junit.Before;
 import org.junit.Test;
 import vecindApp.clases.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +33,8 @@ public class AplicacionTest {
 
     @Test
     public void setAdmin() {
-        Administrador ad2 = new Administrador("admin2", "psswd");
-        assertEquals(ad2, app.getAdmin());
+        app.setAdmin(new Administrador("admin2", "psswd"));
+        assertEquals("admin2", app.getAdmin().getUsername());
     }
 
     @Test
@@ -44,7 +46,7 @@ public class AplicacionTest {
     @Test
     public void setElemCol() {
         List<ElementoColectivo> newliste = new ArrayList<>();
-        sf.setElemCol(newliste);
+        app.setElemCol(newliste);
         assertEquals(newliste, app.getElemCol());
     }
 
@@ -57,7 +59,7 @@ public class AplicacionTest {
     @Test
     public void setProyectos() {
         List<Proyecto> newlistp = new ArrayList<>();
-        sf.setProyectos(newlistp);
+        app.setProyectos(newlistp);
         assertEquals(newlistp, app.getProyectos());
     }
 
@@ -77,13 +79,12 @@ public class AplicacionTest {
 
     @Test
     public void getUsuarioAcutal() {
-        Usuario usr;
-        assertEquals(usr, app.getUsuarioActual());
+        assertNull(app.getUsuarioActual());
     }
 
     @Test
     public void setUsuarioAcutal() {
-        Usuario usr = new Usuario("pepe", "a1");
+        Usuario usr = new Ciudadano("pepe", "a1", "12345678Z");
         app.setUsuarioActual(usr);
         assertEquals(usr, app.getUsuarioActual());
     }
@@ -162,14 +163,18 @@ public class AplicacionTest {
     @Test
     public void notificarRegistro() {
         Ciudadano c = new Ciudadano("usr", "psswd", "12345678X");
-        Notificacion n = new NotificacionReg(c);
         app.notificarRegistro(c);
-        assertTrue(app.getAdmin().getPendientes().contains(n));
+        assertEquals(c, ((NotificacionReg) app.getAdmin().getPendientes().get(0)).getSujeto());
     }
 
     @Test
     public void notificarNuevoProyecto() {
-        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("usr", "psswd", "12345678X"));
+        Proyecto p = new ProyectoSocial("titulo",
+                "descripcion",
+                500.0,
+                new Ciudadano("usr", "psswd", "12345678X"),
+                "grupo",
+                true);
         Notificacion n = new NotificacionProy(p);
         app.notificarNuevoProyecto(p);
         assertTrue(app.getAdmin().getPendientes().contains(n));
@@ -179,16 +184,12 @@ public class AplicacionTest {
     public void generarInformeAfinidad() {
         Colectivo c1 = new Colectivo("Colectivo1", new Ciudadano("usr1", "psswd", "12345678X"));
         Colectivo c2 = new Colectivo("Colectivo2", new Ciudadano("usr2", "psswd", "12345678Y"));
-        assertEquals(0, app.generarInformeAfinidad(c1, c2));
+        assertTrue(0 == app.generarInformeAfinidad(c1, c2));
     }
 
     @Test
-    public void guardar() {
-    }
-
-    @Test
-    public void cargar() {
-        app.guardar("data.txt");
-        assertEquals(app, app.cargar("data.txt"));
+    public void guardarCargar() throws IOException, ClassNotFoundException, InvalidIDException {
+        app.guardar("cargar_test.txt");
+        assertEquals(app.getAdmin().getUsername(), app.cargar("cargar_test.txt").getAdmin().getUsername());
     }
 }

@@ -1,5 +1,6 @@
 package vecindApp.pruebas;
 
+import es.uam.eps.sadp.grants.GrantRequest;
 import org.junit.Assert;
 import vecindApp.clases.*;
 import org.junit.Before;
@@ -7,7 +8,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-class SolicitudSocialTest {
+/**
+ * Clase de prueba de la clase SolicitudSocial
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
+public class SolicitudSocialTest {
     SolicitudSocial ss;
 
     @Before
@@ -19,7 +25,7 @@ class SolicitudSocialTest {
 
     @Test
     public void getProjectKind() {
-        assertEquals("Social", ss.getProjectKind());
+        assertEquals(GrantRequest.ProjectKind.Social, ss.getProjectKind());
     }
 
     @Test
