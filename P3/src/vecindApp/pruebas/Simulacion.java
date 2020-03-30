@@ -3,7 +3,11 @@ package vecindApp.pruebas;
 import es.uam.eps.sadp.grants.CCGG;
 import es.uam.eps.sadp.grants.InvalidIDException;
 import es.uam.eps.sadp.grants.InvalidRequestException;
-import vecindApp.clases.*;
+import vecindApp.clases.aplicacion.*;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.notificacion.*;
+import vecindApp.clases.proyecto.*;
+import vecindApp.clases.usuario.*;
 
 import java.io.IOException;
 import java.util.Arrays;

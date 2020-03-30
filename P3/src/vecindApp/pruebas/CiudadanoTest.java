@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.proyecto.*;
 
 /**
  * Clase de prueba de la clase Ciudadano

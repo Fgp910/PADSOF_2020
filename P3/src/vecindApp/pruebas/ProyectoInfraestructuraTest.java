@@ -1,9 +1,9 @@
 package vecindApp.pruebas;
 
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
-import vecindApp.clases.Distrito;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.proyecto.*;
 
 import java.util.ArrayList;
 import java.util.Collection;

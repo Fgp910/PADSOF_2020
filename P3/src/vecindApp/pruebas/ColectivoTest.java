@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.proyecto.*;
 
 /**
  * Clase de prueba de la clase Colectivo

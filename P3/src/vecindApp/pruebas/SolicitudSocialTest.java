@@ -2,9 +2,10 @@ package vecindApp.pruebas;
 
 import es.uam.eps.sadp.grants.GrantRequest;
 import org.junit.Assert;
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.proyecto.*;
 
 import static org.junit.Assert.assertEquals;
 

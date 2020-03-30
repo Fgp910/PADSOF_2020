@@ -1,8 +1,10 @@
 package vecindApp.pruebas;
 
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.notificacion.*;
+import vecindApp.clases.proyecto.*;
 
 import static org.junit.Assert.assertEquals;
 

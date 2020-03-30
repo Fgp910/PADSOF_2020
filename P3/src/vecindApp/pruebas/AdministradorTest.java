@@ -1,8 +1,8 @@
 package vecindApp.pruebas;
 
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
+import vecindApp.clases.usuario.*;
 
 import static org.junit.Assert.assertEquals;
 

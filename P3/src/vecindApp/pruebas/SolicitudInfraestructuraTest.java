@@ -1,9 +1,10 @@
 package vecindApp.pruebas;
 
 import es.uam.eps.sadp.grants.GrantRequest;
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.proyecto.*;
 
 import java.util.ArrayList;
 import java.util.Collection;

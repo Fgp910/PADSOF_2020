@@ -1,8 +1,10 @@
 package vecindApp.pruebas;
 
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.notificacion.*;
+import vecindApp.clases.usuario.*;
 
 import java.util.ArrayList;
 

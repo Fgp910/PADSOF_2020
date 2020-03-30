@@ -3,7 +3,11 @@ package vecindApp.pruebas;
 import es.uam.eps.sadp.grants.InvalidIDException;
 import org.junit.Before;
 import org.junit.Test;
-import vecindApp.clases.*;
+import vecindApp.clases.aplicacion.*;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.notificacion.*;
+import vecindApp.clases.proyecto.*;
+import vecindApp.clases.usuario.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
