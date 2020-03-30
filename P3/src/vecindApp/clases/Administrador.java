@@ -7,7 +7,6 @@ package vecindApp.clases;
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
 public class Administrador extends Usuario {
-    
     public Administrador(String username, String password) {
         super(username, password);
     }

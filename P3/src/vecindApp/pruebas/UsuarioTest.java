@@ -1,6 +1,5 @@
 package vecindApp.pruebas;
 
-import org.junit.Assert;
 import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,54 +7,61 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+/**
+ * Clase de prueba de la clase Usuario
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class UsuarioTest {
     Usuario usr;
 
     @Before
-    void setUp() {
+    public void setUp() {
         usr = new Ciudadano("pepe", "a1", "123456Y");
     }
 
     @Test
-    void getUsername() {
+    public void getUsername() {
         assertEquals("pepe", usr.getUsername());
     }
 
     @Test
-    void setUsername() {
+    public void setUsername() {
         usr.setUsername("juan");
         assertEquals("juan", usr.getUsername());
     }
 
     @Test
-    void getPassword() {
+    public void getPassword() {
         assertEquals("a1", usr.getPassword());
     }
 
     @Test
-    void setPassword() {
+    public void setPassword() {
         usr.setPassword("b2");
         assertEquals("b2", usr.getPassword());
     }
 
     @Test
-    void getPendientes() {
+    public void getPendientes() {
         ArrayList<Notificacion> pendientes = new ArrayList<>();
         assertEquals(pendientes, usr.getPendientes());
     }
 
     @Test
-    void setPendientes() {
+    public void setPendientes() {
         ArrayList<Notificacion> newpendientes = new ArrayList<>();
         usr.setPendientes(newpendientes);
         assertEquals(newpendientes, usr.getPendientes());
     }
 
     @Test
-    void agregarNotificacion() {
-        Ciudadano c = new Ciudadano("pepe", "a1", "123456U");
-        NotificacionReg nr = new NotificacionReg(c);
-        assertTrue(usr.getPendientes().contains(nr));
+    public void agregarNotificacion() {
+        Usuario admin = new Administrador("admin", "psswd");
+        NotificacionReg nr = new NotificacionReg(new Ciudadano("pepe", "a1", "123456U"));
+        admin.agregarNotificacion(nr);
+        assertTrue(admin.getPendientes().contains(nr));
     }
 }

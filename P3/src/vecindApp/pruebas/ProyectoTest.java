@@ -11,30 +11,30 @@ public class ProyectoTest {
     Proyecto p;
 
     @Before
-    void setUp() {
+    public void setUp() {
         Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
         p = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
     }
 
     @Test
-    void enviarFinanciacion() {
+    public void enviarFinanciacion() {
         assertEquals(EstadoProyecto.ENVIADO, p.getEstado());
     }
 
     @Test
-    void consultarFinanciacion() {
+    public void consultarFinanciacion() {
         assertEquals(p.getImporteConcedido(), proxy.getAmountGranted(p.getIdEnvio()));
     }
 
     @Test
-    void testRecibirApoyo() {
+    public void testRecibirApoyo() {
         Ciudadano votante = new Ciudadano("juan", "a2", "123456J");
         recibirApoyo(votante);
         assert(p.getPromotores().contains(votante) && p.getNApoyos() == 2);
     }
 
     @Test
-    void testRecibirApoyo1() {
+    public void testRecibirApoyo1() {
         int actual = p.getNApoyos();
         Ciudadano votante1 = new Ciudadano("juan", "a2", "123456J");
         Ciudadano votante2 = new Ciudadano("juanito", "b3", "123456K");
@@ -45,14 +45,14 @@ public class ProyectoTest {
     }
 
     @Test
-    void notificarCambio() {
+    public void notificarCambio() {
         NotificacionProy np = new NotificacionProy(p);
         p.notificarCambio();
         assert(p.getPropulsor().getPendientes().contains(np));
     }
 
     @Test
-    void generarInformePopularidad() {
+    public void generarInformePopularidad() {
         assertEquals(1, p.generarInformePopularidad());
     }
 }

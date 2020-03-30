@@ -42,7 +42,7 @@ public class ColectivoTest {
     public void setElementos() {
         Set<ElementoColectivo> s = new HashSet<>();
         s.add(new Colectivo("colectivo2", new Ciudadano("usr", "psswd", "12345678X")));
-        s.setElementos(s);
+        c.setElementos(s);
         assertEquals(s, c.getElementos());
     }
 

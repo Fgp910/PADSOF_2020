@@ -69,7 +69,7 @@ public class Colectivo implements ElementoColectivo {
      * Establece un nuevo conjunto de elementos del colectivo
      * @param elementos nuevo set de elementos
      */
-	public void setElementos(HashSet<ElementoColectivo> elementos) {
+	public void setElementos(Set<ElementoColectivo> elementos) {
 		this.elementos = elementos;
 	}
 

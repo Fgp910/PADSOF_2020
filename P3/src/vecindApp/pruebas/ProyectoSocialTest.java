@@ -12,35 +12,35 @@ class ProyectoSocialTest {
     ProyectoSocial ps;
 
     @Before
-    void setUp() {
+    public void setUp() {
         Ciudadano c = new Ciudadano("pepe", "a1", "123456Y");
         ps = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
     }
 
     @Test
-    void getGrupoSocial() {
+    public void getGrupoSocial() {
         assertEquals("grupo", ps.getGrupoSocial);
     }
 
     @Test
-    void setGrupoSocial() {
+    public void setGrupoSocial() {
         ps.setGrupoSocial("grupo2");
         assertEquals("grupo2", ps.getGrupoSocial());
     }
 
     @Test
-    void isNacional() {
+    public void isNacional() {
         assertEquals(true, ps.isNacioanl());
     }
 
     @Test
-    void setNacional() {
+    public void setNacional() {
         ps.setNacional(false);
         assertEquals(false, ps.isNacioanl());
     }
 
     @Test
-    void crearSolicitud() {
+    public void crearSolicitud() {
         SolicitudSocial s = new SolicitudSocial(ps);
         assertEquals(ps.crearSolicitud(), s);
     }

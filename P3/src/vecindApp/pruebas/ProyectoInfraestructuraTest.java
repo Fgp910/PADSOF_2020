@@ -15,31 +15,31 @@ public class ProyectoInfraestructuraTest {
     ProyectoInfraestructura pi;
 
     @Before
-    void setUp() {
+    public void setUp() {
         Ciudadano c = new Ciudadano("pepe", "a1", "123456U");
         Collection<Distrito> col = new Collection<Distrito>();
         pi = new ProyectoInfraestructura("titulo", "descripcion", 500.0, c, "imagen", col);
     }
 
     @Test
-    void getImagen() {
+    public void getImagen() {
         assertEquals("imagen", pi.getImagen());
     }
 
     @Test
-    void setImagen() {
+    public void setImagen() {
         pi.setImagen("imagen2");
         assertEquals("imagen2", pi.getImagen());
     }
 
     @Test
-    void getAfectados() {
+    public void getAfectados() {
         List afectados = new ArrayList<Distrito>();
         assertEquals(afectados, pi.getAfectados());
     }
 
     @Test
-    void setAfectados() {
+    public void setAfectados() {
         List afectados = new ArrayList<Distrito>();
         Distrito d = Distrito.Arganzuela;
         afectados.add(d);
@@ -47,14 +47,14 @@ public class ProyectoInfraestructuraTest {
     }
 
     @Test
-    void addAfectados() {
+    public void addAfectados() {
         Distrito d = Distrito.Arganzuela;
         pi.addAfectados(d);
         assertTrue(pi.getAfectados().contains(d));
     }
 
     @Test
-    void removeAfectados() {
+    public void removeAfectados() {
         Distrito d = Distrito.Arganzuela;
         pi.addAfectados(d);
         pi.removeAfectados(d);
@@ -62,7 +62,7 @@ public class ProyectoInfraestructuraTest {
     }
 
     @Test
-    void crearSolicitud() {
+    public void crearSolicitud() {
         SolicitudInfraestructura s = new SolicitudInfraestructura(pi);
         assertEquals(pi.crearSolicitud(), s);
     }

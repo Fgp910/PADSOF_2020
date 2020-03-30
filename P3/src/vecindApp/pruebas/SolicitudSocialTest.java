@@ -11,19 +11,19 @@ class SolicitudSocialTest {
     SolicitudSocial ss;
 
     @Before
-    void setUp() {
+    public void setUp() {
         Ciudadano c = new Ciudadano("pepe", "a1", "123456Y");
         Proyecto ps = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
         ss = new SolicitudSocial(ps);
     }
 
     @Test
-    void getProjectKind() {
+    public void getProjectKind() {
         assertEquals("Social", ss.getProjectKind());
     }
 
     @Test
-    void getExtraData() {
+    public void getExtraData() {
         assertEquals("Grupo social: grupo\nNacional: true", ss.getExtraData());
     }
 }
