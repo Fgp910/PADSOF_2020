@@ -9,6 +9,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Implementa un simulador basico del uso del sistema
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Simulacion {
     public static void main(String[] args) throws Exception {
         /*Inicializacion de la aplicacion*/
