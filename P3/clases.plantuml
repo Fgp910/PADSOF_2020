@@ -195,9 +195,9 @@ skinparam classAttributeIconSize 0
   
 
   Administrador -up-|> Usuario
-  Aplicacion o-- Administrador : admin
-  Aplicacion o-- Usuario : usuarioAcutal
-  Aplicacion o-- Persistencia : varStatic
+  Aplicacion *-- Administrador : admin
+  Aplicacion *-- Usuario : usuarioAcutal
+  Aplicacion *-- Persistencia : varStatic
   Ciudadano .up.|> ElementoColectivo
   Ciudadano -up-|> Usuario
   Colectivo .up.|> ElementoColectivo
@@ -212,7 +212,7 @@ skinparam classAttributeIconSize 0
   ProyectoInfraestructura -up-|> Proyecto
   ProyectoSocial -up-|> Proyecto
   SolicitudFinanciacion .up.|> GrantRequest
-  SolicitudFinanciacion o-left- Proyecto : p
+  SolicitudFinanciacion o-left- Proyecto : proyecto
   SolicitudInfraestructura -up-|> SolicitudFinanciacion
   SolicitudSocial -up-|> SolicitudFinanciacion
 
