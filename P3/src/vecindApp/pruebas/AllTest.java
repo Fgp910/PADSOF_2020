@@ -2,7 +2,6 @@ package vecindApp.pruebas;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import vecindApp.clases.ProyectoSocial;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({AdministradorTest.class,
@@ -19,4 +18,9 @@ import vecindApp.clases.ProyectoSocial;
                     SolicitudInfraestructuraTest.class,
                     SolicitudSocialTest.class,
                     UsuarioTest.class})
+/**
+ * Clase de prueba general
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class AllTest {}
