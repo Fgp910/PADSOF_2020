@@ -204,7 +204,7 @@ skinparam classAttributeIconSize 0
   Colectivo o-- Colectivo : padre
   Colectivo o-- Ciudadano : representante
   NotificacionProy -up-|> Notificacion
-  NotificacionProy o-- Proyecto : sujeto
+  NotificacionProy o-right- Proyecto : sujeto
   NotificacionReg -up-|> Notificacion
   NotificacionReg o-- Ciudadano : sujeto
   Proyecto o-- EstadoProyecto : estado
@@ -212,7 +212,7 @@ skinparam classAttributeIconSize 0
   ProyectoInfraestructura -up-|> Proyecto
   ProyectoSocial -up-|> Proyecto
   SolicitudFinanciacion .up.|> GrantRequest
-  SolicitudFinanciacion o-- Proyecto : p
+  SolicitudFinanciacion o-left- Proyecto : p
   SolicitudInfraestructura -up-|> SolicitudFinanciacion
   SolicitudSocial -up-|> SolicitudFinanciacion
 
