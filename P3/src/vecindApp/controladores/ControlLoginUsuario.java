@@ -24,7 +24,8 @@ public class ControlLoginUsuario {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.setSize(300, 200);
+                frame.mostrarPanel("registroUsuario");
             }
         };
     }
@@ -37,7 +38,7 @@ public class ControlLoginUsuario {
                 String psswd = vista.getPassword();
                 Ciudadano c = modelo.findCiudadano(user);
 
-                if (c == null || c.getPassword().equals(psswd)) {
+                if (c == null || !c.getPassword().equals(psswd)) {
                     JOptionPane.showMessageDialog(vista,
                             "Nombre de usuario o contraseña incorrectos (haga clic en \"Registrarse\" para crear una nueva cuenta).",
                             "Error",
