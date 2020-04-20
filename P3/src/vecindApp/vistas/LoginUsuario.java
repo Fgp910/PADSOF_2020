@@ -4,21 +4,24 @@ import layout.SpringUtilities;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class loginUsuario extends JPanel {
+public class LoginUsuario extends JPanel {
     private JPanel textPanel = new JPanel(new SpringLayout());
     private JTextField user = new JTextField();
     private JPasswordField pssw = new JPasswordField();
 
+    private JPanel buttonPanel = new JPanel();
+    private JButton reg = new JButton("Registrarse");
     private JButton enter = new JButton("Entrar");
 
-    public loginUsuario() {
+    public LoginUsuario() {
         textPanelInit();
+        buttonPanelInit();
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(textPanel);
-        add(enter);
-        enter.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.setLayout(new BorderLayout());
+        add(textPanel, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     private void textPanelInit() {
@@ -37,13 +40,31 @@ public class loginUsuario extends JPanel {
         SpringUtilities.makeCompactGrid(textPanel, 2, 2, 6, 6, 6, 6);
     }
 
+    private void buttonPanelInit() {
+        buttonPanel.add(reg);
+        buttonPanel.add(enter);
+    }
+
+    public void setControlador(ActionListener regListener, ActionListener entListener) {
+        reg.addActionListener(regListener);
+        enter.addActionListener(entListener);
+    }
+
+    public String getUsername() {
+        return user.getText();
+    }
+
+    public String getPassword() {
+        return new String(pssw.getPassword());
+    }
+
     public static void main(String[] args) {
         JFrame ventana = new JFrame();
 
-        ventana.getContentPane().add(new loginUsuario());
+        ventana.getContentPane().add(new LoginUsuario());
 
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,200);
+        ventana.setSize(300,150);
         ventana.setVisible(true);
     }
 }
