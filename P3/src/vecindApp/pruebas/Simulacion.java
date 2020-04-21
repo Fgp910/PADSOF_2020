@@ -21,9 +21,8 @@ import java.util.List;
 public class Simulacion {
     public static void main(String[] args) throws Exception {
         /*Inicializacion de la aplicacion*/
-        Administrador admin = new Administrador("admin", "password");
-        Aplicacion vecindApp = new Aplicacion(admin);
-        Aplicacion.minApoyos = 2;   //Lo decide el usuario administrador
+        Administrador admin = Aplicacion.VecindApp.getAdmin();
+        Aplicacion.setMinApoyos(2);   //Lo decide el usuario administrador
 
         /*Registro de ciudadanos*/
         Ciudadano[] ciudadanos = new Ciudadano[4];
@@ -32,7 +31,7 @@ public class Simulacion {
         ciudadanos[2] = new Ciudadano("luis", "c3", "12345678C");
         ciudadanos[3] = new Ciudadano("indeseable", "c4", "55555555X");
         for (Ciudadano c:ciudadanos) {
-            vecindApp.addElemCol(c);
+            Aplicacion.VecindApp.addElemCol(c);
         }
 
         /*Admision de ciudadanos*/
@@ -42,7 +41,7 @@ public class Simulacion {
             ((NotificacionReg)pendientes.get(0)).getSujeto().admitir();
             pendientes.remove(pendientes.get(0));   //(Una vez se atiende una notificacion, se elimina)
         }
-        vecindApp.removeElemCol(((NotificacionReg)pendientes.get(0)).getSujeto());  //y rechaza al indeseable
+        Aplicacion.VecindApp.removeElemCol(((NotificacionReg)pendientes.get(0)).getSujeto());  //y rechaza al indeseable
         pendientes.remove(pendientes.get(0));
 
         /*Creacion de e inscripcion a colectivos*/
@@ -57,7 +56,7 @@ public class Simulacion {
                 ciudadanos[0],
                 "imagen.png",
                 Arrays.asList(Distrito.Hortaleza, Distrito.Chamartin));
-        vecindApp.addProyecto(proyecto); //Proyecto individual
+        Aplicacion.VecindApp.addProyecto(proyecto); //Proyecto individual
 
         pendientes = admin.getPendientes();
         System.out.println(pendientes.get(0).descripcion());
@@ -76,15 +75,15 @@ public class Simulacion {
         pendientes.remove(pendientes.get(0));
 
         /*Guardar y cargar aplicacion*/
-        vecindApp.guardar("prueba_simulador.txt");
+        Aplicacion.VecindApp.guardar("prueba_simulador.txt");
         try {
-            vecindApp = vecindApp.cargar("prueba_simulador.txt");
+            Aplicacion.VecindApp = Aplicacion.VecindApp.cargar("prueba_simulador.txt");
         } catch (IOException | ClassNotFoundException ex) {
             System.out.println(ex);
             return;
         }
         //Veamos que cargo bien
-        System.out.println("Luis tiene NIF " + vecindApp.findCiudadano("luis").getNif());
+        System.out.println("Luis tiene NIF " + Aplicacion.VecindApp.findCiudadano("luis").getNif());
 
         /*Enviar a financiacion y esperar respuesta*/
         CCGG proxy = CCGG.getGateway();

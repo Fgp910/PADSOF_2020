@@ -17,7 +17,7 @@ public class Persistencia implements Serializable {
      */
     public Persistencia() {
         this.proyectoNextId = Proyecto.getNextId();
-        this.aplicacionMinApoyos = Aplicacion.minApoyos;
+        this.aplicacionMinApoyos = Aplicacion.getMinApoyos();
     }
 
     /**
@@ -25,7 +25,7 @@ public class Persistencia implements Serializable {
      */
     public void setValues() {
         Proyecto.setNextId(proyectoNextId);
-        Aplicacion.minApoyos = aplicacionMinApoyos;
+        Aplicacion.setMinApoyos(aplicacionMinApoyos);
     }
 
     /**

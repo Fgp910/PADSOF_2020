@@ -24,12 +24,12 @@ public class PersistenciaTest {
     public void setValues() {
         p.setValues();
         assertEquals(p.getProyectoNextId(), Proyecto.getNextId());
-        assertEquals(p.getAplicacionMinApoyos(), Aplicacion.minApoyos);
+        assertEquals(p.getAplicacionMinApoyos(), Aplicacion.getMinApoyos());
     }
 
     @Test
     public void getAplicacionMinApoyos() {
-        assertEquals(Aplicacion.minApoyos, p.getAplicacionMinApoyos());
+        assertEquals(Aplicacion.getMinApoyos(), p.getAplicacionMinApoyos());
     }
 
     @Test

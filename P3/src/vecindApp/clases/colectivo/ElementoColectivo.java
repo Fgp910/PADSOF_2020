@@ -19,12 +19,6 @@ public interface ElementoColectivo extends Serializable {
     Set<Proyecto> getProyectos();
 
     /**
-     * Establece un set de proyectos propuestos para un elemento colectivo
-     * @param proyectos nuevo set de proyectos
-     */
-    void setProyectos(Set<Proyecto> proyectos);
-
-    /**
      * Agrega un nuevo proyecto propuesto a un elemento colectivo
      * @param proyecto proyecto a agregar
      * @return true si se agrega correctamente, false en otro caso
@@ -43,12 +37,6 @@ public interface ElementoColectivo extends Serializable {
      * @return set de proyectos apoyados
      */
     Set<Proyecto> getProyectosApoyados();
-
-    /**
-     * Establece un nuevo set de proyectos apoyados para un elemento colectivo
-     * @param proyectosApoyados nuevo set de proyectos apoyados
-     */
-    void setProyectosApoyados(Set<Proyecto> proyectosApoyados);
 
     /**
      * Agrega un nuevo proyecto apoyado a un elemento colectivo

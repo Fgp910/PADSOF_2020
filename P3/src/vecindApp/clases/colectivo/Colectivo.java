@@ -10,10 +10,10 @@ import java.util.*;
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-public class Colectivo implements ElementoColectivo {
+public class Colectivo implements ElementoColectivo, Comparable<ElementoColectivo> {
     private String nombre;
     private Ciudadano representante;
-    private Set<ElementoColectivo> elementos = new HashSet<>();
+    private Set<ElementoColectivo> elementos = new TreeSet<>();
     private Set<Proyecto> proyectos = new HashSet<>();
     private Set<Proyecto> proyectosApoyados = new HashSet<>();
     private Colectivo padre;
@@ -68,14 +68,6 @@ public class Colectivo implements ElementoColectivo {
 	}
 
     /**
-     * Establece un nuevo conjunto de elementos del colectivo
-     * @param elementos nuevo set de elementos
-     */
-	public void setElementos(Set<ElementoColectivo> elementos) {
-		this.elementos = elementos;
-	}
-
-    /**
      * Devuelve el representante de un colectivo
      * @return ciudadano representante
      */
@@ -100,27 +92,11 @@ public class Colectivo implements ElementoColectivo {
     }
 
     /**
-     * Establece un nuevo conjunto de proyectos propuestos para un colectivo
-     * @param proyectos nuevo set de proyectos
-     */
-    public void setProyectos(Set<Proyecto> proyectos) {
-        this.proyectos = proyectos;
-    }
-
-    /**
      * Devuelve los proyectos apoyados por un colectivo
      * @return set de proyectos apoyados
      */
     public Set<Proyecto> getProyectosApoyados() {
         return proyectosApoyados;
-    }
-
-    /**
-     * Establece un nuevo conjunto de proyectos apoyados para un colectivo
-     * @param proyectosApoyados nuevo set de proyectos apoyados
-     */
-    public void setProyectosApoyados(Set<Proyecto> proyectosApoyados) {
-        this.proyectosApoyados = proyectosApoyados;
     }
 
     /**
@@ -244,5 +220,21 @@ public class Colectivo implements ElementoColectivo {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Colectivo) {
+            return this.nombre.equals(((Colectivo)o).nombre);
+        }
+        return false;
+    }
+
+    @Override
+    public int compareTo(ElementoColectivo t) {
+        if (t instanceof Colectivo) {
+            return nombre.compareTo(((Colectivo)t).nombre);
+        }
+        return -1;
     }
 }

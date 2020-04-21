@@ -17,10 +17,12 @@ import java.util.*;
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
 public class Aplicacion implements Serializable {
-    public static int minApoyos;
+    public static Aplicacion VecindApp = new Aplicacion(new Administrador("admin", "password"));
+
+    private static int minApoyos;
 
     private Administrador admin;
-    private List<ElementoColectivo> elemCol = new ArrayList<>();
+    private Set<ElementoColectivo> elemCol = new TreeSet<>();
     private List<Proyecto> proyectos = new ArrayList<>();
     private List<Ciudadano> bloqueados = new ArrayList<>();
     private Usuario usuarioActual;
@@ -30,7 +32,7 @@ public class Aplicacion implements Serializable {
      * Inicializa una nueva Aplicacion
      * @param admin el usuario administrador
      */
-    public Aplicacion(Administrador admin) {
+    private Aplicacion(Administrador admin) {
         this.admin = admin;
     }
 
@@ -54,7 +56,7 @@ public class Aplicacion implements Serializable {
      * Devuelve los elementos de colectivo del sistema
      * @return lista de elementos de colectivo
      */
-    public List<ElementoColectivo> getElemCol() {
+    public Set<ElementoColectivo> getElemCol() {
         return this.elemCol;
     }
 
@@ -62,7 +64,7 @@ public class Aplicacion implements Serializable {
      * Establece una nueva lista de elementos de colectivo
      * @param elemCol nueva lista de elementos
      */
-    public void setElemCol(List<ElementoColectivo> elemCol) {
+    public void setElemCol(Set<ElementoColectivo> elemCol) {
         this.elemCol = elemCol;
     }
 
@@ -112,6 +114,31 @@ public class Aplicacion implements Serializable {
      */
     public void setUsuarioActual(Usuario usuarioActual) {
         this.usuarioActual = usuarioActual;
+    }
+
+    /**
+     * Devuelve el minimo de apoyos para enc¡viar un proyecto
+     * @return numero minimo de apoyos
+     */
+    public static int getMinApoyos() {
+        return minApoyos;
+    }
+
+    /**
+     * Actualiza el minimo de apoyos para todos los proyectos
+     * @param minApoyos nuevo minimo de apoyos
+     */
+    public static void setMinApoyos(int minApoyos) {
+        Aplicacion.minApoyos = minApoyos;
+
+        for (Proyecto p:VecindApp.proyectos) {
+            if (p.getEstado() == EstadoProyecto.LISTOENVAR && p.getNApoyos() < minApoyos) {
+                p.setEstado(EstadoProyecto.ACEPTADO);
+            }
+            else if (p.getEstado() ==  EstadoProyecto.ACEPTADO && p.getNApoyos() >= minApoyos){
+                p.setEstado(EstadoProyecto.LISTOENVAR);
+            }
+        }
     }
 
     /**
@@ -315,5 +342,12 @@ public class Aplicacion implements Serializable {
             }
         }
         return app;
+    }
+
+    /**
+     * Resetea la aplicacion VecindApp
+     */
+    public static void reset() {
+        Aplicacion.VecindApp = new Aplicacion(new Administrador("admin", "password"));
     }
 }

@@ -409,7 +409,7 @@ public abstract class Proyecto implements Serializable {
 	 */
 	public boolean bloquearApoyo(Ciudadano c) {
 		boolean ret = promotores.remove(c);
-		if (ret && (--nApoyos < Aplicacion.minApoyos) && (estado == EstadoProyecto.LISTOENVAR)) {
+		if (ret && (--nApoyos < Aplicacion.getMinApoyos()) && (estado == EstadoProyecto.LISTOENVAR)) {
 			setEstado(EstadoProyecto.ACEPTADO);
 		}
 		return ret;
@@ -456,7 +456,7 @@ public abstract class Proyecto implements Serializable {
 	 */
 	private void recibirApoyo(Ciudadano c) {
 		if (!c.isBloqueado() && promotores.add(c)) {//Es un ciudadano que no esta bloqueado ni era promotor
-			if ((++nApoyos >= Aplicacion.minApoyos) && (estado == EstadoProyecto.ACEPTADO)) {
+			if ((++nApoyos >= Aplicacion.getMinApoyos()) && (estado == EstadoProyecto.ACEPTADO)) {
 				setEstado(EstadoProyecto.LISTOENVAR);
 			}
 		}
