@@ -15,7 +15,10 @@ import java.util.Set;
  * 
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
+
 public class Ciudadano extends Usuario implements ElementoColectivo, Comparable<ElementoColectivo> {
+    public static final int NIF_LEN = 9;
+
     private String nif;
     private boolean admitido;
     private boolean bloqueado;
