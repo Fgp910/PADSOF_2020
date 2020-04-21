@@ -22,36 +22,44 @@ public class ControlRegistroUsuario implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String user = vista.getUsername();
-        String nif = vista.getNif();
-        String psswd = vista.getPassword();
-        String confirm = vista.getConfirm();
+        if (e.getSource().equals(vista.getRegButton())) {
+            String user = vista.getUsername();
+            String nif = vista.getNif();
+            String psswd = vista.getPassword();
+            String confirm = vista.getConfirm();
 
-        if (nif.length() != Ciudadano.NIF_LEN) {
-            JOptionPane.showMessageDialog(vista,
-                    "NIF inválido. Introduzca un NIF válido.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            if (nif.length() != Ciudadano.NIF_LEN) {
+                JOptionPane.showMessageDialog(vista,
+                        "NIF inválido. Introduzca un NIF válido.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        if (!psswd.equals(confirm)) {
-            JOptionPane.showMessageDialog(vista,
-                    "La clave y la confirmación de la clave no coinciden",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            if (!psswd.equals(confirm)) {
+                JOptionPane.showMessageDialog(vista,
+                        "La clave y la confirmación de la clave no coinciden",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        if (!modelo.addElemCol(new Ciudadano(user, psswd, nif))) {
+            if (!modelo.addElemCol(new Ciudadano(user, psswd, nif))) {
+                JOptionPane.showMessageDialog(vista,
+                        user + " (" + nif + ") ya está registrado. Introduzca un nombre distinto.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             JOptionPane.showMessageDialog(vista,
-                    user + " (" + nif + ") ya está registrado. Introduzca un nombre distinto.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
+                    "Usuario creado con éxito.\nPendiente de aprobación por administración.",
+                    "Registro con éxito" ,
+                    JOptionPane.INFORMATION_MESSAGE);
         }
 
         frame.setSize(300, 150);
+        frame.getLoginUsuario().update();
         frame.mostrarPanel("loginUsuario");
     }
 }

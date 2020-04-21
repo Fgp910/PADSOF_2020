@@ -45,9 +45,23 @@ public class LoginUsuario extends JPanel {
         buttonPanel.add(enter);
     }
 
-    public void setControlador(ActionListener regListener, ActionListener entListener) {
-        reg.addActionListener(regListener);
-        enter.addActionListener(entListener);
+    public JButton getRegButton() {
+        return reg;
+    }
+
+    public JButton getEntButton() {
+        return enter;
+    }
+
+    public void setControlador(ActionListener c) {
+        reg.addActionListener(c);
+        enter.addActionListener(c);
+    }
+
+    public void update() {
+        user.setText("");
+        pssw.setText("");
+        user.grabFocus();
     }
 
     public String getUsername() {

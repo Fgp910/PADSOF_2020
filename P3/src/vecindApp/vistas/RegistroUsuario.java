@@ -13,12 +13,13 @@ public class RegistroUsuario extends JPanel {
     private JPasswordField pssw = new JPasswordField();
     private JPasswordField confirm = new JPasswordField();
 
+    private JPanel buttonPanel = new JPanel();
     private JButton reg = new JButton("Registrarse");
+    private JButton enter = new JButton("Volver");
 
     public RegistroUsuario() {
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(reg);
         textPanelInit();
+        buttonPanelInit();
 
         this.setLayout(new BorderLayout());
         add(textPanel, BorderLayout.CENTER);
@@ -51,8 +52,30 @@ public class RegistroUsuario extends JPanel {
         SpringUtilities.makeCompactGrid(textPanel, 4, 2, 6, 6, 6, 6);
     }
 
+    private void buttonPanelInit() {
+        buttonPanel.add(reg);
+        buttonPanel.add(enter);
+    }
+
+    public JButton getRegButton() {
+        return reg;
+    }
+
+    public JButton getEntButton() {
+        return enter;
+    }
+
     public void setControlador(ActionListener c) {
         reg.addActionListener(c);
+        enter.addActionListener(c);
+    }
+
+    public void update() {
+        user.setText("");
+        nif.setText("");
+        pssw.setText("");
+        confirm.setText("");
+        user.grabFocus();
     }
 
     public String getUsername() {

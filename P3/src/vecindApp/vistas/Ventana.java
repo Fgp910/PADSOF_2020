@@ -1,6 +1,5 @@
 package vecindApp.vistas;
 
-import vecindApp.controladores.ControlLoginUsuario;
 import vecindApp.controladores.Controlador;
 
 import javax.swing.*;
@@ -24,8 +23,7 @@ public class Ventana extends JFrame {
     }
 
     public void setControlador(Controlador c) {
-        ControlLoginUsuario cLoginUsuario = c.getControlLoginUsuario();
-        vLoginUsuario.setControlador(cLoginUsuario.getControladorReg(), cLoginUsuario.getControladorEnter());
+        vLoginUsuario.setControlador(c.getControlLoginUsuario());
         vRegistroUsuario.setControlador(c.getControlRegistroUsuario());
     }
 
