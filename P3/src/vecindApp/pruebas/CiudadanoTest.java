@@ -1,14 +1,7 @@
 package vecindApp.pruebas;
 
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
-
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 import vecindApp.clases.colectivo.*;
@@ -37,9 +30,7 @@ public class CiudadanoTest {
     @Test
     public void removeProyecto() {
         Proyecto p = new ProyectoSocial("prueba", "descripcion prueba", 100, c, "a", false);
-        Set<Proyecto> proys = new HashSet<>();
-        proys.add(p);
-        c.setProyectos(proys);
+        c.addProyecto(p);
         c.removeProyecto(p);
         assertFalse(c.getProyectos().contains(p));
     }
@@ -54,9 +45,6 @@ public class CiudadanoTest {
     @Test
     public void removeColectivoRepresentado() {
         Colectivo col = new Colectivo("prueba", c);
-        List<Colectivo> cols = new ArrayList<>();
-        cols.add(col);
-        c.setColectivosRepresentados(cols);
         c.removeColectivoRepresentado(col);
         assertFalse(c.getColectivosRepresentados().contains(col));
     }

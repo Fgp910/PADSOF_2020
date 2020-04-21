@@ -13,7 +13,7 @@ public class Main {
             public void run() {
                 try {
                     Ventana frame = new Ventana();
-                    Aplicacion modelo = new Aplicacion(new Administrador("admin", "admin"));
+                    Aplicacion modelo = Aplicacion.VecindApp;
                     Controlador controlador = new Controlador(frame, modelo);
                     frame.setControlador(controlador);
                     frame.setVisible(true);

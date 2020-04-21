@@ -15,7 +15,8 @@ import java.util.Set;
  * 
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-public class Ciudadano extends Usuario implements ElementoColectivo {
+
+public class Ciudadano extends Usuario implements ElementoColectivo, Comparable<ElementoColectivo> {
     public static final int NIF_LEN = 9;
 
     private String nif;
@@ -100,27 +101,11 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     /**
-     * Establece un set de proyectos propuestos para un ciudadano
-     * @param proyectos nuevo set de proyectos
-     */
-    public void setProyectos(Set<Proyecto> proyectos) {
-        this.proyectos = proyectos;
-    }
-
-    /**
      * Devuelve el set de proyectos apoyados por un ciudadano
      * @return set de proyectos apoyados
      */
     public Set<Proyecto> getProyectosApoyados() {
         return proyectosApoyados;
-    }
-
-    /**
-     * Establece un nuevo set de proyectos apoyados para un ciudadano
-     * @param proyectosApoyados nuevo set de proyectos apoyados
-     */
-    public void setProyectosApoyados(Set<Proyecto> proyectosApoyados) {
-        this.proyectosApoyados = proyectosApoyados;
     }
 
     /**
@@ -132,27 +117,11 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     /**
-     * Establece un nuevo set de colectivos para un ciudadano
-     * @param colectivos nuevo set de colectivos
-     */
-    public void setColectivos(Set<Colectivo> colectivos) {
-        this.colectivos = colectivos;
-    }
-
-    /**
      * Devuelve los colectivos representados por un ciudadano
      * @return lista de colectivos representados
      */
     public List<Colectivo> getColectivosRepresentados() {
         return colectivosRepresentados;
-    }
-
-    /**
-     * Establece una nueva lista de colectivos representados para un ciudadano
-     * @param colectivosRepresentados nueva lista de colectivos representados
-     */
-    public void setColectivosRepresentados(List<Colectivo> colectivosRepresentados) {
-        this.colectivosRepresentados = colectivosRepresentados;
     }
 
     /**
@@ -294,5 +263,28 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
                 padre = padre.getPadre();
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Ciudadano) {
+            return this.nif.equals(((Ciudadano)o).nif) || this.getUsername().equals(((Ciudadano)o).getUsername());
+        }
+        return false;
+    }
+
+    @Override
+    public int compareTo(ElementoColectivo t) {
+        int d;
+
+        if (t instanceof Ciudadano) {
+            Ciudadano c = (Ciudadano)t;
+
+            if ((d = getUsername().compareTo(c.getUsername())) != 0) {
+                return d;
+            }
+            return nif.compareTo(c.nif);
+        }
+        return 1;
     }
 }

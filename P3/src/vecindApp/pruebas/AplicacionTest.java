@@ -3,15 +3,20 @@ package vecindApp.pruebas;
 import es.uam.eps.sadp.grants.InvalidIDException;
 import org.junit.Before;
 import org.junit.Test;
-import vecindApp.clases.aplicacion.*;
-import vecindApp.clases.colectivo.*;
-import vecindApp.clases.notificacion.*;
-import vecindApp.clases.proyecto.*;
-import vecindApp.clases.usuario.*;
+import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.Ciudadano;
+import vecindApp.clases.colectivo.Colectivo;
+import vecindApp.clases.colectivo.ElementoColectivo;
+import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.notificacion.NotificacionProy;
+import vecindApp.clases.notificacion.NotificacionReg;
+import vecindApp.clases.proyecto.Proyecto;
+import vecindApp.clases.proyecto.ProyectoSocial;
+import vecindApp.clases.usuario.Administrador;
+import vecindApp.clases.usuario.Usuario;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -26,8 +31,9 @@ public class AplicacionTest {
 
     @Before
     public void setUp() {
-        ad = new Administrador("admin", "psswd");
-        app = new Aplicacion(ad);
+        Aplicacion.reset();
+        app = Aplicacion.VecindApp;
+        ad = app.getAdmin();
     }
 
     @Test
@@ -43,13 +49,13 @@ public class AplicacionTest {
 
     @Test
     public void getElemCol() {
-        List<ElementoColectivo> liste = new ArrayList<>();
-        assertEquals(liste, app.getElemCol());
+        Set<ElementoColectivo> set = new TreeSet<>();
+        assertEquals(set, app.getElemCol());
     }
 
     @Test
     public void setElemCol() {
-        List<ElementoColectivo> newliste = new ArrayList<>();
+        Set<ElementoColectivo> newliste = new HashSet<>();
         app.setElemCol(newliste);
         assertEquals(newliste, app.getElemCol());
     }

@@ -43,14 +43,6 @@ public class ColectivoTest {
     }
 
     @Test
-    public void setElementos() {
-        Set<ElementoColectivo> s = new HashSet<>();
-        s.add(new Colectivo("colectivo2", new Ciudadano("usr", "psswd", "12345678X")));
-        c.setElementos(s);
-        assertEquals(s, c.getElementos());
-    }
-
-    @Test
     public void getRepresentante() {
         assertEquals(repre, c.getRepresentante());
     }
@@ -68,25 +60,8 @@ public class ColectivoTest {
     }
 
     @Test
-    public void setProyectos() {
-        Set<Proyecto> p = new HashSet<>();
-        p.add(new ProyectoSocial("prueba", "descripcion prueba", 100, c, "a", false));
-        c.setProyectos(p);
-        assertEquals(p, c.getProyectos());
-    }
-
-    @Test
     public void getProyectosApoyados() {
         Set<Proyecto> pa = new HashSet<>();
-        assertEquals(pa, c.getProyectosApoyados());
-    }
-
-    @Test
-    public void setProyectosApoyados() {
-        Set<Proyecto> pa = new HashSet<>();
-        Proyecto p = new ProyectoSocial("titulo", "descripcion", 500.0, new Ciudadano("ciudadano", "psswd", "12345678X"), "grupo", true);
-        pa.add(p);
-        c.setProyectosApoyados(pa);
         assertEquals(pa, c.getProyectosApoyados());
     }
 
