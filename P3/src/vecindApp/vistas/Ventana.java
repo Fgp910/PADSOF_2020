@@ -17,6 +17,7 @@ public class Ventana extends JFrame {
         setLocationRelativeTo(null);    //Centra la ventana en la pantalla
         setContentPane(contentPane);
         contentPane.setLayout(new CardLayout());
+        setTitle("VecindApp");
 
         contentPane.add(vLoginUsuario, "loginUsuario");
         contentPane.add(vRegistroUsuario, "registroUsuario");
