@@ -8,6 +8,7 @@ import java.awt.*;
 public class Ventana extends JFrame {
     private LoginUsuario vLoginUsuario = new LoginUsuario();
     private RegistroUsuario vRegistroUsuario = new RegistroUsuario();
+    private HomeUsuario vHomeUsuario = new HomeUsuario();
 
     private JPanel contentPane = new JPanel();
 
@@ -21,11 +22,13 @@ public class Ventana extends JFrame {
 
         contentPane.add(vLoginUsuario, "loginUsuario");
         contentPane.add(vRegistroUsuario, "registroUsuario");
+        contentPane.add(vHomeUsuario, "homeUsuario");
     }
 
     public void setControlador(Controlador c) {
         vLoginUsuario.setControlador(c.getControlLoginUsuario());
         vRegistroUsuario.setControlador(c.getControlRegistroUsuario());
+        vHomeUsuario.setControlador(c.getControlHomeUsuario());
     }
 
     public LoginUsuario getLoginUsuario() {
@@ -34,6 +37,10 @@ public class Ventana extends JFrame {
 
     public RegistroUsuario getRegistroUsuario() {
         return vRegistroUsuario;
+    }
+
+    public HomeUsuario getHomeUsuario() {
+        return vHomeUsuario;
     }
 
     public void mostrarPanel(String carta) {
