@@ -42,6 +42,12 @@ public class ControlLoginUsuario implements ActionListener {
             if (c.isAdmitido()) {
                 modelo.setUsuarioActual(c);
                 frame.mostrarPanel("home");
+                if (c.isBloqueado()) {
+                    JOptionPane.showMessageDialog(vista,
+                            "Ha sido bloqueado por administración.\nSus apoyos a proyectos serán ignorados.",
+                            "Bloqueado",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
                 JOptionPane.showMessageDialog(vista,
                         "Pendiente de aprobación por administración.\nInténtelo luego.",
