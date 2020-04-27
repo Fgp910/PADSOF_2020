@@ -1,4 +1,10 @@
-package vecindApp.vistas;
+package vecindApp.vistas.home;
+
+import vecindApp.vistas.*;
+import vecindApp.vistas.usuario.BuscarColectivos;
+import vecindApp.vistas.usuario.BuscarProyectos;
+import vecindApp.vistas.usuario.ConsultarColectivos;
+import vecindApp.vistas.usuario.ConsultarProyectos;
 
 import javax.swing.*;
 
@@ -8,16 +14,16 @@ public class HomeUsuario extends JTabbedPane {
     private JPanel p_buscar_proys = new BuscarProyectos();
     private JPanel p_buscar_cols = new BuscarColectivos();
     private JPanel p_notificaciones = new Notificaciones();
-    private JPanel p_cerrar_sesion = new CerrarSesion();
+    private Perfil pPerfil = new Perfil();
 
 
     public HomeUsuario() {
         add("Notificaciones", p_notificaciones);
         add("Consultar Proyectos", p_consultar_proys);
         add("Consultar Colectivos", p_consultar_cols);
-        add("Cerrar sesión", p_cerrar_sesion);
         add("Buscar Proyectos", p_buscar_proys);
         add("Buscar Colectivos", p_buscar_cols);
+        add("Perfil", pPerfil);
     }
 
     public JPanel getP_consultar_cols() {
@@ -40,8 +46,8 @@ public class HomeUsuario extends JTabbedPane {
         return p_notificaciones;
     }
 
-    public JPanel getP_cerrar_sesion() {
-        return p_cerrar_sesion;
+    public Perfil getPerfil() {
+        return pPerfil;
     }
 
     /*public void setControlador(ControlHomeUsuario c) {

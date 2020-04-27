@@ -1,12 +1,12 @@
-package vecindApp.vistas;
+package vecindApp.vistas.usuario;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Bloquear extends JPanel {
+public class BuscarProyectos extends JPanel {
     private JPanel textPanel = new JPanel(new SpringLayout());
 
-    public Bloquear() {
+    public BuscarProyectos() {
         textPanelInit();
 
         this.setLayout(new BorderLayout());
@@ -14,7 +14,7 @@ public class Bloquear extends JPanel {
     }
 
     private void textPanelInit() {
-        JLabel texto = new JLabel("Bloquear usuarios");
+        JLabel texto = new JLabel("Buscar Proyectos");
         textPanel.add(texto);
     }
 

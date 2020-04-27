@@ -1,20 +1,30 @@
 package vecindApp.vistas;
 
+import vecindApp.vistas.usuario.ConsultarColectivos;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class ConsultarProyectos extends JPanel {
-    private JPanel textPanel = new JPanel(new SpringLayout());
+public class Perfil extends JPanel {
+    private JPanel textPanel = new JPanel(new FlowLayout());
+    private JPanel buttonPanel = new JPanel(new FlowLayout());
+    private JButton salir = new JButton("Cerrar Sesion");
 
-    public ConsultarProyectos() {
+    public Perfil() {
         textPanelInit();
+        buttonPanelInit();
 
         this.setLayout(new BorderLayout());
         add(textPanel, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    private void buttonPanelInit() {
+        buttonPanel.add(salir);
     }
 
     private void textPanelInit() {
-        JLabel texto = new JLabel("Consultar Proyectos");
+        JLabel texto = new JLabel();
         textPanel.add(texto);
     }
 

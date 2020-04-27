@@ -1,12 +1,12 @@
-package vecindApp.vistas;
+package vecindApp.vistas.usuario;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MinApoyos extends JPanel {
+public class ConsultarColectivos extends JPanel {
     private JPanel textPanel = new JPanel(new SpringLayout());
 
-    public MinApoyos() {
+    public ConsultarColectivos() {
         textPanelInit();
 
         this.setLayout(new BorderLayout());
@@ -14,7 +14,7 @@ public class MinApoyos extends JPanel {
     }
 
     private void textPanelInit() {
-        JLabel texto = new JLabel("Cambiar minimo de apoyos");
+        JLabel texto = new JLabel("Consultar Colectivos");
         textPanel.add(texto);
     }
 

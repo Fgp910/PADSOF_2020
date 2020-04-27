@@ -1,7 +1,7 @@
-package vecindApp.controladores;
+/*package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
-import vecindApp.vistas.HomeUsuario;
+import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.Ventana;
 
 import javax.swing.*;
@@ -78,4 +78,4 @@ public class ControlHomeUsuario implements ActionListener {
     public ControlCerrarSesion getControlCerrarSesion() {
         return cCerrarSesion;
     }
-}
+}*/

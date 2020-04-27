@@ -1,12 +1,14 @@
-package vecindApp.vistas;
+package vecindApp.vistas.admin;
+
+import vecindApp.vistas.usuario.ConsultarColectivos;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class BuscarColectivos extends JPanel {
+public class Desbloquear extends JPanel {
     private JPanel textPanel = new JPanel(new SpringLayout());
 
-    public BuscarColectivos() {
+    public Desbloquear() {
         textPanelInit();
 
         this.setLayout(new BorderLayout());
@@ -14,7 +16,7 @@ public class BuscarColectivos extends JPanel {
     }
 
     private void textPanelInit() {
-        JLabel texto = new JLabel("Buscar Colectivos");
+        JLabel texto = new JLabel("Desbloquear usuarios");
         textPanel.add(texto);
     }
 

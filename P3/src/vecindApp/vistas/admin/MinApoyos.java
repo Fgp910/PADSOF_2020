@@ -1,12 +1,14 @@
-package vecindApp.vistas;
+package vecindApp.vistas.admin;
+
+import vecindApp.vistas.usuario.ConsultarColectivos;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Desbloquear extends JPanel {
+public class MinApoyos extends JPanel {
     private JPanel textPanel = new JPanel(new SpringLayout());
 
-    public Desbloquear() {
+    public MinApoyos() {
         textPanelInit();
 
         this.setLayout(new BorderLayout());
@@ -14,7 +16,7 @@ public class Desbloquear extends JPanel {
     }
 
     private void textPanelInit() {
-        JLabel texto = new JLabel("Desbloquear usuarios");
+        JLabel texto = new JLabel("Cambiar minimo de apoyos");
         textPanel.add(texto);
     }
 

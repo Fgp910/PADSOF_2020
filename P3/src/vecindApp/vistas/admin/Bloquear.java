@@ -1,28 +1,22 @@
-package vecindApp.vistas;
+package vecindApp.vistas.admin;
+
+import vecindApp.vistas.usuario.ConsultarColectivos;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class CerrarSesion extends JPanel {
-    private JPanel textPanel = new JPanel(new FlowLayout());
-    private JPanel buttonPanel = new JPanel(new FlowLayout());
-    private JButton salir = new JButton("Cerrar Sesion");
+public class Bloquear extends JPanel {
+    private JPanel textPanel = new JPanel(new SpringLayout());
 
-    public CerrarSesion() {
+    public Bloquear() {
         textPanelInit();
-        buttonPanelInit();
 
         this.setLayout(new BorderLayout());
         add(textPanel, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
-    }
-
-    private void buttonPanelInit() {
-        buttonPanel.add(salir);
     }
 
     private void textPanelInit() {
-        JLabel texto = new JLabel("¿Quiere cerrar sesion?");
+        JLabel texto = new JLabel("Bloquear usuarios");
         textPanel.add(texto);
     }
 

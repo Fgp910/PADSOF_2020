@@ -1,12 +1,12 @@
-package vecindApp.vistas;
+package vecindApp.vistas.usuario;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class BuscarProyectos extends JPanel {
+public class ConsultarProyectos extends JPanel {
     private JPanel textPanel = new JPanel(new SpringLayout());
 
-    public BuscarProyectos() {
+    public ConsultarProyectos() {
         textPanelInit();
 
         this.setLayout(new BorderLayout());
@@ -14,7 +14,7 @@ public class BuscarProyectos extends JPanel {
     }
 
     private void textPanelInit() {
-        JLabel texto = new JLabel("Buscar Proyectos");
+        JLabel texto = new JLabel("Consultar Proyectos");
         textPanel.add(texto);
     }
 

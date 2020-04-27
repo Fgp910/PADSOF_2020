@@ -1,6 +1,11 @@
-package vecindApp.vistas;
+package vecindApp.vistas.home;
 
 //import vecindApp.controladores.Controlador;
+
+import vecindApp.vistas.*;
+import vecindApp.vistas.admin.Bloquear;
+import vecindApp.vistas.admin.Desbloquear;
+import vecindApp.vistas.admin.MinApoyos;
 
 import javax.swing.*;
 
@@ -9,7 +14,7 @@ public class HomeAdmin extends JTabbedPane {
     private JPanel p_desbloquear = new Desbloquear();
     private JPanel p_min_apoyos = new MinApoyos();
     private JPanel p_notificaciones = new Notificaciones();
-    private JPanel p_cerrar_sesion = new CerrarSesion();
+    private JPanel p_cerrar_sesion = new Perfil();
 
 
     public HomeAdmin() {

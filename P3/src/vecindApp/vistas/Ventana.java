@@ -1,6 +1,8 @@
 package vecindApp.vistas;
 
 import vecindApp.controladores.Controlador;
+import vecindApp.vistas.home.HomeAdmin;
+import vecindApp.vistas.home.HomeUsuario;
 
 import javax.swing.*;
 import java.awt.*;
