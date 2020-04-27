@@ -22,7 +22,7 @@ public class Ventana extends JFrame {
 
         contentPane.add(vLoginUsuario, "loginUsuario");
         contentPane.add(vRegistroUsuario, "registroUsuario");
-        contentPane.add(vHomeUsuario, "homeUsuario");
+        contentPane.add(vHomeUsuario, "home");
     }
 
     public void setControlador(Controlador c) {
