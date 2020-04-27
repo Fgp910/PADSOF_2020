@@ -1,9 +1,5 @@
 package vecindApp.vistas;
 
-//import vecindApp.controladores.Controlador;
-
-import vecindApp.controladores.ControlHomeUsuario;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
