@@ -14,10 +14,10 @@ public class HomeAdmin extends JTabbedPane {
 
     public HomeAdmin() {
         add("Bloquear", p_bloquear);
-        add("Cerrar sesion", p_cerrar_sesion);
         add("Desbloquear", p_desbloquear);
         add("Min apoyos", p_min_apoyos);
         add("Notificaciones", p_notificaciones);
+        add("Cerrar sesion", p_cerrar_sesion);
     }
 
     public JPanel getP_bloquear() {

@@ -9,6 +9,7 @@ public class Ventana extends JFrame {
     private LoginUsuario vLoginUsuario = new LoginUsuario();
     private RegistroUsuario vRegistroUsuario = new RegistroUsuario();
     private HomeUsuario vHomeUsuario = new HomeUsuario();
+    private HomeAdmin vHomeAdmin = new HomeAdmin();
 
     private JPanel contentPane = new JPanel();
 
@@ -23,12 +24,13 @@ public class Ventana extends JFrame {
         contentPane.add(vLoginUsuario, "loginUsuario");
         contentPane.add(vRegistroUsuario, "registroUsuario");
         contentPane.add(vHomeUsuario, "home");
+        contentPane.add(vHomeAdmin, "homeAdmin");
     }
 
     public void setControlador(Controlador c) {
         vLoginUsuario.setControlador(c.getControlLoginUsuario());
         vRegistroUsuario.setControlador(c.getControlRegistroUsuario());
-        vHomeUsuario.setControlador(c.getControlHomeUsuario());
+        //vHomeUsuario.setControlador(c.getControlHomeUsuario());
     }
 
     public LoginUsuario getLoginUsuario() {

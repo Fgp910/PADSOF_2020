@@ -1,7 +1,6 @@
 package vecindApp.main;
 
 import vecindApp.clases.aplicacion.Aplicacion;
-import vecindApp.clases.usuario.Administrador;
 import vecindApp.controladores.Controlador;
 import vecindApp.vistas.Ventana;
 

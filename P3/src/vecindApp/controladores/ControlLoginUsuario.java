@@ -2,6 +2,7 @@ package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
+import vecindApp.clases.usuario.Administrador;
 import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.Ventana;
 
@@ -24,22 +25,26 @@ public class ControlLoginUsuario implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vista.getRegButton())) {
             frame.setSize(300, 200);
+            frame.setLocationRelativeTo(null);
             frame.getRegistroUsuario().update();
             frame.mostrarPanel("registroUsuario");
         } else if (e.getSource().equals(vista.getEntButton())) {
             String user = vista.getUsername();
             String psswd = vista.getPassword();
+            Administrador admin = modelo.getAdmin();
             Ciudadano c = modelo.findCiudadano(user);
 
-            if (c == null || !c.getPassword().equals(psswd)) {
+            if (user.equals(admin.getUsername()) && psswd.equals(admin.getPassword())) {
+                modelo.setUsuarioActual(admin);
+                frame.setSize(600,600);
+                frame.setLocationRelativeTo(null);
+                frame.mostrarPanel("homeAdmin");
+            } else if (c == null || !c.getPassword().equals(psswd)) {
                 JOptionPane.showMessageDialog(vista,
                         "Nombre de usuario o contraseña incorrectos (haga clic en \"Registrarse\" para crear una nueva cuenta).",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (c.isAdmitido()) {
+            } else if (c.isAdmitido()) {
                 modelo.setUsuarioActual(c);
                 frame.mostrarPanel("home");
                 if (c.isBloqueado()) {
