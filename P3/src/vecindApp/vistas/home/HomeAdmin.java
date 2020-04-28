@@ -9,40 +9,27 @@ import vecindApp.vistas.admin.MinApoyos;
 
 import javax.swing.*;
 
-public class HomeAdmin extends JTabbedPane {
-    private JPanel p_bloquear = new Bloquear();
-    private JPanel p_desbloquear = new Desbloquear();
-    private JPanel p_min_apoyos = new MinApoyos();
-    private JPanel p_notificaciones = new Notificaciones();
-    private JPanel p_cerrar_sesion = new Perfil();
-
+public class HomeAdmin extends Home {
+    private Bloquear pBloquear = new Bloquear();
+    private Desbloquear pDesbloquear = new Desbloquear();
+    private MinApoyos pMinApoyos = new MinApoyos();
 
     public HomeAdmin() {
-        add("Bloquear", p_bloquear);
-        add("Desbloquear", p_desbloquear);
-        add("Min apoyos", p_min_apoyos);
-        add("Notificaciones", p_notificaciones);
-        add("Cerrar sesion", p_cerrar_sesion);
+        add("Bloquear", pBloquear);
+        add("Desbloquear", pDesbloquear);
+        add("Min apoyos", pMinApoyos);
     }
 
-    public JPanel getP_bloquear() {
-        return p_bloquear;
+    public Bloquear getpBloquear() {
+        return pBloquear;
     }
 
-    public JPanel getP_desbloquear() {
-        return p_desbloquear;
+    public Desbloquear getpDesbloquear() {
+        return pDesbloquear;
     }
 
-    public JPanel getP_min_apoyos() {
-        return p_min_apoyos;
-    }
-
-    public JPanel getP_notificaciones() {
-        return p_notificaciones;
-    }
-
-    public JPanel getP_cerrar_sesion() {
-        return p_cerrar_sesion;
+    public MinApoyos getpMinApoyos() {
+        return pMinApoyos;
     }
 
     /*public void setControlador(Controlador c) {

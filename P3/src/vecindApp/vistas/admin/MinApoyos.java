@@ -23,7 +23,7 @@ public class MinApoyos extends JPanel {
     public static void main(String[] args) {
         JFrame ventana = new JFrame();
 
-        ventana.getContentPane().add(new ConsultarColectivos());
+        ventana.getContentPane().add(new MinApoyos());
 
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setSize(300,150);

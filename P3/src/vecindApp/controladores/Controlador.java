@@ -10,6 +10,8 @@ public class Controlador {
     private ControlLoginUsuario cLogin;
     private ControlRegistroUsuario cRegistro;
     private ControlHomeUsuario cHomeU;
+    private ControlHomeAdmin cHomeA;
+
 
     public Controlador(Ventana frame, Aplicacion modelo) {
         this.frame = frame;
@@ -17,6 +19,7 @@ public class Controlador {
         cLogin = new ControlLoginUsuario(frame, modelo);
         cRegistro = new ControlRegistroUsuario(frame, modelo);
         cHomeU = new ControlHomeUsuario(frame, modelo);
+        cHomeA = new ControlHomeAdmin(frame, modelo);
     }
 
     public ControlLoginUsuario getControlLoginUsuario() {
@@ -27,7 +30,9 @@ public class Controlador {
         return cRegistro;
     }
 
-    public ControlHomeUsuario getControlHomeUsuario() {
-        return cHomeU;
+    public ControlHomeUsuario getControlHomeUsuario() { return cHomeU; }
+
+    public ControlHomeAdmin getControlHomeAdmin() {
+        return cHomeA;
     }
 }
