@@ -6,12 +6,14 @@ import es.uam.eps.sadp.grants.InvalidIDException;
 import es.uam.eps.sadp.grants.InvalidRequestException;
 import vecindApp.clases.aplicacion.*;
 import vecindApp.clases.colectivo.*;
+import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.*;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -351,14 +353,18 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 * @throws IOException en caso de fallos en la comunicacion
 	 * @throws InvalidRequestException en caso de enviar una solicitud no valida
 	 */
-	public void enviarFinanciacion() throws IOException, InvalidRequestException {
+	public void enviarFinanciacion() throws ConexionFallida {
 		GrantRequest req;
 		if (estado != EstadoProyecto.LISTOENVAR) {
 			return;
 		}
 		req = crearSolicitud();
 		CCGG proxy = CCGG.getGateway();
-		this.idEnvio = proxy.submitRequest(req);
+		try {
+			this.idEnvio = proxy.submitRequest(req);
+		} catch (Exception e){
+			throw new ConexionFallida();
+		}
 		setEstado(EstadoProyecto.ENVIADO);
 	}
 
@@ -367,9 +373,14 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 * @throws IOException en caso de fallos en la comunicacion
 	 * @throws InvalidIDException en caso de consultar un id no valido
 	 */
-	public void consultarFinanciacion() throws IOException, InvalidIDException {
+	public void consultarFinanciacion() throws ConexionFallida {
 		CCGG proxy = CCGG.getGateway();
-		Double aux = proxy.getAmountGranted(this.idEnvio); //Si no esta resuelto, getAmountGranted devuelve null
+		Double aux;
+		try {
+			aux = proxy.getAmountGranted(this.idEnvio); //Si no esta resuelto, getAmountGranted devuelve null
+		} catch (Exception e) {
+			throw new ConexionFallida();
+		}
 		if (aux != null) {
 			importeConcedido = aux;
 			if (importeConcedido == 0) {
