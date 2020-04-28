@@ -54,7 +54,7 @@ public class NotificacionProy extends Notificacion {
         if (o instanceof NotificacionProy && ((NotificacionProy) o).getSujeto() == sujeto) {
             return true;
         }
-        return true;
+        return false;
     }
 
     @Override

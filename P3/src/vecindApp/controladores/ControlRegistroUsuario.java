@@ -28,6 +28,14 @@ public class ControlRegistroUsuario implements ActionListener {
             String psswd = vista.getPassword();
             String confirm = vista.getConfirm();
 
+            if (user.equals(modelo.getAdmin().getUsername())) {
+                JOptionPane.showMessageDialog(vista,
+                        "Nombre de usuario inválido.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             if (nif.length() != Ciudadano.NIF_LEN) {
                 JOptionPane.showMessageDialog(vista,
                         "NIF inválido. Introduzca un NIF válido.",
