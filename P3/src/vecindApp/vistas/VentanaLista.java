@@ -32,6 +32,14 @@ public class VentanaLista<T> extends JPanel {
         return der;
     }
 
+    public JList<T> getLista() {
+        return lista;
+    }
+
+    public T getItem(int index) {
+        return cLista.get(index);
+    }
+
     public void add(T nuevo) {
         cLista.addElement(nuevo);
     }

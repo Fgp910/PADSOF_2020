@@ -9,4 +9,8 @@ public class Notificaciones<T> extends VentanaLista<T> {
         super();
         getDer().add(open);
     }
+
+    public JButton getOpenButton() {
+        return open;
+    }
 }
