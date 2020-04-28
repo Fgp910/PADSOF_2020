@@ -191,13 +191,6 @@ public class AplicacionTest {
     }
 
     @Test
-    public void generarInformeAfinidad() {
-        Colectivo c1 = new Colectivo("Colectivo1", new Ciudadano("usr1", "psswd", "12345678X"));
-        Colectivo c2 = new Colectivo("Colectivo2", new Ciudadano("usr2", "psswd", "12345678Y"));
-        assertTrue(0 == app.generarInformeAfinidad(c1, c2));
-    }
-
-    @Test
     public void guardarCargar() throws IOException, ClassNotFoundException, InvalidIDException {
         app.guardar("cargar_test.txt");
         assertEquals(app.getAdmin().getUsername(), app.cargar("cargar_test.txt").getAdmin().getUsername());

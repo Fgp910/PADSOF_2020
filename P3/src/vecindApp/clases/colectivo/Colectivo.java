@@ -199,6 +199,57 @@ public class Colectivo implements ElementoColectivo {
         return proyectosApoyados.remove(proyecto);
     }
 
+    /**
+     * Genera el informe de afinidad entre dos colectivos en funcion de los
+     * apoyos a las propuestas del otro.
+     * Devuelve un valor entre 0 y 1, donde 0 significa que no son afines
+     * y 1 que son muy afines
+     * @param c2 el segundo colectivo
+     * @return el informe de afinidad entre los colectivos
+     */
+    public double generarInformeAfinidad(Colectivo c2) {
+        int n1, n2, a1 = 0, a2 = 0;
+        Set<Proyecto> apoyados;
+
+        n1 = getProyectos().size();
+        n2 = c2.getProyectos().size();
+
+        if (n1 + n2 == 0) {
+            return 0; //Definimos que no son afines si no tienen proyectos
+        }
+
+        apoyados = c2.getProyectosApoyados();
+        for (Proyecto p:getProyectos()) {
+            if (apoyados.contains(p)) {
+                a1++;
+            }
+        }
+        apoyados = getProyectosApoyados();
+        for (Proyecto p:c2.getProyectos()) {
+            if (apoyados.contains(p)) {
+                a2++;
+            }
+        }
+
+        return ((double)(a1 + a2)) / (n1 + n2);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Colectivo) {
+            return this.nombre.equals(((Colectivo)o).nombre);
+        }
+        return false;
+    }
+
+    @Override
+    public int compareTo(ElementoColectivo t) {
+        if (t instanceof Colectivo) {
+            return nombre.compareTo(((Colectivo)t).nombre);
+        }
+        return -1;
+    }
+
     /*Metodos privados*/
 
     /**
@@ -220,21 +271,5 @@ public class Colectivo implements ElementoColectivo {
         }
 
         return false;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof Colectivo) {
-            return this.nombre.equals(((Colectivo)o).nombre);
-        }
-        return false;
-    }
-
-    @Override
-    public int compareTo(ElementoColectivo t) {
-        if (t instanceof Colectivo) {
-            return nombre.compareTo(((Colectivo)t).nombre);
-        }
-        return -1;
     }
 }

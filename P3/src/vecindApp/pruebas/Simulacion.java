@@ -77,7 +77,7 @@ public class Simulacion {
         /*Guardar y cargar aplicacion*/
         Aplicacion.VecindApp.guardar("prueba_simulador.txt");
         try {
-            Aplicacion.VecindApp = Aplicacion.VecindApp.cargar("prueba_simulador.txt");
+            Aplicacion.cargar("prueba_simulador.txt");
         } catch (IOException | ClassNotFoundException ex) {
             System.out.println(ex);
             return;

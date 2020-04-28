@@ -121,4 +121,11 @@ public class ColectivoTest {
         c.removeProyectoApoyado(p);
         assertFalse(c.getProyectosApoyados().contains(p));
     }
+
+    @Test
+    public void generarInformeAfinidad() {
+        Colectivo c1 = new Colectivo("Colectivo1", new Ciudadano("usr1", "psswd", "12345678X"));
+        Colectivo c2 = new Colectivo("Colectivo2", new Ciudadano("usr2", "psswd", "12345678Y"));
+        assertTrue(0 == c1.generarInformeAfinidad(c2));
+    }
 }

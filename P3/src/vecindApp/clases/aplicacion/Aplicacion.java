@@ -113,7 +113,14 @@ public class Aplicacion implements Serializable {
      * @param usuarioActual el usuario actual
      */
     public void setUsuarioActual(Usuario usuarioActual) {
+        Date curr = new Date();
+
         this.usuarioActual = usuarioActual;
+        for (Proyecto p : proyectos) {
+            if ((curr.getTime() - p.getUltimoApoyo().getTime())/1000.0 > 30 * 24 * 3600) { //30 dias en segundos
+                p.caducar();
+            }
+        }
     }
 
     /**
@@ -270,42 +277,6 @@ public class Aplicacion implements Serializable {
     }
 
     /**
-     * Genera el informe de afinidad entre dos colectivos en funcion de los
-     * apoyos a las propuestas del otro.
-     * Devuelve un valor entre 0 y 1, donde 0 significa que no son afines
-     * y 1 que son muy afines
-     * @param c1 el primer colectivo
-     * @param c2 el segundo colectivo
-     * @return el informe de afinidad entre c1 y c2
-     */
-    public double generarInformeAfinidad(Colectivo c1, Colectivo c2) {
-        int n1, n2, a1 = 0, a2 = 0;
-        Set<Proyecto> apoyados;
-
-        n1 = c1.getProyectos().size();
-        n2 = c2.getProyectos().size();
-
-        if (n1 + n2 == 0) {
-            return 0; //Definimos que no son afines si no tienen proyectos
-        }
-
-        apoyados = c2.getProyectosApoyados();
-        for (Proyecto p:c1.getProyectos()) {
-            if (apoyados.contains(p)) {
-                a1++;
-            }
-        }
-        apoyados = c1.getProyectosApoyados();
-        for (Proyecto p:c2.getProyectos()) {
-            if (apoyados.contains(p)) {
-                a2++;
-            }
-        }
-
-        return ((double)(a1 + a2)) / (n1 + n2);
-    }
-
-    /**
      * Almacena todos los objetos y variables del sistema en un fichero
      * @param path el path de fichero de destino
      */
@@ -327,7 +298,7 @@ public class Aplicacion implements Serializable {
      * @throws ClassNotFoundException en caso de error con la declaracion de clases
      * @throws InvalidIDException en caso de error en la consulta al sistema externo de financiacion
      */
-    public Aplicacion cargar(String path) throws IOException, ClassNotFoundException, InvalidIDException {
+    public static Aplicacion cargar(String path) throws IOException, ClassNotFoundException, InvalidIDException {
         ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
         Aplicacion app = (Aplicacion) ent.readObject();
         Date curr = new Date();
@@ -341,6 +312,7 @@ public class Aplicacion implements Serializable {
                 p.consultarFinanciacion();
             }
         }
+        Aplicacion.VecindApp = app;
         return app;
     }
 
