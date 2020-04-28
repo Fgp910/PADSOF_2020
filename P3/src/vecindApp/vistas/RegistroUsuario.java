@@ -31,7 +31,6 @@ public class RegistroUsuario extends JPanel {
         l = new JLabel("Nombre de usuario:", JLabel.TRAILING);
         l.setLabelFor(user);
         textPanel.add(l);
-        //((JLabel) textPanel.add(new JLabel("Nombre de usuario:", JLabel.TRAILING))).setLabelFor(user);
         textPanel.add(user);
 
         l = new JLabel("NIF:", JLabel.TRAILING);

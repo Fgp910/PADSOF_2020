@@ -1,7 +1,5 @@
 package vecindApp.vistas;
 
-import vecindApp.clases.proyecto.Proyecto;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
@@ -13,7 +11,7 @@ public class VentanaLista<T> extends JPanel {
 
     private DefaultListModel<T> cLista = new DefaultListModel<T>();
     private JList<T> lista = new JList<T>(cLista);
-    JScrollPane scroll = new JScrollPane(lista);
+    private JScrollPane scroll = new JScrollPane(lista);
 
     public VentanaLista() {
         setLayout(new GridLayout(1, 2));
@@ -39,13 +37,13 @@ public class VentanaLista<T> extends JPanel {
     }
 
     public void addAll(Collection<T> nuevos) {
-        for (T t:nuevos) {
+        for (T t : nuevos) {
             cLista.addElement(t);
         }
     }
 
     public void remove(T t) {
-        cLista.removeElement((Object)t);
+        cLista.removeElement((Object) t);
     }
 
     public void removeAll() {
