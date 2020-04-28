@@ -62,26 +62,26 @@ public class AplicacionTest {
 
     @Test
     public void getProyectos() {
-        List<Proyecto> listp = new ArrayList<>();
-        assertEquals(listp, app.getProyectos());
+        Set<Proyecto> setp = new TreeSet<>();
+        assertEquals(setp, app.getProyectos());
     }
 
     @Test
     public void setProyectos() {
-        List<Proyecto> newlistp = new ArrayList<>();
+        Set<Proyecto> newlistp = new TreeSet<>();
         app.setProyectos(newlistp);
         assertEquals(newlistp, app.getProyectos());
     }
 
     @Test
     public void getBloqueados() {
-        List<Ciudadano> lb = new ArrayList<>();
+        Set<Ciudadano> lb = new TreeSet<>();
         assertEquals(lb, app.getBloqueados());
     }
 
     @Test
     public void setBloqueados() {
-        List<Ciudadano> lb = new ArrayList<>();
+        Set<Ciudadano> lb = new TreeSet<>();
         lb.add(new Ciudadano("pepe", "psswd", "123456Y"));
         app.setBloqueados(lb);
         assertEquals(lb, app.getBloqueados());

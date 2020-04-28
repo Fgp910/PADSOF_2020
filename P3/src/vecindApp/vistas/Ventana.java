@@ -1,4 +1,4 @@
-package vecindApp.vistas;
+/*package vecindApp.vistas;
 
 import vecindApp.controladores.Controlador;
 import vecindApp.vistas.home.HomeAdmin;
@@ -51,4 +51,4 @@ public class Ventana extends JFrame {
         CardLayout l = (CardLayout)contentPane.getLayout();
         l.show(contentPane, carta);
     }
-}
+}*/

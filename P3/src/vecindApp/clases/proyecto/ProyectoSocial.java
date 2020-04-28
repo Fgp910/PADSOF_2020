@@ -86,12 +86,14 @@ public class ProyectoSocial extends Proyecto {
         nacional = nac;
     }
 
-    /**
-     * Crea una nueva solicitud de financiacion para el proyecto
-     * @return solicitud del proyecto
-     */
     @Override
-    protected GrantRequest crearSolicitud() {
-        return new SolicitudSocial(this);
+    public GrantRequest.ProjectKind getProjectKind() {
+        return GrantRequest.ProjectKind.valueOf("Social");
+    }
+
+    @Override
+    public String getExtraData() {
+        return "Grupo social: " + getGrupoSocial() +
+                "\nNacional: " + isNacional();
     }
 }

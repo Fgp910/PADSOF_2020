@@ -20,7 +20,7 @@ import java.util.Set;
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-public abstract class Proyecto implements Serializable {
+public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	private static int nextId = 1;
 
 	private int id;
@@ -341,7 +341,9 @@ public abstract class Proyecto implements Serializable {
 	 * Crea una solicitud de financiacion para el proyecto
 	 * @return solicitud del proyecto
 	 */
-	protected abstract GrantRequest crearSolicitud();
+	protected GrantRequest crearSolicitud() {
+		return new SolicitudFinanciacion(this);
+	}
 
 	/**
 	 * Envia el proyecto a financiacion
@@ -446,6 +448,34 @@ public abstract class Proyecto implements Serializable {
 		if (!directo) {
 			ec.removeProyectoApoyado(this);	//Un ElementoColectivo guarda los proyectos que apoya directamente
 		}
+	}
+
+	/**
+	 * Devuelve el tipo de proyecto (social o infraestructura)
+	 * @return tipo del proyecto
+	 */
+	public abstract GrantRequest.ProjectKind getProjectKind();
+
+	/**
+	 * Devuelve la informacion extra relacionada con el proyecto
+	 * @return informacion adicional
+	 */
+	public abstract String getExtraData();
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Proyecto)) {
+			return false;
+		}
+		return ((Proyecto)o).id == id;
+	}
+
+	@Override
+	public int compareTo(Proyecto o) {
+		return id - o.id;
 	}
 
 	/*Metodos privados*/

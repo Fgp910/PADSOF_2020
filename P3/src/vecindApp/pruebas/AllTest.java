@@ -15,8 +15,6 @@ import org.junit.runners.Suite;
                     ProyectoSocialTest.class,
                     ProyectoTest.class,
                     SolicitudFinanciacionTest.class,
-                    SolicitudInfraestructuraTest.class,
-                    SolicitudSocialTest.class,
                     UsuarioTest.class})
 /**
  * Clase de prueba general

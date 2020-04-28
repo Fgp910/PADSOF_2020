@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-public abstract class SolicitudFinanciacion implements GrantRequest, Serializable {
+public class SolicitudFinanciacion implements GrantRequest, Serializable {
     private final Proyecto p;
 
     /**
@@ -55,5 +55,23 @@ public abstract class SolicitudFinanciacion implements GrantRequest, Serializabl
     @Override
     public double getRequestedAmount() {
         return p.getImporteSolicitado();
+    }
+
+    /**
+     * Devuelve el tipo de proyecto (social o infrestructura)
+     * @return tipo de proyecto
+     */
+    @Override
+    public ProjectKind getProjectKind() {
+        return p.getProjectKind();
+    }
+
+    /**
+     * Devuelve la informacion extra relacionada con el proyecto
+     * @return informacion adicional
+     */
+    @Override
+    public String getExtraData() {
+        return p.getExtraData();
     }
 }

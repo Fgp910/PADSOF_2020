@@ -109,11 +109,17 @@ public class ProyectoInfraestructura extends Proyecto {
     }
 
     /**
-     * Crea una nueva solicitud de financiacion para el proyecto
-     * @return solicitud del proyecto
+     * Devuelve el tipo de proyecto (social o infrestructura)
+     * @return tipo de proyecto
      */
+
     @Override
-    protected GrantRequest crearSolicitud() {
-        return new SolicitudInfraestructura(this);
+    public GrantRequest.ProjectKind getProjectKind() {
+        return GrantRequest.ProjectKind.valueOf("Infrastructure");
+    }
+
+    @Override
+    public String getExtraData() {
+        return "Imagen: " + getImagen() + "\nDistritos afectados: " + getAfectados().toString();
     }
 }

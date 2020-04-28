@@ -23,8 +23,8 @@ public class Aplicacion implements Serializable {
 
     private Administrador admin;
     private Set<ElementoColectivo> elemCol = new TreeSet<>();
-    private List<Proyecto> proyectos = new ArrayList<>();
-    private List<Ciudadano> bloqueados = new ArrayList<>();
+    private Set<Proyecto> proyectos = new TreeSet<>();
+    private Set<Ciudadano> bloqueados = new TreeSet<>();
     private Usuario usuarioActual;
     private Persistencia varStatic;
 
@@ -72,7 +72,7 @@ public class Aplicacion implements Serializable {
      * Devuelve los proyectos del sistema
      * @return lista de proyectos
      */
-    public List<Proyecto> getProyectos() {
+    public Set<Proyecto> getProyectos() {
         return this.proyectos;
     }
 
@@ -80,7 +80,7 @@ public class Aplicacion implements Serializable {
      * Establece una nueva lista de proyectos
      * @param proyectos nueva lista de proyectos
      */
-    public void setProyectos(List<Proyecto> proyectos) {
+    public void setProyectos(Set<Proyecto> proyectos) {
         this.proyectos = proyectos;
     }
 
@@ -88,7 +88,7 @@ public class Aplicacion implements Serializable {
      * Devuelve los ciudadanos bloqueados del sistema
      * @return lista de ciudadanos bloqueados
      */
-    public List<Ciudadano> getBloqueados() {
+    public Set<Ciudadano> getBloqueados() {
         return bloqueados;
     }
 
@@ -96,7 +96,7 @@ public class Aplicacion implements Serializable {
      * Establece una nueva lista de ciudadanos bloqueados
      * @param bloqueados nueva lista de bloqueados
      */
-    public void setBloqueados(List<Ciudadano> bloqueados) {
+    public void setBloqueados(Set<Ciudadano> bloqueados) {
         this.bloqueados = bloqueados;
     }
 

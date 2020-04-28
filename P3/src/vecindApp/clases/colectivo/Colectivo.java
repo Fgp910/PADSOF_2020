@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-public class Colectivo implements ElementoColectivo, Comparable<ElementoColectivo> {
+public class Colectivo implements ElementoColectivo {
     private String nombre;
     private Ciudadano representante;
     private Set<ElementoColectivo> elementos = new TreeSet<>();

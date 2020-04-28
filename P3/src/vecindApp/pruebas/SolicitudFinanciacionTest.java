@@ -21,7 +21,7 @@ public class SolicitudFinanciacionTest {
     public void setUp() {
         Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
         p = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
-        sf = new SolicitudSocial(p);
+        sf = new SolicitudFinanciacion(p);
     }
 
     @Test
@@ -41,6 +41,6 @@ public class SolicitudFinanciacionTest {
 
     @Test
     public void getRequestedAmount() {
-        assertTrue(500.0 == sf.getRequestedAmount());
+        assertEquals(500.0, sf.getRequestedAmount(), 0.0);
     }
 }

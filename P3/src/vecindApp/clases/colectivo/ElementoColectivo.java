@@ -11,7 +11,7 @@ import java.util.Set;
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
-public interface ElementoColectivo extends Serializable {
+public interface ElementoColectivo extends Serializable, Comparable<ElementoColectivo> {
     /**
      * Devuelve el set de proyectos propuestos por un elemento colectivo
      * @return set de proyectos
