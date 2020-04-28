@@ -47,6 +47,10 @@ public class Ventana extends JFrame {
         return vHomeUsuario;
     }
 
+    public HomeAdmin getHomeAdmin() {
+        return vHomeAdmin;
+    }
+
     public void mostrarPanel(String carta) {
         CardLayout l = (CardLayout)contentPane.getLayout();
         l.show(contentPane, carta);

@@ -1,14 +1,12 @@
-/*package vecindApp.controladores;
+package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
-import vecindApp.vistas.home.HomeUsuario;
+import vecindApp.controladores.usuario.*;
 import vecindApp.vistas.Ventana;
+import vecindApp.vistas.home.HomeUsuario;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ControlHomeUsuario implements ActionListener {
+public class ControlHomeUsuario {
     private HomeUsuario vista;
     private Ventana frame;
     private Aplicacion modelo;
@@ -17,7 +15,7 @@ public class ControlHomeUsuario implements ActionListener {
     private ControlConsultarColectivos cConsultarColectivos;
     private ControlBuscarColectivos cBuscarColectivos;
     private ControlBuscarProyectos cBuscarProyectos;
-    private ControlCerrarSesion cCerrarSesion;
+    private ControlPerfilUsuario cPerfil;
 
 
     public ControlHomeUsuario(Ventana frame, Aplicacion modelo) {
@@ -30,29 +28,7 @@ public class ControlHomeUsuario implements ActionListener {
         cConsultarColectivos = new ControlConsultarColectivos(frame, modelo);
         cBuscarColectivos = new ControlBuscarColectivos(frame, modelo);
         cBuscarProyectos = new ControlBuscarProyectos(frame, modelo);
-        cCerrarSesion = new ControlCerrarSesion(frame, modelo);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(vista.getB_buscar_cols())) {
-            vista.getP_buscar_cols().setVisible(true);
-        }
-        else if (e.getSource().equals(vista.getB_buscar_proys())) {
-            vista.getP_buscar_proys().setVisible(true);
-        }
-        else if (e.getSource().equals(vista.getB_cerrar_sesion())) {
-            vista.getP_cerrar_sesion().setVisible(true);
-        }
-        else if (e.getSource().equals(vista.getB_consultar_cols())) {
-            vista.getP_consultar_cols().setVisible(true);
-        }
-        else if (e.getSource().equals(vista.getB_consultar_proys())) {
-            vista.getP_consultar_proys().setVisible(true);
-        }
-        else if (e.getSource().equals(vista.getB_notificaciones())) {
-            vista.getP_notificaciones().setVisible(true);
-        }
+        cPerfil = new ControlPerfilUsuario(frame, modelo);
     }
 
     public ControlNotificaciones getControlNotificaciones() {
@@ -75,7 +51,7 @@ public class ControlHomeUsuario implements ActionListener {
         return cBuscarProyectos;
     }
 
-    public ControlCerrarSesion getControlCerrarSesion() {
-        return cCerrarSesion;
+    public ControlPerfilUsuario getcPerfil() {
+        return cPerfil;
     }
-}*/
+}

@@ -8,46 +8,33 @@ import vecindApp.vistas.usuario.ConsultarProyectos;
 
 import javax.swing.*;
 
-public class HomeUsuario extends JTabbedPane {
-    private JPanel p_consultar_cols = new ConsultarColectivos();
-    private JPanel p_consultar_proys = new ConsultarProyectos();
-    private JPanel p_buscar_proys = new BuscarProyectos();
-    private JPanel p_buscar_cols = new BuscarColectivos();
-    private JPanel p_notificaciones = new Notificaciones();
-    private Perfil pPerfil = new Perfil();
-
+public class HomeUsuario extends Home {
+    private ConsultarColectivos pConsultarColectivos = new ConsultarColectivos();
+    private ConsultarProyectos pConsultarProyectos = new ConsultarProyectos();
+    private BuscarProyectos pBuscarProyectos = new BuscarProyectos();
+    private BuscarColectivos pBuscarColectivos = new BuscarColectivos();
 
     public HomeUsuario() {
-        add("Notificaciones", p_notificaciones);
-        add("Consultar Proyectos", p_consultar_proys);
-        add("Consultar Colectivos", p_consultar_cols);
-        add("Buscar Proyectos", p_buscar_proys);
-        add("Buscar Colectivos", p_buscar_cols);
-        add("Perfil", pPerfil);
+        add("Consultar Proyectos", pConsultarProyectos);
+        add("Consultar Colectivos", pConsultarColectivos);
+        add("Buscar Proyectos", pBuscarProyectos);
+        add("Buscar Colectivos", pBuscarColectivos);
     }
 
-    public JPanel getP_consultar_cols() {
-        return p_consultar_cols;
+    public ConsultarColectivos getpConsultarColectivos() {
+        return pConsultarColectivos;
     }
 
-    public JPanel getP_consultar_proys() {
-        return p_consultar_proys;
+    public ConsultarProyectos getpConsultarProyectos() {
+        return pConsultarProyectos;
     }
 
-    public JPanel getP_buscar_proys() {
-        return p_buscar_proys;
+    public BuscarProyectos getpBuscarProyectos() {
+        return pBuscarProyectos;
     }
 
-    public JPanel getP_buscar_cols() {
-        return p_buscar_cols;
-    }
-
-    public JPanel getP_notificaciones() {
-        return p_notificaciones;
-    }
-
-    public Perfil getPerfil() {
-        return pPerfil;
+    public BuscarColectivos getpBuscarColectivos() {
+        return pBuscarColectivos;
     }
 
     /*public void setControlador(ControlHomeUsuario c) {
