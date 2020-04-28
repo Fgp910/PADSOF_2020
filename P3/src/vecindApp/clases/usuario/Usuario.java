@@ -83,4 +83,13 @@ public abstract class Usuario implements Serializable {
     public void agregarNotificacion(Notificacion n) {
         pendientes.add(n);
     }
+
+    /**
+     * Elimina una notificacion de la lista de pendientes
+     * @param n la notificacion a eliminar
+     * @return si se elimino con exito la notificacion
+     */
+    public boolean eliminarNotificacion(Notificacion n) {
+        return pendientes.remove(n);
+    }
 }

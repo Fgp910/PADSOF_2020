@@ -2,6 +2,7 @@ package vecindApp.clases.aplicacion;
 
 import es.uam.eps.sadp.grants.InvalidIDException;
 import vecindApp.clases.colectivo.*;
+import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.*;
 import vecindApp.clases.proyecto.*;
 import vecindApp.clases.usuario.*;
@@ -296,9 +297,9 @@ public class Aplicacion implements Serializable {
      * @return la Aplicacion leida
      * @throws IOException en caso de error de E/S
      * @throws ClassNotFoundException en caso de error con la declaracion de clases
-     * @throws InvalidIDException en caso de error en la consulta al sistema externo de financiacion
+     * @throws ConexionFallida en caso de error en la consulta al sistema externo de financiacion
      */
-    public static Aplicacion cargar(String path) throws IOException, ClassNotFoundException, InvalidIDException {
+    public static Aplicacion cargar(String path) throws IOException, ClassNotFoundException, ConexionFallida {
         ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
         Aplicacion app = (Aplicacion) ent.readObject();
         Date curr = new Date();

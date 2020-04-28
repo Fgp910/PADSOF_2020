@@ -41,7 +41,11 @@ public class NotificacionProy extends Notificacion {
      */
     @Override
     public String descripcion() {
-        return "Proyecto. " + sujeto.getTitulo() + ": " + sujeto.getEstado();
+        String ret = "Proyecto. " + sujeto.getTitulo() + ": " + sujeto.getEstado();
+        if (sujeto.getEstado().equals(EstadoProyecto.RECHAZADO)) {
+            return ret + " Motivo: " + sujeto.getMotivoRechazo();
+        }
+        return ret;
     }
 
     /*
@@ -60,5 +64,10 @@ public class NotificacionProy extends Notificacion {
     @Override
     public int hashCode() {
         return sujeto.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Proyecto: " + sujeto.getTitulo();
     }
 }

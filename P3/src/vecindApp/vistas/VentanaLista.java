@@ -6,11 +6,9 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public class VentanaLista<T> extends JPanel {
-    private JPanel izq = new JPanel();
     private JPanel der = new JPanel();
-
-    private DefaultListModel<T> cLista = new DefaultListModel<T>();
-    private JList<T> lista = new JList<T>(cLista);
+    private DefaultListModel<T> cLista = new DefaultListModel<>();
+    private JList<T> lista = new JList<>(cLista);
     private JScrollPane scroll = new JScrollPane(lista);
 
     public VentanaLista() {
@@ -18,14 +16,9 @@ public class VentanaLista<T> extends JPanel {
 
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scroll.setPreferredSize(new Dimension(250,350));
-        izq.add(scroll);
 
-        add(izq);
+        add(scroll);
         add(der);
-    }
-
-    protected JPanel getIzq() {
-        return izq;
     }
 
     protected JPanel getDer() {
@@ -51,7 +44,7 @@ public class VentanaLista<T> extends JPanel {
     }
 
     public void remove(T t) {
-        cLista.removeElement((Object) t);
+        cLista.removeElement(t);
     }
 
     public void removeAll() {

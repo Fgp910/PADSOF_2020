@@ -35,6 +35,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
     private Date ultimoApoyo;
     private int nApoyos = 1;
     private EstadoProyecto estado = EstadoProyecto.INICIAL;
+    private String motivoRechazo;
     private boolean caducado = false;
     private ElementoColectivo propulsor;
     private Set<ElementoColectivo> promotores;
@@ -235,6 +236,24 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	public void setEstado(EstadoProyecto estado) {
 		this.estado = estado;
 		this.notificarCambio();
+	}
+
+	/**
+	 * Devuelve, si procede, el motivo de rechazo por parte de administracion
+	 * @return el motivo de rechazo o null en caso de haber sido admitido
+	 */
+	public String getMotivoRechazo() {
+		return estado.equals(EstadoProyecto.RECHAZADO) ? motivoRechazo : null;
+	}
+
+	/**
+	 * Establece el motivo de rechazo en caso de no ser admitido por administracion
+	 * @param motivoRechazo el motivo de rechazo
+	 */
+	public void setMotivoRechazo(String motivoRechazo) {
+		if (estado.equals(EstadoProyecto.RECHAZADO)) {
+			this.motivoRechazo = motivoRechazo;
+		}
 	}
 
 	/**

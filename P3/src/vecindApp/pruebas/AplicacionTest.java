@@ -7,6 +7,7 @@ import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.Colectivo;
 import vecindApp.clases.colectivo.ElementoColectivo;
+import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.notificacion.NotificacionProy;
 import vecindApp.clases.notificacion.NotificacionReg;
@@ -191,7 +192,7 @@ public class AplicacionTest {
     }
 
     @Test
-    public void guardarCargar() throws IOException, ClassNotFoundException, InvalidIDException {
+    public void guardarCargar() throws IOException, ClassNotFoundException, ConexionFallida {
         app.guardar("cargar_test.txt");
         assertEquals(app.getAdmin().getUsername(), app.cargar("cargar_test.txt").getAdmin().getUsername());
     }

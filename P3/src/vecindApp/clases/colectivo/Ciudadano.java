@@ -21,6 +21,7 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
 
     private String nif;
     private boolean admitido;
+    private String motivoRechazo;
     private boolean bloqueado;
     private Set<Proyecto> proyectos;
     private Set<Proyecto> proyectosApoyados;
@@ -74,6 +75,24 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
      */
     public void setAdmitido(boolean admitido) {
         this.admitido = admitido;
+    }
+
+    /**
+     * Devuelve, si procede, el motivo de rechazo por parte de administracion
+     * @return el motivo de rechazo o null en caso de haber sido admitido
+     */
+    public String getMotivoRechazo() {
+        return admitido ? null : motivoRechazo;
+    }
+
+    /**
+     * Establece el motivo de rechazo en caso de no ser admitido por administracion
+     * @param motivoRechazo el motivo de rechazo
+     */
+    public void setMotivoRechazo(String motivoRechazo) {
+        if (!admitido) {
+            this.motivoRechazo = motivoRechazo;
+        }
     }
 
     /**
