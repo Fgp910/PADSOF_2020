@@ -6,7 +6,7 @@ import vecindApp.vistas.Perfil;
 import javax.swing.*;
 
 public abstract class Home extends JTabbedPane {
-    protected Notificaciones pNotificaciones = new Notificaciones();
+    protected Notificaciones<?> pNotificaciones = new Notificaciones<>();
     protected Perfil pPerfil = new Perfil();
 
     public Home() {
@@ -14,7 +14,7 @@ public abstract class Home extends JTabbedPane {
         add("Perfil", pPerfil);
     }
 
-    public Notificaciones getNotificaciones() {
+    public Notificaciones<?> getNotificaciones() {
         return pNotificaciones;
     }
 
