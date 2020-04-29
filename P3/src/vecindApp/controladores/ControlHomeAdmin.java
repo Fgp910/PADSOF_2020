@@ -25,7 +25,7 @@ public class ControlHomeAdmin {
         this.vista = frame.getHomeAdmin();
         this.modelo = modelo;
 
-        cNotificaciones = new ControlNotificaciones(vista, modelo);
+        cNotificaciones = new ControlNotificaciones(vista.getNotificaciones(), modelo);
         cBloquear = new ControlBloquear(vista, modelo);
         cDesbloquear = new ControlDesbloquear(vista, modelo);
         cMinApoyos = new ControlMinApoyos(frame, modelo);

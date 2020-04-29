@@ -66,6 +66,7 @@ public class ControlRegistroUsuario implements ActionListener {
                     "Usuario creado con éxito.\nPendiente de aprobación por administración.",
                     "Registro con éxito" ,
                     JOptionPane.INFORMATION_MESSAGE);
+            modelo.guardar(Aplicacion.PATH);
         }
 
         frame.setSize(LoginUsuario.SIZE[0], LoginUsuario.SIZE[1]);

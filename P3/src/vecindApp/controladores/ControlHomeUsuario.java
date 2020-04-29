@@ -25,7 +25,7 @@ public class ControlHomeUsuario {
         this.vista = frame.getHomeUsuario();
         this.modelo = modelo;
 
-        cNotificaciones = new ControlNotificaciones(vista, modelo);
+        cNotificaciones = new ControlNotificaciones(vista.getNotificaciones(), modelo);
         cConsultarProyectos = new ControlConsultarProyectos(frame, modelo);
         cConsultarColectivos = new ControlConsultarColectivos(frame, modelo);
         cBuscarColectivos = new ControlBuscarColectivos(frame, modelo);

@@ -7,7 +7,6 @@ import vecindApp.clases.notificacion.NotificacionReg;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.vistas.Notificaciones;
-import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.Home;
 
 import javax.swing.*;
@@ -20,12 +19,10 @@ public class ControlNotificaciones implements ListSelectionListener, ActionListe
     public static int MAXRECHAZO = 50;
 
     private Notificaciones<Notificacion> vista;
-    private Home<Notificacion> frame;
     private Aplicacion modelo;
 
-    public ControlNotificaciones(Home<Notificacion> frame, Aplicacion modelo) {
-        this.frame = frame;
-        this.vista = frame.getNotificaciones();
+    public ControlNotificaciones(Notificaciones<Notificacion> vista, Aplicacion modelo) {
+        this.vista = vista;
         this.modelo = modelo;
     }
 
