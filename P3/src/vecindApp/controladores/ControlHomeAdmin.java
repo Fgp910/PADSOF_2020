@@ -1,6 +1,7 @@
 package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.controladores.admin.ControlBloquear;
 import vecindApp.controladores.admin.ControlDesbloquear;
 import vecindApp.controladores.admin.ControlMinApoyos;
@@ -9,8 +10,8 @@ import vecindApp.vistas.home.HomeAdmin;
 
 
 public class ControlHomeAdmin {
-    private HomeAdmin vista;
-    private Ventana frame;
+    private HomeAdmin<Notificacion> vista;
+    private Ventana<Notificacion> frame;
     private Aplicacion modelo;
     private ControlNotificaciones cNotificaciones;
     private ControlPerfilUsuario cPerfil;
@@ -19,35 +20,35 @@ public class ControlHomeAdmin {
     private ControlMinApoyos cMinApoyos;
 
 
-    public ControlHomeAdmin(Ventana frame, Aplicacion modelo) {
+    public ControlHomeAdmin(Ventana<Notificacion> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getHomeAdmin();
         this.modelo = modelo;
 
-        cNotificaciones = new ControlNotificaciones(frame, modelo);
+        cNotificaciones = new ControlNotificaciones(vista, modelo);
         cBloquear = new ControlBloquear(frame, modelo);
         cDesbloquear = new ControlDesbloquear(frame, modelo);
         cMinApoyos = new ControlMinApoyos(frame, modelo);
         cPerfil = new ControlPerfilUsuario(frame, modelo);
     }
 
-    public ControlNotificaciones getcNotificaciones() {
+    public ControlNotificaciones getControlNotificaciones() {
         return cNotificaciones;
     }
 
-    public ControlPerfilUsuario getcPerfil() {
+    public ControlPerfilUsuario getControlPerfil() {
         return cPerfil;
     }
 
-    public ControlBloquear getcBloquear() {
+    public ControlBloquear getControlBloquear() {
         return cBloquear;
     }
 
-    public ControlDesbloquear getcDesbloquear() {
+    public ControlDesbloquear getControlDesbloquear() {
         return cDesbloquear;
     }
 
-    public ControlMinApoyos getcMinApoyos() {
+    public ControlMinApoyos getControlMinApoyos() {
         return cMinApoyos;
     }
 }

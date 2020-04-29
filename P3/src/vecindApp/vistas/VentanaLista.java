@@ -51,6 +51,17 @@ public class VentanaLista<T> extends JPanel {
         cLista.clear();
     }
 
+    public void update(Collection<T> nuevos, boolean reset) {
+        if (reset) {
+            removeAll();
+        }
+        addAll(nuevos);
+    }
+
+    public void update(Collection<T> nuevos) {
+        update(nuevos, false);
+    }
+
     public static void main(String[] args) {
         JFrame ventana = new JFrame();
         VentanaLista<String> vLista = new VentanaLista<>();

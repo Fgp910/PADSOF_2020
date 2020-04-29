@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class Perfil extends JPanel {
     private JPanel textPanel = new JPanel(new FlowLayout());
+    private JLabel text = new JLabel();
     private JPanel buttonPanel = new JPanel(new FlowLayout());
     private JButton salir = new JButton("Cerrar Sesion");
 
@@ -24,8 +25,11 @@ public class Perfil extends JPanel {
     }
 
     private void textPanelInit() {
-        JLabel texto = new JLabel();
-        textPanel.add(texto);
+        textPanel.add(text);
+    }
+
+    public void update(String info) {
+        text.setText(info);
     }
 
     public static void main(String[] args) {

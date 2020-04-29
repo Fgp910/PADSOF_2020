@@ -2,9 +2,13 @@ package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
+import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.usuario.Administrador;
+import vecindApp.clases.usuario.Usuario;
 import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.Ventana;
+import vecindApp.vistas.home.Home;
+import vecindApp.vistas.home.HomeUsuario;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,10 +16,10 @@ import java.awt.event.ActionListener;
 
 public class ControlLoginUsuario implements ActionListener {
     private LoginUsuario vista;
-    private Ventana frame;
+    private Ventana<Notificacion> frame;
     private Aplicacion modelo;
 
-    public ControlLoginUsuario(Ventana frame, Aplicacion modelo) {
+    public ControlLoginUsuario(Ventana<Notificacion> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getLoginUsuario();
         this.modelo = modelo;
@@ -34,10 +38,9 @@ public class ControlLoginUsuario implements ActionListener {
             Administrador admin = modelo.getAdmin();
             Ciudadano c = modelo.findCiudadano(user);
 
-            if (user.equals(admin.getUsername()) && psswd.equals(admin.getPassword())) {
+            if (user.equals(admin.getUsername()) && psswd.equals(admin.getPassword())) {    //login exitoso del admin
                 modelo.setUsuarioActual(admin);
-                frame.setSize(600,600);
-                frame.setLocationRelativeTo(null);
+                updateHome(frame.getHomeAdmin());
                 frame.mostrarPanel("homeAdmin");
             } else if (c == null || !c.getPassword().equals(psswd)) {
                 JOptionPane.showMessageDialog(vista,
@@ -46,6 +49,7 @@ public class ControlLoginUsuario implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
             } else if (c.isAdmitido()) {
                 modelo.setUsuarioActual(c);
+                updateHome(frame.getHomeUsuario());
                 frame.mostrarPanel("home");
                 if (c.isBloqueado()) {
                     JOptionPane.showMessageDialog(vista,
@@ -60,5 +64,15 @@ public class ControlLoginUsuario implements ActionListener {
                         JOptionPane.INFORMATION_MESSAGE);
             }
         }
+    }
+
+    private void updateHome(Home<Notificacion> home) {
+        Usuario user = modelo.getUsuarioActual();
+
+        home.getPerfil().update(user.toString());
+        home.getNotificaciones().update(user.getPendientes(), true);
+
+        frame.setSize(600,600);
+        frame.setLocationRelativeTo(null);
     }
 }

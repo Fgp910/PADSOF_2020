@@ -7,11 +7,11 @@ import vecindApp.vistas.home.HomeUsuario;
 import javax.swing.*;
 import java.awt.*;
 
-public class Ventana extends JFrame {
+public class Ventana<N> extends JFrame {
     private LoginUsuario vLoginUsuario = new LoginUsuario();
     private RegistroUsuario vRegistroUsuario = new RegistroUsuario();
-    private HomeUsuario vHomeUsuario = new HomeUsuario();
-    private HomeAdmin vHomeAdmin = new HomeAdmin();
+    private HomeUsuario<N> vHomeUsuario = new HomeUsuario<>();
+    private HomeAdmin<N> vHomeAdmin = new HomeAdmin<>();
 
     private JPanel contentPane = new JPanel();
 
@@ -32,7 +32,8 @@ public class Ventana extends JFrame {
     public void setControlador(Controlador c) {
         vLoginUsuario.setControlador(c.getControlLoginUsuario());
         vRegistroUsuario.setControlador(c.getControlRegistroUsuario());
-        //vHomeUsuario.setControlador(c.getControlHomeUsuario());
+        vHomeUsuario.setControlador(c.getControlHomeUsuario());
+        vHomeAdmin.setControlador(c.getControlHomeAdmin());
     }
 
     public LoginUsuario getLoginUsuario() {
@@ -43,11 +44,11 @@ public class Ventana extends JFrame {
         return vRegistroUsuario;
     }
 
-    public HomeUsuario getHomeUsuario() {
+    public HomeUsuario<N> getHomeUsuario() {
         return vHomeUsuario;
     }
 
-    public HomeAdmin getHomeAdmin() {
+    public HomeAdmin<N> getHomeAdmin() {
         return vHomeAdmin;
     }
 

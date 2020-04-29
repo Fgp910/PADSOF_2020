@@ -1,14 +1,15 @@
 package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.controladores.usuario.*;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
 
 
 public class ControlHomeUsuario {
-    private HomeUsuario vista;
-    private Ventana frame;
+    private HomeUsuario<Notificacion> vista;
+    private Ventana<Notificacion>frame;
     private Aplicacion modelo;
     private ControlNotificaciones cNotificaciones;
     private ControlConsultarProyectos cConsultarProyectos;
@@ -18,12 +19,12 @@ public class ControlHomeUsuario {
     private ControlPerfilUsuario cPerfil;
 
 
-    public ControlHomeUsuario(Ventana frame, Aplicacion modelo) {
+    public ControlHomeUsuario(Ventana<Notificacion> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getHomeUsuario();
         this.modelo = modelo;
 
-        cNotificaciones = new ControlNotificaciones(frame, modelo);
+        cNotificaciones = new ControlNotificaciones(vista, modelo);
         cConsultarProyectos = new ControlConsultarProyectos(frame, modelo);
         cConsultarColectivos = new ControlConsultarColectivos(frame, modelo);
         cBuscarColectivos = new ControlBuscarColectivos(frame, modelo);

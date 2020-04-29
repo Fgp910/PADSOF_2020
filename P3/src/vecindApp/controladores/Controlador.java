@@ -1,10 +1,11 @@
 package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.vistas.Ventana;
 
 public class Controlador {
-    private Ventana frame;
+    private Ventana<Notificacion> frame;
     private Aplicacion modelo;
 
     private ControlLoginUsuario cLogin;
@@ -13,7 +14,7 @@ public class Controlador {
     private ControlHomeAdmin cHomeA;
 
 
-    public Controlador(Ventana frame, Aplicacion modelo) {
+    public Controlador(Ventana<Notificacion> frame, Aplicacion modelo) {
         this.frame = frame;
         this.modelo = modelo;
         cLogin = new ControlLoginUsuario(frame, modelo);

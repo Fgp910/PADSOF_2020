@@ -1,6 +1,7 @@
 package vecindApp.main;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.controladores.Controlador;
 import vecindApp.vistas.Ventana;
 
@@ -11,7 +12,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Ventana frame = new Ventana();
+                    Ventana<Notificacion> frame = new Ventana<>();
                     Aplicacion modelo = Aplicacion.VecindApp;
                     Controlador controlador = new Controlador(frame, modelo);
                     frame.setControlador(controlador);
