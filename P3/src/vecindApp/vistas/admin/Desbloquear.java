@@ -1,32 +1,28 @@
 package vecindApp.vistas.admin;
 
+import vecindApp.controladores.ControlNotificaciones;
+import vecindApp.controladores.admin.ControlDesbloquear;
+import vecindApp.vistas.VentanaLista;
 import vecindApp.vistas.usuario.ConsultarColectivos;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Desbloquear extends JPanel {
-    private JPanel textPanel = new JPanel(new SpringLayout());
+public class Desbloquear<T> extends VentanaLista<T> {
+    private JButton unblock = new JButton("Desbloquear");
 
     public Desbloquear() {
-        textPanelInit();
-
-        this.setLayout(new BorderLayout());
-        add(textPanel, BorderLayout.CENTER);
+        super();
+        getDer().add(unblock);
+        unblock.setEnabled(false);
     }
 
-    private void textPanelInit() {
-        JLabel texto = new JLabel("Desbloquear usuarios");
-        textPanel.add(texto);
+    public JButton getOpenButton() {
+        return unblock;
     }
 
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-
-        ventana.getContentPane().add(new Desbloquear());
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,150);
-        ventana.setVisible(true);
+    public void setControlador(ControlDesbloquear c) {
+        getLista().addListSelectionListener(c);
+        unblock.addActionListener(c);
     }
 }

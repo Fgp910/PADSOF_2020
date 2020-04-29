@@ -1,32 +1,26 @@
 package vecindApp.vistas.admin;
 
-import vecindApp.vistas.usuario.ConsultarColectivos;
+import vecindApp.controladores.admin.ControlBloquear;
+import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Bloquear extends JPanel {
-    private JPanel textPanel = new JPanel(new SpringLayout());
+public class Bloquear<T> extends VentanaLista<T> {
+    private JButton block = new JButton("Bloquear");
 
     public Bloquear() {
-        textPanelInit();
-
-        this.setLayout(new BorderLayout());
-        add(textPanel, BorderLayout.CENTER);
+        super();
+        getDer().add(block);
+        block.setEnabled(false);
     }
 
-    private void textPanelInit() {
-        JLabel texto = new JLabel("Bloquear usuarios");
-        textPanel.add(texto);
+    public JButton getOpenButton() {
+        return block;
     }
 
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-
-        ventana.getContentPane().add(new Bloquear());
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,150);
-        ventana.setVisible(true);
+    public void setControlador(ControlBloquear c) {
+        getLista().addListSelectionListener(c);
+        block.addActionListener(c);
     }
 }

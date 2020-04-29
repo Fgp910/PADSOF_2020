@@ -8,8 +8,8 @@ import vecindApp.vistas.admin.MinApoyos;
 import javax.swing.*;
 
 public class HomeAdmin<N> extends Home<N> {
-    private Bloquear pBloquear = new Bloquear();
-    private Desbloquear pDesbloquear = new Desbloquear();
+    private Bloquear<N> pBloquear = new Bloquear<>();
+    private Desbloquear<N> pDesbloquear = new Desbloquear<>();
     private MinApoyos pMinApoyos = new MinApoyos();
 
     public HomeAdmin() {
@@ -18,11 +18,11 @@ public class HomeAdmin<N> extends Home<N> {
         add("Min apoyos", pMinApoyos);
     }
 
-    public Bloquear getpBloquear() {
+    public Bloquear<N> getpBloquear() {
         return pBloquear;
     }
 
-    public Desbloquear getpDesbloquear() {
+    public Desbloquear<N> getpDesbloquear() {
         return pDesbloquear;
     }
 
@@ -33,11 +33,9 @@ public class HomeAdmin<N> extends Home<N> {
     public void setControlador(ControlHomeAdmin c) {
         pPerfil.setControlador(c.getControlPerfil());
         pNotificaciones.setControlador(c.getControlNotificaciones());
-        /*
-        pPerfil.setControlador(c.getControlPerfil());
-        pMinApoyos.setControlador(c.getControlMinApoyos());
+        //pMinApoyos.setControlador(c.getControlMinApoyos());
         pDesbloquear.setControlador(c.getControlDesbloquear());
-        pBloquear.setControlador(c.getControlBloquear());*/
+        pBloquear.setControlador(c.getControlBloquear());
     }
 
     public static void main(String[] args) {

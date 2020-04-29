@@ -9,11 +9,16 @@ import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.Home;
+import vecindApp.vistas.home.HomeAdmin;
 import vecindApp.vistas.home.HomeUsuario;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class ControlLoginUsuario implements ActionListener {
     private LoginUsuario vista;
@@ -79,6 +84,10 @@ public class ControlLoginUsuario implements ActionListener {
 
         home.getPerfil().update(user.toString());
         home.getNotificaciones().update(user.getPendientes(), true);
+        /*if (user != modelo.getAdmin()) {
+            HomeAdmin<Usuario> h = (HomeAdmin<Usuario>) home;
+            h.getpBloquear().update(user, false);
+        }*/
 
         frame.setSize(Home.SIZE[0], Home.SIZE[1]);
         frame.setLocationRelativeTo(null);

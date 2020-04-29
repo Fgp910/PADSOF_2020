@@ -1,18 +1,45 @@
 package vecindApp.controladores.admin;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.notificacion.Notificacion;
-import vecindApp.vistas.Ventana;
 import vecindApp.vistas.admin.Desbloquear;
+import vecindApp.vistas.home.HomeAdmin;
 
-public class ControlDesbloquear {
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ControlDesbloquear implements ListSelectionListener, ActionListener {
     private Desbloquear vista;
-    private Ventana<Notificacion> frame;
+    private HomeAdmin<Notificacion> frame;
     private Aplicacion modelo;
 
-    public ControlDesbloquear(Ventana<Notificacion> frame, Aplicacion modelo) {
+    public ControlDesbloquear(HomeAdmin<Notificacion> frame, Aplicacion modelo) {
         this.frame = frame;
-        this.vista = frame.getHomeAdmin().getpDesbloquear();
+        this.vista = frame.getpDesbloquear();
         this.modelo = modelo;
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting()) {
+            if (vista.getLista().getSelectedValue() == null) {
+                vista.getOpenButton().setEnabled(false);
+            } else {
+                vista.getOpenButton().setEnabled(true);
+            }
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        int index = vista.getLista().getSelectedIndex();
+        if (index > -1) {
+            Ciudadano c = (Ciudadano) vista.getItem(index);
+            c.setBloqueado(false);
+            vista.remove(c);
+        }
     }
 }
