@@ -14,13 +14,13 @@ public class ControlHomeAdmin {
     private Ventana<Notificacion> frame;
     private Aplicacion modelo;
     private ControlNotificaciones cNotificaciones;
-    private ControlPerfilUsuario cPerfil;
+    private ControlPerfil cPerfil;
     private ControlBloquear cBloquear;
     private ControlDesbloquear cDesbloquear;
     private ControlMinApoyos cMinApoyos;
 
 
-    public ControlHomeAdmin(Ventana<Notificacion> frame, Aplicacion modelo) {
+    public ControlHomeAdmin(Ventana<Notificacion> frame, Aplicacion modelo, ControlPerfil cPerfil) {
         this.frame = frame;
         this.vista = frame.getHomeAdmin();
         this.modelo = modelo;
@@ -29,14 +29,14 @@ public class ControlHomeAdmin {
         cBloquear = new ControlBloquear(frame, modelo);
         cDesbloquear = new ControlDesbloquear(frame, modelo);
         cMinApoyos = new ControlMinApoyos(frame, modelo);
-        cPerfil = new ControlPerfilUsuario(frame, modelo);
+        this.cPerfil = cPerfil;
     }
 
     public ControlNotificaciones getControlNotificaciones() {
         return cNotificaciones;
     }
 
-    public ControlPerfilUsuario getControlPerfil() {
+    public ControlPerfil getControlPerfil() {
         return cPerfil;
     }
 

@@ -6,6 +6,8 @@ import vecindApp.controladores.usuario.*;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
 
+import java.awt.event.ActionListener;
+
 
 public class ControlHomeUsuario {
     private HomeUsuario<Notificacion> vista;
@@ -16,10 +18,9 @@ public class ControlHomeUsuario {
     private ControlConsultarColectivos cConsultarColectivos;
     private ControlBuscarColectivos cBuscarColectivos;
     private ControlBuscarProyectos cBuscarProyectos;
-    private ControlPerfilUsuario cPerfil;
+    private ControlPerfil cPerfil;
 
-
-    public ControlHomeUsuario(Ventana<Notificacion> frame, Aplicacion modelo) {
+    public ControlHomeUsuario(Ventana<Notificacion> frame, Aplicacion modelo, ControlPerfil cPerfil) {
         this.frame = frame;
         this.vista = frame.getHomeUsuario();
         this.modelo = modelo;
@@ -29,7 +30,7 @@ public class ControlHomeUsuario {
         cConsultarColectivos = new ControlConsultarColectivos(frame, modelo);
         cBuscarColectivos = new ControlBuscarColectivos(frame, modelo);
         cBuscarProyectos = new ControlBuscarProyectos(frame, modelo);
-        cPerfil = new ControlPerfilUsuario(frame, modelo);
+        this.cPerfil = cPerfil;
     }
 
     public ControlNotificaciones getControlNotificaciones() {
@@ -52,7 +53,7 @@ public class ControlHomeUsuario {
         return cBuscarProyectos;
     }
 
-    public ControlPerfilUsuario getcPerfil() {
+    public ControlPerfil getControlPerfil() {
         return cPerfil;
     }
 }

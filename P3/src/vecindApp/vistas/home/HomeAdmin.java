@@ -31,6 +31,7 @@ public class HomeAdmin<N> extends Home<N> {
     }
 
     public void setControlador(ControlHomeAdmin c) {
+        pPerfil.setControlador(c.getControlPerfil());
         pNotificaciones.setControlador(c.getControlNotificaciones());
         /*
         pPerfil.setControlador(c.getControlPerfil());

@@ -6,6 +6,7 @@ import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.usuario.Administrador;
 import vecindApp.clases.usuario.Usuario;
 import vecindApp.vistas.LoginUsuario;
+import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.Home;
 import vecindApp.vistas.home.HomeUsuario;
@@ -28,7 +29,7 @@ public class ControlLoginUsuario implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vista.getRegButton())) {
-            frame.setSize(300, 200);
+            frame.setSize(RegistroUsuario.SIZE[0], RegistroUsuario.SIZE[1]);
             frame.setLocationRelativeTo(null);
             frame.getRegistroUsuario().update();
             frame.mostrarPanel("registroUsuario");
@@ -55,8 +56,15 @@ public class ControlLoginUsuario implements ActionListener {
                     JOptionPane.showMessageDialog(vista,
                             "Ha sido bloqueado por administración.\nSus apoyos a proyectos serán ignorados.",
                             "Bloqueado",
-                            JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.WARNING_MESSAGE);
                 }
+            } else if (c.getMotivoRechazo() != null) {
+                JOptionPane.showMessageDialog(vista,
+                        "Ha sido rechazado por administración porque \"" + c.getMotivoRechazo() +
+                                "\"\n Sus datos de registro han sido eliminados",
+                        "Registro rechazado",
+                        JOptionPane.ERROR_MESSAGE);
+                modelo.removeElemCol(c);
             } else {
                 JOptionPane.showMessageDialog(vista,
                         "Pendiente de aprobación por administración.\nInténtelo luego.",
@@ -72,7 +80,7 @@ public class ControlLoginUsuario implements ActionListener {
         home.getPerfil().update(user.toString());
         home.getNotificaciones().update(user.getPendientes(), true);
 
-        frame.setSize(600,600);
+        frame.setSize(Home.SIZE[0], Home.SIZE[1]);
         frame.setLocationRelativeTo(null);
     }
 }

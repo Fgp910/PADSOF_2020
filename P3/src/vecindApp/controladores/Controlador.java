@@ -10,6 +10,7 @@ public class Controlador {
 
     private ControlLoginUsuario cLogin;
     private ControlRegistroUsuario cRegistro;
+    private ControlPerfil cPerfil;
     private ControlHomeUsuario cHomeU;
     private ControlHomeAdmin cHomeA;
 
@@ -19,8 +20,9 @@ public class Controlador {
         this.modelo = modelo;
         cLogin = new ControlLoginUsuario(frame, modelo);
         cRegistro = new ControlRegistroUsuario(frame, modelo);
-        cHomeU = new ControlHomeUsuario(frame, modelo);
-        cHomeA = new ControlHomeAdmin(frame, modelo);
+        cPerfil = new ControlPerfil(frame, modelo);
+        cHomeU = new ControlHomeUsuario(frame, modelo, cPerfil);
+        cHomeA = new ControlHomeAdmin(frame, modelo, cPerfil);
     }
 
     public ControlLoginUsuario getControlLoginUsuario() {

@@ -35,7 +35,6 @@ public class ControlNotificaciones implements ListSelectionListener, ActionListe
             if (vista.getLista().getSelectedValue() == null) {
                 vista.getOpenButton().setEnabled(false);
             } else {
-                JOptionPane.showMessageDialog(vista,"heyeyey3");
                 vista.getOpenButton().setEnabled(true);
             }
         }
@@ -44,9 +43,7 @@ public class ControlNotificaciones implements ListSelectionListener, ActionListe
     @Override
     public void actionPerformed(ActionEvent e) {
         int index = vista.getLista().getSelectedIndex();
-        JOptionPane.showMessageDialog(vista,"heyeyey4");
         if (index > -1) {
-            JOptionPane.showMessageDialog(vista,"heyeyey5");
             Notificacion noti = vista.getItem(index);
             if (modelo.getUsuarioActual().equals(modelo.getAdmin())) {
                 String [] op = {"Admitir", "Rechazar", "Cancelar"};

@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class RegistroUsuario extends JPanel {
+    public static final int[] SIZE = {300, 200};
+
     private JPanel textPanel = new JPanel(new SpringLayout());
     private JTextField user = new JTextField();
     private JTextField nif = new JTextField();

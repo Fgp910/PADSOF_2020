@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class LoginUsuario extends JPanel {
+    public static final int[] SIZE = {300, 150};
+
     private JPanel textPanel = new JPanel(new SpringLayout());
     private JTextField user = new JTextField();
     private JPasswordField pssw = new JPasswordField();

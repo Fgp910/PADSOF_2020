@@ -1,6 +1,7 @@
 package vecindApp.vistas.home;
 
 import vecindApp.controladores.ControlHomeUsuario;
+import vecindApp.vistas.Perfil;
 import vecindApp.vistas.usuario.BuscarColectivos;
 import vecindApp.vistas.usuario.BuscarProyectos;
 import vecindApp.vistas.usuario.ConsultarColectivos;
@@ -38,6 +39,7 @@ public class HomeUsuario<N> extends Home<N> {
     }
 
     public void setControlador(ControlHomeUsuario c) {
+        pPerfil.setControlador(c.getControlPerfil());
         pNotificaciones.setControlador(c.getControlNotificaciones());
         /*p_consultar_proys.setControlador(c.getControlConsultarProyectos());
         p_consultar_cols.setControlador(c.getControlConsultarColectivos());

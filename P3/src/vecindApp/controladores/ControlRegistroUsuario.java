@@ -3,6 +3,7 @@ package vecindApp.controladores;
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
 
@@ -67,7 +68,8 @@ public class ControlRegistroUsuario implements ActionListener {
                     JOptionPane.INFORMATION_MESSAGE);
         }
 
-        frame.setSize(300, 150);
+        frame.setSize(LoginUsuario.SIZE[0], LoginUsuario.SIZE[1]);
+        frame.setLocationRelativeTo(null);
         frame.getLoginUsuario().update();
         frame.mostrarPanel("loginUsuario");
     }

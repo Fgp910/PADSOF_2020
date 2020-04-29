@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.util.Collection;
 
 public abstract class Home<N> extends JTabbedPane {
+    public static final int[] SIZE = {600, 600};
+
     protected Perfil pPerfil = new Perfil();
     protected Notificaciones<N> pNotificaciones = new Notificaciones<>();
 

@@ -19,6 +19,7 @@ import java.util.*;
  */
 public class Aplicacion implements Serializable {
     public static Aplicacion VecindApp = new Aplicacion(new Administrador("admin", "password"));
+    public static String PATH = "vecindapp_bin.dat";
 
     private static int minApoyos;
 

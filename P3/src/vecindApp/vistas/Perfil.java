@@ -4,6 +4,7 @@ import vecindApp.vistas.usuario.ConsultarColectivos;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Perfil extends JPanel {
     private JPanel textPanel = new JPanel(new FlowLayout());
@@ -26,6 +27,10 @@ public class Perfil extends JPanel {
 
     private void textPanelInit() {
         textPanel.add(text);
+    }
+
+    public void setControlador(ActionListener c) {
+        salir.addActionListener(c);
     }
 
     public void update(String info) {
