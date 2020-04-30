@@ -3,6 +3,7 @@ package vecindApp.controladores.admin;
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.vistas.admin.Desbloquear;
 import vecindApp.vistas.home.HomeAdmin;
 
@@ -12,11 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControlDesbloquear implements ListSelectionListener, ActionListener {
-    private Desbloquear vista;
-    private HomeAdmin<Notificacion> frame;
+    private Desbloquear<Ciudadano> vista;
+    private HomeAdmin<Notificacion, Ciudadano, Proyecto> frame;
     private Aplicacion modelo;
 
-    public ControlDesbloquear(HomeAdmin<Notificacion> frame, Aplicacion modelo) {
+    public ControlDesbloquear(HomeAdmin<Notificacion, Ciudadano, Proyecto> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getpDesbloquear();
         this.modelo = modelo;
@@ -40,6 +41,7 @@ public class ControlDesbloquear implements ListSelectionListener, ActionListener
             Ciudadano c = (Ciudadano) vista.getItem(index);
             c.setBloqueado(false);
             vista.remove(c);
+            frame.getpBloquear().add(c);
         }
     }
 }

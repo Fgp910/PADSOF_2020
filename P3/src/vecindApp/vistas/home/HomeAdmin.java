@@ -7,10 +7,10 @@ import vecindApp.vistas.admin.MinApoyos;
 
 import javax.swing.*;
 
-public class HomeAdmin<N> extends Home<N> {
-    private Bloquear<N> pBloquear = new Bloquear<>();
-    private Desbloquear<N> pDesbloquear = new Desbloquear<>();
-    private MinApoyos pMinApoyos = new MinApoyos();
+public class HomeAdmin<N,C,P> extends Home<N,C> {
+    private Bloquear<C> pBloquear = new Bloquear<>();
+    private Desbloquear<C> pDesbloquear = new Desbloquear<>();
+    private MinApoyos<P> pMinApoyos = new MinApoyos<>();
 
     public HomeAdmin() {
         add("Bloquear", pBloquear);
@@ -18,15 +18,15 @@ public class HomeAdmin<N> extends Home<N> {
         add("Min apoyos", pMinApoyos);
     }
 
-    public Bloquear<N> getpBloquear() {
+    public Bloquear<C> getpBloquear() {
         return pBloquear;
     }
 
-    public Desbloquear<N> getpDesbloquear() {
+    public Desbloquear<C> getpDesbloquear() {
         return pDesbloquear;
     }
 
-    public MinApoyos getpMinApoyos() {
+    public MinApoyos<P> getpMinApoyos() {
         return pMinApoyos;
     }
 
@@ -41,7 +41,7 @@ public class HomeAdmin<N> extends Home<N> {
     public static void main(String[] args) {
         JFrame ventana = new JFrame();
 
-        ventana.getContentPane().add(new HomeAdmin<String>());
+        ventana.getContentPane().add(new HomeAdmin<String, String, String>());
 
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setSize(600,400);

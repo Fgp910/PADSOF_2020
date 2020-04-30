@@ -14,10 +14,10 @@ import java.awt.event.ActionListener;
 
 public class ControlRegistroUsuario implements ActionListener {
     private RegistroUsuario vista;
-    private Ventana<Notificacion, Proyecto> frame;
+    private Ventana<Notificacion, Proyecto, Ciudadano> frame;
     private Aplicacion modelo;
 
-    public ControlRegistroUsuario(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo) {
+    public ControlRegistroUsuario(Ventana<Notificacion, Proyecto, Ciudadano> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getRegistroUsuario();
         this.modelo = modelo;

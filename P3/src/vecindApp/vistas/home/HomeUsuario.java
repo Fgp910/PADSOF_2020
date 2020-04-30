@@ -5,7 +5,7 @@ import vecindApp.vistas.usuario.*;
 
 import javax.swing.*;
 
-public class HomeUsuario<N, P> extends Home<N> {
+public class HomeUsuario<N, P> extends Home<N,P> {
     private ConsultarColectivos pConsultarColectivos = new ConsultarColectivos();
     private MisProyectos<P> pMisProyectos = new MisProyectos<>();
     private BuscarProyectos pBuscarProyectos = new BuscarProyectos();

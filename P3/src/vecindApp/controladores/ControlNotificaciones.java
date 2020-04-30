@@ -1,12 +1,16 @@
 package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.notificacion.NotificacionProy;
 import vecindApp.clases.notificacion.NotificacionReg;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.vistas.Notificaciones;
+import vecindApp.vistas.Ventana;
+import vecindApp.vistas.home.Home;
+import vecindApp.vistas.home.HomeAdmin;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -17,12 +21,14 @@ import java.awt.event.ActionListener;
 public class ControlNotificaciones implements ListSelectionListener, ActionListener {
     public static int MAXRECHAZO = 50;
 
+    private HomeAdmin<Notificacion, Ciudadano, Proyecto> frame;
     private Notificaciones<Notificacion> vista;
     private Aplicacion modelo;
 
-    public ControlNotificaciones(Notificaciones<Notificacion> vista, Aplicacion modelo) {
-        this.vista = vista;
+    public ControlNotificaciones(Ventana<Notificacion, Proyecto, Ciudadano> frame, Aplicacion modelo) {
+        this.vista = frame.getHomeAdmin().getNotificaciones();
         this.modelo = modelo;
+        this.frame = frame.getHomeAdmin();
     }
 
     @Override
@@ -56,6 +62,7 @@ public class ControlNotificaciones implements ListSelectionListener, ActionListe
             if (ret == JOptionPane.YES_OPTION) {
                 if (noti instanceof NotificacionReg) {
                     ((NotificacionReg) noti).getSujeto().setAdmitido(true);
+                    frame.getpBloquear().add(((NotificacionReg) noti).getSujeto());
                 } else if (noti instanceof NotificacionProy) {
                     ((NotificacionProy) noti).getSujeto().setEstado(EstadoProyecto.ACEPTADO);
                 }

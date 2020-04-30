@@ -1,32 +1,28 @@
 package vecindApp.vistas.admin;
 
+import vecindApp.controladores.admin.ControlBloquear;
+import vecindApp.controladores.admin.ControlMinApoyos;
+import vecindApp.vistas.VentanaLista;
 import vecindApp.vistas.usuario.ConsultarColectivos;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MinApoyos extends JPanel {
-    private JPanel textPanel = new JPanel(new SpringLayout());
+public class MinApoyos<P> extends VentanaLista<P> {
+    private JButton change = new JButton("Cambiar min apoyos");
 
     public MinApoyos() {
-        textPanelInit();
-
-        this.setLayout(new BorderLayout());
-        add(textPanel, BorderLayout.CENTER);
+        super();
+        getBot().add(change);
+        change.setEnabled(false);
     }
 
-    private void textPanelInit() {
-        JLabel texto = new JLabel("Cambiar minimo de apoyos");
-        textPanel.add(texto);
+    public JButton getChangeButton() {
+        return change;
     }
 
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-
-        ventana.getContentPane().add(new MinApoyos());
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,150);
-        ventana.setVisible(true);
-    }
+    /*public void setControlador(ControlMinApoyos c) {
+        getLista().addListSelectionListener(c);
+        change.addActionListener(c);
+    }*/
 }
