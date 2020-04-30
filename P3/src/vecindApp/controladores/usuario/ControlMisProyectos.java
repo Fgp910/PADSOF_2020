@@ -18,11 +18,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControlMisProyectos implements ListSelectionListener, ActionListener {
+    private Ventana<Notificacion, Proyecto> frame;
     private MisProyectos<Proyecto> vista;
     private Aplicacion modelo;
 
-    public ControlMisProyectos(MisProyectos<Proyecto> vista, Aplicacion modelo) {
-        this.vista = vista;
+    public ControlMisProyectos(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo) {
+        this.frame = frame;
+        this.vista = frame.getHomeUsuario().getMisProyectos();
         this.modelo = modelo;
     }
 
