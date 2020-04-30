@@ -3,6 +3,7 @@ package vecindApp.controladores;
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.clases.usuario.Administrador;
 import vecindApp.clases.usuario.Usuario;
 import vecindApp.vistas.LoginUsuario;
@@ -22,10 +23,10 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class ControlLoginUsuario implements ActionListener {
     private LoginUsuario vista;
-    private Ventana<Notificacion> frame;
+    private Ventana<Notificacion, Proyecto> frame;
     private Aplicacion modelo;
 
-    public ControlLoginUsuario(Ventana<Notificacion> frame, Aplicacion modelo) {
+    public ControlLoginUsuario(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getLoginUsuario();
         this.modelo = modelo;

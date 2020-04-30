@@ -3,6 +3,7 @@ package vecindApp.controladores;
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
@@ -13,10 +14,10 @@ import java.awt.event.ActionListener;
 
 public class ControlRegistroUsuario implements ActionListener {
     private RegistroUsuario vista;
-    private Ventana<Notificacion> frame;
+    private Ventana<Notificacion, Proyecto> frame;
     private Aplicacion modelo;
 
-    public ControlRegistroUsuario(Ventana<Notificacion> frame, Aplicacion modelo) {
+    public ControlRegistroUsuario(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getRegistroUsuario();
         this.modelo = modelo;

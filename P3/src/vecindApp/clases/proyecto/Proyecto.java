@@ -381,8 +381,10 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 		CCGG proxy = CCGG.getGateway();
 		try {
 			this.idEnvio = proxy.submitRequest(req);
-		} catch (Exception e){
+		} catch (IOException ex){
 			throw new ConexionFallida();
+		} catch (InvalidRequestException ex) {
+
 		}
 		setEstado(EstadoProyecto.ENVIADO);
 	}
@@ -397,16 +399,18 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 		Double aux;
 		try {
 			aux = proxy.getAmountGranted(this.idEnvio); //Si no esta resuelto, getAmountGranted devuelve null
-		} catch (Exception e) {
-			throw new ConexionFallida();
-		}
-		if (aux != null) {
-			importeConcedido = aux;
-			if (importeConcedido == 0) {
-				setEstado(EstadoProyecto.DENEGADO);
-			} else {
-				setEstado(EstadoProyecto.FINANCIADO);
+			if (aux != null) {
+				importeConcedido = aux;
+				if (importeConcedido == 0) {
+					setEstado(EstadoProyecto.DENEGADO);
+				} else {
+					setEstado(EstadoProyecto.FINANCIADO);
+				}
 			}
+		} catch (IOException ex) {
+			throw new ConexionFallida();
+		} catch (InvalidIDException ex) {
+
 		}
 	}
 

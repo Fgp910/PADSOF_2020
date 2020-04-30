@@ -2,6 +2,7 @@ package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.Ventana;
 
@@ -9,10 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControlPerfil implements ActionListener{
-    private Ventana<Notificacion> frame;
+    private Ventana<Notificacion, Proyecto> frame;
     private Aplicacion modelo;
 
-    public ControlPerfil(Ventana<Notificacion> frame, Aplicacion modelo) {
+    public ControlPerfil(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo) {
         this.frame = frame;
         this.modelo = modelo;
     }

@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class ControlHomeUsuario {
     private HomeUsuario<Notificacion, Proyecto> vista;
-    private Ventana<Notificacion>frame;
+    private Ventana<Notificacion, Proyecto>frame;
     private Aplicacion modelo;
     private ControlNotificaciones cNotificaciones;
     private ControlMisProyectos cMisProyectos;
@@ -22,7 +22,7 @@ public class ControlHomeUsuario {
     private ControlBuscarProyectos cBuscarProyectos;
     private ControlPerfil cPerfil;
 
-    public ControlHomeUsuario(Ventana<Notificacion> frame, Aplicacion modelo, ControlPerfil cPerfil) {
+    public ControlHomeUsuario(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo, ControlPerfil cPerfil) {
         this.frame = frame;
         this.vista = frame.getHomeUsuario();
         this.modelo = modelo;

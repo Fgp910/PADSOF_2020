@@ -2,6 +2,7 @@ package vecindApp.controladores.admin;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.controladores.ControlNotificaciones;
 import vecindApp.controladores.ControlPerfil;
 import vecindApp.controladores.admin.ControlBloquear;
@@ -13,7 +14,7 @@ import vecindApp.vistas.home.HomeAdmin;
 
 public class ControlHomeAdmin {
     private HomeAdmin<Notificacion> vista;
-    private Ventana<Notificacion> frame;
+    private Ventana<Notificacion, Proyecto> frame;
     private Aplicacion modelo;
     private ControlNotificaciones cNotificaciones;
     private ControlPerfil cPerfil;
@@ -22,7 +23,7 @@ public class ControlHomeAdmin {
     private ControlMinApoyos cMinApoyos;
 
 
-    public ControlHomeAdmin(Ventana<Notificacion> frame, Aplicacion modelo, ControlPerfil cPerfil) {
+    public ControlHomeAdmin(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo, ControlPerfil cPerfil) {
         this.frame = frame;
         this.vista = frame.getHomeAdmin();
         this.modelo = modelo;
