@@ -207,6 +207,16 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	}
 
 	/**
+	 * Actualiza el estado de caducidad en funcion de una fecha actual
+	 * @param curr la fecha actual
+	 */
+	public void actualizarCaducidad(Date curr) {
+		if ((curr.getTime() - this.getUltimoApoyo().getTime())/1000.0 > 30 * 24 * 3600) { //30 dias en segundos
+			this.caducar();
+		}
+	}
+
+	/**
 	 * Devuelve el numero de apoyos recibido por el proyecto
 	 * @return numero de apoyos
 	 */
@@ -338,14 +348,14 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	}
 
 	/**
-	 * pone el estado de un proyecto en caducado
+	 * Pone el estado de un proyecto en caducado
 	 */
 	public void caducar() {
 		setCaducado(true);
 	}
 
 	/**
-	 * pone el estado de un proyecto en aceptado
+	 * Pone el estado de un proyecto en aceptado
 	 */
 	public void aceptar() {
 		setEstado(EstadoProyecto.ACEPTADO);
@@ -353,7 +363,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	}
 
 	/**
-	 * pone el estado de un proyecto en rechazado
+	 * Pone el estado de un proyecto en rechazado
 	 */
 	public void rechazar() {
 		setEstado(EstadoProyecto.RECHAZADO);

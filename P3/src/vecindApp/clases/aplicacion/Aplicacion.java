@@ -2,6 +2,7 @@ package vecindApp.clases.aplicacion;
 
 import es.uam.eps.sadp.grants.InvalidIDException;
 import vecindApp.clases.colectivo.*;
+import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.*;
 import vecindApp.clases.proyecto.*;
@@ -118,11 +119,7 @@ public class Aplicacion implements Serializable {
         Date curr = new Date();
 
         this.usuarioActual = usuarioActual;
-        for (Proyecto p : proyectos) {
-            if ((curr.getTime() - p.getUltimoApoyo().getTime())/1000.0 > 30 * 24 * 3600) { //30 dias en segundos
-                p.caducar();
-            }
-        }
+        proyectos.forEach(p -> p.actualizarCaducidad(curr));
     }
 
     /**
@@ -298,18 +295,17 @@ public class Aplicacion implements Serializable {
      * @return la Aplicacion leida
      * @throws IOException en caso de error de E/S
      * @throws ClassNotFoundException en caso de error con la declaracion de clases
-     * @throws ConexionFallida en caso de error en la consulta al sistema externo de financiacion
+     * @throws ConexionFallida en caso de error de conexion con el sistema externo de financiacion
+     * @throws CCGGException en caso de error en la consulta al sistema externo de financiacion
      */
-    public static Aplicacion cargar(String path) throws IOException, ClassNotFoundException, ConexionFallida {
+    public static Aplicacion cargar(String path) throws IOException, ClassNotFoundException, ConexionFallida, CCGGException {
         ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
         Aplicacion app = (Aplicacion) ent.readObject();
         Date curr = new Date();
         app.varStatic.setValues();
         //Comprobando caducidad y financiacion de proyectos
         for (Proyecto p : app.proyectos) {
-            if ((curr.getTime() - p.getUltimoApoyo().getTime())/1000.0 > 30 * 24 * 3600) { //30 dias en segundos
-                p.caducar();
-            }
+            p.actualizarCaducidad(curr);
             if (p.getEstado() == EstadoProyecto.ENVIADO) {
                 p.consultarFinanciacion();
             }

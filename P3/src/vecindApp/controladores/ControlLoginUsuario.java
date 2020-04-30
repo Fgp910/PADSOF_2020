@@ -85,10 +85,11 @@ public class ControlLoginUsuario implements ActionListener {
 
         home.getPerfil().update(user.toString());
         home.getNotificaciones().update(user.getPendientes(), true);
-        /*if (user != modelo.getAdmin()) {
-            HomeAdmin<Usuario> h = (HomeAdmin<Usuario>) home;
-            h.getpBloquear().update(user, false);
-        }*/
+        if (!user.equals(modelo.getAdmin())) {
+            Ciudadano u = (Ciudadano) user;
+            HomeUsuario<Notificacion, Proyecto> h = (HomeUsuario<Notificacion, Proyecto>) home;
+            h.getMisProyectos().addAll(u.getProyectos());
+        }
 
         frame.setSize(Home.SIZE[0], Home.SIZE[1]);
         frame.setLocationRelativeTo(null);

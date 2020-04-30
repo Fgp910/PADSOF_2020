@@ -22,7 +22,7 @@ public class HomeUsuario<N, P> extends Home<N> {
         return pConsultarColectivos;
     }
 
-    public MisProyectos<P> getpConsultarProyectos() {
+    public MisProyectos<P> getMisProyectos() {
         return pMisProyectos;
     }
 
