@@ -7,7 +7,6 @@ import vecindApp.clases.notificacion.NotificacionReg;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.vistas.Notificaciones;
-import vecindApp.vistas.home.Home;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

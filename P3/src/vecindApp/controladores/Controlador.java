@@ -2,6 +2,8 @@ package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.controladores.admin.ControlHomeAdmin;
+import vecindApp.controladores.usuario.ControlHomeUsuario;
 import vecindApp.vistas.Ventana;
 
 public class Controlador {

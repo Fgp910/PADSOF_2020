@@ -1,22 +1,18 @@
 package vecindApp.vistas.home;
 
-import vecindApp.controladores.ControlHomeUsuario;
-import vecindApp.vistas.Perfil;
-import vecindApp.vistas.usuario.BuscarColectivos;
-import vecindApp.vistas.usuario.BuscarProyectos;
-import vecindApp.vistas.usuario.ConsultarColectivos;
-import vecindApp.vistas.usuario.ConsultarProyectos;
+import vecindApp.controladores.usuario.ControlHomeUsuario;
+import vecindApp.vistas.usuario.*;
 
 import javax.swing.*;
 
-public class HomeUsuario<N> extends Home<N> {
+public class HomeUsuario<N, P> extends Home<N> {
     private ConsultarColectivos pConsultarColectivos = new ConsultarColectivos();
-    private ConsultarProyectos pConsultarProyectos = new ConsultarProyectos();
+    private MisProyectos<P> pMisProyectos = new MisProyectos<>();
     private BuscarProyectos pBuscarProyectos = new BuscarProyectos();
     private BuscarColectivos pBuscarColectivos = new BuscarColectivos();
 
     public HomeUsuario() {
-        add("Consultar Proyectos", pConsultarProyectos);
+        add("Mis Proyectos", pMisProyectos);
         add("Consultar Colectivos", pConsultarColectivos);
         add("Buscar Proyectos", pBuscarProyectos);
         add("Buscar Colectivos", pBuscarColectivos);
@@ -26,8 +22,8 @@ public class HomeUsuario<N> extends Home<N> {
         return pConsultarColectivos;
     }
 
-    public ConsultarProyectos getpConsultarProyectos() {
-        return pConsultarProyectos;
+    public MisProyectos<P> getpConsultarProyectos() {
+        return pMisProyectos;
     }
 
     public BuscarProyectos getpBuscarProyectos() {
@@ -41,6 +37,7 @@ public class HomeUsuario<N> extends Home<N> {
     public void setControlador(ControlHomeUsuario c) {
         pPerfil.setControlador(c.getControlPerfil());
         pNotificaciones.setControlador(c.getControlNotificaciones());
+        pMisProyectos.setControlador(c.getControlMisProyectos());
         /*p_consultar_proys.setControlador(c.getControlConsultarProyectos());
         p_consultar_cols.setControlador(c.getControlConsultarColectivos());
         p_cerrar_sesion.setControlador(c.getControlCerrarSesion());

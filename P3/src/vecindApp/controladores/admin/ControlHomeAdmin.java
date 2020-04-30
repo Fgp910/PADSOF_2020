@@ -1,7 +1,9 @@
-package vecindApp.controladores;
+package vecindApp.controladores.admin;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.controladores.ControlNotificaciones;
+import vecindApp.controladores.ControlPerfil;
 import vecindApp.controladores.admin.ControlBloquear;
 import vecindApp.controladores.admin.ControlDesbloquear;
 import vecindApp.controladores.admin.ControlMinApoyos;

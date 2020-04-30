@@ -6,23 +6,23 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public class VentanaLista<T> extends JPanel {
-    private JPanel der = new JPanel();
+    private JPanel bot = new JPanel();
     private DefaultListModel<T> cLista = new DefaultListModel<>();
     private JList<T> lista = new JList<>(cLista);
     private JScrollPane scroll = new JScrollPane(lista);
 
     public VentanaLista() {
-        setLayout(new GridLayout(1, 2));
+        setLayout(new BorderLayout());
 
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scroll.setPreferredSize(new Dimension(250,350));
 
-        add(scroll);
-        add(der);
+        add(scroll, BorderLayout.CENTER);
+        add(bot, BorderLayout.SOUTH);
     }
 
-    protected JPanel getDer() {
-        return der;
+    protected JPanel getBot() {
+        return bot;
     }
 
     public JList<T> getLista() {

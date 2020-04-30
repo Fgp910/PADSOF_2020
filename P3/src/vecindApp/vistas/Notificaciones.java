@@ -9,7 +9,7 @@ public class Notificaciones<T> extends VentanaLista<T> {
 
     public Notificaciones() {
         super();
-        getDer().add(open);
+        getBot().add(open);
         open.setEnabled(false);
     }
 

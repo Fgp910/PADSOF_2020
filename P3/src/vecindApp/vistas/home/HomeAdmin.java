@@ -1,6 +1,6 @@
 package vecindApp.vistas.home;
 
-import vecindApp.controladores.ControlHomeAdmin;
+import vecindApp.controladores.admin.ControlHomeAdmin;
 import vecindApp.vistas.admin.Bloquear;
 import vecindApp.vistas.admin.Desbloquear;
 import vecindApp.vistas.admin.MinApoyos;
