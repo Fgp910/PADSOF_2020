@@ -2,6 +2,7 @@ package vecindApp.controladores.usuario;
 
 import jdk.nashorn.internal.scripts.JO;
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.EstadoProyecto;
@@ -52,10 +53,17 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
             return;
         }
         if (e.getSource().equals(vista.getPopularButton())) {
-            JOptionPane.showMessageDialog(vista,
-                    "Informe de Popularidad (número de apoyos): " + proy.generarInformePopularidad(),
-                    "Popularidad",
-                    JOptionPane.INFORMATION_MESSAGE);
+            if (proy.getEstado().equals(EstadoProyecto.INICIAL)) {
+                JOptionPane.showMessageDialog(vista,
+                        "Proyecto pendiente de aprobación",
+                        "Pendiente",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(vista,
+                        "Informe de Popularidad (número de apoyos): " + proy.generarInformePopularidad(),
+                        "Popularidad",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
         } else if (e.getSource().equals(vista.getEnviarButton())) {
             try {
                 proy.enviarFinanciacion();
@@ -65,8 +73,13 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         JOptionPane.INFORMATION_MESSAGE);
             } catch (ConexionFallida ex) {
                 JOptionPane.showMessageDialog(vista,
-                        "Error de conexión con el sistema externo.\nEl proyecto no pudo ser enviado.",
+                        "Error de conexión con el sistema externo:\n" + ex.toString() + "\nEl proyecto no pudo ser enviado.",
                         "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            } catch (CCGGException ex) {
+                JOptionPane.showMessageDialog(vista,
+                        "Error de comunicación con el sistema externo:\n" + ex.toString() + "\nNo se pudo procesar la consulta.",
+                        "Error con sistema externo",
                         JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource().equals(vista.getConsultarButton())) {
@@ -75,8 +88,13 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                     proy.consultarFinanciacion();
                 } catch (ConexionFallida ex) {
                     JOptionPane.showMessageDialog(vista,
-                            "Error de conexión con el sistema externo.\nNo se pudo procesar la consulta.",
-                            "Error",
+                            "Error de conexión con el sistema externo:\n" + ex.toString() + "\nNo se pudo procesar la consulta.",
+                            "Error de conexión",
+                            JOptionPane.ERROR_MESSAGE);
+                } catch (CCGGException ex) {
+                    JOptionPane.showMessageDialog(vista,
+                            "Error de comunicación con el sistema externo:\n" + ex.toString() + "\nNo se pudo procesar la consulta.",
+                            "Error con sistema externo",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }

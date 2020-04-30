@@ -6,6 +6,7 @@ import es.uam.eps.sadp.grants.InvalidIDException;
 import es.uam.eps.sadp.grants.InvalidRequestException;
 import vecindApp.clases.aplicacion.*;
 import vecindApp.clases.colectivo.*;
+import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.*;
 
@@ -369,10 +370,10 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	/**
 	 * Envia el proyecto a financiacion
 	 *
-	 * @throws IOException en caso de fallos en la comunicacion
-	 * @throws InvalidRequestException en caso de enviar una solicitud no valida
+	 * @throws ConexionFallida en caso de fallos en la comunicacion
+	 * @throws CCGGException en caso de enviar una solicitud no valida
 	 */
-	public void enviarFinanciacion() throws ConexionFallida {
+	public void enviarFinanciacion() throws ConexionFallida, CCGGException {
 		GrantRequest req;
 		if (estado != EstadoProyecto.LISTOENVAR) {
 			return;
@@ -382,19 +383,19 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 		try {
 			this.idEnvio = proxy.submitRequest(req);
 		} catch (IOException ex){
-			throw new ConexionFallida();
+			throw new ConexionFallida(ex);
 		} catch (InvalidRequestException ex) {
-
+			throw new CCGGException("Solicitud inválida", ex);
 		}
 		setEstado(EstadoProyecto.ENVIADO);
 	}
 
 	/**
-	 * consulta el estado de un proyecto enviado
-	 * @throws IOException en caso de fallos en la comunicacion
-	 * @throws InvalidIDException en caso de consultar un id no valido
+	 * Consulta el estado de un proyecto enviado
+	 * @throws ConexionFallida en caso de fallos en la comunicacion
+	 * @throws CCGGException en caso de consultar un id no valido
 	 */
-	public void consultarFinanciacion() throws ConexionFallida {
+	public void consultarFinanciacion() throws ConexionFallida, CCGGException {
 		CCGG proxy = CCGG.getGateway();
 		Double aux;
 		try {
@@ -408,21 +409,21 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 				}
 			}
 		} catch (IOException ex) {
-			throw new ConexionFallida();
+			throw new ConexionFallida(ex);
 		} catch (InvalidIDException ex) {
-
+			throw new CCGGException("ID inválida", ex);
 		}
 	}
 
 	/**
-	 * pone el estado de un proyecto en denegado
+	 * Pone el estado de un proyecto en denegado
 	 */
 	public void denegarFinanciacion() {
 		setEstado(EstadoProyecto.DENEGADO);
 	}
 
 	/**
-	 * notifica a los suscriptores un cambio en el estado en el proyecto
+	 * Notifica a los suscriptores un cambio en el estado en el proyecto
 	 */
 	public void notificarCambio() {
 		for (Ciudadano s: suscriptores) {
