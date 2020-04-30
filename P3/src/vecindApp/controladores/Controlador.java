@@ -1,6 +1,7 @@
 package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.controladores.admin.ControlHomeAdmin;
@@ -8,7 +9,7 @@ import vecindApp.controladores.usuario.ControlHomeUsuario;
 import vecindApp.vistas.Ventana;
 
 public class Controlador {
-    private Ventana<Notificacion, Proyecto> frame;
+    private Ventana<Notificacion, Proyecto, Ciudadano> frame;
     private Aplicacion modelo;
 
     private ControlLoginUsuario cLogin;
@@ -18,7 +19,7 @@ public class Controlador {
     private ControlHomeAdmin cHomeA;
 
 
-    public Controlador(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo) {
+    public Controlador(Ventana<Notificacion, Proyecto, Ciudadano> frame, Aplicacion modelo) {
         this.frame = frame;
         this.modelo = modelo;
         cLogin = new ControlLoginUsuario(frame, modelo);

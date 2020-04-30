@@ -5,7 +5,7 @@ import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
 
-public class Bloquear<T> extends VentanaLista<T> {
+public class Bloquear<C> extends VentanaLista<C> {
     private JButton block = new JButton("Bloquear");
 
     public Bloquear() {

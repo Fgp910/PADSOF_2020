@@ -19,11 +19,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControlBloquear implements ListSelectionListener, ActionListener {
-    private Bloquear<Notificacion> vista;
-    private HomeAdmin<Notificacion> frame;
+    private Bloquear<Ciudadano> vista;
+    private HomeAdmin<Notificacion, Ciudadano, Proyecto> frame;
     private Aplicacion modelo;
 
-    public ControlBloquear(HomeAdmin<Notificacion> frame, Aplicacion modelo) {
+    public ControlBloquear(HomeAdmin<Notificacion, Ciudadano, Proyecto> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getpBloquear();
         this.modelo = modelo;
@@ -44,9 +44,10 @@ public class ControlBloquear implements ListSelectionListener, ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         int index = vista.getLista().getSelectedIndex();
         if (index > -1) {
-            /*Ciudadano c = (Ciudadano) vista.getItem(index);
+            Ciudadano c = (Ciudadano) vista.getItem(index);
             c.setBloqueado(true);
-            vista.remove(c);*/
+            vista.remove(c);
+            frame.getpDesbloquear().add(c);
         }
     }
 }

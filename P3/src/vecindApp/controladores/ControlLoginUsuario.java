@@ -23,10 +23,10 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class ControlLoginUsuario implements ActionListener {
     private LoginUsuario vista;
-    private Ventana<Notificacion, Proyecto> frame;
+    private Ventana<Notificacion, Proyecto, Ciudadano> frame;
     private Aplicacion modelo;
 
-    public ControlLoginUsuario(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo) {
+    public ControlLoginUsuario(Ventana<Notificacion, Proyecto, Ciudadano> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getLoginUsuario();
         this.modelo = modelo;
@@ -47,7 +47,7 @@ public class ControlLoginUsuario implements ActionListener {
 
             if (user.equals(admin.getUsername()) && psswd.equals(admin.getPassword())) {    //login exitoso del admin
                 modelo.setUsuarioActual(admin);
-                updateHome(frame.getHomeAdmin());
+                updateHome(frame);
                 frame.mostrarPanel("homeAdmin");
             } else if (c == null || !c.getPassword().equals(psswd)) {
                 JOptionPane.showMessageDialog(vista,
@@ -56,7 +56,7 @@ public class ControlLoginUsuario implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
             } else if (c.isAdmitido()) {
                 modelo.setUsuarioActual(c);
-                updateHome(frame.getHomeUsuario());
+                updateHome(frame);
                 frame.mostrarPanel("home");
                 if (c.isBloqueado()) {
                     JOptionPane.showMessageDialog(vista,
@@ -80,14 +80,14 @@ public class ControlLoginUsuario implements ActionListener {
         }
     }
 
-    private void updateHome(Home<Notificacion> home) {
+    private void updateHome(Ventana<Notificacion, Proyecto, Ciudadano> home) {
         Usuario user = modelo.getUsuarioActual();
 
-        home.getPerfil().update(user.toString());
-        home.getNotificaciones().update(user.getPendientes(), true);
+        home.getHomeUsuario().getPerfil().update(user.toString());
+        home.getHomeAdmin().getNotificaciones().update(user.getPendientes(), true);
         if (!user.equals(modelo.getAdmin())) {
             Ciudadano u = (Ciudadano) user;
-            HomeUsuario<Notificacion, Proyecto> h = (HomeUsuario<Notificacion, Proyecto>) home;
+            HomeUsuario<Notificacion, Proyecto> h = home.getHomeUsuario();
             h.getMisProyectos().addAll(u.getProyectos());
         }
 

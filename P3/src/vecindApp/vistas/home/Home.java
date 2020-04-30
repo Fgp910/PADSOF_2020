@@ -6,7 +6,7 @@ import vecindApp.vistas.Perfil;
 import javax.swing.*;
 import java.util.Collection;
 
-public abstract class Home<N> extends JTabbedPane {
+public abstract class Home<N, C> extends JTabbedPane {
     public static final int[] SIZE = {600, 600};
 
     protected Perfil pPerfil = new Perfil();

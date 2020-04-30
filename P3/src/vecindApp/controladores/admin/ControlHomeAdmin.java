@@ -1,6 +1,7 @@
 package vecindApp.controladores.admin;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.controladores.ControlNotificaciones;
@@ -13,8 +14,8 @@ import vecindApp.vistas.home.HomeAdmin;
 
 
 public class ControlHomeAdmin {
-    private HomeAdmin<Notificacion> vista;
-    private Ventana<Notificacion, Proyecto> frame;
+    private HomeAdmin<Notificacion, Ciudadano, Proyecto> vista;
+    private Ventana<Notificacion, Proyecto, Ciudadano> frame;
     private Aplicacion modelo;
     private ControlNotificaciones cNotificaciones;
     private ControlPerfil cPerfil;
@@ -23,12 +24,12 @@ public class ControlHomeAdmin {
     private ControlMinApoyos cMinApoyos;
 
 
-    public ControlHomeAdmin(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo, ControlPerfil cPerfil) {
+    public ControlHomeAdmin(Ventana<Notificacion, Proyecto, Ciudadano> frame, Aplicacion modelo, ControlPerfil cPerfil) {
         this.frame = frame;
         this.vista = frame.getHomeAdmin();
         this.modelo = modelo;
 
-        cNotificaciones = new ControlNotificaciones(vista.getNotificaciones(), modelo);
+        cNotificaciones = new ControlNotificaciones(frame, modelo);
         cBloquear = new ControlBloquear(vista, modelo);
         cDesbloquear = new ControlDesbloquear(vista, modelo);
         cMinApoyos = new ControlMinApoyos(frame, modelo);
