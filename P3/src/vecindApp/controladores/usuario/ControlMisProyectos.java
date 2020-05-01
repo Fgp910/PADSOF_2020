@@ -6,9 +6,11 @@ import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.notificacion.NotificacionProy;
 import vecindApp.clases.proyecto.Distrito;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
+import vecindApp.vistas.InfoProyecto;
 import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.usuario.ConsultarProyectos;
@@ -42,8 +44,10 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                 vista.getPopularButton().setEnabled(false);
                 vista.getEnviarButton().setEnabled(false);
                 vista.getConsultarButton().setEnabled(false);
+                vista.getInfoButton().setEnabled(false);
             } else {
                 vista.getPopularButton().setEnabled(true);
+                vista.getInfoButton().setEnabled(true);
                 if (selec.getEstado().equals(EstadoProyecto.LISTOENVAR)) {
                     vista.getEnviarButton().setEnabled(true);
                 }
@@ -132,6 +136,10 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         "Consulta",
                         JOptionPane.INFORMATION_MESSAGE);
             }
+        } else if (e.getSource().equals(vista.getInfoButton())) {
+            InfoProyecto<Proyecto> ip = new InfoProyecto<Proyecto>(frame, proy);
+            ip.setVisible(true);
+            ip.setLocationRelativeTo(null);
         }
     }
 }

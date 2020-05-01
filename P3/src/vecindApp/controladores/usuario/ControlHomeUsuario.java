@@ -6,6 +6,7 @@ import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.controladores.ControlNotificaciones;
 import vecindApp.controladores.ControlPerfil;
+import vecindApp.controladores.admin.ControlNotificacionesAdmin;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
 
@@ -27,7 +28,7 @@ public class ControlHomeUsuario {
         this.vista = frame.getHomeUsuario();
         this.modelo = modelo;
 
-        cNotificaciones = new ControlNotificaciones(vista.getNotificaciones(), modelo);
+        cNotificaciones = new ControlNotificacionesAdmin(frame, modelo);
         cMisProyectos = new ControlMisProyectos(frame, modelo);
         cMisColectivos = new ControlMisColectivos(frame, modelo);
         cConsultarColectivos = new ControlConsultarColectivos(frame, modelo);
