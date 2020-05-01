@@ -61,6 +61,7 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
             frame.setSize(NuevoProyecto.SIZE[0], NuevoProyecto.SIZE[1]);
             frame.setLocationRelativeTo(null);
             frame.getNuevoProyecto().update(Arrays.stream(Distrito.values())
+                    .filter(d -> !d.equals(Distrito.Desconocido))
                     .map(Distrito::toString)
                     .collect(Collectors.toList()));
             frame.mostrarPanel("nuevoProyecto");

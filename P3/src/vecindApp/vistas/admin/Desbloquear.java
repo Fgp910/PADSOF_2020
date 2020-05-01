@@ -19,7 +19,7 @@ public class Desbloquear<c> extends VentanaLista<c> {
     }
 
     public void setControlador(ControlDesbloquear c) {
-        getLista().addListSelectionListener(c);
+        super.setControlador(c);
         unblock.addActionListener(c);
     }
 }

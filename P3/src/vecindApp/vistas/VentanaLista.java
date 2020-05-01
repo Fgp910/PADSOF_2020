@@ -1,6 +1,7 @@
 package vecindApp.vistas;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Collection;
@@ -60,6 +61,10 @@ public class VentanaLista<T> extends JPanel {
 
     public void update(Collection<T> nuevos) {
         update(nuevos, false);
+    }
+
+    public void setControlador(ListSelectionListener c) {
+        lista.addListSelectionListener(c);
     }
 
     public static void main(String[] args) {
