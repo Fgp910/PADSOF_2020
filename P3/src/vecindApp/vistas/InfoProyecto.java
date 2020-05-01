@@ -31,6 +31,7 @@ public class InfoProyecto<P> extends JDialog {
             infoEstructura();
 
         add(infoProyecto);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void infoGeneralInit() {
