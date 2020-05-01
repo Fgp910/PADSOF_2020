@@ -11,7 +11,7 @@ import java.awt.*;
 public class Ventana<N,P,C> extends JFrame {
     private LoginUsuario vLoginUsuario = new LoginUsuario();
     private RegistroUsuario vRegistroUsuario = new RegistroUsuario();
-    private HomeUsuario<N,P> vHomeUsuario = new HomeUsuario<>();
+    private HomeUsuario<N,P,C> vHomeUsuario = new HomeUsuario<>();
     private HomeAdmin<N,P,C> vHomeAdmin = new HomeAdmin<>();
     private NuevoProyecto<C> vNuevoProyecto = new NuevoProyecto<>();
 
@@ -48,7 +48,7 @@ public class Ventana<N,P,C> extends JFrame {
         return vRegistroUsuario;
     }
 
-    public HomeUsuario<N,P> getHomeUsuario() {
+    public HomeUsuario<N,P,C> getHomeUsuario() {
         return vHomeUsuario;
     }
 

@@ -1,33 +1,64 @@
 package vecindApp.controladores.usuario;
 
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.Colectivo;
+import vecindApp.clases.colectivo.ElementoColectivo;
+import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.proyecto.Proyecto;
+import vecindApp.vistas.Ventana;
 import vecindApp.vistas.usuario.MisColectivos;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 
 public class ControlMisColectivos implements ActionListener, TreeSelectionListener {
-    private MisColectivos<Colectivo> vista;
+    private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
+    private MisColectivos<ElementoColectivo> vista;
     private Aplicacion modelo;
 
-    public ControlMisColectivos(MisColectivos<Colectivo> vista, Aplicacion modelo) {
-        this.vista = vista;
+    public ControlMisColectivos(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
+        this.frame = frame;
+        this.vista = frame.getHomeUsuario().getMisColectivos();
         this.modelo = modelo;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Colectivo col = (Colectivo)vista.getArbol().getLastSelectedPathComponent();
-
         if (e.getSource().equals(vista.getInfAfinidad())) {
             //Jeje
         }
         else if (e.getSource().equals(vista.getNuevoColectivo())){
+            String ret = JOptionPane.showInputDialog("Nombre del colectivo");
+            Colectivo c = new Colectivo(ret, (Ciudadano) modelo.getUsuarioActual());
 
+            if (ret == null || !modelo.addElemCol((ElementoColectivo) c)) {
+                JOptionPane.showMessageDialog(vista, "Colectivo no válido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                //vista.getRoot().add(new DefaultMutableTreeNode(c));
+                vista.setRoot(((Ciudadano) modelo.getUsuarioActual()).getTree());
+                ((DefaultTreeModel)vista.getArbol().getModel()).reload();
+            }
+        }
+        else if (e.getSource().equals(vista.getNuevoSubcolectivo())) {
+            String ret = JOptionPane.showInputDialog("Nombre del subcolectivo");
+            Colectivo padre = (Colectivo)vista.getArbol().getLastSelectedPathComponent();
+            Colectivo c = new Colectivo(ret, padre);
+
+            if (ret == null || !modelo.addElemCol(c)) {
+                JOptionPane.showMessageDialog(vista, "Subcolectivo no válido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                DefaultMutableTreeNode last = (DefaultMutableTreeNode)vista.getArbol().getSelectionPath().getLastPathComponent();
+                last.add(new DefaultMutableTreeNode(c));
+            }
         }
     }
 
@@ -37,9 +68,11 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
 
         if (col == null) {
             vista.getInfAfinidad().setEnabled(false);
+            vista.getNuevoSubcolectivo().setEnabled(false);
         }
         else {
             vista.getInfAfinidad().setEnabled(true);
+            vista.getNuevoSubcolectivo().setEnabled(true);
         }
     }
 }

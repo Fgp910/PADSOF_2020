@@ -8,8 +8,8 @@ import java.awt.*;
 public class VentanaArbol<T> extends JPanel {
     private JPanel bot = new JPanel();
     private JPanel title = new JPanel();
-    private DefaultMutableTreeNode root;
-    private JTree arbol = new JTree();
+    private DefaultMutableTreeNode root = new DefaultMutableTreeNode();
+    private JTree arbol = new JTree(root);
     private JScrollPane scroll = new JScrollPane(arbol);
 
     public VentanaArbol() {

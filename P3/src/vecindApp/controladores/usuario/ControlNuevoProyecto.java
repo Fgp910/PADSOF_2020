@@ -12,6 +12,7 @@ import vecindApp.clases.proyecto.ProyectoInfraestructura;
 import vecindApp.clases.proyecto.ProyectoSocial;
 import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.Ventana;
+import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.usuario.nuevoProyecto.*;
 
 import javax.swing.*;
@@ -173,7 +174,7 @@ public class ControlNuevoProyecto implements ActionListener {
             frame.getHomeUsuario().getMisProyectos().addAll(((Ciudadano) modelo.getUsuarioActual()).getProyectos());
         }
 
-        frame.setSize(LoginUsuario.SIZE[0], LoginUsuario.SIZE[1]);
+        frame.setSize(HomeUsuario.SIZE[0], HomeUsuario.SIZE[1]);
         frame.setLocationRelativeTo(null);
         frame.mostrarPanel("home");
     }

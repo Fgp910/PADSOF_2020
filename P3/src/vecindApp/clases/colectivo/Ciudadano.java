@@ -3,10 +3,9 @@ package vecindApp.clases.colectivo;
 import vecindApp.clases.proyecto.*;
 import vecindApp.clases.usuario.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.swing.tree.DefaultMutableTreeNode;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Define la clase Ciudadano, que agrega a la clase Usuario los atributos
@@ -284,6 +283,24 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         }
     }
 
+    /**
+     * Crea un arbol con los colectivos del ciudadano
+     * @return raiz del arbol
+     */
+    public DefaultMutableTreeNode getTree() {
+        Set<ElementoColectivo> padres = new TreeSet<>();
+
+        for (Colectivo c:colectivos) {
+            Colectivo padre = c;
+            while (padre.getPadre() != null) {
+                padre = c.getPadre();
+            }
+            padres.add(padre);
+        }
+
+        return getTreeRec(padres, "Mis colectivos");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o instanceof Ciudadano) {
@@ -310,5 +327,24 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     @Override
     public String toString() {
         return getUsername() + " (NIF: " + nif + ")";
+    }
+
+    /*Funciones privadas*/
+    private static DefaultMutableTreeNode getTreeRec(Set<ElementoColectivo> padres, Object nodo) {
+        List<Colectivo> cols = padres.stream().filter(ec -> ec instanceof Colectivo).map(ec -> (Colectivo)ec).collect(Collectors.toList());
+        DefaultMutableTreeNode ret = new DefaultMutableTreeNode(nodo);
+
+        if (cols.size() == 0) {
+            return null;
+        }
+        else {
+            for (Colectivo c:cols) {
+                DefaultMutableTreeNode r = getTreeRec(c.getElementos(), c);
+                if (r != null){
+                    ret.add(r);
+                }
+            }
+        }
+        return ret;
     }
 }
