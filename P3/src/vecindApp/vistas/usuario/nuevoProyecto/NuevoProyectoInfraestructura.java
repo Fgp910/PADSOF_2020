@@ -23,7 +23,7 @@ public class NuevoProyectoInfraestructura extends JPanel {
         textPanel.add(imPath);
         SpringUtilities.makeCompactGrid(textPanel, 1, 2, 6, 6, 6, 6);
 
-        distritosPanel.add(new JLabel("Distritos afectados:"));
+        distritosPanel.add(new JLabel("Distritos afectados:", JLabel.LEADING));
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(opc);
@@ -64,6 +64,6 @@ public class NuevoProyectoInfraestructura extends JPanel {
     public void update() {
         opc.setSelected(false);
         imPath.setText("");
-        distritos.forEach(dist -> dist.setSelected(false));
+        this.distritos.forEach(dist -> dist.setSelected(false));
     }
 }

@@ -2,6 +2,7 @@ package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
+import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.notificacion.NotificacionProy;
 import vecindApp.clases.notificacion.NotificacionReg;
@@ -21,11 +22,11 @@ import java.awt.event.ActionListener;
 public class ControlNotificaciones implements ListSelectionListener, ActionListener {
     public static int MAXRECHAZO = 50;
 
-    private HomeAdmin<Notificacion, Ciudadano, Proyecto> frame;
+    private HomeAdmin<Notificacion, Proyecto, ElementoColectivo> frame;
     private Notificaciones<Notificacion> vista;
     private Aplicacion modelo;
 
-    public ControlNotificaciones(Ventana<Notificacion, Proyecto, Ciudadano> frame, Aplicacion modelo) {
+    public ControlNotificaciones(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.vista = frame.getHomeAdmin().getNotificaciones();
         this.modelo = modelo;
         this.frame = frame.getHomeAdmin();

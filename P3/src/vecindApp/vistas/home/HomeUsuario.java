@@ -3,11 +3,9 @@ package vecindApp.vistas.home;
 import vecindApp.controladores.usuario.ControlHomeUsuario;
 import vecindApp.vistas.usuario.*;
 
-import javax.swing.*;
-
-public class HomeUsuario<N, P> extends Home<N,P> {
+public class HomeUsuario<N, P> extends Home<N> {
     private ConsultarColectivos pConsultarColectivos = new ConsultarColectivos();
-    private MisProyectos<P> pMisProyectos = new MisProyectos<>();
+    private MisProyectos<P> pMisProyectos = new MisProyectos();
     private BuscarProyectos pBuscarProyectos = new BuscarProyectos();
     private BuscarColectivos pBuscarColectivos = new BuscarColectivos();
 
@@ -43,15 +41,5 @@ public class HomeUsuario<N, P> extends Home<N,P> {
         p_cerrar_sesion.setControlador(c.getControlCerrarSesion());
         p_buscar_proys.setControlador(c.getControlBuscarProyectos());
         p_buscar_cols.setControlador(c.getControlBuscarColectivos());*/
-    }
-
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-
-        ventana.getContentPane().add(new HomeUsuario());
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(600,300);
-        ventana.setVisible(true);
     }
 }

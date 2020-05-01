@@ -1,15 +1,18 @@
 package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
-import vecindApp.clases.colectivo.Ciudadano;
+import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.controladores.admin.ControlHomeAdmin;
 import vecindApp.controladores.usuario.ControlHomeUsuario;
+import vecindApp.controladores.usuario.ControlNuevoProyecto;
 import vecindApp.vistas.Ventana;
 
+import java.awt.event.ActionListener;
+
 public class Controlador {
-    private Ventana<Notificacion, Proyecto, Ciudadano> frame;
+    private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
 
     private ControlLoginUsuario cLogin;
@@ -17,9 +20,10 @@ public class Controlador {
     private ControlPerfil cPerfil;
     private ControlHomeUsuario cHomeU;
     private ControlHomeAdmin cHomeA;
+    private ControlNuevoProyecto cNuevoProyecto;
 
 
-    public Controlador(Ventana<Notificacion, Proyecto, Ciudadano> frame, Aplicacion modelo) {
+    public Controlador(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.modelo = modelo;
         cLogin = new ControlLoginUsuario(frame, modelo);
@@ -27,6 +31,7 @@ public class Controlador {
         cPerfil = new ControlPerfil(frame, modelo);
         cHomeU = new ControlHomeUsuario(frame, modelo, cPerfil);
         cHomeA = new ControlHomeAdmin(frame, modelo, cPerfil);
+        cNuevoProyecto = new ControlNuevoProyecto(frame, modelo);
     }
 
     public ControlLoginUsuario getControlLoginUsuario() {
@@ -41,5 +46,9 @@ public class Controlador {
 
     public ControlHomeAdmin getControlHomeAdmin() {
         return cHomeA;
+    }
+
+    public ActionListener getControlNuevoProyecto() {
+        return cNuevoProyecto;
     }
 }

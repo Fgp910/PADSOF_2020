@@ -2,7 +2,9 @@ package vecindApp.vistas.usuario.nuevoProyecto;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class NuevoProyecto<C> extends JPanel {
     public static final int[] SIZE = {600, 600};
@@ -37,6 +39,43 @@ public class NuevoProyecto<C> extends JPanel {
         this.setLayout(new BorderLayout());
         this.add(global, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    public void setControlador(ActionListener c) {
+        crear.addActionListener(c);
+        volver.addActionListener(c);
+    }
+
+    public JButton getCrear() {
+        return crear;
+    }
+
+    public JButton getVolver() {
+        return volver;
+    }
+
+    public NuevoProyectoPropulsor<C> getPropulsorPanel() {
+        return propulsor;
+    }
+
+    public NuevoProyectoTexto getTextoPanel() {
+        return texto;
+    }
+
+    public NuevoProyectoInfraestructura getInfraPanel() {
+        return infra;
+    }
+
+    public NuevoProyectoSocial getSocialPanel() {
+        return social;
+    }
+
+    public void update(Collection<String> distritos) {
+        propulsor.update();
+        texto.update();
+        infra.setList(distritos);
+        infra.update();
+        social.update();
     }
 
     public static void main(String[] args) {

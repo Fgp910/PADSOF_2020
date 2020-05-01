@@ -2,6 +2,7 @@ package vecindApp.controladores.admin;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
+import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.notificacion.NotificacionProy;
 import vecindApp.clases.notificacion.NotificacionReg;
@@ -19,11 +20,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControlBloquear implements ListSelectionListener, ActionListener {
-    private Bloquear<Ciudadano> vista;
-    private HomeAdmin<Notificacion, Ciudadano, Proyecto> frame;
+    private Bloquear<ElementoColectivo> vista;
+    private HomeAdmin<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
 
-    public ControlBloquear(HomeAdmin<Notificacion, Ciudadano, Proyecto> frame, Aplicacion modelo) {
+    public ControlBloquear(HomeAdmin<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getpBloquear();
         this.modelo = modelo;

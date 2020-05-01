@@ -25,6 +25,8 @@ import java.util.Set;
  */
 public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	private static int nextId = 1;
+	public static final int MAXDESC = 500;
+	public static final double MINIMPORTE = 100;	//euros
 
 	private int id;
 	private String idEnvio;
@@ -521,6 +523,15 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	@Override
 	public int compareTo(Proyecto o) {
 		return id - o.id;
+	}
+
+	@Override
+	public String toString() {
+		String ret = titulo + ": " + estado;
+		if (estado.equals(EstadoProyecto.RECHAZADO)) {
+			return ret + " Motivo: " + motivoRechazo;
+		}
+		return ret;
 	}
 
 	/*Metodos privados*/

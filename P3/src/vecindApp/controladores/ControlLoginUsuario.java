@@ -2,6 +2,7 @@ package vecindApp.controladores;
 
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
+import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.clases.usuario.Administrador;
@@ -16,17 +17,13 @@ import vecindApp.vistas.home.HomeUsuario;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
 
 public class ControlLoginUsuario implements ActionListener {
     private LoginUsuario vista;
-    private Ventana<Notificacion, Proyecto, Ciudadano> frame;
+    private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
 
-    public ControlLoginUsuario(Ventana<Notificacion, Proyecto, Ciudadano> frame, Aplicacion modelo) {
+    public ControlLoginUsuario(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getLoginUsuario();
         this.modelo = modelo;
@@ -80,14 +77,19 @@ public class ControlLoginUsuario implements ActionListener {
         }
     }
 
-    private void updateHome(Ventana<Notificacion, Proyecto, Ciudadano> home) {
+    private void updateHome(Ventana<Notificacion, Proyecto, ElementoColectivo> home) {
         Usuario user = modelo.getUsuarioActual();
 
-        home.getHomeUsuario().getPerfil().update(user.toString());
-        home.getHomeAdmin().getNotificaciones().update(user.getPendientes(), true);
-        if (!user.equals(modelo.getAdmin())) {
+        if (user.equals(modelo.getAdmin())) {
+            Administrador admin = modelo.getAdmin();
+            HomeAdmin<Notificacion, Proyecto, ElementoColectivo> h = home.getHomeAdmin();
+            h.getPerfil().update(admin.toString());
+            h.getNotificaciones().update(admin.getPendientes(), true);
+        } else {
             Ciudadano u = (Ciudadano) user;
             HomeUsuario<Notificacion, Proyecto> h = home.getHomeUsuario();
+            h.getPerfil().update(u.toString());
+            h.getNotificaciones().update(u.getPendientes(), true);
             h.getMisProyectos().addAll(u.getProyectos());
         }
 

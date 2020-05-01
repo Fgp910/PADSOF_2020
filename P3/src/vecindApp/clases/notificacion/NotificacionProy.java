@@ -41,11 +41,7 @@ public class NotificacionProy extends Notificacion {
      */
     @Override
     public String descripcion() {
-        String ret = "Proyecto. " + sujeto.getTitulo() + ": " + sujeto.getEstado();
-        if (sujeto.getEstado().equals(EstadoProyecto.RECHAZADO)) {
-            return ret + " Motivo: " + sujeto.getMotivoRechazo();
-        }
-        return ret;
+        return "Proyecto. " + sujeto;
     }
 
     /*

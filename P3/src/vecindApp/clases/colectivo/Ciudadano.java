@@ -306,4 +306,9 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         }
         return 1;
     }
+
+    @Override
+    public String toString() {
+        return getUsername() + " (NIF: " + nif + ")";
+    }
 }

@@ -2,27 +2,33 @@ package vecindApp.controladores.usuario;
 
 import jdk.nashorn.internal.scripts.JO;
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.proyecto.Distrito;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
+import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.usuario.ConsultarProyectos;
 import vecindApp.vistas.usuario.MisProyectos;
+import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class ControlMisProyectos implements ListSelectionListener, ActionListener {
-    private Ventana<Notificacion, Proyecto> frame;
+    private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private MisProyectos<Proyecto> vista;
     private Aplicacion modelo;
 
-    public ControlMisProyectos(Ventana<Notificacion, Proyecto> frame, Aplicacion modelo) {
+    public ControlMisProyectos(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getHomeUsuario().getMisProyectos();
         this.modelo = modelo;
@@ -51,6 +57,15 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
     @Override
     public void actionPerformed(ActionEvent e) {
         Proyecto proy = vista.getLista().getSelectedValue();
+        if (e.getSource().equals(vista.getCrearButton())) {
+            frame.setSize(NuevoProyecto.SIZE[0], NuevoProyecto.SIZE[1]);
+            frame.setLocationRelativeTo(null);
+            frame.getNuevoProyecto().update(Arrays.stream(Distrito.values())
+                    .map(Distrito::toString)
+                    .collect(Collectors.toList()));
+            frame.mostrarPanel("nuevoProyecto");
+        }
+
         if (proy == null) {
             return;
         }

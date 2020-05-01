@@ -5,6 +5,7 @@ import layout.SpringUtilities;
 import javax.swing.*;
 
 public class NuevoProyectoTexto extends JPanel {
+    private JTextField titulo = new JTextField();
     private JTextField desc = new JTextField();
     private JTextField importe = new JTextField();
 
@@ -12,17 +13,26 @@ public class NuevoProyectoTexto extends JPanel {
         JLabel l;
         this.setLayout(new SpringLayout());
 
-        l = new JLabel("Descripción:");
+        l = new JLabel("Titulo:", JLabel.TRAILING);
+        l.setLabelFor(titulo);
+        this.add(l);
+        this.add(titulo);
+
+        l = new JLabel("Descripción:", JLabel.TRAILING);
         l.setLabelFor(desc);
         this.add(l);
         this.add(desc);
 
-        l = new JLabel("Importe solicitado:");
+        l = new JLabel("Importe solicitado:", JLabel.TRAILING);
         l.setLabelFor(importe);
         this.add(l);
         this.add(importe);
 
-        SpringUtilities.makeCompactGrid(this, 2, 2, 6, 6, 6, 6);
+        SpringUtilities.makeCompactGrid(this, 3, 2, 6, 6, 6, 6);
+    }
+
+    public String getTitulo() {
+        return titulo.getText();
     }
 
     public String getDesc() {
@@ -38,6 +48,7 @@ public class NuevoProyectoTexto extends JPanel {
     }
 
     public void update() {
+        titulo.setText("");
         desc.setText("");
         importe.setText("");
     }

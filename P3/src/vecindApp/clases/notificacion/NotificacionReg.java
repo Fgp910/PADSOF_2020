@@ -38,7 +38,7 @@ public class NotificacionReg extends Notificacion {
 
     @Override
     public String descripcion() {
-        return "Nuevo registro. " + sujeto.getUsername() + " (NIF: " + sujeto.getNif() + ").";
+        return "Nuevo registro. " + sujeto;
     }
 
     @Override

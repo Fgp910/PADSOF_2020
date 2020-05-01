@@ -7,7 +7,7 @@ import vecindApp.vistas.admin.MinApoyos;
 
 import javax.swing.*;
 
-public class HomeAdmin<N,C,P> extends Home<N,C> {
+public class HomeAdmin<N,P,C> extends Home<N> {
     private Bloquear<C> pBloquear = new Bloquear<>();
     private Desbloquear<C> pDesbloquear = new Desbloquear<>();
     private MinApoyos<P> pMinApoyos = new MinApoyos<>();
