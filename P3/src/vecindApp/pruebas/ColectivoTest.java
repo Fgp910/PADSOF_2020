@@ -1,6 +1,5 @@
 package vecindApp.pruebas;
 
-import vecindApp.clases.*;
 import org.junit.Before;
 import org.junit.Test;
 

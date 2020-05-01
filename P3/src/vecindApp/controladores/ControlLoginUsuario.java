@@ -87,6 +87,7 @@ public class ControlLoginUsuario implements ActionListener {
             HomeAdmin<Notificacion, Proyecto, ElementoColectivo> h = home.getHomeAdmin();
             h.getPerfil().update(admin.toString());
             h.getNotificaciones().update(admin.getPendientes(), true);
+            h.getpMinApoyos().update("" + modelo.getMinApoyos() + "");
         } else {
             Ciudadano u = (Ciudadano) user;
             HomeUsuario<Notificacion, Proyecto, ElementoColectivo> h = home.getHomeUsuario();
