@@ -1,0 +1,46 @@
+package vecindApp.pruebas;
+
+import org.junit.Before;
+import org.junit.Test;
+import vecindApp.clases.colectivo.*;
+import vecindApp.clases.proyecto.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+/**
+ * Clase de prueba de la clase SolicitudFinanciacion
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
+public class SolicitudFinanciacionTest {
+    SolicitudFinanciacion sf;
+    Proyecto p;
+
+    @Before
+    public void setUp() {
+        Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
+        p = new ProyectoSocial("titulo", "descripcion", 500.0, c, "grupo", true);
+        sf = new SolicitudFinanciacion(p);
+    }
+
+    @Test
+    public void getProject() {
+        assertEquals(p, sf.getProject());
+    }
+
+    @Test
+    public void getProjectTitle() {
+        assertEquals("titulo", sf.getProjectTitle());
+    }
+
+    @Test
+    public void getProjectDescription() {
+        assertEquals("descripcion", sf.getProjectDescription());
+    }
+
+    @Test
+    public void getRequestedAmount() {
+        assertEquals(500.0, sf.getRequestedAmount(), 0.0);
+    }
+}
