@@ -90,6 +90,7 @@ public class ControlLoginUsuario implements ActionListener {
             HomeUsuario<Notificacion, Proyecto> h = home.getHomeUsuario();
             h.getPerfil().update(u.toString());
             h.getNotificaciones().update(u.getPendientes(), true);
+            h.getMisProyectos().removeAll();
             h.getMisProyectos().addAll(u.getProyectos());
         }
 
