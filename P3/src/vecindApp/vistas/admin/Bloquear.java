@@ -19,7 +19,7 @@ public class Bloquear<C> extends VentanaLista<C> {
     }
 
     public void setControlador(ControlBloquear c) {
-        getLista().addListSelectionListener(c);
+        super.setControlador(c);
         block.addActionListener(c);
     }
 }

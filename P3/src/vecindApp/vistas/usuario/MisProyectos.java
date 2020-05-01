@@ -1,6 +1,6 @@
 package vecindApp.vistas.usuario;
 
-import vecindApp.clases.proyecto.Proyecto;
+import vecindApp.controladores.usuario.ControlMisProyectos;
 import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
@@ -36,7 +36,8 @@ public class MisProyectos<P> extends VentanaLista<P> {
         return crear;
     }
 
-    public void setControlador(ActionListener c) {
+    public void setControlador(ControlMisProyectos c) {
+        super.setControlador(c);
         iPopularidad.addActionListener(c);
         enviar.addActionListener(c);
         consultar.addActionListener(c);

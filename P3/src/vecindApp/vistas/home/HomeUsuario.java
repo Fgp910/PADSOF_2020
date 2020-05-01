@@ -5,7 +5,7 @@ import vecindApp.vistas.usuario.*;
 
 public class HomeUsuario<N, P> extends Home<N> {
     private ConsultarColectivos pConsultarColectivos = new ConsultarColectivos();
-    private MisProyectos<P> pMisProyectos = new MisProyectos();
+    private MisProyectos<P> pMisProyectos = new MisProyectos<P>();
     private BuscarProyectos pBuscarProyectos = new BuscarProyectos();
     private BuscarColectivos pBuscarColectivos = new BuscarColectivos();
 

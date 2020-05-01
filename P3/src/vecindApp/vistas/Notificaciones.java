@@ -18,7 +18,7 @@ public class Notificaciones<T> extends VentanaLista<T> {
     }
 
     public void setControlador(ControlNotificaciones c) {
-        getLista().addListSelectionListener(c);
+        super.setControlador(c);
         open.addActionListener(c);
     }
 }

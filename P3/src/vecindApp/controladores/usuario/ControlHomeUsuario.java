@@ -1,7 +1,6 @@
 package vecindApp.controladores.usuario;
 
 import vecindApp.clases.aplicacion.Aplicacion;
-import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
@@ -9,8 +8,6 @@ import vecindApp.controladores.ControlNotificaciones;
 import vecindApp.controladores.ControlPerfil;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
-
-import java.awt.event.ActionListener;
 
 
 public class ControlHomeUsuario {
@@ -29,7 +26,7 @@ public class ControlHomeUsuario {
         this.vista = frame.getHomeUsuario();
         this.modelo = modelo;
 
-        cNotificaciones = new ControlNotificaciones(frame, modelo);
+        cNotificaciones = new ControlNotificaciones(vista.getNotificaciones(), modelo);
         cMisProyectos = new ControlMisProyectos(frame, modelo);
         cConsultarColectivos = new ControlConsultarColectivos(frame, modelo);
         cBuscarColectivos = new ControlBuscarColectivos(frame, modelo);
