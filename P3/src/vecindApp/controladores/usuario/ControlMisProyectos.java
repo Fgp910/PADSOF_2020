@@ -47,8 +47,10 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                 vista.getInfoButton().setEnabled(true);
                 if (selec.getEstado().equals(EstadoProyecto.LISTOENVAR)) {
                     vista.getEnviarButton().setEnabled(true);
+                    vista.getConsultarButton().setEnabled(false);
                 }
-                if (selec.getEstado().equals(EstadoProyecto.ENVIADO)) {
+                if (selec.getEstado().equals(EstadoProyecto.ENVIADO) || selec.getEstado().equals(EstadoProyecto.FINANCIADO) || selec.getEstado().equals(EstadoProyecto.DENEGADO)) {
+                    vista.getEnviarButton().setEnabled(false);
                     vista.getConsultarButton().setEnabled(true);
                 }
             }
@@ -121,7 +123,7 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
             }
             if (proy.getEstado().equals(EstadoProyecto.FINANCIADO)) {
                 JOptionPane.showMessageDialog(vista,
-                        "Proyecto financiado.\nImporte concedido: " + proy.getImporteConcedido(),
+                        String.format("Proyecto financiado.\nImporte concedido: %.2f", proy.getImporteConcedido()),
                         "Consulta",
                         JOptionPane.INFORMATION_MESSAGE);
             } else if (proy.getEstado().equals(EstadoProyecto.DENEGADO)) {

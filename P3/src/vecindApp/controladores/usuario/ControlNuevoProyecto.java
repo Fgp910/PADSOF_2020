@@ -82,7 +82,7 @@ public class ControlNuevoProyecto implements ActionListener {
 
             if (importeSolicitado == null || importeSolicitado < 100) {
                 JOptionPane.showMessageDialog(vista,
-                        "Introduzca el importe solicitado para su proyecto (mínimo " + Proyecto.MINIMPORTE + "€).",
+                        String.format("Introduzca el importe solicitado para su proyecto (mínimo %.2f €).", Proyecto.MINIMPORTE),
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
