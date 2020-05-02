@@ -296,7 +296,7 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
         for (Colectivo c:colectivos) {
             Colectivo padre = c;
             while (padre.getPadre() != null) {
-                padre = c.getPadre();
+                padre = padre.getPadre();
             }
             padres.add(padre);
         }

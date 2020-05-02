@@ -7,7 +7,7 @@ public class HomeUsuario<N, P, C> extends Home<N> {
     private MisProyectos<P> pMisProyectos = new MisProyectos<>();
     private MisColectivos<C> pMisColectivos = new MisColectivos<>();
     private BuscarProyectos<P> pBuscarProyectos = new BuscarProyectos<>();
-    private BuscarColectivos pBuscarColectivos = new BuscarColectivos();
+    private BuscarColectivos<C> pBuscarColectivos = new BuscarColectivos<>();
 
     public HomeUsuario() {
         add("Mis Proyectos", pMisProyectos);

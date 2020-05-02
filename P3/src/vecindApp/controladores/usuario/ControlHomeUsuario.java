@@ -30,7 +30,7 @@ public class ControlHomeUsuario {
         cNotificaciones = new ControlNotificaciones(vista.getNotificaciones(), modelo);
         cMisProyectos = new ControlMisProyectos(frame, modelo);
         cMisColectivos = new ControlMisColectivos(frame, modelo);
-        cBuscarColectivos = new ControlBuscarColectivos(frame, modelo);
+        cBuscarColectivos = new ControlBuscarColectivos(vista, modelo);
         cBuscarProyectos = new ControlBuscarProyectos(vista, modelo);
         this.cPerfil = cPerfil;
     }
