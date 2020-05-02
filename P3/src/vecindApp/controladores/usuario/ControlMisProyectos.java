@@ -1,19 +1,16 @@
 package vecindApp.controladores.usuario;
 
-import jdk.nashorn.internal.scripts.JO;
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.Notificacion;
-import vecindApp.clases.notificacion.NotificacionProy;
 import vecindApp.clases.proyecto.Distrito;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.vistas.InfoProyecto;
-import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
-import vecindApp.vistas.usuario.ConsultarProyectos;
 import vecindApp.vistas.usuario.MisProyectos;
 import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 
@@ -82,7 +79,7 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(vista,
-                        "Informe de Popularidad (número de apoyos): " + proy.generarInformePopularidad(),
+                        "Número de apoyos: " + proy.generarInformePopularidad(),
                         "Popularidad",
                         JOptionPane.INFORMATION_MESSAGE);
             }
@@ -137,7 +134,7 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         JOptionPane.INFORMATION_MESSAGE);
             }
         } else if (e.getSource().equals(vista.getInfoButton())) {
-            InfoProyecto<Proyecto> ip = new InfoProyecto<Proyecto>(frame, proy);
+            InfoProyecto ip = new InfoProyecto(frame, proy);
             ip.setVisible(true);
             ip.setLocationRelativeTo(null);
         }

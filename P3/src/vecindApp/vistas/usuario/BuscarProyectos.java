@@ -1,30 +1,40 @@
 package vecindApp.vistas.usuario;
 
+import vecindApp.controladores.usuario.ControlBuscarProyectos;
+import vecindApp.controladores.usuario.ControlMisProyectos;
+import vecindApp.vistas.VentanaLista;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class BuscarProyectos extends JPanel {
-    private JPanel textPanel = new JPanel(new SpringLayout());
+public class BuscarProyectos<P> extends VentanaLista<P> {
+    private JButton info = new JButton("Ver");
+    private JButton apoyar = new JButton("Apoyar");
+    private JButton sub = new JButton("Suscribirse");
 
     public BuscarProyectos() {
-        textPanelInit();
-
-        this.setLayout(new BorderLayout());
-        add(textPanel, BorderLayout.CENTER);
+        super();
+        getBot().add(info).setEnabled(false);
+        getBot().add(apoyar).setEnabled(false);
+        getBot().add(sub).setEnabled(false);
     }
 
-    private void textPanelInit() {
-        JLabel texto = new JLabel("Buscar Proyectos");
-        textPanel.add(texto);
+    public JButton getInfoButton() {
+        return  info;
     }
 
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
+    public JButton getApoyarButton() {
+        return apoyar;
+    }
 
-        ventana.getContentPane().add(new BuscarProyectos());
+    public JButton getSubButton() {
+        return sub;
+    }
 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,150);
-        ventana.setVisible(true);
+    public void setControlador(ControlBuscarProyectos c) {
+        super.setControlador(c);
+        info.addActionListener(c);
+        apoyar.addActionListener(c);
+        sub.addActionListener(c);
     }
 }

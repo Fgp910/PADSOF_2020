@@ -87,14 +87,14 @@ public class ControlLoginUsuario implements ActionListener {
             HomeAdmin<Notificacion, Proyecto, ElementoColectivo> h = home.getHomeAdmin();
             h.getPerfil().update(admin.toString());
             h.getNotificaciones().update(admin.getPendientes(), true);
-            h.getpMinApoyos().update("" + modelo.getMinApoyos() + "");
+            h.getpMinApoyos().update("" + Aplicacion.getMinApoyos() + "");
         } else {
             Ciudadano u = (Ciudadano) user;
             HomeUsuario<Notificacion, Proyecto, ElementoColectivo> h = home.getHomeUsuario();
             h.getPerfil().update(u.toString());
             h.getNotificaciones().update(u.getPendientes(), true);
-            h.getMisProyectos().removeAll();
-            h.getMisProyectos().addAll(u.getProyectos());
+            h.getMisProyectos().update(u.getProyectos(), true);
+            h.getBuscarProyectos().update(modelo.getProyectos(), true);
             h.getMisColectivos().setRoot(u.getTree());
         }
 

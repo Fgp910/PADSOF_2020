@@ -1,7 +1,5 @@
 package vecindApp.vistas;
 
-import vecindApp.vistas.usuario.ConsultarColectivos;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -35,15 +33,5 @@ public class Perfil extends JPanel {
 
     public void update(String info) {
         text.setText(info);
-    }
-
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-
-        ventana.getContentPane().add(new ConsultarColectivos());
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,150);
-        ventana.setVisible(true);
     }
 }

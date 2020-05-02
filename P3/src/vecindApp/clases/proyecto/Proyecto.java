@@ -334,6 +334,15 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	}
 
 	/**
+	 * Agrega un suscriptor al proeycto
+	 * @param suscriptor el nuevo suscriptor
+	 * @return si el suscriptor fue agregado con exito
+	 */
+	public boolean addSuscriptor(Ciudadano suscriptor) {
+		return suscriptores.add(suscriptor);
+	}
+
+	/**
 	 * Devuelve el next id
 	 * @return next id
 	 */
@@ -542,7 +551,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 */
 	private void recibirApoyo(Ciudadano c) {
 		if (!c.isBloqueado() && promotores.add(c)) {//Es un ciudadano que no esta bloqueado ni era promotor
-			if ((++nApoyos >= Aplicacion.getMinApoyos()) && (estado == EstadoProyecto.ACEPTADO)) {
+			if ((++nApoyos >= Aplicacion.getMinApoyos()) && (estado.equals(EstadoProyecto.ACEPTADO))) {
 				setEstado(EstadoProyecto.LISTOENVAR);
 			}
 		}

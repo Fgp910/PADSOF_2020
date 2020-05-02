@@ -10,6 +10,7 @@ import vecindApp.vistas.admin.Desbloquear;
 import vecindApp.vistas.admin.MinApoyos;
 import vecindApp.vistas.home.HomeAdmin;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,8 +28,15 @@ public class ControlMinApoyos implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         String newMin = vista.getNewMin();
-        int nm = Integer.parseInt(newMin);
-        modelo.setMinApoyos(nm);
-        vista.update(newMin);
+        try {
+            int nm = Math.abs(Integer.parseInt(newMin));
+            Aplicacion.setMinApoyos(nm);
+            vista.update(newMin);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(vista,
+                    "Valor inválido. Introduzca un número.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -1,6 +1,5 @@
 package vecindApp.clases.aplicacion;
 
-import es.uam.eps.sadp.grants.InvalidIDException;
 import vecindApp.clases.colectivo.*;
 import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
@@ -22,7 +21,7 @@ public class Aplicacion implements Serializable {
     public static Aplicacion VecindApp = new Aplicacion(new Administrador("admin", "password"));
     public static String PATH = "vecindapp_bin.dat";
 
-    private static int minApoyos;
+    private static int minApoyos = 2;   //Valor por defecto
 
     private Administrador admin;
     private Set<ElementoColectivo> elemCol = new TreeSet<>();

@@ -4,7 +4,6 @@ import vecindApp.controladores.usuario.ControlMisProyectos;
 import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 
 public class MisProyectos<P> extends VentanaLista<P> {
     private JButton iPopularidad = new JButton("Informe de Popularidad");

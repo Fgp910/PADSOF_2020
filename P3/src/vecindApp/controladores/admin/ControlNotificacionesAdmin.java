@@ -90,12 +90,12 @@ public class ControlNotificacionesAdmin extends ControlNotificaciones {
             }
         }
 
-        else {
+        /*else {
             if (noti instanceof NotificacionProy) {
-                InfoProyecto<Proyecto> ip = new InfoProyecto<Proyecto>(ventana, ((NotificacionProy) noti).getSujeto());
+                InfoProyecto ip = new InfoProyecto(ventana, ((NotificacionProy) noti).getSujeto());
                 ip.setVisible(true);
                 ip.setLocationRelativeTo(null);
             }
-        }
+        }*/
     }
 }

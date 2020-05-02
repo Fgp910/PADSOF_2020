@@ -250,6 +250,11 @@ public class Colectivo implements ElementoColectivo {
         return -1;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
     /*Metodos privados*/
 
     /**

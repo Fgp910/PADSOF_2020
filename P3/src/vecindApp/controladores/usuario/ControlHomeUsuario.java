@@ -18,7 +18,6 @@ public class ControlHomeUsuario {
     private ControlNotificaciones cNotificaciones;
     private ControlMisProyectos cMisProyectos;
     private ControlMisColectivos cMisColectivos;
-    private ControlConsultarColectivos cConsultarColectivos;
     private ControlBuscarColectivos cBuscarColectivos;
     private ControlBuscarProyectos cBuscarProyectos;
     private ControlPerfil cPerfil;
@@ -28,12 +27,11 @@ public class ControlHomeUsuario {
         this.vista = frame.getHomeUsuario();
         this.modelo = modelo;
 
-        cNotificaciones = new ControlNotificacionesAdmin(frame, modelo);
+        cNotificaciones = new ControlNotificaciones(vista.getNotificaciones(), modelo);
         cMisProyectos = new ControlMisProyectos(frame, modelo);
         cMisColectivos = new ControlMisColectivos(frame, modelo);
-        cConsultarColectivos = new ControlConsultarColectivos(frame, modelo);
         cBuscarColectivos = new ControlBuscarColectivos(frame, modelo);
-        cBuscarProyectos = new ControlBuscarProyectos(frame, modelo);
+        cBuscarProyectos = new ControlBuscarProyectos(vista, modelo);
         this.cPerfil = cPerfil;
     }
 
@@ -47,10 +45,6 @@ public class ControlHomeUsuario {
 
     public ControlMisColectivos getControlMisColectivos() {
         return cMisColectivos;
-    }
-
-    public ControlConsultarColectivos getControlConsultarColectivos() {
-        return cConsultarColectivos;
     }
 
     public ControlBuscarColectivos getControlBuscarColectivos() {

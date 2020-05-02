@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class InfoProyecto<P> extends JDialog {
+public class InfoProyecto extends JDialog {
     public static final int[] SIZE = {800, 600};
     private JFrame padre;
     private Proyecto proy;
@@ -25,13 +25,14 @@ public class InfoProyecto<P> extends JDialog {
         infoGeneralInit();
         add(infoGeneral);
 
-        if (proy instanceof ProyectoSocial)
+        if (proy instanceof ProyectoSocial) {
             infoSocial();
-        else
+        } else {
             infoEstructura();
+        }
 
         add(infoProyecto);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     private void infoGeneralInit() {
