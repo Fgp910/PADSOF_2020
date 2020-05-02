@@ -90,6 +90,8 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         "Enviado a financiación con éxito",
                         "Financiación",
                         JOptionPane.INFORMATION_MESSAGE);
+                vista.getEnviarButton().setEnabled(false);
+                vista.getConsultarButton().setEnabled(true);
             } catch (ConexionFallida ex) {
                 JOptionPane.showMessageDialog(vista,
                         "Error de conexión con el sistema externo:\n" + ex.toString() + "\nEl proyecto no pudo ser enviado.",
