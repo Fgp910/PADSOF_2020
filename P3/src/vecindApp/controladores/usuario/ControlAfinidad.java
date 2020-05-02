@@ -47,7 +47,7 @@ public class ControlAfinidad implements ActionListener, TreeSelectionListener {
     public void valueChanged(TreeSelectionEvent e) {
         Object col = ((DefaultMutableTreeNode)vista.getArbol().getLastSelectedPathComponent()).getUserObject();
 
-        if (col == null || !(col instanceof Colectivo)) {
+        if (!(col instanceof Colectivo)) {
             vista.getConsultar().setEnabled(false);
         }
         else {

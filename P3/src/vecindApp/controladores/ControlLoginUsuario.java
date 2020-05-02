@@ -104,6 +104,7 @@ public class ControlLoginUsuario implements ActionListener {
             h.getMisColectivos().updateCols(u.getTree());
             h.getMisProyectos().update(u.getProyectos(), true);
             h.getBuscarProyectos().update(modelo.getProyectos(), true);
+            h.getBuscarColectivos().updateCols(modelo.getTree());
         }
 
         frame.setSize(Home.SIZE[0], Home.SIZE[1]);

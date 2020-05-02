@@ -8,8 +8,11 @@ import vecindApp.clases.proyecto.*;
 import vecindApp.clases.usuario.*;
 
 
+import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Define la clase Aplicacion que contiene y gestiona los distintos
@@ -317,5 +320,26 @@ public class Aplicacion implements Serializable {
      */
     public static void reset() {
         Aplicacion.VecindApp = new Aplicacion(new Administrador("admin", "password"));
+    }
+
+    public JTree getTree() {
+        Set<ElementoColectivo> padres = elemCol.stream().filter(ec -> ec instanceof Colectivo).map(ec -> (Colectivo)ec)
+                .filter(c -> c.getPadre() == null).collect(Collectors.toSet());
+
+        DefaultMutableTreeNode root = getTreeRec(padres, "Colectivos");
+        return new JTree(root);
+    }
+
+    private static DefaultMutableTreeNode getTreeRec(Set<ElementoColectivo> padres, Object nodo) {
+        DefaultMutableTreeNode ret = new DefaultMutableTreeNode(nodo);
+        List<Colectivo> cols = padres.stream().filter(ec -> ec instanceof Colectivo).map(ec -> (Colectivo)ec).collect(Collectors.toList());
+
+        if (cols.size() == 0) {
+            return ret;
+        }
+        for (Colectivo c:cols) {
+            ret.add(getTreeRec(c.getElementos(), c));
+        }
+        return ret;
     }
 }

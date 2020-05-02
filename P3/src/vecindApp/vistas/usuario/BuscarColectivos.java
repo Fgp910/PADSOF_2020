@@ -1,30 +1,35 @@
 package vecindApp.vistas.usuario;
 
+import vecindApp.controladores.usuario.ControlBuscarColectivos;
+import vecindApp.vistas.VentanaArbol;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class BuscarColectivos extends JPanel {
-    private JPanel textPanel = new JPanel(new SpringLayout());
+public class BuscarColectivos<T> extends VentanaArbol<T> {
+    private JButton unirse = new JButton("Unirse");
 
     public BuscarColectivos() {
-        textPanelInit();
+        super();
 
-        this.setLayout(new BorderLayout());
-        add(textPanel, BorderLayout.CENTER);
+        JPanel bot = getBot();
+        bot.add(unirse);
     }
 
-    private void textPanelInit() {
-        JLabel texto = new JLabel("Buscar Colectivos");
-        textPanel.add(texto);
+    public JButton getUnirse() {
+        return unirse;
     }
 
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
+    public void setControlador(ControlBuscarColectivos c) {
+        super.setControlador(c);
 
-        ventana.getContentPane().add(new BuscarColectivos());
+        unirse.addActionListener(c);
+    }
 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,150);
-        ventana.setVisible(true);
+    public void updateCols(JTree arbol) {
+        update(arbol);
+
+        JPanel bot = getBot();
+        bot.add(unirse);
     }
 }

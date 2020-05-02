@@ -1,6 +1,5 @@
 package vecindApp.vistas.usuario;
 
-import vecindApp.controladores.Controlador;
 import vecindApp.controladores.usuario.ControlAfinidad;
 import vecindApp.vistas.VentanaArbol;
 

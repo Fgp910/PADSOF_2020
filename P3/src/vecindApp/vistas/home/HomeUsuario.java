@@ -28,7 +28,7 @@ public class HomeUsuario<N, P, C> extends Home<N> {
         return pBuscarProyectos;
     }
 
-    public BuscarColectivos getpBuscarColectivos() {
+    public BuscarColectivos getBuscarColectivos() {
         return pBuscarColectivos;
     }
 
@@ -38,5 +38,6 @@ public class HomeUsuario<N, P, C> extends Home<N> {
         pMisProyectos.setControlador(c.getControlMisProyectos());
         pMisColectivos.setControlador(c.getControlMisColectivos());
         pBuscarProyectos.setControlador(c.getControlBuscarProyectos());
+        pBuscarColectivos.setControlador(c.getControlBuscarColectivos());
     }
 }

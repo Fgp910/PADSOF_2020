@@ -48,6 +48,7 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
             }
             else {
                 vista.updateCols(((Ciudadano) modelo.getUsuarioActual()).getTree());
+                frame.getHomeUsuario().getBuscarColectivos().updateCols(modelo.getTree());
             }
         }
         else if (e.getSource().equals(vista.getNuevoSubcolectivo())) {
@@ -62,6 +63,7 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
             }
             else {
                 vista.updateCols(((Ciudadano)modelo.getUsuarioActual()).getTree());
+                frame.getHomeUsuario().getBuscarColectivos().updateCols(modelo.getTree());
             }
         }
     }
@@ -70,7 +72,7 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
     public void valueChanged(TreeSelectionEvent e) {
         Object col = ((DefaultMutableTreeNode)vista.getArbol().getLastSelectedPathComponent()).getUserObject();
 
-        if (col == null || !(col instanceof Colectivo)) {
+        if (!(col instanceof Colectivo)) {
             vista.getInfAfinidad().setEnabled(false);
             vista.getNuevoSubcolectivo().setEnabled(false);
         }
