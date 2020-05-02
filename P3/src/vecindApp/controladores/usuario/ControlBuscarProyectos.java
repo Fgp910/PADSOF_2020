@@ -8,6 +8,8 @@ import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
+import vecindApp.clases.proyecto.ProyectoInfraestructura;
+import vecindApp.clases.proyecto.ProyectoSocial;
 import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.usuario.BuscarProyectos;
 
@@ -16,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ControlBuscarProyectos implements ListSelectionListener, ActionListener {
@@ -50,7 +53,27 @@ public class ControlBuscarProyectos implements ListSelectionListener, ActionList
         Proyecto proy = vista.getLista().getSelectedValue();
 
         if (e.getSource().equals(vista.getInfoButton())) {
-            /*Mostrar info*/
+            if (proy instanceof ProyectoSocial) {
+                String nac;
+                if (((ProyectoSocial) proy).isNacional())
+                    nac = "\nProyecto nacional";
+                else
+                    nac = "\nProyecto internacional";
+                JOptionPane.showMessageDialog(vista, "Titulo: " + proy.getTitulo() +
+                        "\nDescripcion: " + proy.getDescripcion() +
+                        "\nImporte solicitado: " + new DecimalFormat("#.00").format(proy.getImporteSolicitado()) +
+                        "\nTipo de proyecto: Social" +
+                        "\nGrupo Social: " + ((ProyectoSocial) proy).getGrupoSocial() +
+                        nac, "Info", JOptionPane.INFORMATION_MESSAGE);
+            } else if (proy instanceof ProyectoInfraestructura) {
+                ImageIcon img = new ImageIcon(getClass().getResource(((ProyectoInfraestructura) proy).getImagen()));
+                JOptionPane.showMessageDialog(vista, "Titulo: " + proy.getTitulo() +
+                                "\nDescripcion: " + proy.getDescripcion() +
+                                "\nImporte solicitado: " + proy.getImporteSolicitado() +
+                                "\nTipo de proyecto: Infraestructura" +
+                                "\nDistritos Afectados: " + ((ProyectoInfraestructura) proy).getAfectados(),
+                        "Info", JOptionPane.INFORMATION_MESSAGE, img);
+            }
         } else if (e.getSource().equals(vista.getApoyarButton())) {
             String[] op = {"Individual", "Colectivo"};
             int ret = JOptionPane.showOptionDialog(vista,

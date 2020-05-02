@@ -6,10 +6,8 @@ import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.Notificacion;
-import vecindApp.clases.proyecto.Distrito;
-import vecindApp.clases.proyecto.EstadoProyecto;
-import vecindApp.clases.proyecto.Proyecto;
-import vecindApp.vistas.InfoProyecto;
+import vecindApp.clases.proyecto.*;
+import vecindApp.controladores.MyIcon;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.usuario.MisProyectos;
 import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
@@ -17,8 +15,10 @@ import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -138,9 +138,37 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         JOptionPane.INFORMATION_MESSAGE);
             }
         } else if (e.getSource().equals(vista.getInfoButton())) {
-            InfoProyecto ip = new InfoProyecto(frame, proy);
-            ip.setVisible(true);
-            ip.setLocationRelativeTo(null);
+            if (proy instanceof ProyectoSocial) {
+                String nac;
+                if (((ProyectoSocial) proy).isNacional())
+                    nac = "\nProyecto nacional";
+                else
+                    nac = "\nProyecto internacional";
+                JOptionPane.showMessageDialog(vista, "Titulo: " + proy.getTitulo() +
+                                            "\nDescripcion: " + proy.getDescripcion() +
+                                            "\nImporte solicitado: " + new DecimalFormat("#.00").format(proy.getImporteSolicitado()) +
+                                            "\nTipo de proyecto: Social" +
+                                            "\nGrupo Social: " + ((ProyectoSocial)proy).getGrupoSocial() +
+                                            nac, "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else if (proy instanceof ProyectoInfraestructura) {
+                String path = ((ProyectoInfraestructura) proy).getImagen();
+                ImageIcon img;
+                java.net.URL imgURL = getClass().getResource(path);
+                if (imgURL != null) {
+                    img = new ImageIcon(imgURL, "imagen proyecto");
+                } else {
+                    System.err.println("Couldn't find file: " + path);
+                    img = null;
+                }
+                JLabel imagen = new JLabel(img);
+                JOptionPane.showMessageDialog(vista, "Titulo: " + proy.getTitulo() +
+                                            "\nDescripcion: " + proy.getDescripcion() +
+                                            "\nImporte solicitado: " + proy.getImporteSolicitado() +
+                                            "\nTipo de proyecto: Infraestructura" +
+                                            "\nDistritos Afectados: " + ((ProyectoInfraestructura)proy).getAfectados()
+                                            , "Info", JOptionPane.INFORMATION_MESSAGE, img);
+            }
         }
     }
 }
