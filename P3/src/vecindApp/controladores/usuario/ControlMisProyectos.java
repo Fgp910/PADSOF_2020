@@ -7,7 +7,6 @@ import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.*;
-import vecindApp.controladores.MyIcon;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.usuario.MisProyectos;
 import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
