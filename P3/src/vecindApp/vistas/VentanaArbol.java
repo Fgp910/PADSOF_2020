@@ -3,6 +3,7 @@ package vecindApp.vistas;
 import vecindApp.controladores.usuario.ControlMisColectivos;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
@@ -15,7 +16,7 @@ public class VentanaArbol<T> extends JPanel {
     private DefaultTreeModel mArbol = new DefaultTreeModel(root);
     private JTree arbol = new JTree(mArbol);
     private JScrollPane scroll = new JScrollPane(arbol);
-    private ControlMisColectivos c;
+    private TreeSelectionListener c;
 
     public VentanaArbol() {
         setLayout(new BorderLayout());
@@ -47,7 +48,7 @@ public class VentanaArbol<T> extends JPanel {
         return arbol;
     }
 
-    public void setControlador(ControlMisColectivos c) {
+    public void setControlador(TreeSelectionListener c) {
         this.c = c;
         arbol.addTreeSelectionListener(c);
     }

@@ -6,6 +6,7 @@ import vecindApp.clases.colectivo.Colectivo;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
+import vecindApp.clases.usuario.Administrador;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.usuario.MisColectivos;
 
@@ -32,7 +33,11 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(vista.getInfAfinidad())) {
-            //Jeje
+            ElementoColectivo c1 = (ElementoColectivo) ((DefaultMutableTreeNode)vista.getArbol().getLastSelectedPathComponent()).getUserObject();
+
+            frame.setLocationRelativeTo(null);
+            frame.getAfinidad().updateCols(((Ciudadano) modelo.getUsuarioActual()).getTree(), c1);
+            frame.mostrarPanel("afinidad");
         }
         else if (e.getSource().equals(vista.getNuevoColectivo())){
             String ret = JOptionPane.showInputDialog("Nombre del colectivo");
@@ -46,12 +51,14 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
             }
         }
         else if (e.getSource().equals(vista.getNuevoSubcolectivo())) {
-            String ret = JOptionPane.showInputDialog("Nombre del subcolectivo");
             Colectivo padre = (Colectivo)((DefaultMutableTreeNode)vista.getArbol().getLastSelectedPathComponent()).getUserObject();
+            String ret = JOptionPane.showInputDialog("Nombre del subcolectivo");
             Colectivo c = new Colectivo(ret, padre);
 
             if (ret == null || !modelo.addElemCol(c)) {
                 JOptionPane.showMessageDialog(vista, "Subcolectivo no válido", "Error", JOptionPane.ERROR_MESSAGE);
+                ((Ciudadano) modelo.getUsuarioActual()).getColectivos().remove(c);
+                ((Ciudadano) modelo.getUsuarioActual()).getColectivosRepresentados().remove(c);
             }
             else {
                 vista.updateCols(((Ciudadano)modelo.getUsuarioActual()).getTree());
@@ -69,7 +76,12 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
         }
         else {
             vista.getInfAfinidad().setEnabled(true);
-            vista.getNuevoSubcolectivo().setEnabled(true);
+            if (((Colectivo)col).getRepresentante().equals(modelo.getUsuarioActual())) {
+                vista.getNuevoSubcolectivo().setEnabled(true);
+            }
+            else {
+                vista.getNuevoSubcolectivo().setEnabled(false);
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.controladores.admin.ControlHomeAdmin;
+import vecindApp.controladores.usuario.ControlAfinidad;
 import vecindApp.controladores.usuario.ControlHomeUsuario;
 import vecindApp.controladores.usuario.ControlNuevoProyecto;
 import vecindApp.vistas.Ventana;
@@ -21,7 +22,7 @@ public class Controlador {
     private ControlHomeUsuario cHomeU;
     private ControlHomeAdmin cHomeA;
     private ControlNuevoProyecto cNuevoProyecto;
-
+    private ControlAfinidad cAfinidad;
 
     public Controlador(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
@@ -32,6 +33,7 @@ public class Controlador {
         cHomeU = new ControlHomeUsuario(frame, modelo, cPerfil);
         cHomeA = new ControlHomeAdmin(frame, modelo, cPerfil);
         cNuevoProyecto = new ControlNuevoProyecto(frame, modelo);
+        cAfinidad = new ControlAfinidad(frame, modelo);
     }
 
     public ControlLoginUsuario getControlLoginUsuario() {
@@ -50,5 +52,9 @@ public class Controlador {
 
     public ActionListener getControlNuevoProyecto() {
         return cNuevoProyecto;
+    }
+
+    public ControlAfinidad getControlAfinidad() {
+        return cAfinidad;
     }
 }

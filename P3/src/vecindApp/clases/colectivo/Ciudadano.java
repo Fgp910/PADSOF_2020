@@ -301,7 +301,7 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
             padres.add(padre);
         }
 
-        root =  getTreeRec(padres, "Mis colectivos");
+        root = getTreeRec(padres, "Mis colectivos");
         return new JTree(root);
     }
 
@@ -334,21 +334,17 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
     }
 
     /*Funciones privadas*/
-    private static DefaultMutableTreeNode getTreeRec(Set<ElementoColectivo> padres, Object nodo) {
+    private DefaultMutableTreeNode getTreeRec(Set<ElementoColectivo> padres, Object nodo) {
         List<Colectivo> cols = padres.stream().filter(ec -> ec instanceof Colectivo).map(ec -> (Colectivo)ec).collect(Collectors.toList());
         DefaultMutableTreeNode ret = new DefaultMutableTreeNode(nodo);
 
         if (cols.size() == 0) {
-            return null;
+            return ret;
         }
         else {
             for (Colectivo c:cols) {
-                DefaultMutableTreeNode r = getTreeRec(c.getElementos(), c);
-                if (r != null){
-                    ret.add(r);
-                }
-                else {
-                    ret.add(new DefaultMutableTreeNode(c));
+                if (c.perteneceHijos(this)) {
+                    ret.add(getTreeRec(c.getElementos(), c));
                 }
             }
         }

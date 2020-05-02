@@ -3,6 +3,7 @@ package vecindApp.vistas;
 import vecindApp.controladores.Controlador;
 import vecindApp.vistas.home.HomeAdmin;
 import vecindApp.vistas.home.HomeUsuario;
+import vecindApp.vistas.usuario.Afinidad;
 import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class Ventana<N,P,C> extends JFrame {
     private HomeUsuario<N,P,C> vHomeUsuario = new HomeUsuario<>();
     private HomeAdmin<N,P,C> vHomeAdmin = new HomeAdmin<>();
     private NuevoProyecto<C> vNuevoProyecto = new NuevoProyecto<>();
+    private Afinidad<C> vAfinidad = new Afinidad<>();
 
     private JPanel contentPane = new JPanel();
 
@@ -30,6 +32,7 @@ public class Ventana<N,P,C> extends JFrame {
         contentPane.add(vHomeUsuario, "home");
         contentPane.add(vHomeAdmin, "homeAdmin");
         contentPane.add(vNuevoProyecto, "nuevoProyecto");
+        contentPane.add(vAfinidad, "afinidad");
     }
 
     public void setControlador(Controlador c) {
@@ -38,6 +41,7 @@ public class Ventana<N,P,C> extends JFrame {
         vHomeUsuario.setControlador(c.getControlHomeUsuario());
         vHomeAdmin.setControlador(c.getControlHomeAdmin());
         vNuevoProyecto.setControlador(c.getControlNuevoProyecto());
+        vAfinidad.setControlador(c.getControlAfinidad());
     }
 
     public LoginUsuario getLoginUsuario() {
@@ -58,6 +62,10 @@ public class Ventana<N,P,C> extends JFrame {
 
     public NuevoProyecto<C> getNuevoProyecto() {
         return vNuevoProyecto;
+    }
+
+    public Afinidad<C> getAfinidad() {
+        return vAfinidad;
     }
 
     public void mostrarPanel(String carta) {

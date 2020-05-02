@@ -255,14 +255,12 @@ public class Colectivo implements ElementoColectivo {
         return nombre;
     }
 
-    /*Metodos privados*/
-
     /**
      * Comprueba si un ciudadano pertenece a los hijos de un colectivo
      * @param ciudadano ciudadano a comprobar
      * @return true si pertenece, false en caso contrario
      */
-    private boolean perteneceHijos(Ciudadano ciudadano) {
+    public boolean perteneceHijos(Ciudadano ciudadano) {
         if (elementos.contains(ciudadano)) {
             return true;
         }
