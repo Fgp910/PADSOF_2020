@@ -2,7 +2,9 @@ package vecindApp.clases.proyecto;
 
 import es.uam.eps.sadp.grants.GrantRequest;
 import vecindApp.clases.colectivo.*;
+import vecindApp.clases.excepciones.ImageNotFoundException;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,14 +28,20 @@ public class ProyectoInfraestructura extends Proyecto {
      * @param propulsor propulsor del proyecto
      * @param img imagen del proyecto
      * @param afectados distritos afectados por el proyecto
+     * @throws ImageNotFoundException si el archivo de imagen no existe
      */
     public ProyectoInfraestructura(String titulo,
                                    String descripcion,
                                    double importeSolicitado,
                                    Ciudadano propulsor,
                                    String img,
-                                   Collection<Distrito> afectados) {
+                                   Collection<Distrito> afectados) throws ImageNotFoundException
+    {
         super(titulo, descripcion, importeSolicitado, propulsor);
+        File tmp = new File(img);
+        if (!tmp.exists()) {
+            throw new ImageNotFoundException(img);
+        }
         imagen = img;
         this.afectados = new ArrayList<>(afectados);
     }
@@ -69,8 +77,13 @@ public class ProyectoInfraestructura extends Proyecto {
     /**
      * Establece una nueva imagen para el proyecto
      * @param img nueva imagen
+     * @throws ImageNotFoundException si el archivo de imagen no existe
      */
-    public void setImagen(String img) {
+    public void setImagen(String img) throws ImageNotFoundException {
+        File tmp = new File(img);
+        if (!tmp.exists()) {
+            throw new ImageNotFoundException(img);
+        }
         imagen = img;
     }
 

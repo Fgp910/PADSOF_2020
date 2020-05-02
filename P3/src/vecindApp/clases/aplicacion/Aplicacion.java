@@ -116,7 +116,6 @@ public class Aplicacion implements Serializable {
      */
     public void setUsuarioActual(Usuario usuarioActual) {
         Date curr = new Date();
-
         this.usuarioActual = usuarioActual;
         proyectos.forEach(p -> p.actualizarCaducidad(curr));
     }

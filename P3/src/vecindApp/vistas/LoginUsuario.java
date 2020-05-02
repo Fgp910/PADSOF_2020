@@ -16,6 +16,7 @@ public class LoginUsuario extends JPanel {
     private JPanel buttonPanel = new JPanel();
     private JButton reg = new JButton("Registrarse");
     private JButton enter = new JButton("Entrar");
+    private JButton time = new JButton("30 días");
 
     public LoginUsuario() {
         textPanelInit();
@@ -31,7 +32,6 @@ public class LoginUsuario extends JPanel {
         l = new JLabel("Nombre de usuario:", JLabel.TRAILING);
         l.setLabelFor(user);
         textPanel.add(l);
-        //((JLabel) textPanel.add(new JLabel("Nombre de usuario:", JLabel.TRAILING))).setLabelFor(user);
         textPanel.add(user);
 
         l = new JLabel("Clave:", JLabel.TRAILING);
@@ -45,6 +45,7 @@ public class LoginUsuario extends JPanel {
     private void buttonPanelInit() {
         buttonPanel.add(reg);
         buttonPanel.add(enter);
+        buttonPanel.add(time);
     }
 
     public JButton getRegButton() {
@@ -55,9 +56,14 @@ public class LoginUsuario extends JPanel {
         return enter;
     }
 
+    public JButton getTimeButton() {
+        return time;
+    }
+
     public void setControlador(ActionListener c) {
         reg.addActionListener(c);
         enter.addActionListener(c);
+        time.addActionListener(c);
     }
 
     public void update() {

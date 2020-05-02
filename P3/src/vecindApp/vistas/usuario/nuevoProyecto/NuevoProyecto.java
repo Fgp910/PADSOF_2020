@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public class NuevoProyecto<C> extends JPanel {
-    public static final int[] SIZE = {600, 600};
+    public static final int[] SIZE = {850, 750};
 
     private JPanel global = new JPanel();
     private NuevoProyectoPropulsor<C> propulsor = new NuevoProyectoPropulsor<>();
