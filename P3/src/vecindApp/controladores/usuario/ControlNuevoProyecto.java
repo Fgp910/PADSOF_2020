@@ -5,6 +5,7 @@ import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.Colectivo;
 import vecindApp.clases.colectivo.ElementoColectivo;
+import vecindApp.clases.excepciones.ImageNotFoundException;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Distrito;
 import vecindApp.clases.proyecto.Proyecto;
@@ -18,6 +19,7 @@ import vecindApp.vistas.usuario.nuevoProyecto.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -100,6 +102,15 @@ public class ControlNuevoProyecto implements ActionListener {
                     return;
                 }
 
+                File tmp = new File(imagen);
+                if (!tmp.exists()) {
+                    JOptionPane.showMessageDialog(vista,
+                            imagen + " no existe.",
+                            "Error (infraestructura)",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 if (distritosAfectados.isEmpty()) {
                     JOptionPane.showMessageDialog(vista,
                             "Indique los distritos afectados por su proyecto.",
@@ -109,12 +120,21 @@ public class ControlNuevoProyecto implements ActionListener {
                 }
 
                 if (propCiu) {
-                    modelo.addProyecto(new ProyectoInfraestructura(titulo,
-                            descripcion,
-                            importeSolicitado,
-                            (Ciudadano)propulsor,
-                            imagen,
-                            distritosAfectados));
+                    try {
+                        Proyecto p = new ProyectoInfraestructura(titulo,
+                                descripcion,
+                                importeSolicitado,
+                                (Ciudadano) propulsor,
+                                imagen,
+                                distritosAfectados);
+                        modelo.addProyecto(p);
+                    } catch (ImageNotFoundException ex) {
+                        JOptionPane.showMessageDialog(vista,
+                                ex.getMessage(),
+                                "Error (infraestructura)",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                 } else {
                     modelo.addProyecto(new ProyectoInfraestructura(titulo,
                             descripcion,

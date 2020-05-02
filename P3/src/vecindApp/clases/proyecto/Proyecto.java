@@ -270,7 +270,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	}
 
 	/**
-	 * Devuelve si el proyecto esta caducaco o no
+	 * Devuelve si el proyecto esta caducado o no
 	 * @return true si caducado, false si no
 	 */
 	public boolean isCaducado() {

@@ -14,6 +14,7 @@ public class NuevoProyectoInfraestructura extends JPanel {
     private JPanel textPanel = new JPanel(new SpringLayout());
     private JTextField imPath = new JTextField();
     private JPanel distritosPanel = new JPanel();
+    private JLabel distritosLabel;
     private List<JCheckBox> distritos = new ArrayList<>();
 
     public NuevoProyectoInfraestructura() {
@@ -23,7 +24,9 @@ public class NuevoProyectoInfraestructura extends JPanel {
         textPanel.add(imPath);
         SpringUtilities.makeCompactGrid(textPanel, 1, 2, 6, 6, 6, 6);
 
-        distritosPanel.add(new JLabel("Distritos afectados:", JLabel.LEADING));
+        distritosLabel = new JLabel("Distritos afectados:", JLabel.LEADING);
+        distritosLabel.setLabelFor(distritosPanel);
+        distritosPanel.add(l);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(opc);
@@ -46,6 +49,9 @@ public class NuevoProyectoInfraestructura extends JPanel {
     public void setList(Collection<String> list) {
         int size = list.size();
         JPanel buttons = new JPanel(new GridLayout(size, 1));
+        distritos.clear();
+        distritosPanel.removeAll();
+        distritosPanel.add(distritosLabel);
         for (String dist : list) {
             JCheckBox box = new JCheckBox(dist);
             distritos.add(box);

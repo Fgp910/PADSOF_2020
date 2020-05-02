@@ -1,23 +1,22 @@
 package vecindApp.controladores;
 
+import es.uam.eps.sadp.grants.CCGG;
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
-import vecindApp.clases.colectivo.Colectivo;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.clases.usuario.Administrador;
 import vecindApp.clases.usuario.Usuario;
-import vecindApp.controladores.usuario.ControlMisColectivos;
+import vecindApp.pruebas.FechaSimulada;
 import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
-import vecindApp.vistas.VentanaLista;
 import vecindApp.vistas.home.Home;
 import vecindApp.vistas.home.HomeAdmin;
 import vecindApp.vistas.home.HomeUsuario;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -77,6 +76,14 @@ public class ControlLoginUsuario implements ActionListener {
                         "Pendiente de aprobación",
                         JOptionPane.INFORMATION_MESSAGE);
             }
+        } else if (e.getSource().equals(vista.getTimeButton())) {
+            CCGG proxy = CCGG.getGateway();
+            FechaSimulada.avanzar(30);  //pasa un mes
+            proxy.setDate(FechaSimulada.getHoy());
+            JOptionPane.showMessageDialog(vista,
+                    "Han pasado 30 días",
+                    "Avance temporal",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

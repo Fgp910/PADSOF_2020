@@ -3,6 +3,7 @@ package vecindApp.pruebas;
 import org.junit.Before;
 import org.junit.Test;
 import vecindApp.clases.colectivo.*;
+import vecindApp.clases.excepciones.ImageNotFoundException;
 import vecindApp.clases.proyecto.*;
 
 import java.util.ArrayList;
@@ -22,26 +23,26 @@ public class ProyectoInfraestructuraTest {
     Collection<Distrito> afectados;
 
     @Before
-    public void setUp() {
+    public void setUp() throws ImageNotFoundException {
         c = new Ciudadano("pepe", "a1", "123456U");
         afectados = new ArrayList<>();
         pi = new ProyectoInfraestructura("titulo",
                 "descripcion",
                 500.0,
                 c,
-                "imagen",
+                "imagen.jpg",
                 afectados);
     }
 
     @Test
     public void getImagen() {
-        assertEquals("imagen", pi.getImagen());
+        assertEquals("imagen.jpg", pi.getImagen());
     }
 
     @Test
-    public void setImagen() {
-        pi.setImagen("imagen2");
-        assertEquals("imagen2", pi.getImagen());
+    public void setImagen() throws ImageNotFoundException {
+        pi.setImagen("imagen2.jpg");
+        assertEquals("imagen2.jpg", pi.getImagen());
     }
 
     @Test

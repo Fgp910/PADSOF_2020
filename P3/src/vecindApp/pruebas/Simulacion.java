@@ -57,7 +57,7 @@ public class Simulacion {
                 "es una prueba",
                 1100.00,
                 ciudadanos[0],
-                "imagen.png",
+                "imagen.jpg",
                 Arrays.asList(Distrito.Hortaleza, Distrito.Chamartin));
         Aplicacion.VecindApp.addProyecto(proyecto); //Proyecto individual
 
