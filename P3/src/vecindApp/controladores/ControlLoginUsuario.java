@@ -8,6 +8,7 @@ import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.clases.usuario.Administrador;
 import vecindApp.clases.usuario.Usuario;
+import vecindApp.controladores.usuario.ControlMisColectivos;
 import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.RegistroUsuario;
 import vecindApp.vistas.Ventana;
@@ -94,7 +95,7 @@ public class ControlLoginUsuario implements ActionListener {
             h.getNotificaciones().update(u.getPendientes(), true);
             h.getMisProyectos().removeAll();
             h.getMisProyectos().addAll(u.getProyectos());
-            h.getMisColectivos().setRoot(u.getTree());
+            h.getMisColectivos().updateCols(u.getTree(), new ControlMisColectivos(frame, modelo));
         }
 
         frame.setSize(Home.SIZE[0], Home.SIZE[1]);

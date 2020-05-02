@@ -5,10 +5,13 @@ import es.uam.eps.sadp.grants.InvalidIDException;
 import es.uam.eps.sadp.grants.InvalidRequestException;
 import vecindApp.clases.aplicacion.*;
 import vecindApp.clases.colectivo.*;
+import vecindApp.clases.excepciones.CCGGException;
+import vecindApp.clases.excepciones.ConexionFallida;
 import vecindApp.clases.notificacion.*;
 import vecindApp.clases.proyecto.*;
 import vecindApp.clases.usuario.*;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -103,7 +106,7 @@ public class Simulacion {
             pendientes = ciudadanos[0].getPendientes();
             System.out.println(pendientes.get(0).descripcion());  //El proyecto fue resuelto (con suerte financiado)
             pendientes.remove(pendientes.get(0));
-        } catch (IOException | InvalidIDException | InvalidRequestException ex) {
+        } catch (CCGGException | ConexionFallida ex) {
             System.out.println(ex);
             return; //En este simulador, la interaccion termina si hay excepciones. En general, se manejara la excepcion
         }

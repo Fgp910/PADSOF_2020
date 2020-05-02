@@ -42,9 +42,7 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
                 JOptionPane.showMessageDialog(vista, "Colectivo no válido", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else {
-                //vista.getRoot().add(new DefaultMutableTreeNode(c));
-                vista.setRoot(((Ciudadano) modelo.getUsuarioActual()).getTree());
-                ((DefaultTreeModel)vista.getArbol().getModel()).reload();
+                vista.updateCols(((Ciudadano) modelo.getUsuarioActual()).getTree(), new ControlMisColectivos(frame, modelo));
             }
         }
         else if (e.getSource().equals(vista.getNuevoSubcolectivo())) {
@@ -56,8 +54,7 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
                 JOptionPane.showMessageDialog(vista, "Subcolectivo no válido", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else {
-                DefaultMutableTreeNode last = (DefaultMutableTreeNode)vista.getArbol().getSelectionPath().getLastPathComponent();
-                last.add(new DefaultMutableTreeNode(c));
+                vista.updateCols(((Ciudadano)modelo.getUsuarioActual()).getTree(), new ControlMisColectivos(frame, modelo));
             }
         }
     }

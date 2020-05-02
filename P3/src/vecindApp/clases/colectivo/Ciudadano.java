@@ -3,7 +3,9 @@ package vecindApp.clases.colectivo;
 import vecindApp.clases.proyecto.*;
 import vecindApp.clases.usuario.*;
 
+import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -285,10 +287,11 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
 
     /**
      * Crea un arbol con los colectivos del ciudadano
-     * @return raiz del arbol
+     * @return arbol completo
      */
-    public DefaultMutableTreeNode getTree() {
+    public JTree getTree() {
         Set<ElementoColectivo> padres = new TreeSet<>();
+        DefaultMutableTreeNode root;
 
         for (Colectivo c:colectivos) {
             Colectivo padre = c;
@@ -298,7 +301,8 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
             padres.add(padre);
         }
 
-        return getTreeRec(padres, "Mis colectivos");
+        root =  getTreeRec(padres, "Mis colectivos");
+        return new JTree(root);
     }
 
     @Override
@@ -342,6 +346,9 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
                 DefaultMutableTreeNode r = getTreeRec(c.getElementos(), c);
                 if (r != null){
                     ret.add(r);
+                }
+                else {
+                    ret.add(new DefaultMutableTreeNode(c));
                 }
             }
         }

@@ -3,6 +3,7 @@ package vecindApp.vistas.usuario;
 import vecindApp.vistas.VentanaArbol;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionListener;
 import java.awt.event.ActionListener;
 
 public class MisColectivos<T> extends VentanaArbol<T> {
@@ -12,8 +13,6 @@ public class MisColectivos<T> extends VentanaArbol<T> {
 
     public MisColectivos() {
         super();
-
-        getTitle().add(new JLabel("Mis Colectivos"));
 
         JPanel bot = getBot();
         bot.add(infAfinidad).setEnabled(false);
@@ -37,5 +36,15 @@ public class MisColectivos<T> extends VentanaArbol<T> {
         nuevoColectivo.addActionListener(c);
         infAfinidad.addActionListener(c);
         nuevoSubcolectivo.addActionListener(c);
+    }
+
+    public void updateCols(JTree arbol, TreeSelectionListener tsl) {
+        update(arbol);
+
+        JPanel bot = getBot();
+        bot.add(infAfinidad);
+        bot.add(nuevoSubcolectivo);
+        bot.add(nuevoColectivo);
+        getArbol().addTreeSelectionListener(tsl);
     }
 }
