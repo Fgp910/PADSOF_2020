@@ -41,8 +41,8 @@ public class ProyectoInfraestructuraTest {
 
     @Test
     public void setImagen() throws ImageNotFoundException {
-        pi.setImagen("imagen2.jpg");
-        assertEquals("imagen2.jpg", pi.getImagen());
+        pi.setImagen("imagen2.jpeg");
+        assertEquals("imagen2.jpeg", pi.getImagen());
     }
 
     @Test

@@ -9,6 +9,7 @@ import vecindApp.controladores.Controlador;
 import vecindApp.pruebas.FechaSimulada;
 import vecindApp.vistas.Ventana;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Main {
@@ -21,7 +22,14 @@ public class Main {
                     proxy.setDate(FechaSimulada.getHoy());
 
                     Ventana<Notificacion, Proyecto, ElementoColectivo> frame = new Ventana<>();
-                    Aplicacion.cargar(Aplicacion.PATH);
+                    try {
+                        Aplicacion.cargar(Aplicacion.PATH);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null,
+                                "Fichero de carga inexistente o corrompido.\nCreando sistema en blanco.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                     Aplicacion modelo = Aplicacion.VecindApp;
                     Controlador controlador = new Controlador(frame, modelo);
                     frame.setControlador(controlador);

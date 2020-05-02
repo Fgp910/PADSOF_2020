@@ -3,8 +3,9 @@ package vecindApp.clases.usuario;
 import vecindApp.clases.notificacion.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Define la clase Usuario que lleva registro de la informacion
@@ -15,7 +16,7 @@ import java.util.List;
 public abstract class Usuario implements Serializable {
     private String username;
     private String password;
-    private List<Notificacion> pendientes;
+    private Set<Notificacion> pendientes;
 
     /**
      * Inicializa un usuario
@@ -25,7 +26,7 @@ public abstract class Usuario implements Serializable {
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
-        pendientes = new ArrayList<>();
+        pendientes = new HashSet<>();
     }
 
     /**
@@ -64,7 +65,7 @@ public abstract class Usuario implements Serializable {
      * Devuelve la lista de notificaciones pendientes del usuario
      * @return notificaciones pendientes
      */
-    public List<Notificacion> getPendientes() {
+    public Set<Notificacion> getPendientes() {
         return pendientes;
     }
 
@@ -72,7 +73,7 @@ public abstract class Usuario implements Serializable {
      * Establece una nueva lista de notificaciones pendientes
      * @param p notificaciones pendientes
      */
-    public void setPendientes(List<Notificacion> p) {
+    public void setPendientes(Set<Notificacion> p) {
         pendientes = p;
     }
 

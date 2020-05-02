@@ -42,6 +42,19 @@ public class NotificacionReg extends Notificacion {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o instanceof NotificacionReg && ((NotificacionReg) o).getSujeto() == sujeto) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return sujeto.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "Nuevo registro: " + sujeto.getUsername();
     }

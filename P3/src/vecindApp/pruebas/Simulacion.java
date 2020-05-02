@@ -13,8 +13,10 @@ import vecindApp.clases.usuario.*;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Implementa un simulador basico del uso del sistema
@@ -38,7 +40,7 @@ public class Simulacion {
         }
 
         /*Admision de ciudadanos*/
-        List<Notificacion> pendientes = admin.getPendientes();
+        List<Notificacion> pendientes = new ArrayList<>(admin.getPendientes());
         for (int i = 0; i < 3; i++) {   //El usuario administrador admite a los tres primeros
             System.out.println(pendientes.get(0).descripcion());
             ((NotificacionReg)pendientes.get(0)).getSujeto().admitir();
@@ -61,7 +63,7 @@ public class Simulacion {
                 Arrays.asList(Distrito.Hortaleza, Distrito.Chamartin));
         Aplicacion.VecindApp.addProyecto(proyecto); //Proyecto individual
 
-        pendientes = admin.getPendientes();
+        pendientes = new ArrayList<>(admin.getPendientes());
         System.out.println(pendientes.get(0).descripcion());
         ((NotificacionProy)pendientes.get(0)).getSujeto().aceptar(); //Admite al proyecto
         pendientes.remove(pendientes.get(0).descripcion());
@@ -73,7 +75,7 @@ public class Simulacion {
         subcolectivo.addElemento(ciudadanos[2]);    //luis se apunta al subcolectivo, se actualizan los apoyos
         System.out.println("Numero de apoyos:" + proyecto.getNApoyos()); //3
 
-        pendientes = ciudadanos[0].getPendientes();
+        pendientes = new ArrayList<>(ciudadanos[0].getPendientes());
         System.out.println(pendientes.get(0).descripcion());  //El proyecto esta listo para enviar
         pendientes.remove(pendientes.get(0));
 
@@ -94,7 +96,7 @@ public class Simulacion {
         try {
             proyecto.enviarFinanciacion();
 
-            pendientes = ciudadanos[0].getPendientes();
+            pendientes = new ArrayList<>(ciudadanos[0].getPendientes());
             System.out.println(pendientes.get(0).descripcion());  //El proyecto fue enviado a financiacion
             pendientes.remove(pendientes.get(0));
 
@@ -103,7 +105,7 @@ public class Simulacion {
 
             proyecto.consultarFinanciacion();
 
-            pendientes = ciudadanos[0].getPendientes();
+            pendientes = new ArrayList<>(ciudadanos[0].getPendientes());
             System.out.println(pendientes.get(0).descripcion());  //El proyecto fue resuelto (con suerte financiado)
             pendientes.remove(pendientes.get(0));
         } catch (CCGGException | ConexionFallida ex) {

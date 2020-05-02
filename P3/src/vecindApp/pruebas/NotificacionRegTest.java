@@ -36,6 +36,6 @@ public class NotificacionRegTest {
 
     @Test
     public void descripcion() {
-        assertEquals("Nuevo registro. pepe (NIF: 12345678A).", nr.descripcion());
+        assertEquals("Nuevo registro. pepe (NIF: 12345678A)", nr.descripcion());
     }
 }

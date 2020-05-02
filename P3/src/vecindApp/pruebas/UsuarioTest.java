@@ -7,6 +7,8 @@ import vecindApp.clases.notificacion.*;
 import vecindApp.clases.usuario.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -48,13 +50,13 @@ public class UsuarioTest {
 
     @Test
     public void getPendientes() {
-        ArrayList<Notificacion> pendientes = new ArrayList<>();
+        Set<Notificacion> pendientes = new HashSet<>();
         assertEquals(pendientes, usr.getPendientes());
     }
 
     @Test
     public void setPendientes() {
-        ArrayList<Notificacion> newpendientes = new ArrayList<>();
+        Set<Notificacion> newpendientes = new HashSet<>();
         usr.setPendientes(newpendientes);
         assertEquals(newpendientes, usr.getPendientes());
     }
