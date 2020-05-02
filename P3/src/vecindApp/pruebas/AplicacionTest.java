@@ -176,7 +176,8 @@ public class AplicacionTest {
     public void notificarRegistro() {
         Ciudadano c = new Ciudadano("usr", "psswd", "12345678X");
         app.notificarRegistro(c);
-        assertEquals(c, ((NotificacionReg) app.getAdmin().getPendientes().get(0)).getSujeto());
+        List<Notificacion> notis = new ArrayList<>(app.getAdmin().getPendientes());
+        assertEquals(c, ((NotificacionReg) notis.get(0)).getSujeto());
     }
 
     @Test

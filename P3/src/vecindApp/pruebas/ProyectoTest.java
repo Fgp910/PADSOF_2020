@@ -6,6 +6,9 @@ import vecindApp.clases.colectivo.*;
 import vecindApp.clases.notificacion.*;
 import vecindApp.clases.proyecto.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -49,7 +52,8 @@ public class ProyectoTest {
     @Test
     public void notificarCambio() {
         p.notificarCambio();
-        assertEquals(p, ((NotificacionProy)((Ciudadano) p.getPropulsor()).getPendientes().get(0)).getSujeto());
+        List<Notificacion> notis = new ArrayList<>(((Ciudadano) p.getPropulsor()).getPendientes());
+        assertEquals(p, ((NotificacionProy) notis.get(0)).getSujeto());
     }
 
     @Test
