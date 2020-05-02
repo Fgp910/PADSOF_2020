@@ -42,28 +42,28 @@ public class ControlMisColectivos implements ActionListener, TreeSelectionListen
                 JOptionPane.showMessageDialog(vista, "Colectivo no válido", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else {
-                vista.updateCols(((Ciudadano) modelo.getUsuarioActual()).getTree(), new ControlMisColectivos(frame, modelo));
+                vista.updateCols(((Ciudadano) modelo.getUsuarioActual()).getTree());
             }
         }
         else if (e.getSource().equals(vista.getNuevoSubcolectivo())) {
             String ret = JOptionPane.showInputDialog("Nombre del subcolectivo");
-            Colectivo padre = (Colectivo)vista.getArbol().getLastSelectedPathComponent();
+            Colectivo padre = (Colectivo)((DefaultMutableTreeNode)vista.getArbol().getLastSelectedPathComponent()).getUserObject();
             Colectivo c = new Colectivo(ret, padre);
 
             if (ret == null || !modelo.addElemCol(c)) {
                 JOptionPane.showMessageDialog(vista, "Subcolectivo no válido", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else {
-                vista.updateCols(((Ciudadano)modelo.getUsuarioActual()).getTree(), new ControlMisColectivos(frame, modelo));
+                vista.updateCols(((Ciudadano)modelo.getUsuarioActual()).getTree());
             }
         }
     }
 
     @Override
     public void valueChanged(TreeSelectionEvent e) {
-        Colectivo col = (Colectivo)vista.getArbol().getLastSelectedPathComponent();
+        Object col = ((DefaultMutableTreeNode)vista.getArbol().getLastSelectedPathComponent()).getUserObject();
 
-        if (col == null) {
+        if (col == null || !(col instanceof Colectivo)) {
             vista.getInfAfinidad().setEnabled(false);
             vista.getNuevoSubcolectivo().setEnabled(false);
         }

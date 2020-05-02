@@ -1,5 +1,6 @@
 package vecindApp.vistas.usuario;
 
+import vecindApp.controladores.usuario.ControlMisColectivos;
 import vecindApp.vistas.VentanaArbol;
 
 import javax.swing.*;
@@ -32,19 +33,20 @@ public class MisColectivos<T> extends VentanaArbol<T> {
         return nuevoSubcolectivo;
     }
 
-    public void setControlador(ActionListener c) {
+    public void setControlador(ControlMisColectivos c) {
+        super.setControlador(c);
+
         nuevoColectivo.addActionListener(c);
         infAfinidad.addActionListener(c);
         nuevoSubcolectivo.addActionListener(c);
     }
 
-    public void updateCols(JTree arbol, TreeSelectionListener tsl) {
+    public void updateCols(JTree arbol) {
         update(arbol);
 
         JPanel bot = getBot();
         bot.add(infAfinidad);
         bot.add(nuevoSubcolectivo);
         bot.add(nuevoColectivo);
-        getArbol().addTreeSelectionListener(tsl);
     }
 }
