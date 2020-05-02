@@ -9,11 +9,14 @@ import vecindApp.clases.proyecto.ProyectoInfraestructura;
 import vecindApp.clases.proyecto.ProyectoSocial;
 import vecindApp.vistas.Notificaciones;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.DecimalFormat;
 
 public class ControlNotificaciones implements ListSelectionListener, ActionListener {
@@ -58,28 +61,7 @@ public class ControlNotificaciones implements ListSelectionListener, ActionListe
         } else if (e.getSource().equals(vista.getInfoButton())) {
             Notificacion noti = vista.getLista().getSelectedValue();
             if (noti instanceof NotificacionProy) {
-                Proyecto proy = ((NotificacionProy) noti).getSujeto();
-                if (proy instanceof ProyectoSocial) {
-                    String nac;
-                    if (((ProyectoSocial) proy).isNacional())
-                        nac = "\nProyecto nacional";
-                    else
-                        nac = "\nProyecto internacional";
-                    JOptionPane.showMessageDialog(vista, "Titulo: " + proy.getTitulo() +
-                            "\nDescripcion: " + proy.getDescripcion() +
-                            "\nImporte solicitado: " + new DecimalFormat("#.00").format(proy.getImporteSolicitado()) +
-                            "\nTipo de proyecto: Social" +
-                            "\nGrupo Social: " + ((ProyectoSocial) proy).getGrupoSocial() +
-                            nac, "Info", JOptionPane.INFORMATION_MESSAGE);
-                } else if (proy instanceof ProyectoInfraestructura) {
-                    ImageIcon img = new ImageIcon(getClass().getResource(((ProyectoInfraestructura) proy).getImagen()));
-                    JOptionPane.showMessageDialog(vista, "Titulo: " + proy.getTitulo() +
-                                    "\nDescripcion: " + proy.getDescripcion() +
-                                    "\nImporte solicitado: " + proy.getImporteSolicitado() +
-                                    "\nTipo de proyecto: Infraestructura" +
-                                    "\nDistritos Afectados: " + ((ProyectoInfraestructura) proy).getAfectados(),
-                            "Info", JOptionPane.INFORMATION_MESSAGE, img);
-                }
+                DetalleProyecto.mostrarProyecto(((NotificacionProy) noti).getSujeto(), vista);
             }
         }
     }
