@@ -6,6 +6,7 @@ import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.controladores.ControlNotificaciones;
 import vecindApp.controladores.ControlPerfil;
+import vecindApp.controladores.admin.ControlNotificacionesAdmin;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
 
@@ -17,7 +18,6 @@ public class ControlHomeUsuario {
     private ControlNotificaciones cNotificaciones;
     private ControlMisProyectos cMisProyectos;
     private ControlMisColectivos cMisColectivos;
-    private ControlConsultarColectivos cConsultarColectivos;
     private ControlBuscarColectivos cBuscarColectivos;
     private ControlBuscarProyectos cBuscarProyectos;
     private ControlPerfil cPerfil;
@@ -30,9 +30,8 @@ public class ControlHomeUsuario {
         cNotificaciones = new ControlNotificaciones(vista.getNotificaciones(), modelo);
         cMisProyectos = new ControlMisProyectos(frame, modelo);
         cMisColectivos = new ControlMisColectivos(frame, modelo);
-        cConsultarColectivos = new ControlConsultarColectivos(frame, modelo);
         cBuscarColectivos = new ControlBuscarColectivos(frame, modelo);
-        cBuscarProyectos = new ControlBuscarProyectos(frame, modelo);
+        cBuscarProyectos = new ControlBuscarProyectos(vista, modelo);
         this.cPerfil = cPerfil;
     }
 
@@ -46,10 +45,6 @@ public class ControlHomeUsuario {
 
     public ControlMisColectivos getControlMisColectivos() {
         return cMisColectivos;
-    }
-
-    public ControlConsultarColectivos getControlConsultarColectivos() {
-        return cConsultarColectivos;
     }
 
     public ControlBuscarColectivos getControlBuscarColectivos() {

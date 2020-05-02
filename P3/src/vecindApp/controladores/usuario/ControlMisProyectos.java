@@ -1,7 +1,7 @@
 package vecindApp.controladores.usuario;
 
-import jdk.nashorn.internal.scripts.JO;
 import vecindApp.clases.aplicacion.Aplicacion;
+import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.excepciones.CCGGException;
 import vecindApp.clases.excepciones.ConexionFallida;
@@ -9,9 +9,8 @@ import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Distrito;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
-import vecindApp.vistas.RegistroUsuario;
+import vecindApp.vistas.InfoProyecto;
 import vecindApp.vistas.Ventana;
-import vecindApp.vistas.usuario.ConsultarProyectos;
 import vecindApp.vistas.usuario.MisProyectos;
 import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 
@@ -42,8 +41,10 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                 vista.getPopularButton().setEnabled(false);
                 vista.getEnviarButton().setEnabled(false);
                 vista.getConsultarButton().setEnabled(false);
+                vista.getInfoButton().setEnabled(false);
             } else {
                 vista.getPopularButton().setEnabled(true);
+                vista.getInfoButton().setEnabled(true);
                 if (selec.getEstado().equals(EstadoProyecto.LISTOENVAR)) {
                     vista.getEnviarButton().setEnabled(true);
                 }
@@ -78,7 +79,7 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(vista,
-                        "Informe de Popularidad (número de apoyos): " + proy.generarInformePopularidad(),
+                        "Número de apoyos: " + proy.generarInformePopularidad(),
                         "Popularidad",
                         JOptionPane.INFORMATION_MESSAGE);
             }
@@ -89,6 +90,8 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         "Enviado a financiación con éxito",
                         "Financiación",
                         JOptionPane.INFORMATION_MESSAGE);
+                vista.getEnviarButton().setEnabled(false);
+                vista.getConsultarButton().setEnabled(true);
             } catch (ConexionFallida ex) {
                 JOptionPane.showMessageDialog(vista,
                         "Error de conexión con el sistema externo:\n" + ex.toString() + "\nEl proyecto no pudo ser enviado.",
@@ -132,6 +135,10 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         "Consulta",
                         JOptionPane.INFORMATION_MESSAGE);
             }
+        } else if (e.getSource().equals(vista.getInfoButton())) {
+            InfoProyecto ip = new InfoProyecto(frame, proy);
+            ip.setVisible(true);
+            ip.setLocationRelativeTo(null);
         }
     }
 }

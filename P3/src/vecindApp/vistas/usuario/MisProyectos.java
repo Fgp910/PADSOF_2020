@@ -4,19 +4,20 @@ import vecindApp.controladores.usuario.ControlMisProyectos;
 import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 
 public class MisProyectos<P> extends VentanaLista<P> {
     private JButton iPopularidad = new JButton("Informe de Popularidad");
     private JButton enviar = new JButton("Enviar a Financiación");
     private JButton consultar = new JButton("Consultar Estado");
     private JButton crear = new JButton("Nuevo Proyecto");
+    private JButton info = new JButton("Ver");
 
     public MisProyectos() {
         super();
         getBot().add(iPopularidad).setEnabled(false);
         getBot().add(enviar).setEnabled(false);
         getBot().add(consultar).setEnabled(false);
+        getBot().add(info).setEnabled(false);
         getBot().add(crear);
     }
 
@@ -36,11 +37,14 @@ public class MisProyectos<P> extends VentanaLista<P> {
         return crear;
     }
 
+    public JButton getInfoButton() { return  info; }
+
     public void setControlador(ControlMisProyectos c) {
         super.setControlador(c);
         iPopularidad.addActionListener(c);
         enviar.addActionListener(c);
         consultar.addActionListener(c);
         crear.addActionListener(c);
+        info.addActionListener(c);
     }
 }

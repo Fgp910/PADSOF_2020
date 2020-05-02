@@ -28,7 +28,7 @@ public class ControlHomeAdmin {
         cNotificaciones = new ControlNotificacionesAdmin(frame, modelo);
         cBloquear = new ControlBloquear(vista, modelo);
         cDesbloquear = new ControlDesbloquear(vista, modelo);
-        cMinApoyos = new ControlMinApoyos(frame, modelo);
+        cMinApoyos = new ControlMinApoyos(vista, modelo);
         this.cPerfil = cPerfil;
     }
 

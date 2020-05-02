@@ -10,7 +10,7 @@ import javax.swing.*;
 public class HomeAdmin<N,P,C> extends Home<N> {
     private Bloquear<C> pBloquear = new Bloquear<>();
     private Desbloquear<C> pDesbloquear = new Desbloquear<>();
-    private MinApoyos<P> pMinApoyos = new MinApoyos<>();
+    private MinApoyos pMinApoyos = new MinApoyos();
 
     public HomeAdmin() {
         add("Bloquear", pBloquear);
@@ -26,14 +26,14 @@ public class HomeAdmin<N,P,C> extends Home<N> {
         return pDesbloquear;
     }
 
-    public MinApoyos<P> getpMinApoyos() {
+    public MinApoyos getpMinApoyos() {
         return pMinApoyos;
     }
 
     public void setControlador(ControlHomeAdmin c) {
         pPerfil.setControlador(c.getControlPerfil());
         pNotificaciones.setControlador(c.getControlNotificaciones());
-        //pMinApoyos.setControlador(c.getControlMinApoyos());
+        pMinApoyos.setControlador(c.getControlMinApoyos());
         pDesbloquear.setControlador(c.getControlDesbloquear());
         pBloquear.setControlador(c.getControlBloquear());
     }
