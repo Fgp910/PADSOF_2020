@@ -1,6 +1,8 @@
 package vecindApp.clases.aplicacion;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import vecindApp.clases.proyecto.*;
 
 /**
@@ -11,6 +13,7 @@ import vecindApp.clases.proyecto.*;
 public class Persistencia implements Serializable {
     private int proyectoNextId;
     private int aplicacionMinApoyos;
+    private LocalDate now;
 
     /**
      * Inicializa la clase persistencia
@@ -18,6 +21,7 @@ public class Persistencia implements Serializable {
     public Persistencia() {
         this.proyectoNextId = Proyecto.getNextId();
         this.aplicacionMinApoyos = Aplicacion.getMinApoyos();
+        this.now = Aplicacion.getNow();
     }
 
     /**
@@ -26,6 +30,15 @@ public class Persistencia implements Serializable {
     public void setValues() {
         Proyecto.setNextId(proyectoNextId);
         Aplicacion.setMinApoyos(aplicacionMinApoyos);
+        Aplicacion.setNow(now); //Por motivos de la simulacion, se asigna la ultima hora almacenada.
+    }                           //Podría usarse LocalDate.now() para actualizar la fecha automaticamente
+
+    /**
+     * Devuelve el next id de un proyecto
+     * @return next id de un proyecto
+     */
+    public int getProyectoNextId() {
+        return proyectoNextId;
     }
 
     /**
@@ -37,10 +50,10 @@ public class Persistencia implements Serializable {
     }
 
     /**
-     * Devuelve el next id de un proyecto
-     * @return next id de un proyecto
+     * Devuelve la fecha actual del sistema
+     * @return fecha actual de la aplicacion
      */
-    public int getProyectoNextId() {
-        return proyectoNextId;
+    public LocalDate getAplicacionNow() {
+        return now;
     }
 }

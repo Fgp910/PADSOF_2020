@@ -14,9 +14,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
+import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -60,8 +59,8 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 		this.titulo = titulo;
         this.descripcion = descripcion;
         this.importeSolicitado = importeSolicitado;
-        fechaCreacion = LocalDate.now();
-        ultimoApoyo = LocalDate.now();
+        fechaCreacion = Aplicacion.getNow();
+        ultimoApoyo = Aplicacion.getNow();
         promotores  = new HashSet<>();
         suscriptores  = new HashSet<>();
         this.propulsor = propulsor;
@@ -217,8 +216,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 * @param curr la fecha actual
 	 */
 	public void actualizarCaducidad(LocalDate curr) {
-		Period per = Period.between(curr, ultimoApoyo);
-		if (per.getDays() > CAD) {
+		if (ChronoUnit.DAYS.between(ultimoApoyo, curr) >= CAD) {
 			this.caducar();
 		}
 	}
@@ -496,7 +494,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 			suscriptores.add(((Colectivo) ec).getRepresentante());
 			recibirApoyo((Colectivo) ec);
 		}
-		setUltimoApoyo(LocalDate.now());
+		setUltimoApoyo(Aplicacion.getNow());
 	}
 
 	/**

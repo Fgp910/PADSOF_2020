@@ -66,7 +66,7 @@ public class ControlNuevoProyecto implements ActionListener {
 
             if (titulo == null || titulo.length() > Proyecto.MAXTIT) {
                 JOptionPane.showMessageDialog(vista,
-                        "Introduzca una descripción para su proyecto (máximo " + Proyecto.MAXTIT + " caracteres).",
+                        "Introduzca un título para su proyecto (máximo " + Proyecto.MAXTIT + " caracteres).",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
