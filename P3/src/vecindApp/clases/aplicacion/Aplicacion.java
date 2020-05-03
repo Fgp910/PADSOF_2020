@@ -232,6 +232,26 @@ public class Aplicacion implements Serializable {
     }
 
     /**
+     * Devuelve una coleccion con los ciudadanos no bloqueados
+     * @return ciudadanos no bloqueados
+     */
+    public Collection<ElementoColectivo> getDesbloqueados() {
+        Collection<ElementoColectivo> c = new ArrayList<>();
+        for (ElementoColectivo e: elemCol) {
+            if (e instanceof Ciudadano && !((Ciudadano)e).isBloqueado() && ((Ciudadano)e).isAdmitido()) {
+                c.add(e);
+            }
+        }
+        return c;
+    }
+
+    public Collection<ElementoColectivo> getCollBloqueados() {
+        Collection<ElementoColectivo> c = new ArrayList<>();
+        c.addAll(bloqueados);
+        return c;
+    }
+
+    /**
      * Busca un colectivo por nombre
      * @param nombre el nombre del colectivo
      * @return el colectivo buscado, null en caso de error
