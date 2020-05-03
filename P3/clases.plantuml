@@ -1,17 +1,14 @@
 @startuml
 
-title __CLASES's Class Diagram__\n
-
 skinparam classAttributeIconSize 0
 
       class Administrador {
       }
   
       class Aplicacion {
-          {static} + minApoyos : int
-          - bloqueados : List<Ciudadano>
-          - elemCol : List<ElementoColectivo>
-          - proyectos : List<Proyecto>
+          {static} + PATH: String
+          {static} + NOW: LocalDate
+          {static} + minApoyos: int
           + addBloqueado(ciudadano: Ciudadano): boolean
           + addElemCol(elemCol: ElementoColectivo): boolean
           + addProyecto(proyecto: Proyecto): boolean
@@ -19,24 +16,24 @@ skinparam classAttributeIconSize 0
           + findCiudadano(username: String): Ciudadano
           + findColectivo(nombre: String): Colectivo
           + findProyecto(id: int): Proyecto
-          + generarInformeAfinidad(c1: Colectivo, c2: Colectivo): double
+          + getTree(): JTree
           + guardar(path: String)
           + notificarNuevoProyecto(p: Proyecto)
           + notificarRegistro(c: Ciudadano)
           + removeBloqueado(ciudadano: Ciudadano): boolean
           + removeElemCol(elemCol: ElementoColectivo): boolean
           + removeProyecto(p: Proyecto): boolean
+          {static} + reset()
+          {static} - getTreeRec() :DefaultMutableTreeNode
       }
   
 
     class Ciudadano {
+      {static} + NIF_LEN: int
       - admitido : boolean
       - bloqueado : boolean
-      - colectivos : Set<Colectivo>
-      - colectivosRepresentados : List<Colectivo>
+      - motivoRechazo: String
       - nif : String
-      - proyectos : Set<Proyecto>
-      - proyectosApoyados : Set<Proyecto>
       + addColectivo(colectivo: Colectivo): boolean
       + addColectivoRepresentado(colectivo: Colectivo): boolean
       + addProyecto(proyecto: Proyecto): boolean
@@ -44,25 +41,25 @@ skinparam classAttributeIconSize 0
       + admitir()
       + bloquear()
       + desbloquear()
+      + getTree(): JTree
       + removeColectivo(colectivo: Colectivo): boolean
       + removeColectivoRepresentado(colectivo: Colectivo): boolean
       + removeProyecto(proyecto: Proyecto): boolean
       + removeProyectoApoyado(proyecto: Proyecto): boolean
+      {static} - getTreeRec(): DefaultMutableTreeNode
     }
 
       class Colectivo {
-          - elementos : Set<ElementoColectivo>
           - nombre : String
-          - proyectos : Set<Proyecto>
-          - proyectosApoyados : Set<Proyecto>
           + addElemento(ciudadano: Ciudadano): boolean
           + addElemento(colectivo: Colectivo): boolean
           + addProyecto(proyecto: Proyecto): boolean
           + addProyectoApoyado(proyecto: Proyecto): boolean
+          + generarInformeAfinidad(c2: Colectivo): double
           + removeElemento(elemento: ElementoColectivo): boolean
           + removeProyecto(proyecto: Proyecto): boolean
           + removeProyectoApoyado(proyecto: Proyecto): boolean
-          - perteneceHijos(ciudadano: Ciudadano): boolean
+          + perteneceHijos(ciudadano: Ciudadano): boolean
       }
 
       enum Distrito {
@@ -122,23 +119,27 @@ skinparam classAttributeIconSize 0
       class Persistencia {
           - aplicacionMinApoyos : int
           - proyectoNextId : int
+          - now : LocalDate
           + setValues()
       }
 
       abstract class Proyecto {
+          {static} - nextId : int
+          {static} + MAXTIT: int
+          {static} + MAXDESC: int
+          {static} + MINIMPORTE: double
+          {static} + CAD: int
           - caducado : boolean
           - descripcion : String
-          - fechaCreacion : Date
+          - fechaCreacion : LocalDate
           - id : int
           - idEnvio : String
           - importeConcedido : double
           - importeSolicitado : double
+          - motivoRechazo: String
           - nApoyos : int
-          {static} - nextId : int
-          - promotores : Set<ElementoColectivo>
-          - suscriptores : Set<Ciudadano>
           - titulo : String
-          - ultimoApoyo : Date
+          - ultimoApoyo : LocalDate
           + aceptar()
           + bloquearApoyo(c: Ciudadano): boolean
           + caducar()
@@ -150,6 +151,8 @@ skinparam classAttributeIconSize 0
           + rechazar()
           + recibirApoyo(ec: ElementoColectivo)
           + recibirApoyo(ec: ElementoColectivo, directo: boolean)
+          {abstract} +getProjectKind(): ProjectKind
+          {abstract} +getExtraData(): String
           {abstract} # crearSolicitud(): GrantRequest
           - recibirApoyo(c: Ciudadano)
           - recibirApoyo(c: Colectivo)
@@ -160,36 +163,30 @@ skinparam classAttributeIconSize 0
           - imagen : String
           + addAfectados(d: Distrito): boolean
           + removeAfectados(d: Distrito): boolean
+          + getProjectKind(): ProjectKind
+          + getExtraData(): String
           # crearSolicitud(): GrantRequest
+
       }
 
       class ProyectoSocial {
           - grupoSocial : String
           - nacional : boolean
+          + getProjectKind(): ProjectKind
+          + getExtraData(): String
           # crearSolicitud(): GrantRequest
       }
 
       abstract class SolicitudFinanciacion {
-          + SolicitudFinanciacion()
-          + getProject(): Proyecto
           + getProjectDescription(): String
           + getProjectTitle(): String
           + getRequestedAmount(): double
-      }
-
-      class SolicitudInfraestructura {
-          + getExtraData(): String
           + getProjectKind(): ProjectKind
-      }
-
-      class SolicitudSocial {
           + getExtraData(): String
-          + getProjectKind(): ProjectKind
       }
 
       abstract class Usuario {
           - password : String
-          - pendientes : ArrayList<Notificacion>
           - username : String
       }
   
@@ -198,23 +195,35 @@ skinparam classAttributeIconSize 0
   Aplicacion *-- Administrador : admin
   Aplicacion *-- Usuario : usuarioAcutal
   Aplicacion *-- Persistencia : varStatic
-  Ciudadano .up.|> ElementoColectivo
+  Ciudadano .right.|> ElementoColectivo
   Ciudadano -up-|> Usuario
-  Colectivo .up.|> ElementoColectivo
+  Colectivo .right.|> ElementoColectivo
   Colectivo o-- Colectivo : padre
-  Colectivo o-left- Ciudadano : representante
-  NotificacionProy -left-|> Notificacion
-  NotificacionProy o-right- Proyecto : sujeto
-  NotificacionReg -left-|> Notificacion
+  Colectivo o-- Ciudadano : representante
+  NotificacionProy -up-|> Notificacion
+  NotificacionProy o-- Proyecto : sujeto
+  NotificacionReg -up-|> Notificacion
   NotificacionReg o-- Ciudadano : sujeto
-  Proyecto o-- EstadoProyecto : estado
-  Proyecto o-- ElementoColectivo : propulsor
+  Proyecto -left- EstadoProyecto : estado
+  Proyecto o-up- ElementoColectivo : propulsor
   ProyectoInfraestructura -up-|> Proyecto
   ProyectoSocial -up-|> Proyecto
   SolicitudFinanciacion .up.|> GrantRequest
-  SolicitudFinanciacion o-left- Proyecto : proyecto
+  SolicitudFinanciacion o-- Proyecto : proyecto
   SolicitudInfraestructura -up-|> SolicitudFinanciacion
   SolicitudSocial -up-|> SolicitudFinanciacion
+  Usuario *-- Notificacion: pendientes
+  Colectivo o-- ElementoColectivo: elementos
+  Colectivo o-left- Proyecto: proyectos
+  Colectivo o-left- Proyecto: proyectosApoyados
+  Ciudadano o-left- Proyecto: proyectos
+  Ciudadano o-left- Proyecto: proyectosApoyados
+  Ciudadano o-down- Colectivo: colectivos
+  Ciudadano o-down- Colectivo: colectivosRepresentados
+  Aplicacion o-- ElementoColectivo: elemCol
+  Aplicacion o-- Ciudadano: bloqueados
+  Aplicacion o-- Proyecto: proyectos
+  Aplicacion *-- Aplicacion: VecindApp
 
 
 @enduml
