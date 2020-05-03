@@ -15,11 +15,17 @@ import vecindApp.clases.proyecto.*;
 public class CiudadanoTest {
     Ciudadano c;
 
+    /**
+     * Crea un ciudadano con el que realizar las pruebas
+     */
     @Before
     public void setUp() {
         c = new Ciudadano("pepe", "c1", "12345678A");
     }
 
+    /**
+     * Comprueba que el proyecto añadido está en el conjunto
+     */
     @Test
     public void addProyecto() {
         Proyecto p = new ProyectoSocial("prueba", "descripcion prueba", 100, c, "a", false);
@@ -27,6 +33,9 @@ public class CiudadanoTest {
         assertTrue(c.getProyectos().contains(p));
     }
 
+    /**
+     * Comprueba que el proyecto eliminado ya no está en el conjunto
+     */
     @Test
     public void removeProyecto() {
         Proyecto p = new ProyectoSocial("prueba", "descripcion prueba", 100, c, "a", false);
@@ -35,6 +44,9 @@ public class CiudadanoTest {
         assertFalse(c.getProyectos().contains(p));
     }
 
+    /**
+     * Comprueba que el colectivo añadido está en el conjunto
+     */
     @Test
     public void addColectivoRepresentado() {
         Colectivo col = new Colectivo("prueba", c);
@@ -42,6 +54,9 @@ public class CiudadanoTest {
         assertTrue(c.getColectivosRepresentados().contains(col));
     }
 
+    /**
+     * Comprueba que el colectivo eliminado ya no está en el conjunto
+     */
     @Test
     public void removeColectivoRepresentado() {
         Colectivo col = new Colectivo("prueba", c);
@@ -49,12 +64,18 @@ public class CiudadanoTest {
         assertFalse(c.getColectivosRepresentados().contains(col));
     }
 
+    /**
+     * Comprueba que se ha bloqueado al ciudadano
+     */
     @Test
     public void bloquear() {
         c.bloquear();
         assertTrue(c.isBloqueado());
     }
 
+    /**
+     * Comprueba que se ha desbloqueado al ciudadano
+     */
     @Test
     public void desbloquear() {
         c.setBloqueado(true);
@@ -62,6 +83,9 @@ public class CiudadanoTest {
         assertFalse(c.isBloqueado());
     }
 
+    /**
+     * Comprueba que el ciudadano está admitido
+     */
     @Test
     public void admitir() {
         c.admitir();

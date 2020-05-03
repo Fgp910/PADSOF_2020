@@ -15,11 +15,17 @@ import static org.junit.Assert.assertEquals;
 public class PersistenciaTest {
     Persistencia p;
 
+    /**
+     * Crea una nueva clase Persistencia para realizar las pruebas
+     */
     @Before
     public void setUp() {
         p = new Persistencia();
     }
 
+    /**
+     * Comprueba que los valores son los asignados
+     */
     @Test
     public void setValues() {
         p.setValues();
@@ -27,11 +33,17 @@ public class PersistenciaTest {
         assertEquals(p.getAplicacionMinApoyos(), Aplicacion.getMinApoyos());
     }
 
+    /**
+     * Comprueba que el numero minimo de apoyos es el correcto
+     */
     @Test
     public void getAplicacionMinApoyos() {
         assertEquals(Aplicacion.getMinApoyos(), p.getAplicacionMinApoyos());
     }
 
+    /**
+     * Comprueba que el nextId de proyecto es el correcto
+     */
     @Test
     public void getProyectoNextId() {
         assertEquals(Proyecto.getNextId(), p.getProyectoNextId());

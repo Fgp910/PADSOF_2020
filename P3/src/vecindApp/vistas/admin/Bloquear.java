@@ -4,11 +4,18 @@ import vecindApp.controladores.admin.ControlBloquear;
 import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
-import java.util.Collection;
 
+/**
+ * Vista Bloquear, que hereda de VentanaLista para una lista de elementos colectivos
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Bloquear<C> extends VentanaLista<C> {
     private JButton block = new JButton("Bloquear");
 
+    /**
+     *
+     */
     public Bloquear() {
         super();
         getBot().add(block);

@@ -15,11 +15,17 @@ import static org.junit.Assert.assertEquals;
 public class AdministradorTest {
     Administrador admin;
 
+    /**
+     * Crea un administrador con el que realizar las pruebas
+     */
     @Before
     public void setUp() {
         admin = new Administrador("admin", "a1");
     }
 
+    /**
+     * comprueba que el nombre de usuario coincide con el que se le ha dado al crearlo
+     */
     @Test
     public void getUsername() {
         assertEquals("admin", admin.getUsername());

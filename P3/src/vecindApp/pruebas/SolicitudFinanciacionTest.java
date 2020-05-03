@@ -17,6 +17,9 @@ public class SolicitudFinanciacionTest {
     SolicitudFinanciacion sf;
     Proyecto p;
 
+    /**
+     * Crea una solicitud de financiacion para realizar las pruebas
+     */
     @Before
     public void setUp() {
         Ciudadano c = new Ciudadano("pepe", "c1", "12345678A");
@@ -24,21 +27,33 @@ public class SolicitudFinanciacionTest {
         sf = new SolicitudFinanciacion(p);
     }
 
+    /**
+     * Comprueba que el proyecto es el asignado al crear la solicitud
+     */
     @Test
     public void getProject() {
         assertEquals(p, sf.getProject());
     }
 
+    /**
+     * Comprueba que el titulo del proyecto es el asignado al crear la solicitud
+     */
     @Test
     public void getProjectTitle() {
         assertEquals("titulo", sf.getProjectTitle());
     }
 
+    /**
+     * Comprueba que la descripcion del proyecto es la asignada al crear la solicitud
+     */
     @Test
     public void getProjectDescription() {
         assertEquals("descripcion", sf.getProjectDescription());
     }
 
+    /**
+     * Comprueba que el importe solicitado es el asignado al crear la solicitud
+     */
     @Test
     public void getRequestedAmount() {
         assertEquals(500.0, sf.getRequestedAmount(), 0.0);

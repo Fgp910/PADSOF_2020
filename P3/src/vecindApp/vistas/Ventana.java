@@ -6,8 +6,11 @@ import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.usuario.Afinidad;
 import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Ventana<N,P,C> extends JFrame {
     private LoginUsuario vLoginUsuario = new LoginUsuario();
@@ -26,6 +29,9 @@ public class Ventana<N,P,C> extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new CardLayout());
         setTitle("VecindApp");
+
+        //Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/vecindApp/logo.jpg"));
+        //setIconImage(icon);
 
         contentPane.add(vLoginUsuario, "loginUsuario");
         contentPane.add(vRegistroUsuario, "registroUsuario");

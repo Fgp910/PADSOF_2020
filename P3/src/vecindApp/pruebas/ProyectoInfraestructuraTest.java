@@ -22,6 +22,10 @@ public class ProyectoInfraestructuraTest {
     Ciudadano c;
     Collection<Distrito> afectados;
 
+    /**
+     * Crea un proyecto de infraestructura con el que realizar las pruebas
+     * @throws ImageNotFoundException
+     */
     @Before
     public void setUp() throws ImageNotFoundException {
         c = new Ciudadano("pepe", "a1", "123456U");
@@ -34,22 +38,35 @@ public class ProyectoInfraestructuraTest {
                 afectados);
     }
 
+    /**
+     * Comprueba que la imagen es la asignada asl crear el proyecto
+     */
     @Test
     public void getImagen() {
         assertEquals("imagen.jpg", pi.getImagen());
     }
 
+    /**
+     * Comprueba que la imagen es la asignada
+     * @throws ImageNotFoundException
+     */
     @Test
     public void setImagen() throws ImageNotFoundException {
         pi.setImagen("imagen2.jpeg");
         assertEquals("imagen2.jpeg", pi.getImagen());
     }
 
+    /**
+     * Comprueba que los distritos afectados son los asignados al crear el proyecto
+     */
     @Test
     public void getAfectados() {
         assertEquals(afectados, pi.getAfectados());
     }
 
+    /**
+     * Comprueba que los distritos afectados son los asignados
+     */
     @Test
     public void setAfectados() {
         List<Distrito> afectados2 = new ArrayList<>();
@@ -58,6 +75,9 @@ public class ProyectoInfraestructuraTest {
         assertEquals(afectados2, pi.getAfectados());
     }
 
+    /**
+     * Comprueba que el distrito añadido está en el conjunto
+     */
     @Test
     public void addAfectados() {
         Distrito d = Distrito.Arganzuela;
@@ -65,6 +85,9 @@ public class ProyectoInfraestructuraTest {
         assertTrue(pi.getAfectados().contains(d));
     }
 
+    /**
+     * Comprueba que el distrito eliminado ya no está en el conjunto
+     */
     @Test
     public void removeAfectados() {
         Distrito d = Distrito.Arganzuela;
