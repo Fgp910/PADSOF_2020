@@ -12,6 +12,7 @@ public class BuscarColectivos<T> extends VentanaArbol<T> {
     public BuscarColectivos() {
         super();
 
+        unirse.setEnabled(false);
         JPanel bot = getBot();
         bot.add(unirse);
     }
@@ -29,6 +30,7 @@ public class BuscarColectivos<T> extends VentanaArbol<T> {
     public void updateCols(JTree arbol) {
         update(arbol);
 
+        unirse.setEnabled(false);
         JPanel bot = getBot();
         bot.add(unirse);
     }

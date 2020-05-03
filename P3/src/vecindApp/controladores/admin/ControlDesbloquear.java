@@ -40,7 +40,7 @@ public class ControlDesbloquear implements ListSelectionListener, ActionListener
         int index = vista.getLista().getSelectedIndex();
         if (index > -1) {
             Ciudadano c = (Ciudadano) vista.getItem(index);
-            c.setBloqueado(false);
+            c.desbloquear();
             vista.remove(c);
             frame.getpBloquear().add(c);
         }

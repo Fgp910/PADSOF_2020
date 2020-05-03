@@ -20,7 +20,7 @@ public class Ventana<N,P,C> extends JFrame {
     private JPanel contentPane = new JPanel();
 
     public Ventana() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(0, 0, 300, 150);
         setLocationRelativeTo(null);    //Centra la ventana en la pantalla
         setContentPane(contentPane);

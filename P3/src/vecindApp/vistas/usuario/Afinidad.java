@@ -14,6 +14,7 @@ public class Afinidad<T> extends VentanaArbol<T> {
     public Afinidad() {
         super();
 
+        getTitle().add(new JLabel("Seleccione otro colectivo"));
         JPanel bot = getBot();
         bot.add(consultar);
         bot.add(volver);
@@ -42,6 +43,7 @@ public class Afinidad<T> extends VentanaArbol<T> {
         update(arbol);
 
         JPanel bot = getBot();
+        getTitle().add(new JLabel("Seleccione otro colectivo"));
         bot.add(consultar);
         bot.add(volver);
         this.c1 = c1;

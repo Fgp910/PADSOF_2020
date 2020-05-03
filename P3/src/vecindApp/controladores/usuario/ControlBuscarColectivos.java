@@ -11,6 +11,7 @@ import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.usuario.BuscarColectivos;
 
+import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -36,6 +37,7 @@ public class ControlBuscarColectivos implements ActionListener, TreeSelectionLis
             col.addElemento(((Ciudadano) modelo.getUsuarioActual()));
             frame.getMisColectivos().updateCols(((Ciudadano) modelo.getUsuarioActual()).getTree());
             vista.getUnirse().setEnabled(false);
+            JOptionPane.showMessageDialog(vista, "Se ha unido con exito al colectivo " + col, "Union exitosa", JOptionPane.PLAIN_MESSAGE);
         }
     }
 
