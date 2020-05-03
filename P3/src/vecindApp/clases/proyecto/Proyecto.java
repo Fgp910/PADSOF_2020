@@ -12,9 +12,10 @@ import vecindApp.clases.notificacion.*;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -27,7 +28,8 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	private static int nextId = 1;
 	public static final int MAXTIT = 25;
 	public static final int MAXDESC = 500;
-	public static final double MINIMPORTE = 100;	//euros
+	public static final double MINIMPORTE = 100; //euros
+	public static final int CAD = 30; //dias
 
 	private int id;
 	private String idEnvio;
@@ -35,8 +37,8 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
     private String descripcion;
     private double importeSolicitado;
     private double importeConcedido = 0;
-    private Date fechaCreacion;
-    private Date ultimoApoyo;
+    private LocalDate fechaCreacion;
+    private LocalDate ultimoApoyo;
     private int nApoyos = 1;
     private EstadoProyecto estado = EstadoProyecto.INICIAL;
     private String motivoRechazo;
@@ -57,8 +59,8 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 		this.titulo = titulo;
         this.descripcion = descripcion;
         this.importeSolicitado = importeSolicitado;
-        fechaCreacion = new Date();
-        ultimoApoyo = new Date();
+        fechaCreacion = Aplicacion.getNow();
+        ultimoApoyo = Aplicacion.getNow();
         promotores  = new HashSet<>();
         suscriptores  = new HashSet<>();
         this.propulsor = propulsor;
@@ -181,7 +183,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 * Devuelve la fecha de creacion del proyecto
 	 * @return fecha de creacion
 	 */
-	public Date getFechaCreacion() {
+	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
 
@@ -189,7 +191,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 * Establece la fecha de creacion del proyecto
 	 * @param fechaCreacion fecha de creacion
 	 */
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(LocalDate fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
@@ -197,7 +199,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 * Devuelve la fecha del ultimo apoyo al proyecto
 	 * @return fecha del ultimo apoyo
 	 */
-	public Date getUltimoApoyo() {
+	public LocalDate getUltimoApoyo() {
 		return ultimoApoyo;
 	}
 
@@ -205,7 +207,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 * Establece la fecha del ultimo apoyo al proyecto
 	 * @param ultimoApoyo la fecha a asignar
 	 */
-	public void setUltimoApoyo(Date ultimoApoyo) {
+	public void setUltimoApoyo(LocalDate ultimoApoyo) {
 		this.ultimoApoyo = ultimoApoyo;
 	}
 
@@ -213,8 +215,8 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	 * Actualiza el estado de caducidad en funcion de una fecha actual
 	 * @param curr la fecha actual
 	 */
-	public void actualizarCaducidad(Date curr) {
-		if ((curr.getTime() - this.getUltimoApoyo().getTime())/1000.0 > 30 * 24 * 3600) { //30 dias en segundos
+	public void actualizarCaducidad(LocalDate curr) {
+		if (ChronoUnit.DAYS.between(ultimoApoyo, curr) >= CAD) {
 			this.caducar();
 		}
 	}
@@ -492,7 +494,7 @@ public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 			suscriptores.add(((Colectivo) ec).getRepresentante());
 			recibirApoyo((Colectivo) ec);
 		}
-		setUltimoApoyo(new Date());
+		setUltimoApoyo(Aplicacion.getNow());
 	}
 
 	/**

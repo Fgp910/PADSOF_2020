@@ -80,8 +80,9 @@ public class ControlLoginUsuario implements ActionListener {
             CCGG proxy = CCGG.getGateway();
             FechaSimulada.avanzar(30);  //pasa un mes
             proxy.setDate(FechaSimulada.getHoy());
+            Aplicacion.setNow(FechaSimulada.getHoy());
             JOptionPane.showMessageDialog(vista,
-                    "Han pasado 30 días",
+                    "Han pasado 30 días\n" + Aplicacion.getNow(),
                     "Avance temporal",
                     JOptionPane.INFORMATION_MESSAGE);
         }

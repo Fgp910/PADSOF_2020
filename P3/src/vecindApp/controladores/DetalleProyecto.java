@@ -27,7 +27,8 @@ public class DetalleProyecto {
                             "\nDescripcion: " + proy.getDescripcion() +
                             "\nImporte solicitado: " + String.format("%.2f", proy.getImporteSolicitado()) +
                             "\nTipo de proyecto: Infraestructura" +
-                            "\nDistritos Afectados: " + proy.getAfectados(),
+                            "\nDistritos Afectados: " + proy.getAfectados() +
+                            "\nÚltimo apoyo: " + proy.getUltimoApoyo(),
                     "Proyecto",
                     JOptionPane.INFORMATION_MESSAGE,
                     new ImageIcon(img));

@@ -11,6 +11,7 @@ import vecindApp.clases.usuario.*;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,7 @@ public class Aplicacion implements Serializable {
     public static String PATH = "vecindapp_bin.dat";
 
     private static int minApoyos = 2;   //Valor por defecto
+    private static LocalDate NOW = LocalDate.now();
 
     private Administrador admin;
     private Set<ElementoColectivo> elemCol = new TreeSet<>();
@@ -118,9 +120,8 @@ public class Aplicacion implements Serializable {
      * @param usuarioActual el usuario actual
      */
     public void setUsuarioActual(Usuario usuarioActual) {
-        Date curr = new Date();
         this.usuarioActual = usuarioActual;
-        proyectos.forEach(p -> p.actualizarCaducidad(curr));
+        proyectos.forEach(p -> p.actualizarCaducidad(NOW));
     }
 
     /**
@@ -146,6 +147,22 @@ public class Aplicacion implements Serializable {
                 p.setEstado(EstadoProyecto.LISTOENVAR);
             }
         }
+    }
+
+    /**
+     * Devuelve la fecha actual del sistema
+     * @return la fecha actual del sistema
+     */
+    public static LocalDate getNow() {
+        return NOW;
+    }
+
+    /**
+     * Actualiza la fecha actual del sistema
+     * @param now la nueva fecha actual
+     */
+    public static void setNow(LocalDate now) {
+        NOW = now;
     }
 
     /**
@@ -302,11 +319,10 @@ public class Aplicacion implements Serializable {
     public static Aplicacion cargar(String path) throws IOException, ClassNotFoundException, ConexionFallida, CCGGException {
         ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
         Aplicacion app = (Aplicacion) ent.readObject();
-        Date curr = new Date();
         app.varStatic.setValues();
         //Comprobando caducidad y financiacion de proyectos
         for (Proyecto p : app.proyectos) {
-            p.actualizarCaducidad(curr);
+            p.actualizarCaducidad(NOW);
             if (p.getEstado() == EstadoProyecto.ENVIADO) {
                 p.consultarFinanciacion();
             }

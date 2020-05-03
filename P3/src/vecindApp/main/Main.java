@@ -30,6 +30,7 @@ public class Main {
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
                     }
+                    Aplicacion.setNow(FechaSimulada.getHoy());
                     Aplicacion modelo = Aplicacion.VecindApp;
                     Controlador controlador = new Controlador(frame, modelo);
                     frame.setControlador(controlador);
