@@ -50,7 +50,8 @@ public class ControlNotificacionesAdmin extends ControlNotificaciones {
                 if (ret == JOptionPane.YES_OPTION) {
                     if (noti instanceof NotificacionReg) {
                         ((NotificacionReg) noti).getSujeto().setAdmitido(true);
-                        frame.getpBloquear().add(((NotificacionReg) noti).getSujeto());
+                        modelo.addElemCol(((NotificacionReg) noti).getSujeto());
+                        frame.getpBloquear().update(modelo.getDesbloqueados(), true);
                     } else if (noti instanceof NotificacionProy) {
                         ((NotificacionProy) noti).getSujeto().setEstado(EstadoProyecto.ACEPTADO);
                     }

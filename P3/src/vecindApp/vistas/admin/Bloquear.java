@@ -4,6 +4,7 @@ import vecindApp.controladores.admin.ControlBloquear;
 import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
+import java.util.Collection;
 
 public class Bloquear<C> extends VentanaLista<C> {
     private JButton block = new JButton("Bloquear");

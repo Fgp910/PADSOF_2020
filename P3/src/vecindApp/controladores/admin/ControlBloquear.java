@@ -49,6 +49,7 @@ public class ControlBloquear implements ListSelectionListener, ActionListener {
             c.bloquear();
             vista.remove(c);
             frame.getpDesbloquear().add(c);
+            modelo.addBloqueado(c);
         }
     }
 }

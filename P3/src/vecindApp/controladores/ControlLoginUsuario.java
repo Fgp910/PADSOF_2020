@@ -17,8 +17,10 @@ import vecindApp.vistas.home.HomeAdmin;
 import vecindApp.vistas.home.HomeUsuario;
 
 import javax.swing.JOptionPane;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 
 public class ControlLoginUsuario implements ActionListener {
     private LoginUsuario vista;
@@ -97,6 +99,8 @@ public class ControlLoginUsuario implements ActionListener {
             h.getPerfil().update(admin.toString());
             h.getNotificaciones().update(admin.getPendientes(), true);
             h.getpMinApoyos().update("" + Aplicacion.getMinApoyos() + "");
+            h.getpBloquear().update(modelo.getDesbloqueados(), true);
+            h.getpDesbloquear().update(modelo.getCollBloqueados(), true);
         } else {
             Ciudadano u = (Ciudadano) user;
             HomeUsuario<Notificacion, Proyecto, ElementoColectivo> h = home.getHomeUsuario();

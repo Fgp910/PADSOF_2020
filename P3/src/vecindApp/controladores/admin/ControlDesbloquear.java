@@ -43,6 +43,7 @@ public class ControlDesbloquear implements ListSelectionListener, ActionListener
             c.desbloquear();
             vista.remove(c);
             frame.getpBloquear().add(c);
+            modelo.addElemCol(c);
         }
     }
 }
