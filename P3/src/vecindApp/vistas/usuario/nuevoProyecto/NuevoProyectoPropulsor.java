@@ -34,14 +34,15 @@ public class NuevoProyectoPropulsor<C> extends JPanel {
         return (C)listaCol.getSelectedItem();
     }
 
-    public void setList(Collection<C> list) {
+    public void setList(Collection<? extends C> list) {
         listaCol.removeAll();
         list.forEach(elem -> listaCol.addItem(elem));
     }
 
-    public void update() {
+    public void update(Collection<? extends C> list) {
         ciu.setSelected(false);
         col.setSelected(false);
+        setList(list);
         listaCol.setSelectedIndex(-1);
     }
 

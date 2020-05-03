@@ -19,13 +19,13 @@ public enum EstadoProyecto implements Serializable {
     @Override
     public final String toString() {
         switch (this) {
-            case INICIAL: return "Creado con exito.";
-            case ACEPTADO: return "Admitido por la administracion.";
-            case RECHAZADO: return "Rechazado por la administracion.";
-            case LISTOENVAR: return "Ha alcanzado los apoyos minimos.";
+            case INICIAL: return "Creado con éxito.";
+            case ACEPTADO: return "Admitido por la administración.";
+            case RECHAZADO: return "Rechazado por la administración.";
+            case LISTOENVAR: return "Ha alcanzado los apoyos mínimos.";
             case ENVIADO: return "Enviado a financiacion.";
-            case FINANCIADO: return "Aprobada su financiacion.";
-            case DENEGADO: return "Denegada su financiacion.";
+            case FINANCIADO: return "Aprobada su financiación.";
+            case DENEGADO: return "Denegada su financiación.";
             default: return null;
         }
     }

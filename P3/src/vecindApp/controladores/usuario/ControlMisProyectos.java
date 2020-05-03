@@ -63,7 +63,8 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
         if (e.getSource().equals(vista.getCrearButton())) {
             frame.setSize(NuevoProyecto.SIZE[0], NuevoProyecto.SIZE[1]);
             frame.setLocationRelativeTo(null);
-            frame.getNuevoProyecto().update(Arrays.stream(Distrito.values())
+            frame.getNuevoProyecto().update(((Ciudadano) modelo.getUsuarioActual()).getColectivos(),
+                    Arrays.stream(Distrito.values())
                     .filter(d -> !d.equals(Distrito.Desconocido))
                     .map(Distrito::toString)
                     .collect(Collectors.toList()));
@@ -101,7 +102,7 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
                         JOptionPane.ERROR_MESSAGE);
             } catch (CCGGException ex) {
                 JOptionPane.showMessageDialog(vista,
-                        "Error de comunicación con el sistema externo:\n" + ex.toString() + "\nNo se pudo procesar la consulta.",
+                        "Error de comunicación con el sistema externo:\n" + ex.toString() + "\nNo se pudo procesar la solicitud.",
                         "Error con sistema externo",
                         JOptionPane.ERROR_MESSAGE);
             }

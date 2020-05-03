@@ -70,8 +70,8 @@ public class NuevoProyecto<C> extends JPanel {
         return social;
     }
 
-    public void update(Collection<String> distritos) {
-        propulsor.update();
+    public void update(Collection<? extends C> colectivos, Collection<String> distritos) {
+        propulsor.update(colectivos);
         texto.update();
         infra.setList(distritos);
         infra.update();

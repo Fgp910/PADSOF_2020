@@ -25,6 +25,7 @@ import java.util.Set;
  */
 public abstract class Proyecto implements Serializable, Comparable<Proyecto> {
 	private static int nextId = 1;
+	public static final int MAXTIT = 25;
 	public static final int MAXDESC = 500;
 	public static final double MINIMPORTE = 100;	//euros
 

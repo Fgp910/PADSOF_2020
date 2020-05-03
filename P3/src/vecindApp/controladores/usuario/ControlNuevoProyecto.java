@@ -53,7 +53,7 @@ public class ControlNuevoProyecto implements ActionListener {
             if (vPropulsor.isCiudadano()) {
                 propulsor = (Ciudadano) modelo.getUsuarioActual();
                 propCiu = true;
-            } else if (vPropulsor.isCiudadano()) {
+            } else if (vPropulsor.isColectivo()) {
                 propulsor = vPropulsor.getSelected();
                 propCiu = false;
             } else {
@@ -64,9 +64,9 @@ public class ControlNuevoProyecto implements ActionListener {
                 return;
             }
 
-            if (titulo == null) {
+            if (titulo == null || titulo.length() > Proyecto.MAXTIT) {
                 JOptionPane.showMessageDialog(vista,
-                        "Indique un título para su proyecto.",
+                        "Introduzca una descripción para su proyecto (máximo " + Proyecto.MAXTIT + " caracteres).",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
