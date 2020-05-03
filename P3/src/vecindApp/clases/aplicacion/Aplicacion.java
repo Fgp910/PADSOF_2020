@@ -11,6 +11,7 @@ import vecindApp.clases.usuario.*;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -118,7 +119,7 @@ public class Aplicacion implements Serializable {
      * @param usuarioActual el usuario actual
      */
     public void setUsuarioActual(Usuario usuarioActual) {
-        Date curr = new Date();
+        LocalDate curr = LocalDate.now();
         this.usuarioActual = usuarioActual;
         proyectos.forEach(p -> p.actualizarCaducidad(curr));
     }
@@ -302,7 +303,7 @@ public class Aplicacion implements Serializable {
     public static Aplicacion cargar(String path) throws IOException, ClassNotFoundException, ConexionFallida, CCGGException {
         ObjectInputStream ent = new ObjectInputStream(new FileInputStream(path));
         Aplicacion app = (Aplicacion) ent.readObject();
-        Date curr = new Date();
+        LocalDate curr = LocalDate.now();
         app.varStatic.setValues();
         //Comprobando caducidad y financiacion de proyectos
         for (Proyecto p : app.proyectos) {
