@@ -45,16 +45,4 @@ public class NuevoProyectoPropulsor<C> extends JPanel {
         setList(list);
         listaCol.setSelectedIndex(-1);
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        NuevoProyectoPropulsor<String> vista = new NuevoProyectoPropulsor<>();
-
-        vista.setList(Arrays.asList("Estudiantes", "Explotados"));
-
-        frame.getContentPane().add(vista);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,200);
-        frame.setVisible(true);
-    }
 }

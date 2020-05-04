@@ -64,6 +64,13 @@ public class ControlNuevoProyecto implements ActionListener {
             } else if (vPropulsor.isColectivo()) {
                 propulsor = vPropulsor.getSelected();
                 propCiu = false;
+
+                if (propulsor == null) {
+                    JOptionPane.showMessageDialog(vista,
+                            "Seleccione uno de sus colectivos para proponer el proyecto\n(o marque la opción \"Soy ciudadano\").",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 JOptionPane.showMessageDialog(vista,
                         "Seleccione si la propuesta será individual o colectiva.",
