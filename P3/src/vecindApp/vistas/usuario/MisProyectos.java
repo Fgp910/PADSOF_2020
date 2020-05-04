@@ -5,6 +5,12 @@ import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
 
+/**
+ * Define la vista para ver los proyectos del usuario.
+ * @param <P> el tipo de los proyectos
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class MisProyectos<P> extends VentanaLista<P> {
     private JButton iPopularidad = new JButton("Informe de Popularidad");
     private JButton enviar = new JButton("Enviar a Financiación");

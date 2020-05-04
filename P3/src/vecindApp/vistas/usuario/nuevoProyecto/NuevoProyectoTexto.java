@@ -4,6 +4,11 @@ import layout.SpringUtilities;
 
 import javax.swing.*;
 
+/**
+ * Define la parte de la vista de nuevos proyectos dedicada a la informacion general.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class NuevoProyectoTexto extends JPanel {
     private JTextField titulo = new JTextField();
     private JTextField desc = new JTextField();
@@ -47,6 +52,9 @@ public class NuevoProyectoTexto extends JPanel {
         }
     }
 
+    /**
+     * Actualiza la vista
+     */
     public void update() {
         titulo.setText("");
         desc.setText("");

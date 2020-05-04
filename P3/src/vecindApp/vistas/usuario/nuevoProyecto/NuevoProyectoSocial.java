@@ -4,6 +4,11 @@ import layout.SpringUtilities;
 
 import javax.swing.*;
 
+/**
+ * Define la vista de nuevos proyectos sociales.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class NuevoProyectoSocial extends JPanel {
     private JRadioButton opc = new JRadioButton("Proyecto social");
     private JPanel textPanel = new JPanel(new SpringLayout());
@@ -52,6 +57,9 @@ public class NuevoProyectoSocial extends JPanel {
         return inter.isSelected();
     }
 
+    /**
+     * Actualiza la vista
+     */
     public void update() {
         opc.setSelected(false);
         grupo.setText("");

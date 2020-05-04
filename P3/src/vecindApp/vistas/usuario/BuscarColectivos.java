@@ -6,6 +6,12 @@ import vecindApp.vistas.VentanaArbol;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Define la vista para buscar colectivos.
+ * @param <T> el tipo de los colectivos a buscar
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class BuscarColectivos<T> extends VentanaArbol<T> {
     private JButton unirse = new JButton("Unirse");
 
@@ -27,6 +33,10 @@ public class BuscarColectivos<T> extends VentanaArbol<T> {
         unirse.addActionListener(c);
     }
 
+    /**
+     * Actualiza la vista
+     * @param arbol arbol con los colectivos existentes
+     */
     public void updateCols(JTree arbol) {
         update(arbol);
 

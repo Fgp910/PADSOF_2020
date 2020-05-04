@@ -6,6 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Define la vista que permite registrarse como nuevo usuario.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class RegistroUsuario extends JPanel {
     public static final int[] SIZE = {300, 200};
 
@@ -71,6 +76,9 @@ public class RegistroUsuario extends JPanel {
         enter.addActionListener(c);
     }
 
+    /**
+     * Actualiza la vista
+     */
     public void update() {
         user.setText("");
         nif.setText("");

@@ -4,6 +4,12 @@ import vecindApp.controladores.ControlNotificaciones;
 
 import javax.swing.*;
 
+/**
+ * Define la vista para ver las notificaciones pendientes.
+ * @param <T> el tipo de las notificaciones pendientes
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Notificaciones<T> extends VentanaLista<T> {
     private JButton open = new JButton("Abrir");
     private JButton info = new JButton("Ver");

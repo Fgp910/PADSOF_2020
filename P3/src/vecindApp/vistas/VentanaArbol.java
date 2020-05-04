@@ -9,6 +9,12 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 
+/**
+ * Define una vista generica que muestra un arbol.
+ * @param <T> el tipo de los componentes del arbol
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class VentanaArbol<T> extends JPanel {
     private JPanel bot = new JPanel();
     private JPanel title = new JPanel();
@@ -53,6 +59,10 @@ public class VentanaArbol<T> extends JPanel {
         arbol.addTreeSelectionListener(c);
     }
 
+    /**
+     * Actualiza la vista
+     * @param arbol nuevo arbol a mostrar
+     */
     public void update(JTree arbol) {
         this.removeAll();
         setLayout(new BorderLayout());

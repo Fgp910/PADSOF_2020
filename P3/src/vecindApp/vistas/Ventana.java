@@ -9,6 +9,14 @@ import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Define la ventana que contiene las vistas principales.
+ * @param <N> el tipo de las notificaciones
+ * @param <C> el tipo de los elementos colectivos
+ * @param <P> el tipo de los proyectos
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Ventana<N,P,C> extends JFrame {
     private LoginUsuario vLoginUsuario = new LoginUsuario();
     private RegistroUsuario vRegistroUsuario = new RegistroUsuario();
@@ -68,6 +76,10 @@ public class Ventana<N,P,C> extends JFrame {
         return vAfinidad;
     }
 
+    /**
+     * Muestra una de las vistas principales
+     * @param carta vista a mostrar
+     */
     public void mostrarPanel(String carta) {
         CardLayout l = (CardLayout)contentPane.getLayout();
         l.show(contentPane, carta);
