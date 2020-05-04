@@ -4,6 +4,12 @@ import javax.swing.*;
 import java.util.Arrays;
 import java.util.Collection;
 
+/**
+ * Define la parte de la vista de nuevos proyectos dedicada a su propulsor.
+ * @param <C> el tipo de los colectivos representados
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class NuevoProyectoPropulsor<C> extends JPanel {
     private JRadioButton ciu = new JRadioButton("Soy ciudadano");
     private JPanel colPanel = new JPanel();
@@ -39,6 +45,10 @@ public class NuevoProyectoPropulsor<C> extends JPanel {
         list.forEach(elem -> listaCol.addItem(elem));
     }
 
+    /**
+     * Actualiza la vista
+     * @param list lista de colectivos representados
+     */
     public void update(Collection<? extends C> list) {
         ciu.setSelected(false);
         col.setSelected(false);

@@ -9,6 +9,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Define la vista de nuevos proyectos de infraestructura.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class NuevoProyectoInfraestructura extends JPanel {
     private JRadioButton opc = new JRadioButton("Proyecto de infraestructura");
     private JPanel textPanel = new JPanel(new SpringLayout());
@@ -67,6 +72,9 @@ public class NuevoProyectoInfraestructura extends JPanel {
                 collect(Collectors.toList());
     }
 
+    /**
+     * Actualiza la vista
+     */
     public void update() {
         opc.setSelected(false);
         imPath.setText("");

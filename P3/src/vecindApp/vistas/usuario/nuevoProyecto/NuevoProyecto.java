@@ -6,6 +6,12 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Collection;
 
+/**
+ * Define la vista de nuevos proyectos.
+ * @param <C> el tipo de los colectivos representados
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class NuevoProyecto<C> extends JPanel {
     public static final int[] SIZE = {850, 750};
 
@@ -70,6 +76,11 @@ public class NuevoProyecto<C> extends JPanel {
         return social;
     }
 
+    /**
+     * Actualiza la vista
+     * @param colectivos colectivos representados por el usuario
+     * @param distritos distritos a los que puede afectar el proyecto
+     */
     public void update(Collection<? extends C> colectivos, Collection<String> distritos) {
         propulsor.update(colectivos);
         texto.update();

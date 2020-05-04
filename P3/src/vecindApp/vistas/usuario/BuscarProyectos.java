@@ -7,6 +7,12 @@ import vecindApp.vistas.VentanaLista;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Define la vista para buscar proyectos.
+ * @param <P> el tipo de los proyectos a buscar
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class BuscarProyectos<P> extends VentanaLista<P> {
     private JButton info = new JButton("Ver");
     private JButton apoyar = new JButton("Apoyar");

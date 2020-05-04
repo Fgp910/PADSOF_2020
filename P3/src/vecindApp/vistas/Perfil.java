@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Define la vista para buscar colectivos.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Perfil extends JPanel {
     private JPanel textPanel = new JPanel(new FlowLayout());
     private JLabel text = new JLabel();
@@ -31,6 +36,10 @@ public class Perfil extends JPanel {
         salir.addActionListener(c);
     }
 
+    /**
+     * Actualiza la vista
+     * @param info informacion del usuario
+     */
     public void update(String info) {
         text.setText(info);
     }

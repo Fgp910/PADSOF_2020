@@ -5,6 +5,11 @@ import vecindApp.vistas.VentanaArbol;
 
 import javax.swing.*;
 
+/**
+ * Define la vista que permite solicitar el informe de afinidad.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Afinidad<T> extends VentanaArbol<T> {
     private JButton consultar = new JButton("Consultar");
     private JButton volver = new JButton("Volver");
@@ -39,6 +44,11 @@ public class Afinidad<T> extends VentanaArbol<T> {
         volver.addActionListener(c);
     }
 
+    /**
+     * Actualiza la vista
+     * @param arbol arbol con los colectivos de los que se puede pedir el informe
+     * @param c1 primer colectivo para el que se pide el informe
+     */
     public void updateCols(JTree arbol, T c1) {
         update(arbol);
 

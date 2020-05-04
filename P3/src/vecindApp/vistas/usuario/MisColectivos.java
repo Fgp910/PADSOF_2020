@@ -7,6 +7,12 @@ import javax.swing.*;
 import javax.swing.event.TreeSelectionListener;
 import java.awt.event.ActionListener;
 
+/**
+ * Define la vista para ver los colectivos a los que pertenece el usuario.
+ * @param <T> el tipo de los colectivos a los que pertenece
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class MisColectivos<T> extends VentanaArbol<T> {
     private JButton nuevoColectivo = new JButton("Nuevo colectivo");
     private JButton nuevoSubcolectivo = new JButton("Nuevo Subcolectivo");
@@ -41,6 +47,10 @@ public class MisColectivos<T> extends VentanaArbol<T> {
         nuevoSubcolectivo.addActionListener(c);
     }
 
+    /**
+     * Actualiza la vista
+     * @param arbol arbol con los colectivos a los que pertenece el usuario
+     */
     public void updateCols(JTree arbol) {
         update(arbol);
 

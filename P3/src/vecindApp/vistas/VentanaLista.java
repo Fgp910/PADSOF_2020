@@ -58,6 +58,11 @@ public class VentanaLista<T> extends JPanel {
         cLista.clear();
     }
 
+    /**
+     * Actualiza la vista borrando los elementos previa si se indica
+     * @param nuevos nuevos elementos a mostrar
+     * @param reset indica si se deben borrar los elementos previos
+     */
     public void update(Collection<T> nuevos, boolean reset) {
         if (reset) {
             removeAll();
@@ -65,6 +70,10 @@ public class VentanaLista<T> extends JPanel {
         addAll(nuevos);
     }
 
+    /**
+     * Actualiza la vista sin borrar los elementos previos
+     * @param nuevos nuevos elementos a mostrar
+     */
     public void update(Collection<T> nuevos) {
         update(nuevos, false);
     }
