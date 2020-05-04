@@ -319,11 +319,7 @@ public class Ciudadano extends Usuario implements ElementoColectivo {
 
         if (t instanceof Ciudadano) {
             Ciudadano c = (Ciudadano)t;
-
-            if ((d = getUsername().compareTo(c.getUsername())) != 0) {
-                return d;
-            }
-            return nif.compareTo(c.nif);
+            return getUsername().compareTo(c.getUsername());
         }
         return 1;
     }

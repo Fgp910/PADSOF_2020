@@ -41,6 +41,7 @@ public class ControlRegistroUsuario implements ActionListener {
             String nif = vista.getNif();
             String psswd = vista.getPassword();
             String confirm = vista.getConfirm();
+            boolean containsNif = false;
 
             if (user.equals(modelo.getAdmin().getUsername())) {
                 JOptionPane.showMessageDialog(vista,
@@ -61,6 +62,23 @@ public class ControlRegistroUsuario implements ActionListener {
             if (!psswd.equals(confirm)) {
                 JOptionPane.showMessageDialog(vista,
                         "La clave y la confirmación de la clave no coinciden",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            for (ElementoColectivo ec:modelo.getElemCol()) {
+                if (ec instanceof Ciudadano) {
+                    if (((Ciudadano) ec).getNif().equals(nif)) {
+                        containsNif = true;
+                        break;
+                    }
+                }
+            }
+
+            if (containsNif) {
+                JOptionPane.showMessageDialog(vista,
+                        user + " (" + nif +") ya esta registrado. Introduzca un NIF distinto.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
