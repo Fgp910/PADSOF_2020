@@ -1,0 +1,17 @@
+layout
+vecindApp.clases.aplicacion
+vecindApp.clases.colectivo
+vecindApp.clases.excepciones
+vecindApp.clases.notificacion
+vecindApp.clases.proyecto
+vecindApp.clases.usuario
+vecindApp.controladores
+vecindApp.controladores.admin
+vecindApp.controladores.usuario
+vecindApp.main
+vecindApp.pruebas
+vecindApp.vistas
+vecindApp.vistas.admin
+vecindApp.vistas.home
+vecindApp.vistas.usuario
+vecindApp.vistas.usuario.nuevoProyecto

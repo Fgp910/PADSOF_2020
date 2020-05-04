@@ -1,0 +1,4 @@
+- La aplicación contiene usuarios, proyectos y colectivos ya creados.
+- El administrador tiene usuario "admin" y contraseña "password".
+- En el administrador se pueden encontrar los ciudadanos creados (todos ellos con contraseña "psw").
+- Se incluye en esta carpeta una copia de seguridad del fichero binario por si se necesitase reestablecer.
