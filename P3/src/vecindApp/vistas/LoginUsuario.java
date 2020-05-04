@@ -79,14 +79,4 @@ public class LoginUsuario extends JPanel {
     public String getPassword() {
         return new String(pssw.getPassword());
     }
-
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-
-        ventana.getContentPane().add(new LoginUsuario());
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,150);
-        ventana.setVisible(true);
-    }
 }

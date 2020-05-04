@@ -77,16 +77,4 @@ public class NuevoProyecto<C> extends JPanel {
         infra.update();
         social.update();
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        NuevoProyecto<String> vista = new NuevoProyecto<>();
-
-        vista.infra.setList(Arrays.asList("Chamartín", "Hortaleza"));
-
-        frame.getContentPane().add(vista);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600,600);
-        frame.setVisible(true);
-    }
 }

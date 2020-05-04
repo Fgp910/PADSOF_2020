@@ -71,7 +71,7 @@ public class ControlMisProyectos implements ListSelectionListener, ActionListene
         if (e.getSource().equals(vista.getCrearButton())) {
             frame.setSize(NuevoProyecto.SIZE[0], NuevoProyecto.SIZE[1]);
             frame.setLocationRelativeTo(null);
-            frame.getNuevoProyecto().update(((Ciudadano) modelo.getUsuarioActual()).getColectivos(),
+            frame.getNuevoProyecto().update(((Ciudadano) modelo.getUsuarioActual()).getColectivosRepresentados(),
                     Arrays.stream(Distrito.values())
                     .filter(d -> !d.equals(Distrito.Desconocido))
                     .map(Distrito::toString)

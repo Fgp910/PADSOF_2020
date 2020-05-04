@@ -94,14 +94,4 @@ public class RegistroUsuario extends JPanel {
     public String getNif() {
         return nif.getText();
     }
-
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-
-        ventana.getContentPane().add(new RegistroUsuario());
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(300,200);
-        ventana.setVisible(true);
-    }
 }
