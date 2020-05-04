@@ -6,8 +6,6 @@ import vecindApp.clases.colectivo.Colectivo;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
 import vecindApp.clases.proyecto.Proyecto;
-import vecindApp.clases.usuario.Administrador;
-import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.usuario.BuscarColectivos;
 
@@ -18,11 +16,21 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Define el controlador para la vista de busqueda de colectivos.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlBuscarColectivos implements ActionListener, TreeSelectionListener {
     private BuscarColectivos<ElementoColectivo> vista;
     private HomeUsuario<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
 
+    /**
+     * Crea el controlador para la vista de busqueda de colectivos
+     * @param frame el componente padre (la vista principal del ciudadano)
+     * @param modelo la aplicacion fuente
+     */
     public ControlBuscarColectivos(HomeUsuario<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getBuscarColectivos();

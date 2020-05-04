@@ -5,7 +5,13 @@ import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
 
-public class Desbloquear<c> extends VentanaLista<c> {
+/**
+ * Define la vista de ciudadanos bloqueados.
+ * @param <C> el tipo de los ciudadanos de la lista
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
+public class Desbloquear<C> extends VentanaLista<C> {
     private JButton unblock = new JButton("Desbloquear");
 
     public Desbloquear() {

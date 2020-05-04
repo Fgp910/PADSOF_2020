@@ -1,6 +1,5 @@
 package vecindApp.controladores.usuario;
 
-import sun.security.util.DisabledAlgorithmConstraints;
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.Colectivo;
@@ -11,7 +10,6 @@ import vecindApp.clases.proyecto.Distrito;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.clases.proyecto.ProyectoInfraestructura;
 import vecindApp.clases.proyecto.ProyectoSocial;
-import vecindApp.vistas.LoginUsuario;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.usuario.nuevoProyecto.*;
@@ -23,11 +21,21 @@ import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Define el controlador para la vista de creacion de proyectos.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlNuevoProyecto implements ActionListener {
     private NuevoProyecto<ElementoColectivo> vista;
     private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
 
+    /**
+     * Crea el controlador para la vista de creacion de proyectos
+     * @param frame el componente padre (la ventana principal del sistema)
+     * @param modelo la aplicacion fuente
+     */
     public ControlNuevoProyecto(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getNuevoProyecto();

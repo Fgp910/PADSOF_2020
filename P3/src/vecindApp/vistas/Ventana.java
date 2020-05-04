@@ -6,17 +6,14 @@ import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.usuario.Afinidad;
 import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class Ventana<N,P,C> extends JFrame {
     private LoginUsuario vLoginUsuario = new LoginUsuario();
     private RegistroUsuario vRegistroUsuario = new RegistroUsuario();
     private HomeUsuario<N,P,C> vHomeUsuario = new HomeUsuario<>();
-    private HomeAdmin<N,P,C> vHomeAdmin = new HomeAdmin<>();
+    private HomeAdmin<N,C> vHomeAdmin = new HomeAdmin<>();
     private NuevoProyecto<C> vNuevoProyecto = new NuevoProyecto<>();
     private Afinidad<C> vAfinidad = new Afinidad<>();
 
@@ -29,9 +26,6 @@ public class Ventana<N,P,C> extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new CardLayout());
         setTitle("VecindApp");
-
-        //Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/vecindApp/logo.jpg"));
-        //setIconImage(icon);
 
         contentPane.add(vLoginUsuario, "loginUsuario");
         contentPane.add(vRegistroUsuario, "registroUsuario");
@@ -62,7 +56,7 @@ public class Ventana<N,P,C> extends JFrame {
         return vHomeUsuario;
     }
 
-    public HomeAdmin<N,P,C> getHomeAdmin() {
+    public HomeAdmin<N, C> getHomeAdmin() {
         return vHomeAdmin;
     }
 

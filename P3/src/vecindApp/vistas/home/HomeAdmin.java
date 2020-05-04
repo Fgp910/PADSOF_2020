@@ -7,7 +7,14 @@ import vecindApp.vistas.admin.MinApoyos;
 
 import javax.swing.*;
 
-public class HomeAdmin<N,P,C> extends Home<N> {
+/**
+ * Define la vista principal del administrador.
+ * @param <N> el tipo de las notificaciones del administrador
+ * @param <C> el tipo de los ciudadanos del sistema
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
+public class HomeAdmin<N, C> extends Home<N> {
     private Bloquear<C> pBloquear = new Bloquear<>();
     private Desbloquear<C> pDesbloquear = new Desbloquear<>();
     private MinApoyos pMinApoyos = new MinApoyos();
@@ -18,15 +25,27 @@ public class HomeAdmin<N,P,C> extends Home<N> {
         add("Min apoyos", pMinApoyos);
     }
 
-    public Bloquear<C> getpBloquear() {
+    /**
+     * Devuelve la vista de ciudadanos no bloqueados
+     * @return la vista de ciudadanos no bloqueados
+     */
+    public Bloquear<C> getBloquear() {
         return pBloquear;
     }
 
-    public Desbloquear<C> getpDesbloquear() {
+    /**
+     * Devuelve la vista de ciudadanos bloqueados
+     * @return la vista de ciudadanos bloqueados
+     */
+    public Desbloquear<C> getDesbloquear() {
         return pDesbloquear;
     }
 
-    public MinApoyos getpMinApoyos() {
+    /**
+     * Devuelve la vista de configuracion del minimo de apoyos
+     * @return la vista de configuracion del minimo de apoyos
+     */
+    public MinApoyos getMinApoyos() {
         return pMinApoyos;
     }
 
@@ -36,15 +55,5 @@ public class HomeAdmin<N,P,C> extends Home<N> {
         pMinApoyos.setControlador(c.getControlMinApoyos());
         pDesbloquear.setControlador(c.getControlDesbloquear());
         pBloquear.setControlador(c.getControlBloquear());
-    }
-
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-
-        ventana.getContentPane().add(new HomeAdmin<String, String, String>());
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(600,400);
-        ventana.setVisible(true);
     }
 }

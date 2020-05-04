@@ -6,23 +6,21 @@ import vecindApp.vistas.VentanaLista;
 import javax.swing.*;
 
 /**
- * Vista Bloquear, que hereda de VentanaLista para una lista de elementos colectivos
+ * Define la vista de ciudadanos no bloqueados.
+ * @param <C> el tipo de los ciudadanos de la lista
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */
 public class Bloquear<C> extends VentanaLista<C> {
     private JButton block = new JButton("Bloquear");
 
-    /**
-     *
-     */
     public Bloquear() {
         super();
         getBot().add(block);
         block.setEnabled(false);
     }
 
-    public JButton getOpenButton() {
+    public JButton getBlockButton() {
         return block;
     }
 

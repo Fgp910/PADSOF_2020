@@ -38,6 +38,11 @@ public enum Distrito implements Serializable {
         this.str = str;
     }
 
+    /**
+     * Devuelve un distrito a partir de su nombre
+     * @param str el nombre del distrito
+     * @return el distrito buscado o Desconocido en otro caso
+     */
     public static Distrito parse(String str) {
         return Arrays.stream(Distrito.values()).filter(d -> d.str.equals(str)).findFirst().orElse(Desconocido);
     }

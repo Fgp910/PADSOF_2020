@@ -7,8 +7,6 @@ import vecindApp.clases.notificacion.NotificacionProy;
 import vecindApp.clases.notificacion.NotificacionReg;
 import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
-import vecindApp.clases.proyecto.ProyectoInfraestructura;
-import vecindApp.clases.proyecto.ProyectoSocial;
 import vecindApp.controladores.ControlNotificaciones;
 import vecindApp.controladores.DetalleProyecto;
 import vecindApp.vistas.Ventana;
@@ -17,12 +15,22 @@ import vecindApp.vistas.home.HomeAdmin;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Define el controlador para la vista de notificaciones del administrador.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlNotificacionesAdmin extends ControlNotificaciones {
     public static int MAXRECHAZO = 50;
 
     private Ventana<Notificacion, Proyecto, ElementoColectivo> ventana;
-    private HomeAdmin<Notificacion, Proyecto, ElementoColectivo> frame;
+    private HomeAdmin<Notificacion, ElementoColectivo> frame;
 
+    /**
+     * Crea el controlador para la vista de notificaciones del administrador
+     * @param frame la ventana principal del sistema
+     * @param modelo la aplicacion fuente
+     */
     public ControlNotificacionesAdmin(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         super(frame.getHomeAdmin().getNotificaciones(), modelo);
         this.ventana = frame;
@@ -51,7 +59,7 @@ public class ControlNotificacionesAdmin extends ControlNotificaciones {
                     if (noti instanceof NotificacionReg) {
                         ((NotificacionReg) noti).getSujeto().setAdmitido(true);
                         modelo.addElemCol(((NotificacionReg) noti).getSujeto());
-                        frame.getpBloquear().update(modelo.getDesbloqueados(), true);
+                        frame.getBloquear().update(modelo.getDesbloqueados(), true);
                     } else if (noti instanceof NotificacionProy) {
                         ((NotificacionProy) noti).getSujeto().setEstado(EstadoProyecto.ACEPTADO);
                     }

@@ -6,6 +6,12 @@ import vecindApp.vistas.Perfil;
 import javax.swing.*;
 import java.util.Collection;
 
+/**
+ * Define una vista principal de usuario generica.
+ * @param <N> el tipo de las notificaciones del usuario
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public abstract class Home<N> extends JTabbedPane {
     public static final int[] SIZE = {800, 600};
 

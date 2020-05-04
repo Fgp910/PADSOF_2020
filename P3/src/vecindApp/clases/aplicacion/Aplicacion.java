@@ -245,6 +245,10 @@ public class Aplicacion implements Serializable {
         return c;
     }
 
+    /**
+     * Devuelve una coleccion con los ciudadanos bloqueados
+     * @return ciudadanos bloqueados
+     */
     public Collection<ElementoColectivo> getCollBloqueados() {
         Collection<ElementoColectivo> c = new ArrayList<>();
         c.addAll(bloqueados);

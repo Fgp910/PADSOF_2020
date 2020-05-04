@@ -1,15 +1,11 @@
 package vecindApp.controladores.usuario;
 
-import jdk.nashorn.internal.scripts.JO;
 import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.Colectivo;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
-import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
-import vecindApp.clases.proyecto.ProyectoInfraestructura;
-import vecindApp.clases.proyecto.ProyectoSocial;
 import vecindApp.controladores.DetalleProyecto;
 import vecindApp.vistas.home.HomeUsuario;
 import vecindApp.vistas.usuario.BuscarProyectos;
@@ -19,14 +15,23 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 import java.util.List;
 
+/**
+ * Define el controlador para la vista de busqueda de proyectos.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlBuscarProyectos implements ListSelectionListener, ActionListener {
     private BuscarProyectos<Proyecto> vista;
     private HomeUsuario<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
 
+    /**
+     * Crea el controlador para la vista de busqueda de proyectos
+     * @param frame el componente padre (la vista principal del ciudadano)
+     * @param modelo la aplicacion fuente
+     */
     public ControlBuscarProyectos(HomeUsuario<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getBuscarProyectos();

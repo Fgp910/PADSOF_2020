@@ -9,7 +9,17 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+/**
+ * Define una clase de metodos para mostrar la informacion de proyectos
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class DetalleProyecto {
+    /**
+     * Genera una ventana emergente con la informacion asociada a un proyecto
+     * @param proy el proyecto a mostrar
+     * @param parent el componente padre de la ventana emergente
+     */
     public static void mostrarProyecto(Proyecto proy, JComponent parent) {
         if (proy instanceof ProyectoInfraestructura) {
             mostrarProyecto((ProyectoInfraestructura) proy, parent);

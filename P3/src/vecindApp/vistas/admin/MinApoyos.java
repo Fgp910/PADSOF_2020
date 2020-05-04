@@ -6,6 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Define la vista de configuracion del minimo de apoyos.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class MinApoyos extends JPanel {
     public static final int[] SIZE = {300, 150};
 
@@ -41,6 +46,10 @@ public class MinApoyos extends JPanel {
         buttonPanel.add(change);
     }
 
+    /**
+     * Actualiza la vista
+     * @param info el nuevo valor minimo de apoyos
+     */
     public void update(String info) {
         newMin.setText("");
         min.setText(info);
