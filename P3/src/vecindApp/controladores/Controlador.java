@@ -12,6 +12,11 @@ import vecindApp.vistas.Ventana;
 
 import java.awt.event.ActionListener;
 
+/**
+ * Define el controlador general del sistema.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Controlador {
     private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
@@ -24,6 +29,11 @@ public class Controlador {
     private ControlNuevoProyecto cNuevoProyecto;
     private ControlAfinidad cAfinidad;
 
+    /**
+     * Crea el controlador general del sistema
+     * @param frame la ventana principal del sistema
+     * @param modelo la aplicacion fuente
+     */
     public Controlador(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.modelo = modelo;

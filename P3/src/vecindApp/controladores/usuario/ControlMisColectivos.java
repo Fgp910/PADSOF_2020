@@ -19,11 +19,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 
+/**
+ * Define el controlador para la vista de gestion de los colectivos del ciudadano.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlMisColectivos implements ActionListener, TreeSelectionListener {
     private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private MisColectivos<ElementoColectivo> vista;
     private Aplicacion modelo;
 
+    /**
+     * Crea el controlador para la vista de gestion de los colectivos del ciudadano
+     * @param frame la ventana principal del sistema
+     * @param modelo la aplicacion fuente
+     */
     public ControlMisColectivos(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getHomeUsuario().getMisColectivos();

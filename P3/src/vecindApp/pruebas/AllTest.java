@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
                     SolicitudFinanciacionTest.class,
                     UsuarioTest.class})
 /**
- * Clase de prueba general
+ * Clase de prueba general.
  *
  * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
  */

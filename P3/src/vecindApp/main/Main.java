@@ -12,6 +12,11 @@ import vecindApp.vistas.Ventana;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Clase principal que lanza el sistema
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Main {
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {

@@ -1,12 +1,8 @@
 package vecindApp.controladores.admin;
 
 import vecindApp.clases.aplicacion.Aplicacion;
-import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
-import vecindApp.clases.proyecto.Proyecto;
-import vecindApp.vistas.Ventana;
-import vecindApp.vistas.admin.Desbloquear;
 import vecindApp.vistas.admin.MinApoyos;
 import vecindApp.vistas.home.HomeAdmin;
 
@@ -14,14 +10,24 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Define el controlador para la vista de configuracion del minimo de apoyos.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlMinApoyos implements ActionListener {
     private MinApoyos vista;
-    private HomeAdmin<Notificacion, Proyecto, ElementoColectivo> frame;
+    private HomeAdmin<Notificacion, ElementoColectivo> frame;
     private Aplicacion modelo;
 
-    public ControlMinApoyos(HomeAdmin<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
+    /**
+     * Crea el controlador para la vista de configuracion del minimo de apoyos
+     * @param frame el componente padre (la vista principal del administrador)
+     * @param modelo la aplicacion fuente
+     */
+    public ControlMinApoyos(HomeAdmin<Notificacion, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
-        this.vista = frame.getpMinApoyos();
+        this.vista = frame.getMinApoyos();
         this.modelo = modelo;
     }
 

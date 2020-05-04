@@ -16,11 +16,21 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Define el controlador para la vista de afinidad entre colectivos.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlAfinidad implements ActionListener, TreeSelectionListener {
     private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private Afinidad<ElementoColectivo> vista;
     private Aplicacion modelo;
 
+    /**
+     * Crea el controlador para la vista de afinidad entre colectivos
+     * @param frame el componente padre (la ventana principal del sistema)
+     * @param modelo la aplicacion fuente
+     */
     public ControlAfinidad(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getAfinidad();

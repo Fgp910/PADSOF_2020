@@ -13,11 +13,21 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Define el controlador para la vista de registro de usuarios.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlRegistroUsuario implements ActionListener {
     private RegistroUsuario vista;
     private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
 
+    /**
+     * Crea el controlador para la vista de registro usuarios
+     * @param frame el componente padre (la ventana principal del sistema)
+     * @param modelo la aplicacion fuente
+     */
     public ControlRegistroUsuario(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getRegistroUsuario();

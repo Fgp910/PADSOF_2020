@@ -17,16 +17,24 @@ import vecindApp.vistas.home.HomeAdmin;
 import vecindApp.vistas.home.HomeUsuario;
 
 import javax.swing.JOptionPane;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
 
+/**
+ * Define el controlador para la vista de inicio de sesion de los usuarios.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlLoginUsuario implements ActionListener {
     private LoginUsuario vista;
     private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private Aplicacion modelo;
 
+    /**
+     * Crea el controlador para la vista de inicio de sesion de los usuarios
+     * @param frame el componente padre (la ventana principal del sistema)
+     * @param modelo la aplicacion fuente
+     */
     public ControlLoginUsuario(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getLoginUsuario();
@@ -95,12 +103,12 @@ public class ControlLoginUsuario implements ActionListener {
 
         if (user.equals(modelo.getAdmin())) {
             Administrador admin = modelo.getAdmin();
-            HomeAdmin<Notificacion, Proyecto, ElementoColectivo> h = home.getHomeAdmin();
+            HomeAdmin<Notificacion, ElementoColectivo> h = home.getHomeAdmin();
             h.getPerfil().update(admin.toString());
             h.getNotificaciones().update(admin.getPendientes(), true);
-            h.getpMinApoyos().update("" + Aplicacion.getMinApoyos() + "");
-            h.getpBloquear().update(modelo.getDesbloqueados(), true);
-            h.getpDesbloquear().update(modelo.getCollBloqueados(), true);
+            h.getMinApoyos().update("" + Aplicacion.getMinApoyos() + "");
+            h.getBloquear().update(modelo.getDesbloqueados(), true);
+            h.getDesbloquear().update(modelo.getCollBloqueados(), true);
         } else {
             Ciudadano u = (Ciudadano) user;
             HomeUsuario<Notificacion, Proyecto, ElementoColectivo> h = home.getHomeUsuario();

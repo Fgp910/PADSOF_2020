@@ -4,8 +4,13 @@ import vecindApp.controladores.admin.ControlBloquear;
 import vecindApp.vistas.VentanaLista;
 
 import javax.swing.*;
-import java.util.Collection;
 
+/**
+ * Define la vista de ciudadanos no bloqueados.
+ * @param <C> el tipo de los ciudadanos de la lista
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class Bloquear<C> extends VentanaLista<C> {
     private JButton block = new JButton("Bloquear");
 
@@ -15,7 +20,7 @@ public class Bloquear<C> extends VentanaLista<C> {
         block.setEnabled(false);
     }
 
-    public JButton getOpenButton() {
+    public JButton getBlockButton() {
         return block;
     }
 

@@ -6,6 +6,12 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.Collection;
 
+/**
+ * Define una vista generica que contiene una lista dinamica.
+ * @param <T> el tipo de entradas de la lista
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class VentanaLista<T> extends JPanel {
     private JPanel bot = new JPanel();
     private DefaultListModel<T> cLista = new DefaultListModel<>();
@@ -65,20 +71,5 @@ public class VentanaLista<T> extends JPanel {
 
     public void setControlador(ListSelectionListener c) {
         lista.addListSelectionListener(c);
-    }
-
-    public static void main(String[] args) {
-        JFrame ventana = new JFrame();
-        VentanaLista<String> vLista = new VentanaLista<>();
-
-        vLista.addAll(Arrays.asList("Ana", "Leandro", "Fabian", "Rajoy", "El coletas", "Kazaros", "Hulia", "Foo",
-                "Miabuela", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r" +
-                        "s", "t", "u", "v", "w", "x", "y", "z"));
-
-        ventana.getContentPane().add(vLista);
-
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(600,400);
-        ventana.setVisible(true);
     }
 }

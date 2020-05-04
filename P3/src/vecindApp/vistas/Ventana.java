@@ -13,7 +13,7 @@ public class Ventana<N,P,C> extends JFrame {
     private LoginUsuario vLoginUsuario = new LoginUsuario();
     private RegistroUsuario vRegistroUsuario = new RegistroUsuario();
     private HomeUsuario<N,P,C> vHomeUsuario = new HomeUsuario<>();
-    private HomeAdmin<N,P,C> vHomeAdmin = new HomeAdmin<>();
+    private HomeAdmin<N,C> vHomeAdmin = new HomeAdmin<>();
     private NuevoProyecto<C> vNuevoProyecto = new NuevoProyecto<>();
     private Afinidad<C> vAfinidad = new Afinidad<>();
 
@@ -56,7 +56,7 @@ public class Ventana<N,P,C> extends JFrame {
         return vHomeUsuario;
     }
 
-    public HomeAdmin<N,P,C> getHomeAdmin() {
+    public HomeAdmin<N, C> getHomeAdmin() {
         return vHomeAdmin;
     }
 

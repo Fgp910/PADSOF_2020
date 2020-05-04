@@ -20,6 +20,9 @@ import static org.junit.Assert.assertTrue;
 public class ProyectoTest {
     Proyecto p;
 
+    /**
+     * Crea un proyecto con el que realizar las pruebas
+     */
     @Before
     public void setUp() {
         p = new ProyectoSocial("titulo",
@@ -31,6 +34,9 @@ public class ProyectoTest {
         p.aceptar();
     }
 
+    /**
+     * Comprueba que se ha recibido el apoyo individual y que el promotor ha sido agregado a la lista
+     */
     @Test
     public void recibirApoyo1() {
         Ciudadano votante = new Ciudadano("juan", "a2", "123456J");
@@ -38,6 +44,9 @@ public class ProyectoTest {
         assertTrue(p.getPromotores().contains(votante) && p.getNApoyos() == 2);
     }
 
+    /**
+     * Comprueba que se ha recibido el apoyo colectivo y que los promotares han sido agregados a la lista
+     */
     @Test
     public void recibirApoyo2() {
         int actual = p.getNApoyos();
@@ -49,6 +58,9 @@ public class ProyectoTest {
         assertTrue(p.getPromotores().contains(votante1) && p.getPromotores().contains(votante2) && p.getNApoyos() == actual + 2);
     }
 
+    /**
+     * Comprueba que se crea correctamente la notificacion para avisar de un cambio
+     */
     @Test
     public void notificarCambio() {
         p.notificarCambio();
@@ -56,6 +68,9 @@ public class ProyectoTest {
         assertEquals(p, ((NotificacionProy) notis.get(0)).getSujeto());
     }
 
+    /**
+     * Comprueba que el informe de popularidad es el correcto para los datos dados
+     */
     @Test
     public void generarInformePopularidad() {
         assertEquals(1, p.generarInformePopularidad());

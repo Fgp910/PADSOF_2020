@@ -15,18 +15,26 @@ import vecindApp.vistas.usuario.nuevoProyecto.NuevoProyecto;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * Define el controlador para la vista de gestion de los proyectos del ciudadano.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlMisProyectos implements ListSelectionListener, ActionListener {
     private Ventana<Notificacion, Proyecto, ElementoColectivo> frame;
     private MisProyectos<Proyecto> vista;
     private Aplicacion modelo;
 
+    /**
+     * Crea el controlador para la vista de gestion de los proyectos del ciudadano
+     * @param frame la ventana principal del sistema
+     * @param modelo la aplicacion fuente
+     */
     public ControlMisProyectos(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo) {
         this.frame = frame;
         this.vista = frame.getHomeUsuario().getMisProyectos();

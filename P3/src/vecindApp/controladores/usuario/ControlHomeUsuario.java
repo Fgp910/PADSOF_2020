@@ -10,7 +10,11 @@ import vecindApp.controladores.admin.ControlNotificacionesAdmin;
 import vecindApp.vistas.Ventana;
 import vecindApp.vistas.home.HomeUsuario;
 
-
+/**
+ * Define el controlador para la vista principal del ciudadano.
+ *
+ * @author Ana Calzada, Leandro Garcia, Fabian Gutierrez
+ */
 public class ControlHomeUsuario {
     private HomeUsuario<Notificacion, Proyecto, ElementoColectivo> vista;
     private Ventana<Notificacion, Proyecto, ElementoColectivo>frame;
@@ -22,6 +26,11 @@ public class ControlHomeUsuario {
     private ControlBuscarProyectos cBuscarProyectos;
     private ControlPerfil cPerfil;
 
+    /**
+     * Crea el controlador para la vista principal del administrador
+     * @param frame el componente padre (la ventana principal del sistema)
+     * @param modelo la aplicacion fuente
+     */
     public ControlHomeUsuario(Ventana<Notificacion, Proyecto, ElementoColectivo> frame, Aplicacion modelo, ControlPerfil cPerfil) {
         this.frame = frame;
         this.vista = frame.getHomeUsuario();

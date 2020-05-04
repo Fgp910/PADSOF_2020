@@ -121,11 +121,6 @@ public class ProyectoInfraestructura extends Proyecto {
         return afectados.remove(d);
     }
 
-    /**
-     * Devuelve el tipo de proyecto (social o infrestructura)
-     * @return tipo de proyecto
-     */
-
     @Override
     public GrantRequest.ProjectKind getProjectKind() {
         return GrantRequest.ProjectKind.valueOf("Infrastructure");
