@@ -5,6 +5,7 @@ import vecindApp.clases.aplicacion.Aplicacion;
 import vecindApp.clases.colectivo.Ciudadano;
 import vecindApp.clases.colectivo.ElementoColectivo;
 import vecindApp.clases.notificacion.Notificacion;
+import vecindApp.clases.proyecto.EstadoProyecto;
 import vecindApp.clases.proyecto.Proyecto;
 import vecindApp.clases.usuario.Administrador;
 import vecindApp.clases.usuario.Usuario;
@@ -19,6 +20,7 @@ import vecindApp.vistas.home.HomeUsuario;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.stream.Collectors;
 
 /**
  * Define el controlador para la vista de inicio de sesion de los usuarios.
@@ -116,7 +118,7 @@ public class ControlLoginUsuario implements ActionListener {
             h.getNotificaciones().update(u.getPendientes(), true);
             h.getMisColectivos().updateCols(u.getTree());
             h.getMisProyectos().update(u.getProyectos(), true);
-            h.getBuscarProyectos().update(modelo.getProyectos(), true);
+            h.getBuscarProyectos().update(modelo.getProyectos().stream().filter(p -> !p.getEstado().equals(EstadoProyecto.INICIAL)).collect(Collectors.toList()), true);
             h.getBuscarColectivos().updateCols(modelo.getTree());
         }
 

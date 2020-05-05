@@ -78,7 +78,7 @@ public class ControlRegistroUsuario implements ActionListener {
 
             if (containsNif) {
                 JOptionPane.showMessageDialog(vista,
-                        user + " (" + nif +") ya esta registrado. Introduzca un NIF distinto.",
+                        "El NIF (" + nif +") ya esta registrado. Introduzca un NIF distinto.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
@@ -86,7 +86,7 @@ public class ControlRegistroUsuario implements ActionListener {
 
             if (!modelo.addElemCol(new Ciudadano(user, psswd, nif))) {
                 JOptionPane.showMessageDialog(vista,
-                        user + " (" + nif + ") ya está registrado. Introduzca un nombre distinto.",
+                        user + " ya está registrado. Introduzca un nombre distinto.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
